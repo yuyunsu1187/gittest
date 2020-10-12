@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="6" packages="devonframe.log.log4j">
+<!-- <Configuration status="error" monitorInterval="6" packages="devonframe.log.log4j"> -->
+
+  <Appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %5p [%c] %m%n"/>
+    </Console>
+  </Appenders>
+  
+  <Loggers>
+    <Logger name="org.springframework" level="info">
+    	<AppenderRef ref="STDOUT"/>
+    </Logger>
+    
+    <Root level="debug">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>
+
+

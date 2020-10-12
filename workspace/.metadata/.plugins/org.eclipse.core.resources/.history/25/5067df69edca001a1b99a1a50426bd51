@@ -1,0 +1,16 @@
+package com.java.gyva;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MainPageController {
+
+	@RequestMapping(value = "/index.do")
+	public String mainStartPage(ModelMap model) {
+		System.out.println("\t\t ########### [mainStartPage:start]");
+
+		return "/index";
+	}
+}

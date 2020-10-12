@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+    <insert id="insertUser">
+		<![CDATA[
+			INSERT INTO user_info (
+			      email
+				, password
+				, name_first
+				, name_last
+				, user_type
+				, division_code
+				, country_code
+				, hp_name 
+				, hp_zipcode
+				, hp_add
+				, file_id
+				, request_date
+				, state_code
+				, consent_yn
+				, create_id
+				, create_date
+				, update_id
+				, update_date
+			) VALUES (
+			      #{email}
+				, #{password , jdbcType=VARCHAR}
+				, #{nameFirst}
+				, #{nameLast}
+				, #{userType}
+				, #{specialCode}
+				, #{countryCode}
+				, #{hpName}
+				, #{hpZipcode}
+				, #{hpAdd}
+				, #{fileId}
+				, NOW()
+				, #{stateCode}
+				, #{consentYn}
+				, #{createId}
+				, NOW()
+				, #{updateId}
+				, NOW()
+			)
+		]]>
+	</insert>
+
+	<select id="duplicateCheckId" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) 
+			  FROM user_info 
+			 WHERE email = #{email}
+		]]>
+	</select>
+
+
+	<select id="retrieveUser" resultType="user">
+		<![CDATA[
+			SELECT
+				  seq
+			    , email
+				, password
+				, name_first as nameFirst
+				, name_last as nameLast
+				, user_type as userType
+				, special_code as specialCode
+				, country_code as countryCode
+				, file_id as fileId
+				, request_date as requestDate
+				, confirm_id as confirmId
+				, confirm_date as confirmDate
+				, state_code as stateCode
+				, consent_yn as consentYn
+				, remark
+				, create_id as createId
+				, create_date as createDate
+				, update_id as updateId
+				, update_date as updateDate
+				, hp_name as hpName
+				, hp_zipcode as hpZipcode
+				, hp_add as hpAdd
+			  FROM user_info 
+		]]>
+        <if test="email != null and email != ''">
+        <![CDATA[ WHERE email = #{email} ]]>
+        </if>
+        <if test="seq != null and seq != ''">
+        <![CDATA[ WHERE seq = #{seq} ]]>
+        </if>
+	</select>
+
+
+    <update id="updateUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{password , jdbcType=VARCHAR}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE email = #{email}
+		]]>
+    </update>
+
+    <update id="deleteUser">
+		<![CDATA[
+			UPDATE user_info
+			SET delete_yn = 'Y'
+				, update_data = NOW()
+				, update_id = #{updateId}
+			WHERE seq = #{userSeq}
+		]]>
+    </update>
+
+	<update id="updatePwdUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{password , jdbcType=VARCHAR}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE seq = #{seq}
+		]]>
+	</update>
+
+	<!-- 아이디 중복 체크 -->
+	<select id="idChk" resultType="int">
+		<![CDATA[
+			SELECT COUNT(seq) FROM user_info
+			WHERE email = #{email} 
+		]]>
+	</select>
+
+    <select id="retrieveUserList" resultType="user">
+		<![CDATA[
+			SELECT
+			     seq
+				,email
+				,password
+				,name_first
+				,name_last
+				,user_type
+				,division_code
+				,country_code
+				,file_id
+				,request_date
+				,confirm_id
+				,confirm_date
+				,state_code
+				,consent_yn
+				,remark
+				,create_id
+				,create_date
+				,update_id
+				,update_date
+			  FROM user_info 
+			 WHERE 1=1
+		]]>
+    </select>
+    
+    <select id="retrieveLecturerList" resultType="user">
+		<![CDATA[
+			SELECT
+				  ui.seq as readerUserId
+			    , ui.email
+				, ui.name_first as nameFirst
+				, ui.name_last as nameLast
+				, ui.user_type as userType
+                , li.career_1 as career1
+             	, li.career_2 as career2
+             	, li.career_3 as career3
+             	, lec_fi.file_path AS lecturerImgPath
+			  FROM lecturer_info li
+					LEFT OUTER JOIN user_info ui
+				 ON li.user_id = ui.seq
+                AND li.delete_yn = 'N'
+                AND ui.delete_yn = 'N'
+                AND ui.user_type = 'DR01'
+                    LEFT JOIN file_info lec_fi
+				 ON li.file_id = lec_fi.file_id
+		   		AND lec_fi.file_number = '3'
+           		AND lec_fi.delete_yn = 'N'
+		]]>
+		<if test="readerUserId != null and readerUserId != ''">
+        <![CDATA[ WHERE li.user_id = #{readerUserId}  ]]>
+        </if>
+    </select>
+    
+    <!-- country code 조회 -->
+	<select id="retrieveCodeList" resultType="hashmap" >
+        <![CDATA[
+        SELECT code AS "code"
+             , code_name AS "value"
+          FROM code_detail
+         WHERE 1 = 1
+        ]]>
+        <if test="codeGroup != null and codeGroup != ''">
+        <![CDATA[ AND GROUP_ID = 'COUNTRY' ]]>
+        </if>
+    </select>
+    
+</mapper>

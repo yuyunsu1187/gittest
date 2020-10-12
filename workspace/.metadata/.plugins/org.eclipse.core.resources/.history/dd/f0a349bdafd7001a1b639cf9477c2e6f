@@ -1,0 +1,9 @@
+package devonframe.gyva.front.common.fileupload.service;
+
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+public interface FileUtilImpl{
+	
+	// 첨부파일 업로드
+	public void parseInsertFileInfo(String fildId, MultipartHttpServletRequest mpRequest);
+}

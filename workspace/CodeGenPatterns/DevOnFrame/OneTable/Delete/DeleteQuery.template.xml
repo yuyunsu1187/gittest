@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/Delete/QueryTemplate" format="1.0" title="Query Template for DELETE">
+
+	<prefix><![CDATA[
+#set($deleteQueryId="delete${table.capitalized}")
+]]></prefix>
+
+
+	<ifNewFile><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${queryNamespace}">
+]]></ifNewFile>
+
+
+	<ifNotFound>
+		<findXMLElement path="/mapper/delete[@id='${deleteQueryId}']"/>
+		<insert location="xmlChild" parent="/mapper"><![CDATA[
+<delete id="${deleteQueryId}">{CodeGen:StartOfCDATA}
+    DELETE   FROM ${table.tableName}
+    WHERE    -- Condition
+{CodeGen:EndOfCDATA}</delete>
+]]></insert>
+	</ifNotFound>
+
+
+
+	<ifNewFile><![CDATA[
+</mapper>
+]]></ifNewFile>
+
+
+
+</CodeGenTemplate>

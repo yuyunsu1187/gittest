@@ -1,0 +1,184 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<html>
+<head>
+<title>회원가입 화면</title>
+
+
+<script type="text/javascript">
+    
+        // 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+        function checkValue()
+        {
+            if(!document.userInfo.email.value){
+                alert("이메일 형식의 아이디를 입력하세요.");
+                return false;
+            }
+            
+            /* if(document.userInfo.idDuplication.value != "idCheck"){
+            	alert("아이디 중복 체크를 해주세요.");
+            	return false;
+            } */
+            
+            if(!document.userInfo.password.value){
+                alert("비밀번호를 입력하세요.");
+                return false;
+            }
+            
+         	// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+            if(document.userInfo.email.value != document.userInfo.emailCheck.value ){
+                alert("비밀번호를 동일하게 입력하세요.");
+                return false;
+            }
+         
+            // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+            if(document.userInfo.password.value != document.userInfo.passwordCheck.value ){
+                alert("비밀번호를 동일하게 입력하세요.");
+                return false;
+            }
+        }
+        
+        // 취소 버튼 클릭시 로그인 화면으로 이동
+        function goLoginForm() {
+            location.href="JoinForm.do";
+        }
+        
+        // 파일 저장
+    	function fnSave() {
+    		document.detailForm.action = "<c:url value='/function/fileupload/insertFileInfo.do'/>";
+    		document.detailForm.submit();
+    	}
+        
+        
+        //
+        function doOpenCheck(chk){
+            var obj = document.getElementsByName("user_type");
+            for(var i=0; i<obj.length; i++){
+                if(obj[i] != chk){
+                    obj[i].checked = false;
+                }
+            }
+        }
+
+        /* function duplicateUserId(){
+        	document.userInfo.idDuplication.value = "idCheck";
+        }
+        
+        function duplicateUserId() {
+        	alert('before:   '+document.userInfo.idDuplication.value);
+        	
+        	// document.userInfo.action = "<c:url value='/duplicateCheckId.do'/>";
+        	// document.userInfo.submit(); 
+        	
+        	alert('after:   '+document.userInfo.idDuplication.value);
+        } */
+       
+    </script>
+
+</head>
+<body>
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="wrap">
+		<br>
+		<br> <b><font size="6" color="gray">회원가입</font></b> <br>
+		<br>
+		<br>
+
+
+		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
+		<form method="post" action="/common/user/insertUser.do" name="userInfo"
+			onsubmit="return checkValue()">
+			<table>
+				<tr>
+					<td id="title">user_type</td>
+					<td>
+						<p class="remember">
+							<input type="checkbox" id="user_type" name="user_type" value="DR01" onclick="doOpenCheck(this);" checked="checked" />
+							<label for="login_remember">의사 그룹</label>
+							 
+							<input type="checkbox" id="user_type" name="user_type" value="SP01" onclick="doOpenCheck(this);" />
+							<label for="login_remember">협력 업체</label>
+							
+						</p>
+					</td>
+				</tr>
+				
+				<tr>
+					<td id="title">email </td>
+					<td>
+						<input type="text" name="email" id="email" maxlength="50" placeholder ="Enter Email"> 
+						<input type="text" name="emailCheck" id="emailCheck" maxlength="50" placeholder ="Confirm Email" >
+					</td>
+				</tr>
+				
+				<tr>
+					<td id="title">password </td>
+					<td><input type="password" name="password" id="password" maxlength="50" placeholder ="Enter Password">
+					</td>
+				</tr>
+
+				<tr>
+					<td id="title">confirm password </td>
+					<td><input type="password" name="passwordCheck" id="passwordCheck" maxlength="50" placeholder ="Confirm Password">
+					</td>
+				</tr>
+
+				<tr>
+					<td id="title"> Name </td>
+					<td><input type="text" name="name_last" id="name_last" maxlength="50" placeholder ="First name"> 
+					    <input type="text" name="name_first" id="name_first" maxlength="50" placeholder ="Sur name"></td>
+				</tr>
+
+				<tr>
+					<td id="title">Country </td>
+					<td><select name="country_code" id="country_code" placeholder ="-- Plasses choose--">
+							<option value="K001">KOR</option>
+							<option value="U001">USA</option>
+					</select> </td>
+				</tr>
+
+				<tr>
+					<td id="title">City</td>
+					<td><input type="text" name="division_code" id="division_code" placeholder ="For quicker approval please enter the city." /></td>
+				</tr>
+								
+				<tr>
+					<td id="title">Physician ID </td>
+					<td><input type="text" name="file_id" id="file_id" /><input type="button" value="찾아보기" onclick="" /></td>
+				</tr>
+				
+				<tr>
+					<td id="title">Phycician Face </td>
+					<td><input type="text" name="file_id" id="file_id" /><input type="button" value="찾아보기" onclick="" /></td>
+				</tr>
+				
+
+				<tr>
+					<td id="title">state_code </td>
+					<td><input type="text" name="state_code" id="state_code" value="S01"/></td>
+				</tr>
+
+				<tr>
+					<td id="title">consent_yn</td>
+					<td>
+					<label><input type="checkbox" name="consent_yn" id="consent_yn" value="Y" checked> 동의</label>
+      				<label><input type="checkbox" name="consent_yn" id="consent_yn" value="N"> 거부</label>
+					</td>
+				</tr>
+				<tr>
+					<td id="title">create_id </td>
+					<td><input type="text" name="create_id" id="create_id" value="0"/></td>
+				</tr>
+				<tr>
+					<td id="title">update_id </td>
+					<td><input type="text" name="update_id" id="update_id" value="0"/></td>
+				</tr>
+
+			</table>
+			<br> <input type="submit" value="가입" /> <input type="button"
+				value="취소" onclick="goLoginForm()">
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="employee" type="devonframe.sample.office.uipattern.employee.model.Employee" />
+		<typeAlias alias="employeeDetail" type="devonframe.sample.office.uipattern.common.model.EmployeeDetail" />
+		<typeAlias alias="achievement" type="devonframe.sample.office.uipattern.common.model.Achievement" />
+		<typeAlias alias="code" type="devonframe.sample.office.common.code.model.Code" />
+	    <typeAlias alias="user" type="devonframe.sample.office.common.user.model.User" />
+	    <typeAlias alias="logDb" type="devonframe.sample.office.function.log.model.LogDb" />
+	    <typeAlias alias="employeeForExcel" type="devonframe.sample.office.function.excel.model.EmployeeForExcel" />
+	    <typeAlias alias="employeeForBeanValidator" type="devonframe.sample.office.function.validator.bean.model.Employee" />
+	    <typeAlias alias="fileInfo" type="devonframe.sample.office.function.filedownload.model.FileInfo" />
+	</typeAliases>
+	<plugins>
+		<plugin interceptor="devonframe.log.trace.interceptor.QueryLoggingInterceptor" />
+		<plugin interceptor="devonframe.paging.interceptor.MyBatisPagingInterceptor" />
+		<plugin interceptor="devonframe.scrollpaging.interceptor.MyBatisScrollPagingInterceptor" />
+	</plugins>			
+</configuration>

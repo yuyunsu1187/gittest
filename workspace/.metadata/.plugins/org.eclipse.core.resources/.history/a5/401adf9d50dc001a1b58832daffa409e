@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+    <insert id="insertUser">
+		<![CDATA[
+			INSERT INTO user_info (
+			      email
+				, password
+				, name_first
+				, name_last
+				, user_type
+				, division_code
+				, country_code
+				, hp_name 
+				, hp_zipcode
+				, hp_add
+				, file_id
+				, request_date
+				, state_code
+				, consent_yn
+				, create_id
+				, create_date
+				, update_id
+				, update_date
+			) VALUES (
+			      #{email}
+				, #{password , jdbcType=VARCHAR}
+				, #{nameFirst}
+				, #{nameLast}
+				, #{userType}
+				, #{divisionCode}
+				, #{countryCode}
+				, #{hpName}
+				, #{hpZipcode}
+				, #{hpAdd}
+				, #{fileId}
+				, NOW()
+				, #{stateCode}
+				, #{consentYn}
+				, #{createId}
+				, NOW()
+				, #{updateId}
+				, NOW()
+			)
+		]]>
+	</insert>
+
+	<select id="duplicateCheckId" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) 
+			  FROM user_info 
+			 WHERE email = #{email}
+		]]>
+	</select>
+
+
+	<select id="retrieveUser" resultType="user">
+		<![CDATA[
+			SELECT
+				  seq
+			    , email
+				, password
+				, name_first as nameFirst
+				, name_last as nameLast
+				, user_type as userType
+				, division_code as divisionCode
+				, country_code as countryCode
+				, file_id as fileId
+				, request_date as requestDate
+				, confirm_id as confirmId
+				, confirm_date as confirmDate
+				, state_code as stateCode
+				, consent_yn as consentYn
+				, remark
+				, create_id as createId
+				, create_date as createDate
+				, update_id as updateId
+				, update_date as updateDate
+				, hp_name as hpName
+				, hp_zipcode as hpZipcode
+				, hp_add as hpAdd
+			  FROM user_info 
+			 WHERE email = #{email}
+		]]>
+	</select>
+
+
+    <update id="updateUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{password , jdbcType=VARCHAR}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE email = #{email}
+		]]>
+    </update>
+
+    <delete id="deleteUser">
+		<![CDATA[
+			DELETE
+			  FROM user_info
+			 WHERE seq = #{usrSeq}
+		]]>
+    </delete>
+
+	<update id="updatePwdUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{password , jdbcType=VARCHAR}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE seq = #{seq}
+		]]>
+	</update>
+
+	<!-- 아이디 중복 체크 -->
+	<select id="idChk" resultType="int">
+		<![CDATA[
+			SELECT COUNT(seq) FROM user_info
+			WHERE email = #{email} 
+		]]>
+	</select>
+
+    <select id="retrieveUserList" resultType="user">
+		<![CDATA[
+			SELECT
+			     seq
+				,email
+				,password
+				,name_first
+				,name_last
+				,user_type
+				,division_code
+				,country_code
+				,file_id
+				,request_date
+				,confirm_id
+				,confirm_date
+				,state_code
+				,consent_yn
+				,remark
+				,create_id
+				,create_date
+				,update_id
+				,update_date
+			  FROM user_info 
+			 WHERE 1=1
+		]]>
+    </select>
+    
+    <select id="retrieveLecturerList" resultType="user">
+		<![CDATA[
+			<!-- SELECT
+				  ui.seq
+			    , ui.email
+				, ui.name_first as nameFirst
+				, ui.name_last as nameLast
+				, ui.user_type as userType
+                , li.seq as readerUserId
+			  FROM lecturer_info li
+					LEFT OUTER JOIN user_info ui
+				 ON li.user_id = ui.seq
+                AND li.delete_yn = 'N'
+                AND ui.delete_yn = 'N'
+                AND ui.user_type = 'DR01'
+                WHERE 1=1 -->
+		]]>
+    </select>
+    
+
+</mapper>

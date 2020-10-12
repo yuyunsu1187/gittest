@@ -1,0 +1,11 @@
+package devonframe.gyva.common.menu.service;
+
+import devonframe.gyva.common.menu.model.Menu;
+import devonframe.gyva.contents.model.Contents;
+
+public interface MenuService {
+
+	public void retrieveMenuList(Menu menu);
+	public Menu retrieveCallMenuInfo(Contents contents);
+	
+}

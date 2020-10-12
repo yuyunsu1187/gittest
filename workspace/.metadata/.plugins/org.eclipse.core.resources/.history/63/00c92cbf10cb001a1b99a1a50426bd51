@@ -1,0 +1,173 @@
+/*package com.java.gyva.common.user.controller.model;
+
+
+*//**
+ * user_info 정보 
+ * <pre>
+ * <b>History:</b>
+ *  작성자, 1.0, 20.07.21 최초작성
+ * </pre>
+ *
+ * @author 	유윤수
+ * @version 1.0, 20.07.21 소스 수정
+ * @see 	None 
+ * @param 
+ *//*
+public class User {
+
+	private String usrSeq;			// 순번
+	private String usrEmail;		// 이메일(ID)
+	private String usrPwd;			// 비밀번호
+	private String usrNameFirst;	// 이름(영문)
+	private String usrNameLast;		// 성(영문)
+	
+	private String usrType;			// 회원 유형
+	private String usrDivisionCode;	// 지역 코드
+	private String usrContryCode;	// 국가 코드
+	private String usrPersonPhoto;	// 증명 사진
+	private String usrLicensePhoto;	// 면허증 사진
+	
+	private String reqDt;			// 가입 요청 일자
+	private String confirmId;		// 승인자
+	private String confirmDt;		// 승인 일자
+	private String stateCode;		// 상태 코드
+	private String consentYn;		// 동의 여부
+	
+	private String remark;			// 비고
+	private String createId;		// 작성자
+	private String createDt;		// 작성 일자
+	private String updateId;		// 수정자
+	private String updateDt;		// 수정 일자
+	
+	public String getUsrSeq() {
+		return usrSeq;
+	}
+	public void setUsrSeq(String usrSeq) {
+		this.usrSeq = usrSeq;
+	}
+	public String getUsrEmail() {
+		return usrEmail;
+	}
+	public void setUsrEmail(String usrEmail) {
+		this.usrEmail = usrEmail;
+	}
+	public String getUsrPwd() {
+		return usrPwd;
+	}
+	public void setUsrPwd(String usrPwd) {
+		this.usrPwd = usrPwd;
+	}
+	public String getUsrNameFirst() {
+		return usrNameFirst;
+	}
+	public void setUsrNameFirst(String usrNameFirst) {
+		this.usrNameFirst = usrNameFirst;
+	}
+	public String getUsrNameLast() {
+		return usrNameLast;
+	}
+	public void setUsrNameLast(String usrNameLast) {
+		this.usrNameLast = usrNameLast;
+	}
+	public String getUsrType() {
+		return usrType;
+	}
+	public void setUsrType(String usrType) {
+		this.usrType = usrType;
+	}
+	public String getUsrDivisionCode() {
+		return usrDivisionCode;
+	}
+	public void setUsrDivisionCode(String usrDivisionCode) {
+		this.usrDivisionCode = usrDivisionCode;
+	}
+	public String getUsrContryCode() {
+		return usrContryCode;
+	}
+	public void setUsrContryCode(String usrContryCode) {
+		this.usrContryCode = usrContryCode;
+	}
+	public String getUsrPersonPhoto() {
+		return usrPersonPhoto;
+	}
+	public void setUsrPersonPhoto(String usrPersonPhoto) {
+		this.usrPersonPhoto = usrPersonPhoto;
+	}
+	public String getUsrLicensePhoto() {
+		return usrLicensePhoto;
+	}
+	public void setUsrLicensePhoto(String usrLicensePhoto) {
+		this.usrLicensePhoto = usrLicensePhoto;
+	}
+	public String getReqDt() {
+		return reqDt;
+	}
+	public void setReqDt(String reqDt) {
+		this.reqDt = reqDt;
+	}
+	public String getConfirmId() {
+		return confirmId;
+	}
+	public void setConfirmId(String confirmId) {
+		this.confirmId = confirmId;
+	}
+	public String getConfirmDt() {
+		return confirmDt;
+	}
+	public void setConfirmDt(String confirmDt) {
+		this.confirmDt = confirmDt;
+	}
+	public String getStateCode() {
+		return stateCode;
+	}
+	public void setStateCode(String stateCode) {
+		this.stateCode = stateCode;
+	}
+	public String getConsentYn() {
+		return consentYn;
+	}
+	public void setConsentYn(String consentYn) {
+		this.consentYn = consentYn;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getCreateId() {
+		return createId;
+	}
+	public void setCreateId(String createId) {
+		this.createId = createId;
+	}
+	public String getCreateDt() {
+		return createDt;
+	}
+	public void setCreateDt(String createDt) {
+		this.createDt = createDt;
+	}
+	public String getUpdateId() {
+		return updateId;
+	}
+	public void setUpdateId(String updateId) {
+		this.updateId = updateId;
+	}
+	public String getUpdateDt() {
+		return updateDt;
+	}
+	public void setUpdateDt(String updateDt) {
+		this.updateDt = updateDt;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [usrSeq=" + usrSeq + ", usrEmail=" + usrEmail + ", usrPwd=" + usrPwd + ", usrNameFirst="
+				+ usrNameFirst + ", usrNameLast=" + usrNameLast + ", usrType=" + usrType + ", usrDivisionCode="
+				+ usrDivisionCode + ", usrContryCode=" + usrContryCode + ", usrPersonPhoto=" + usrPersonPhoto
+				+ ", usrLicensePhoto=" + usrLicensePhoto + ", reqDt=" + reqDt + ", confirmId=" + confirmId
+				+ ", confirmDt=" + confirmDt + ", stateCode=" + stateCode + ", consentYn=" + consentYn + ", remark="
+				+ remark + ", createId=" + createId + ", createDt=" + createDt + ", updateId=" + updateId
+				+ ", updateDt=" + updateDt + "]";
+	}
+}*/

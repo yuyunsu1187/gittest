@@ -1,0 +1,70 @@
+package com.gyva.web.common.user.controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gyva.web.common.user.model.UserVO;
+import com.gyva.web.common.user.service.UserService;
+
+
+/**
+ * <pre>
+ * 본 클래스는 사용자 정보에 대한 CRUD를 담당하는 Controller 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class UserController {
+
+	@Resource(name = "userService")
+	private UserService userService;
+
+	@RequestMapping(value="/common/user/searchUser.do")
+	public String searchUser(UserVO input, ModelMap model){
+		System.out.println("\t\t\t ################################# searchUser start");
+		UserVO user = userService.searchUser(input);
+		System.out.println("user:::"+user.toString());
+
+		model.addAttribute("user", user);
+		System.out.println("\t\t\t ################################# searchUser e n d");
+		return "common/user/userForm";
+	}
+
+	// 회원 id 중복 체크
+	@RequestMapping(value = "/duplicateCheckId")
+	public int duplicateCheckId(UserVO userVO) {
+		int result = userService.duplicateCheckId(userVO);
+		return result;
+	}
+	
+	
+	// 회원 가입
+	@RequestMapping(value = "/common/user/insertUser.do")
+	public String insertUser(UserVO input, ModelMap model) {
+		System.out.println("\t\t\t ################################# insertUser start");
+		userService.insertUser(input);
+		System.out.println("\t\t\t ################################# insertUser e n d");
+		return "redirect:/common/login/joinForm.do?msg=success";
+	}
+
+	// 회원 정보 수정
+	@RequestMapping(value = "/common/user/updateUser.do")
+	public String updateUser(UserVO input, ModelMap model) {
+		userService.updateUser(input);
+		return "redirect:/common/login/loginForm.do?msg=success";
+	}
+
+		// 회원 정보 삭제
+	@RequestMapping(value="/common/user/deleteUser.do")
+	public String deleteUser(UserVO input, ModelMap model){
+		System.out.println("[============================deleteUser]");
+		userService.deleteUser(input);
+		return "redirect:/common/login/JoinForm.do?msg=success";
+	}
+
+}

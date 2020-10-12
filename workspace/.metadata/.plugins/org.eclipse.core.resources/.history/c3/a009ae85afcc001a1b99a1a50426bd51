@@ -1,0 +1,5 @@
+package com.gyva.web.common.user.dao;
+
+public class UserDAOImp {
+
+}

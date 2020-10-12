@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>admin : 이브아르 글로벌 아카데미</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/admin/import.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+<!--[if gt IE 9]>
+	<link href="/resource/css/ie/main-admin.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if !IE]><!-->
+	
+<!--<![endif]-->
+</head>
+<body>
+	<!-- [S] wrap : ID 값은 화면 ID와 동일하게 적용 -->
+	<section id="AD030303-05" class="default-section">
+		<!-- [S] header -->
+		<header class="default-header">
+			<h1 class="logo-tit"><a href="/" class="link-btn"><img src="/resource/images/admin/common/logo-tit.png" alt="YVOIRE" /></a></h1>
+			<!-- [S] 1depth 메뉴 -->
+			<nav class="gnb-menu">
+				<ul>
+					<!-- 메뉴 선택 시 .active 추가 -->
+					<li class="active"><a href="#none" class="menu-btn">사용자관리</a></li>
+					<li><a href="#none" class="menu-btn">컨텐츠관리</a></li>
+					<li><a href="#none" class="menu-btn">시스템관리</a></li>
+				</ul>
+			</nav>
+			
+			<div class="breadcrumb">
+				<i class="fas fa-home"></i><span>사용자관리</span><span>사용자관리</span><span>사용자정보수정</span>
+			</div>
+			<!-- [E] 1depth 메뉴 -->
+			<button type="button" class="logout-btn">Log Out</button>
+		</header>
+		<!-- [E] header -->
+		
+		<!-- [S] contents -->
+		<article class="default-contents">
+			<!-- [S] 왼쪽 메뉴 : 2depth 메뉴부터 리스트 노출 -->
+			<nav class="lnb-menu" data-list-style="clfix">
+				<ul data-menu-depth="2">
+					<li>
+						<!-- 하위 메뉴가 있을 때 button 태그적용 -->
+						<button type="button" class="menu-btn">관리자 관리</button>
+						<ul data-menu-depth="3">
+							<li><a href="#none" class="menu-btn">관리자목록</a></li>
+							<li><a href="#none" class="menu-btn">관리자등록</a></li>
+							<li><a href="#none" class="menu-btn">관리자수정/삭제</a></li>
+						</ul>
+					</li>
+					<!-- 하위 메뉴가 없을 때 a 태그적용 -->
+					<li>
+						<!-- 하위 메뉴가 있을 때 button 태그적용 -->
+						<button type="button" class="menu-btn">패스워드 확인</button>
+						<ul data-menu-depth="3">
+							<li><a href="#none" class="menu-btn">패스워드입력</a></li>
+							<li><a href="#none" class="menu-btn">패스워드변경</a></li>
+						</ul>
+					</li>
+					<li class="active">
+						<button type="button" class="menu-btn">사용자관리</button>
+						<ul data-menu-depth="3">
+							<li><a href="#none" class="menu-btn">사용자목록</a></li>
+							<li class="active"><a href="#none" class="menu-btn">사용자정보수정</a></li>
+							<li><a href="#none" class="menu-btn">사용자정보조회/승인</a></li>
+						</ul>
+					</li>
+					<li><a href="#none" class="menu-btn">1:1문의</a></li>
+				</ul>
+			</nav>
+			<!-- [E] 왼쪽 메뉴 -->
+			
+			<section class="content-section">
+				<header class="content-header">
+					<h2 class="content-tit">New Account</h2>
+					<p class="content-txt">Information Registration</p>
+				</header>
+				
+				<!-- [S] 게시물 수정 --> 
+				<article class="board-wrap" data-board-type="form-write">
+					<div class="board-area">
+						<h3 class="article-tit">Personal Information</h3>
+						<p class="article-txt" data-text-style="essential">There are required fields in this form marked</p>
+						
+						<table class="default-table">
+							<caption>Personal Information 입력</caption>
+							<colgroup>
+								<col style="width:30%;" />
+								<col style="width:auto;" />
+							</colgroup>
+							
+							<tbody>
+								<tr>
+									<th scale="col" data-text-style="essential">Position</th>
+									<td>
+										<ul class="form" data-form="radio">
+											<li>
+												<input type="radio" class="check-form" id="radio01" name="Position" data-radio-key="teacher" checked />
+												<label for="radio01" class="label-form"><i class="fa-dot-circle"></i>인증 강사</label>
+											</li>
+											<li>
+												<input type="radio" class="check-form" id="radio02" name="Position" data-radio-id="doctor" />
+												<label for="radio02" class="label-form"><i class="fa-dot-circle"></i>일반 의사</label>
+											</li>
+											<li>
+												<input type="radio" class="check-form" id="radio03" name="Position" data-radio-id="partners" />
+												<label for="radio03" class="label-form"><i class="fa-dot-circle"></i>협력업체</label>
+											</li>
+										</ul>
+									</td>
+								</tr>
+								
+								<tr>
+									<th scale="col" data-text-style="essential">Email address</th>
+									<td><div class="form"><input type="text" class="input-form" value="Lgyvoire_master@lgcns.com" disabled /></div></td>
+								</tr>
+
+								<tr>
+									<th scale="col" data-text-style="essential">Password</th>
+									<td><div class="form" data-mult-form="password"><input type="password" class="input-form" value="123456" disabled /></div></td>
+								</tr>
+								
+								<tr>
+									<th scale="col" data-text-style="essential">Name</th>
+									<td>
+										<div class="form-area" data-combine-form="column-2-form">
+											<div class="form"><input type="text" class="input-form" placeholder="이름을 입력해주세요." /></div>
+											<div class="form"><input type="text" class="input-form" placeholder="이름을 입력해주세요." /></div>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<th scale="col" data-text-style="essential">Country</th>
+									<td>
+										<div class="form" data-form="select">
+											<select class="select-form">
+												<option value="" selected>France</option>
+												<option value="">USA</option>
+											</select>
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</td>
+								</tr>
+								<!-- [S] 라디오 [data-radio-key="doctor"] : [data-row-key="doctor"] 연결되는 tr의 data- 값 -->
+								<tr data-row-key="doctor">
+									<th scale="col" data-text-style="essential">Specialty</th>
+									<td>
+										<div class="form" data-form="select">
+											<select class="select-form">
+												<option value="" selected>Dermatologist</option>
+												<option value="">Plastic Surgeon</option>
+												<option value="">Aesthetic Physician</option>
+												<option value="">Ophthalmologist</option>
+												<option value="">General Practitioner</option>
+												<option value="">Gynecologist</option>
+												<option value="">Others</option>
+												<option value="">ENT / Dentist</option>
+											</select>
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</td>
+								</tr>
+								<!-- [E] 라디오 [data-radio-key="doctor"] -->
+								
+								<tr>
+									<th scale="col" data-text-style="essential">Physician ID</th>
+									<td><div class="form"><input type="text" class="input-form" value="인증완료" readonly /></div></td>
+								</tr>
+								
+								<tr>
+									<th scale="col" data-text-style="essential">Partner name</th>
+									<td><div class="form"><input type="text" class="input-form" value="이브아르 제약" /></div></td>
+								</tr>
+								
+								<!-- [S] 라디오 [data-radio-key="teacher"] : [data-row-key="teacher"] 연결되는 tr의 data- 값 -->
+								<tr data-row-key="teacher">
+									<th scale="col" data-text-style="essential">강사 이미지</th>
+									<td>
+										<div class="form" data-mult-form="file">
+											<input type="text" class="input-form" />
+											<input type="file" class="file-form" name="upLoadFile" id="upLoadFile" />
+											<label for="upLoadFile" class="file-label">찾아보기</label>
+										</div>
+									</td>
+								</tr>
+								
+								<tr data-row-key="teacher">
+									<th scale="col" data-text-style="essential">강사 소개</th>
+									<td><div class="form"><textarea class="input-form" rows="12"></textarea></div></td>
+								</tr>
+								<!-- [E] 라디오 [data-radio-key="teacher"] -->
+							</tbody>
+						</table>
+					</div>
+					
+					<!-- [S] 라디오 [data-radio-key="doctor"] : [data-row-key="doctor"] 연결되는 tr의 data- 값 -->
+					<div class="board-area" data-row-key="doctor">
+						<h3 class="article-tit">추가 정보 입력 (선택)</h3>
+						<table class="default-table">
+							<caption>추가 정보 입력 (선택)</caption>
+							<colgroup>
+								<col style="width:30%;" />
+								<col style="width:auto;" />
+							</colgroup>
+							
+							<tbody>
+								<tr>
+									<th scale="col" data-text-style="essential">Clinic Name</th>
+									<td><div class="form"><input type="text" class="input-form" value="Hospital Kyriad Paris Bercy" /></div></td>
+								</tr>
+								
+								<tr>
+									<th scale="col" data-text-style="essential">Clinic Address</th>
+									<td><div class="form"><input type="text" class="input-form" value="17 Rue Baron le Roy, 75012 Paris" /></div></td>
+								</tr>
+								
+								<tr>
+									<th scale="col" data-text-style="essential">Clinic Postcode / Zip</th>
+									<td><div class="form"><input type="text" class="input-form" value="+33144677575" /></div></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- [E] 라디오 [data-radio-key="doctor"] -->
+					
+					<div class="submit-area">
+						<button type="submit" class="sub-btn">취소</button>
+						<button type="submit" class="main-btn">수정</button>
+					</div>
+				</article>
+				<!-- [E] 게시물 수정 -->
+			</section>
+		</article>
+		<!-- [E] contents -->
+	</section>
+	<!-- [E] wrap -->
+
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript"  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="/resource/js/admin/ui.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

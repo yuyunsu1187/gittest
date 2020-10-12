@@ -1,0 +1,25 @@
+package devonframe.gyva.front.contents.service;
+
+import java.util.List;
+import java.util.Map;
+
+import devonframe.gyva.front.contents.model.Contents;
+import devonframe.paging.model.PagingEntity;
+
+
+public interface ContentsService {
+
+    public Contents retrieveFrontMenuId(Contents contents);
+    
+    public Contents retrieveContents(Contents contents);
+
+    // Contents List 조회
+	public void insertContents(Contents contents, List<Map<String, Object>> list);
+	
+    public List<Contents> retrieveContentsList(Contents contents);
+    public List<Contents> retrieveLikeContentsList(Contents contents);
+    
+    public void insertLikeDislike(Contents contents);    
+    public void updateLikeDislike(Contents contents);
+    
+}

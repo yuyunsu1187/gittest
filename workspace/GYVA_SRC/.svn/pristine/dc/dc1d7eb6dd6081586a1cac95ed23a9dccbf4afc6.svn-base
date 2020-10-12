@@ -1,0 +1,186 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsList.jsp
+ * DESC : 컨텐츠 페이지 목록조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+<script type="text/javascript" language="javascript">
+	//<![CDATA[
+	function fnDetail(listForm, menuId, contentsId) {
+		console.log(listForm);
+		listForm.menuId.value = menuId;
+		listForm.contentsId.value = contentsId;
+		console.log(listForm.categoryCode.value);
+		listForm.action = "<c:url value='/contents/anatomyDetail.do'/>";
+		listForm.submit();
+	}	
+	//]]>
+</script>
+
+<section class="content-section">
+	<!-- visual 이미지 사이즈는 1520 x 600 -->
+	<div class="visual-wrap" data-type="swiper" data-swiper-option="visual">
+		<div class="swiper-container">
+			<ul class="swiper-wrapper">
+				<li class="swiper-slide">
+					<div class="text-area">
+						<p class="visual-txt"><span class="point-color">LG Aesthetics Medical Platform</span> is an online platform<br />that aims to enlighten distinguished HCPS (Healthcare<br />Professionals about professional aesthetic treatment,<br />and a place that allows boundless experience of<br />LG aesthetics products.</p>
+					</div>
+					<span class="img-area"><img src="/resource/images/front/contents/img-main-visual-01.jpg" alt="" /></span>
+				</li>
+			</ul>
+
+			<div class="swiper-pagination"></div>
+			<div class="swiper-button-next"><i class="fas fa-angle-right"></i></div>
+			<div class="swiper-button-prev"><i class="fas fa-angle-left"></i></div>
+		</div>
+		
+		<button type="button" class="autoplay-btn"><i class="fas fa-pause"></i></button>
+	</div>
+	
+	<div class="post-wrap">
+		<article class="post-board" data-offset="left">
+			<header class="post-header">
+				<!-- [2020-09-25] 타이틀명 변경 -->
+				<h3 class="post-tit">REGISTRTION</h3>
+			</header>
+			
+			<div class="post-content" data-type="swiper" data-swiper-option="navigation">
+				<div class="swiper-container">
+					<ul class="swiper-wrapper">
+						<c:forEach var="result" items="${resultRegistrtionList}" varStatus="status">
+						<c:set var="index" value="${status.index}" />
+							<li class="swiper-slide">
+							<input type="hidden" name="seq" id="seq" value="<c:out value='${result.seq }'/>" />
+							<input type="hidden" name="contentsId" id="contentsId" value="<c:out value='${result.contentsId }'/>" />
+							<input type="hidden" name="remark" id="remark" value="<c:out value='${result.remark }'/>" />
+							<input type="hidden" name="contents" id="contents" value="<c:out value='${result.contents}'/>" />
+							<input type="hidden" name="fileName" id="fileName" value="<c:out value='${result.fileName}'/>" />
+							<input type="hidden" name="uploadFilePath" id="uploadFilePath" value="<c:url value='${result.filePath}'/>" />
+							<input type="hidden" name="yourHost" id="yourHost" value="<c:out value='${result.lecturer}'/>" />
+							<input type="hidden" name="place" id="place" value="<c:out value='${result.place}'/>" />
+							<input type="hidden" name="calendar" id="calendar" value="<c:out value='${result.startDate}'/> <c:if test="${empty result.date}">~ <c:out value='${result.endDate}'/></c:if> <c:out value='${result.date}'/>" />
+							<input type="hidden" name="webinarUrl" id="webinarUrl" value="<c:out value='${result.contentsUrl}'/>" />
+
+								<div class="img-area">
+									<a href="#none" class="link-btn"><img src="<c:url value='${result.thumFilePath}'/>" alt="" /></a>
+									<div class="caption">
+										<strong class="tit" data-text-style="ellipsis"><c:out value="${result.title}" /></strong>
+										<span class="host" data-text-style="ellipsis"><c:out value='${result.lecturer}' /></span>
+										<span class="date"><c:out value='${result.startDate}'/> <c:if test="${empty result.date}">~ <c:out value='${result.endDate}'/></c:if> <c:out value='${result.date}'/></span>
+										<a href="#none" class="link-btn">See more<i class="fas fa-plus"></i></a>
+									</div>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
+					
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="post-thumbnail" data-offset="right">
+			<header class="post-header">
+				<!-- [2020-09-25] 타이틀명 변경 --> 
+				<h3 class="post-tit">ACADEMY PLATFORM</h3>
+				<a href="#" class="link-btn" onclick="fnMenu('FR090100', 'list');">more<i class="fas fa-plus"></i></a>
+			</header>
+			
+			<div class="post-content">
+				<div class="img-area">
+					<a href="#none" class="link-btn" data-offset="left" onclick="fnDetail(document.getElementById('upperListForm'), '<c:out value='${menuId}'/>', '<c:out value='${result.contentsId}'/>');"><img src="/resource/images/front/contents/img-main-thumbnail-01.png" alt="" /></a>
+					<div class="caption">
+						<a href="#none" class="link-btn" data-text-style="ellipsis">
+							<strong class="tit">Rejuvenation beyond face : Neck line & Neck skin ...</strong>
+							<span class="txt">/ YVOIRE Injection</span>
+						</a>
+					</div>
+				</div>
+				
+				<div class="thumbnail-list" data-type="swiper" data-swiper-option="thumbnail">
+					<div class="swiper-container">
+						<ul class="swiper-wrapper">
+							<c:forEach var="result" items="${resultAcademyList}" varStatus="status">
+							<c:set var="index" value="${status.index}" />
+								<input type="hidden" name="seq" id="seq" value="<c:out value='${result.seq }'/>" />
+								<input type="hidden" name="contentsId" id="contentsId" value="<c:out value='${result.contentsId }'/>" />
+								<li class="swiper-slide"><a href="#none" class="link-btn"><img src="<c:url value='${result.thumFilePath}'/>" alt="" /></a></li>
+							</c:forEach>
+						</ul>
+						
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</section>
+
+<form:form commandName="result" name="detailForm" id="detailForm" method="post">
+<input type="hidden" name="seq" id="seq" value="" />
+<input type="hidden" name="menuId" id="menuId" value="<c:out value='${menuId}'/>" />
+<input type="hidden" name="contentsId" id="contentsId" value="" />
+<input type="hidden" name="fileName" id="fileName" value="" />
+<input type="hidden" name="uploadFilePath" id="uploadFilePath" value="" />
+<div width=0 height=0 style="visibility: hidden">
+	<input type="checkbox" class="Lcheckbox" name="checkIndex" id="checkIndex_0" value="0" />
+</div>
+<!-- [S] 레이어 팝업 : 상세보기 -->
+<div class="layerPop-wrap" id="FR090301-10" data-pop-action="disabled">
+	<article class="layerPop-area" data-pop-key="detail" data-pop-type="view" >
+		<header class="layerPop-header">
+			<h3 class="layerPop-tit"></h3>
+			<p class="layerPop-txt"></p>
+			<button type="button" class="layerPop-close-btn" data-pop-btn="close">close<span class="icon-close"></span></button>
+		</header>
+		<article class="layerPop-contents">
+			<span class="img-area"><img src="/resource/images/temp/@img-temp-detail.png" alt="" /></span>
+			<ul class="list" data-list-type="content-detail">
+				<li data-list-key="yourHost">
+					<strong class="tit">YOUR HOST</strong>
+					<span class="txt"></span>
+				</li>
+				<li data-list-key="place">
+					<strong class="tit">PLACE</strong>
+					<span class="txt"></span>
+				</li>
+				<li data-list-key="calendar">
+					<strong class="tit">CALENDAR</strong>
+					<span class="txt"></span>
+				</li>
+				<li data-list-key="etc">
+					<strong class="tit">Etc.</strong>
+					<span class="txt"></span>
+				</li>
+			</ul>
+		</article>
+		<footer class="layerPop-footer">
+			<!-- [2020-09-09] 텍스트 수정 및 i 태그 내 class 명 수정 -->
+			<a href="https://www.naver.com" class="layerPop-download-btn" target="_blank">REGISTER <i class="fas fa-arrow-right"></i></a>
+			
+			<c:if test="${menuType=='AD'}">
+				<div class="submit-area">
+					<button type="button" class="sub-btn" onclick="fnDeleteContents();">삭제</button>
+					<button type="submit" class="main-btn" onclick="goUpdateContents();">수정</button>
+				</div>
+			</c:if>
+		</footer>
+	</article>
+</div>
+<!-- [E] 레이어 팝업 -->
+</form:form>

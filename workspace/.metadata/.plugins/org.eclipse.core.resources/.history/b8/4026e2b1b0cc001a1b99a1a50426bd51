@@ -1,0 +1,18 @@
+package com.gyva.web;
+
+@Controller
+public class TestDAO {
+   
+    @Inject
+    private MemberDAO dao;
+   
+    @RequestMapping(value = "/testDAO", method = RequestMethod.GET)
+    public void testDAO(){
+        MemberVO vo = new MemberVO();
+        vo.setUser_id("MIN-IT");
+        vo.setUser_pw("1234");
+        vo.setUser_email("min-it.tistory.com");
+       
+        dao.insertMember(vo);
+    }
+}

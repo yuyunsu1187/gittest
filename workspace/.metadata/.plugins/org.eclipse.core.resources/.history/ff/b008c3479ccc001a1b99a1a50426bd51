@@ -1,0 +1,80 @@
+package com.gyva.web;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.inject.Inject;
+import javax.sql.DataSource;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(
+        locations ={"file:src/main/resources/spring/**/*.xml"})
+
+public class testDataSource {
+   
+    @Inject
+    private DataSource ds;
+   
+    @Test
+    public void testDS() throws Exception{
+
+        try(Connection con = ds.getConnection()){
+            System.out.println("dataSource설정 성공");
+            String sql = "SELECT * FROM gyva.user_info WHERE seq = ?";
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setString(1, "1");
+            ResultSet rs = pre.executeQuery();
+            
+            while(rs.next()){
+            	System.out.println("seq"+rs.getString(seq));       
+            	System.out.println("email"+rs.getString(email));
+            	System.out.println("password"+rs.getString(password));
+            	System.out.println("name_first"+rs.getString(name_first));
+            	System.out.println("name_last"+rs.getString(name_last));
+            	System.out.println("user_type"+rs.getString(user_type));
+            	System.out.println("division_code"+rs.getString(division_code));
+            	System.out.println("country_code"+rs.getString(country_code));
+            	System.out.println("file_id"+rs.getString(file_id));
+            	System.out.println("request_date"+rs.getString(request_date));
+            	System.out.println("comfirm_id"+rs.getString(comfirm_id));
+            	System.out.println("comfirm_date"+rs.getString(comfirm_date));
+            	System.out.println("state_code"+rs.getString(state_code));
+            	System.out.println("consent_yn"+rs.getString(consent_yn));
+            	System.out.println("remark"+rs.getString(remark));
+            	System.out.println("create_id"+rs.getString(create_id));
+            	System.out.println("create_date"+rs.getString(create_date));
+            	System.out.println("update_id"+rs.getString(update_id));
+            	System.out.println("update_date"+rs.getString(update_date));
+            	System.out.println("seq"+rs.getString(seq));
+            	System.out.println("contents_id"+rs.getString(contents_id));
+            	System.out.println("menu_id"+rs.getString(menu_id));
+            	System.out.println("title"+rs.getString(title));
+            	System.out.println("contents"+rs.getString(contents));
+            	System.out.println("file_id"+rs.getString(file_id));
+            	System.out.println("state_code"+rs.getString(state_code));
+            	System.out.println("reader_user_id"+rs.getString(reader_user_id));
+            	System.out.println("survey_id"+rs.getString(survey_id));
+            	System.out.println("delete_yn"+rs.getString(delete_yn));
+            	System.out.println("remark"+rs.getString(remark));
+            	System.out.println("create_id"+rs.getString(create_id));
+            	System.out.println("create_date"+rs.getString(create_date));
+            	System.out.println("update_id"+rs.getString(update_id));
+            	System.out.println("update_date"+rs.getString(update_date));
+            }
+            rs.close();
+            pre.close();
+            con.close();
+            
+        }catch(Exception e){
+            System.out.println("실패");
+            e.printStackTrace();
+        }
+    }
+}

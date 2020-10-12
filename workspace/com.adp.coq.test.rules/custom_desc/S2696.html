@@ -1,0 +1,1 @@
+﻿<h1>Instance methods should not write to "static" fields (S2696)</h1>static 으로 선언된 field 같은 경우, 여러개의 인스턴스로 관리하면서 직접(non-static) 값을 할당할 경우 버그를 발생할 수 있으므로 지향한다. 이런 경우에는 바로 값을 할당 하지 않고 synchronized static methods 를 통해서 값을 할당하거나 synchronized 로 락을 잡고 값을 관리해야 한다.

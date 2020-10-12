@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/Delete/ServiceTemplate" format="1.0" title="Service Template for DELETE">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+#set($voClassPath="${voPackage}.${voClassName}")
+##
+#set($voInstanceName="${table.camelCased}VO")
+##
+#set($servicePackage="${codePackage.packageName}.service")
+#set($serviceClassName="${table.capitalized}Service")
+##
+#set($deleteMethodName="delete${table.capitalized}")
+]]></prefix>
+
+
+
+	<ifNewFile><![CDATA[
+package ${servicePackage};
+
+]]></ifNewFile>
+
+
+
+	<ifNotFoundEachLine location="afterImport"><![CDATA[
+import ${voClassPath};
+]]></ifNotFoundEachLine>
+
+
+
+	<ifNewFile><![CDATA[
+
+
+
+/**
+ * @Class Name : ${serviceClassName}.java
+ * @Description : ${table.capitalized} Service class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C) LG CNS All rights reserved.
+ */
+
+public interface ${serviceClassName} {
+]]></ifNewFile>
+	
+	
+	
+	<ifNotFound>
+		<findMethod name="${deleteMethodName}">
+			<parameterClass><![CDATA[${voClassPath}]]></parameterClass>
+		</findMethod>
+		<insert location="afterLastMethod"><![CDATA[
+	
+	/**
+	 * ${table.tableName}을 삭제한다.
+	 * @param vo - 삭제할 정보가 담긴 $voClassName
+	 */
+	public void ${deleteMethodName}(${voClassName} ${voInstanceName});
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNewFile><![CDATA[
+}
+]]></ifNewFile>
+
+</CodeGenTemplate>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenVariablePage id="DevOnFrame/OneTable/OneTableVariablePage" format="1.0" title="One Table Information">
+	<description>[DevOnFrame] Get Information for One Table</description>
+	
+	<group label="General">
+		<text id="author"     label="Author"      required="true"/>
+		<text id="createDate" label="Create Date" required="false" defaultValue="${DateUtil.getYYYYDashMMDashDD()}"/>
+	</group>
+
+	<group label="DB" required="true">
+		<table id="table" label="Table" required="true"/>
+	</group>
+	
+	<group label="Source Code" required="true">
+		<package id="codePackage"    label="Package"         required="true"/>
+		<text    id="queryNamespace" label="Query Namespace" required="true"/>
+		<folder  id="queryFolder"    label="Query Folder"    required="true"/>
+	</group>
+
+</CodeGenVariablePage>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/RetrieveOne/ServiceTemplate" format="1.0" title="Service Template for RETRIEVE ONE">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+#set($voClassPath="${voPackage}.${voClassName}")
+##
+#set($voInstanceName="${table.camelCased}VO")
+##
+#set($servicePackage="${codePackage.packageName}.service")
+#set($serviceClassName="${table.capitalized}Service")
+##
+#set($selectMethodName="retrieve${table.capitalized}")
+]]></prefix>
+
+
+
+	<ifNewFile><![CDATA[
+package ${servicePackage};
+
+]]></ifNewFile>
+
+
+
+	<ifNotFoundEachLine location="afterImport"><![CDATA[
+import ${voClassPath};
+]]></ifNotFoundEachLine>
+
+
+
+	<ifNewFile><![CDATA[
+
+
+
+/**
+ * @Class Name : ${serviceClassName}.java
+ * @Description : ${table.capitalized} Service class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C) LG CNS All rights reserved.
+ */
+
+public interface ${serviceClassName} {
+]]></ifNewFile>
+	
+	
+	
+	<ifNotFound>
+		<findMethod name="${selectMethodName}">
+			<parameterClass><![CDATA[${voClassPath}]]></parameterClass>
+		</findMethod>
+		<insert location="afterLastMethod"><![CDATA[
+
+	/**
+	 * ${table.tableName}을 조회한다.
+	 * @param ${voInstanceName} - 조회할 정보가 담긴 ${voClassName}
+	 * @return 조회한 ${table.tableName}
+	 */
+	public ${voClassName} ${selectMethodName}(${voClassName} ${voInstanceName});
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNewFile><![CDATA[
+}
+]]></ifNewFile>
+
+</CodeGenTemplate>

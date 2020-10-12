@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+/* 01.title */
+.content-tit {font-weight:700;}
+.article-tit {}
+.form-tit {color:#000000;display:inline-block;font-weight:700;} /* 폼요소의 타이틀 : .form-tit + .form과 같은 위치의 마크업 작업 */
+.board-tit {color:#000000;}
+
+/* 02.text */
+.content-txt {}
+.board-txt {color:#000000;font-size:18px;}
+.form-txt {} /* 폼 요소 내 설명 텍스트 영역 */
+.category-txt {background-color:#a50034;color:#ffffff;padding:0 29px;}
+.date-txt {color:#6b6b6b;}
+
+/* 03.button */
+[class*="btn"] {display:inline-block;padding:0 20px;text-align:center;vertical-align:middle;}
+.download-main-btn i {font-size:12px;float:right;line-height:30px;}
+.download-main-btn i:after {background-color:#ffffff;content:"";display:block;height:2px;margin-top:-9px;}
+.layerPop-close-btn {padding:0 0;}
+
+/* 04.icon */
+
+/* 05.form */
+.form {width:100%;}
+.form,
+.form li {position:relative;display:inline-block;} /* form > li : 라디오 [data-form="radio"], 체크박스 [data-form="checkbox"] 리스트 구현 시 */
+.form li + li {margin-left:20px;}
+.form [disabled] + * {display:none;}
+.form [class*="btn"] {height:34px;line-height:34px;}
+.form .icon-btn {padding:0 0;width:34px;}
+.input-form {border:1px solid #bbb;min-width:120px;height:34px;padding:0 6px;width:100%;}
+textarea.input-form {height:auto;padding:6px 6px;tab-size:0;}
+.select-form {border:1px solid #bbb;height:34px;padding:0 6px;width:100%;}
+.check-form,
+.file-form {position:absolute;top:0;left:0;width:0;height:0;visibility:hidden;}
+/* 라디오, 체크박스 폼과 연결된 label */
+.label-form {}
+.check-form[checked="checked"] + .label-form,
+.check-form:checked + .label-form {}
+/* 첨부파일 폼 */
+.file-label {cursor:pointer;display:inline-block;height:32px;line-height:32px;min-width:120px;text-align:center;vertical-align:middle;}
+
+/* 05-01.form-wrap, -area */
+.form-wrap {} /* 폼 요소의 상위 부모 영역 */
+.form-wrap .submit-area {text-align:center;}
+.form-wrap .form-txt,
+.form-area .form-txt {margin-top:10px;}
+.form-area {} /* combine-form 작업 시 해당 영역을 상위로 감싼 후 data- 속성으로 분류 */
+.form-area > li + li {padding-top:12px;}
+.form-area .form-tit {width:150px;}
+.form-area .form-tit + .form {width:calc(100% - 154px);}
+.form-area .symbol {display:inline-block;text-align:center;}
+
+/* 05-02.mult-form */
+[data-form="select"] {min-width:120px;}
+[data-form="select"] .fas {height:34px;line-height:34px;position:absolute;right:10px;top:0;}
+[data-form="checkbox"] {}
+[data-form="radio"] {}
+
+[data-mult-form="btn"] {width:auto;}
+[data-mult-form="search"] .input-form,
+[data-mult-form="password"] .input-form,
+[data-mult-form="date"] .input-form {padding-right:34px;}
+[data-mult-form="search"] .icon-btn,
+[data-mult-form="password"] .icon-btn,
+[data-mult-form="date"] .icon-btn {position:absolute;top:0;right:0;}
+[data-mult-form="search"] [disabled],
+[data-mult-form="password"] [disabled],
+[data-mult-form="date"] [disabled] {padding-right:0;}
+[data-mult-form="file"] {}
+[data-mult-form="file"] .file-label {}
+[data-mult-form="file"] .input-form {width:calc(100% - 126px);}
+[data-mult-form="uploade-file"] .link-btn {padding:0 0;}
+[data-mult-form="file-btn"] {text-align:right;}
+/* input-btn : input + button 조합 */
+[data-mult-form="input-btn"] {width:100%;}
+[data-mult-form="input-btn"] .input-form {width:calc(100% - 90px);} 
+[data-mult-form="input-btn"] [class*="btn"] {margin-left:6px;min-width:80px;}
+[data-mult-form="input-btn"] [disabled] {width:100%;}
+
+/* 05-03.combine-form */
+/* 폼 영역의 다단 스타일 적용 */
+[data-combine-form="column-2-form"] .form {width:calc(50% - 2px);}
+[data-combine-form="column-2-form"] [data-form="select"] {width:calc(30% - 8px);margin-right:4px;}
+[data-combine-form="column-2-form"] [data-form="select"] + * {width:70%;}
+[data-combine-form="column-2-form"] [data-mult-form="search"] {width:400px;}
+[data-combine-form="column-3-form"] .form {width:calc(33.33% - 4px);}
+
+/* 파일추가 리스트 */
+[data-combine-form="file-list"] [data-mult-form="file"] {width:calc(100% - 76px);}
+[data-combine-form="file-list"] [data-mult-form="file-btn"] {width:72px;}
+
+/* 날짜선택 폼 */
+[data-combine-form="datepicker"] {}
+[data-combine-form="datepicker"] [data-mult-form="date"] {min-width:220px;width:25%;}
+[data-combine-form="datepicker"] [data-form-type="checkbox"] {width:auto;}
+[data-combine-form="datepicker"] .symbol {width:20px;}
+
+/* 로그인 폼 영역 */
+[data-combine-form="login-form"] {width:500px;margin:0 auto;border:1px solid #eee;}
+[data-combine-form="login-form"] > li {padding:12px 20px;}
+[data-combine-form="login-form"] > li + li {border-top:1px solid #eee;}
+
+/* 설문등록 리스트 */
+[data-combine-form="question-form"] {}
+[data-combine-form="question-form"] > li {padding:12px 20px;}
+[data-combine-form="question-form"] > li + li {border-top:1px solid #eee;}
+[data-combine-form="question-form"] + .submit-area {text-align:right;}
+
+/* 06.list */
+
+/* 07.table */

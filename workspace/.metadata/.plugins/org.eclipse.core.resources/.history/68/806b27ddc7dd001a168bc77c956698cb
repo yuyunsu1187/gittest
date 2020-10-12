@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="manager">
+
+	<insert id="insertManager">
+		<![CDATA[
+			INSERT INTO user_info (
+			      email
+				, password
+				, name_first 
+				, name_last
+				, user_type
+				, division_code
+				, country_code
+				, file_id
+				, request_date
+				, confirm_id
+				, confirm_date
+				, state_code
+				, consent_yn
+				, create_id
+				, create_date
+				, update_id
+				, update_date
+			) VALUES (
+			      #{email}
+				, #{password , jdbcType=VARCHAR}
+				, #{nameFirst}
+				, #{nameLast}
+				, #{userType}
+				, #{divisionCode}
+				, #{countryCode}
+				, #{fileId}
+				, NOW()
+				, #{confirmId}
+				, NOW()
+				, #{stateCode}
+				, 'Y'
+				, #{createId}
+				, NOW()
+				, #{updateId}
+				, NOW()
+			)
+		]]>
+	</insert>
+
+	<select id="retrieveManager" resultType="manager">
+		<![CDATA[
+			SELECT ui.seq
+	             , ui.email
+	             , ui.password
+	             , ui.name_first as nameFirst
+	             , ui.name_last as nameLast
+	             , ui.user_type as userType
+	             , cd.code_name
+              FROM user_info ui 
+         LEFT JOIN code_detail cd
+                ON ui.user_type = cd.code
+               AND cd.group_id = 'USER'
+             where ui.email = #{email}
+	 	]]>
+	</select>
+	
+	
+	<select id="retrieveManagerList" resultType="manager">
+		<![CDATA[
+			SELECT ui.seq
+	             , ui.email
+	             , ui.password
+	             , ui.name_first as nameFirst
+	             , ui.name_last as nameLast
+	             , ui.user_type as userType
+	             , ui.delete_yn
+	             , cd.code_name            
+              FROM user_info ui
+         LEFT JOIN code_detail cd
+                ON ui.user_type = cd.code
+               AND cd.group_id = 'USER'
+             WHERE 1=1   
+               AND ui.user_type LIKE 'AD%'       
+	 	]]>
+ 		<if test= 'deleteYn != null and deleteYn != ""'>
+	 	<![CDATA[
+ 			AND ui.delete_yn = #{deleteYn}
+        ]]>  
+        </if> 		
+ 		<if test= 'userType != null and userType != ""'>
+	 	<![CDATA[
+			AND ui.user_type = #{userType}
+        ]]>  
+        </if>
+	 	<if test= 'email != null and email != ""'>
+	 	<![CDATA[
+			AND ui.email LIKE '%' || #{email} || '%'
+        ]]>  
+        </if>
+        <if test= 'nameFirst != null and nameFirst != ""'>
+        <![CDATA[
+			AND (ui.name_first LIKE '%' || #{nameFirst} || '%' OR ui.name_last LIKE '%' || #{nameFirst} || '%')
+        ]]>  
+        </if>        	
+	</select>
+
+
+	<update id="updateManager">
+		<![CDATA[
+			UPDATE user_info			   
+		]]>
+			<choose>
+				<when test = 'deleteYn != null and deleteYn != ""'>
+				<![CDATA[
+					SET delete_yn = #{deleteYn}
+				  
+				]]>	
+				</when>
+				<otherwise>
+				<![CDATA[
+					SET email = #{email}
+					  , password = #{password , jdbcType=VARCHAR}
+					  , user_type = #{userType}
+				      , name_first = #{nameFirst}
+				      , name_last = #{nameLast}
+				      , confirm_id = #{confirmId}
+				      , confirm_date = NOW()
+				      , update_id = #{updateId}
+				      , update_date = NOW()
+				  
+				]]>	
+				</otherwise>		
+			</choose>
+		<![CDATA[
+			WHERE seq = #{seq}
+	    ]]>  
+
+	</update>
+
+	<delete id="deleteManager">
+		<![CDATA[
+			DELETE
+			  FROM user_info
+			 WHERE seq = #{seq}
+			   and userInfo.delete_yn = 'Y'
+		]]>
+	</delete>
+	
+	<select id="retrieveCodeDetailList"  resultType="code">
+		<![CDATA[
+			SELECT seq
+	             , group_id
+	             , code
+	             , code_name AS value
+              FROM code_detail
+             WHERE code like CONCAT('AD', '%')
+               AND group_id = 'USER'
+	 	]]>
+	</select>
+	
+	<select id="idChk" resultType="int">
+		<![CDATA[
+			SELECT COUNT(seq) 
+			  FROM user_info
+			 WHERE email = #{email}
+			   AND user_type LIKE 'AD%' 
+		]]> 
+	</select>
+
+</mapper>

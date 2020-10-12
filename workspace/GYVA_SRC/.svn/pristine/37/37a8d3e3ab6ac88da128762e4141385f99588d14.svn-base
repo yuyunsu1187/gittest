@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>admin : 이브아르 글로벌 아카데미</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/admin/import.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+<!--[if gt IE 9]>
+	<link href="/resource/css/ie/main-admin.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if !IE]><!-->
+	
+<!--<![endif]-->
+</head>
+<body>
+	<!-- [S] wrap : ID 값은 화면 ID와 동일하게 적용 -->
+	<section id="AD070101-05" class="default-section">
+		<!-- [S] header -->
+		<header class="default-header">
+			<h1 class="logo-tit"><a href="/" class="link-btn"><img src="/resource/images/common/layout/logo-tit.png" alt="LG chem : LG aesthetics" /></a></h1>
+			<!-- [S] 1depth 메뉴 -->
+			<nav class="gnb-menu">
+				<ul>
+					<!-- 메뉴 선택 시 .active 추가 -->
+					<li><a href="#none" class="menu-btn">사용자관리</a></li>
+					<li><a href="#none" class="menu-btn">컨텐츠관리</a></li>
+					<li class="active"><a href="#none" class="menu-btn">시스템관리</a></li>
+				</ul>
+			</nav>
+			
+			<div class="breadcrumb">
+				<i class="fas fa-home"></i><span>시스템관리</span><span>코드관리</span><span>그룹코드관리</span><span>그룹코드목록</span>
+			</div>
+			<!-- [E] 1depth 메뉴 -->
+			<button type="button" class="logout-btn">Log Out</button>
+		</header>
+		<!-- [E] header -->
+		
+		<!-- [S] contents -->
+		<article class="default-contents">
+			<!-- [S] 왼쪽 메뉴 : 2depth 메뉴부터 리스트 노출 -->
+			<nav class="lnb-menu" data-list-style="clfix">
+				<ul data-menu-depth="2">
+					<li class="active">
+						<button type="button" class="menu-btn">코드관리</button>
+						<ul data-menu-depth="3">
+							<li class="active">
+								<button type="button" class="menu-btn">그룹코드관리</button>
+								<ul data-menu-depth="4">
+									<li class="active"><a href="#none" class="menu-btn">그룹코드목록</a></li>
+									<li><a href="#none" class="menu-btn">그룹코드등록</a></li>
+									<li><a href="#none" class="menu-btn">그룹코드수정/삭제</a></li>
+								</ul>
+							</li>
+							<li>
+								<button type="button" class="menu-btn">상세코드관리</button>
+								<ul data-menu-depth="4">
+									<li><a href="#none" class="menu-btn">상세코드목록</a></li>
+									<li><a href="#none" class="menu-btn">상세코드등록</a></li>
+									<li><a href="#none" class="menu-btn">상세코드수정/삭제</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#none" class="menu-btn">사용자 로그분석</a></li>
+				</ul>
+			</nav>
+			<!-- [E] 왼쪽 메뉴 -->
+			
+			<section class="content-section">
+				<header class="content-header">
+					<h2 class="content-tit">그룹코드 관리</h2>
+				</header>
+				
+				<!-- [S] 게시물 리스트 --> 
+				<article class="board-wrap" data-board-type="form-list">
+					<!-- 리스트 노출 개수는 최대 20줄 -->
+					<div class="board-area">
+						<table class="default-table">
+							<caption>그룹코드 관리 리스트</caption>
+							<colgroup>
+								<col style="width:30%;" />
+								<col style="width:10%;" />
+								<col style="width:auto;" />
+								<col style="width:10%;" />
+							</colgroup>
+							
+							<thead>
+								<tr>
+									<th scope="row">그룹명</th>
+									<th scope="row">그룹ID</th>
+									<th scope="row">설명</th>
+									<th scope="row">사용여부</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td data-text-style="ellipsis"><a href="#none" class="link-btn">관리자 회원관리</a></td>
+									<td>AD</td>
+									<td>관리자 관리를 위한 그룹코드</td>
+									<td>Y</td>
+								</tr>
+								
+								<tr>
+									<td data-text-style="ellipsis"><a href="#none" class="link-btn">관리자 회원관리</a></td>
+									<td>AD</td>
+									<td>관리자 관리를 위한 그룹코드</td>
+									<td>Y</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!-- [2020-08-28] 더보기 버튼 수정 -->
+					<div class="button-area">
+						<button type="button" class="more-sub-btn">More View<i class="fas fa-plus"></i></button>
+					</div>
+					
+					<div class="submit-area">
+						<button type="submit" class="main-btn">등록</button>
+					</div>
+				</article>
+				<!-- [E] 게시물 리스트 -->
+			</section>
+		</article>
+		<!-- [E] contents -->
+	</section>
+	<!-- [E] wrap -->
+
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript"  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> [V6.2.0] 최신버전 : IE 미지원 -->
+	<script src="/resource/js/libs/swiper-5.4.5.min.js"></script> <!-- [2020-09-09] 하위버전으로 변경 -->
+	<script type="text/javascript" src="/resource/js/admin/ui.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

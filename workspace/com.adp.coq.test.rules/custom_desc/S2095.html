@@ -1,0 +1,1 @@
+﻿<h1>Resources should be closed (S2095)</h1>Java의 Garbage collertion 이 모든 것을 지워줄 수는 없다. 특히, 커넥션, 스트림, 파일, 닫을 수 있는 interface 나 super interface 를 구현하는 클래스들은 생성 후 반드시 직접(manually) close 해주야 한다. Close 해주지 않으면, 리소스 leak 이 발생할 수 있다.

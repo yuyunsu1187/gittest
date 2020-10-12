@@ -1,0 +1,1 @@
+﻿<h1>Thread.run() and Runnable.run() should not be called directly (S1217)</h1>Thread.run() 과 Runnable.run() 의 목적은 코드를 분리된 전용 thread 에서 실행하는 것이다. 하지만 이 메소드를 직접 호출하면 코드가 현재 thread 에서 실행되기 때문에 효용이 없다. 원하는 결과 (분리된 전용 thread 에서 실행) 를 얻으려면  thread.start() 메소드를 사용하는 것이 좋다.

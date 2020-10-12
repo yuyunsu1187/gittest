@@ -1,0 +1,148 @@
+package devonframe.gyva.admin.contents.survey.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import devonframe.excel.writer.ExcelWriter;
+import devonframe.exception.BusinessException;
+import devonframe.gyva.admin.contents.survey.excel.view.ExcelDownloadView;
+import devonframe.gyva.admin.contents.survey.model.Survey;
+import devonframe.gyva.admin.contents.survey.model.SurveyForExcel;
+import devonframe.gyva.admin.contents.survey.service.SurveyService;
+import devonframe.gyva.admin.system.code.service.CodeService;
+import devonframe.paging.model.PagingMap;
+import devonframe.paging.policy.annotation.PagingPolicy;
+/**
+ * <pre>
+ * 사용자 정보에 대한 CRUD를 담당하는 Controller 클래스
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class AdminSurveyController {
+
+    @Resource(name = "codeService")
+    private CodeService codeService;
+
+    @Resource(name = "surveyService")
+    private SurveyService surveyService;
+    
+    /* 문항 등록 */
+    @RequestMapping(value="/survey/questionList.do")
+    public String retrieveQuestionList(@PagingPolicy("policy2")PagingMap pagingMap, ModelMap model, HttpSession session){
+    	
+		String loginChk = (String) session.getAttribute("userId");
+		    	
+    	if (loginChk != null) {
+    		
+	        List<Survey> resultList = surveyService.retrieveQuestionPagedList(pagingMap);
+	
+	        model.addAttribute("input", pagingMap.getMap());
+	        model.addAttribute("resultList", resultList);
+	
+	        return "admin/contents/survey/question/contentsList";
+    	} else {    		
+    		return "redirect:/common/error/lostSession.do";   		
+    	} 
+    }
+
+    @RequestMapping(value="/admin/survey/question/retrieveQuestionForm.do") 
+    public String retrieveQuestionForm(){
+
+    	return "admin/contents/survey/question/contentsWrite";
+    }
+    
+    @RequestMapping(value="/admin/survey/question/retrieveQuestionWrite.do")
+    public String retrieveQuestionWrite(Survey input, ModelMap model, HttpSession session) throws BusinessException{
+
+    	String surveyId = surveyService.retrieveSurveyId("survey_id");
+    	
+    	input.setSurveyId(surveyId);
+		input.setUserId((String) session.getAttribute("userId"));
+
+    	surveyService.insertQuestionInfo(input);
+        model.addAttribute("input", input);
+
+        return "redirect:/survey/questionList.do";
+    }
+
+    @RequestMapping(value="/admin/survey/question/retrieveQuestionDetail.do")
+    public String retrieveQuestionDetail(Survey input, ModelMap model, HttpSession session){
+		
+		Survey result = surveyService.retrieveQuestionDetail(input);
+
+        model.addAttribute("result", result);
+
+        return "admin/contents/survey/question/contentsUpdate";
+    }
+    
+	@RequestMapping(value="/admin/survey/question/retrieveQuestionUpdate.do")
+    public String retrieveQuestionUpdate(Survey input, ModelMap model, HttpSession session) throws BusinessException{
+
+		input.setUserId((String) session.getAttribute("userId"));
+
+    	surveyService.updateQuestionInfo(input);
+        model.addAttribute("input", input);
+    	
+        return "redirect:/survey/questionList.do";
+    }	
+    
+    /* 결과 조회 */
+    @RequestMapping(value="/survey/resultList.do")
+    public String retrieveResultList(@PagingPolicy("policy2")PagingMap pagingMap, ModelMap model, HttpSession session){
+		String loginChk = (String) session.getAttribute("userId");
+		    	
+    	if (loginChk != null) {   
+    		
+	        List<Survey> resultList = surveyService.retrieveResultPagedList(pagingMap);
+	
+	        model.addAttribute("input", pagingMap.getMap());
+	        model.addAttribute("resultList", resultList);
+	
+	        return "admin/contents/survey/result/contentsList";
+    	} else {    		
+    		return "redirect:/common/error/lostSession.do";   		
+    	} 	
+    }
+    
+    @RequestMapping(value="/admin/contents/result/retrieverResultDetail.do")
+    public String retrieverResultDetail(Survey input, ModelMap model, HttpSession session){
+		String loginChk = (String) session.getAttribute("userId");
+		    	
+    	if (loginChk != null) {   
+
+	        Survey detail = surveyService.retrieveResultDetailInfo(input);
+	        List<SurveyForExcel> resultList = surveyService.retrieveResultDetail(input);
+	
+	        model.addAttribute("input", input);
+	        model.addAttribute("detail", detail);
+	        model.addAttribute("resultList", resultList);
+
+    		return "admin/contents/survey/result/contentsDetail";
+    	} else {    		
+    		return "redirect:/common/error/lostSession.do";   		
+    	} 	
+    }
+    
+    @RequestMapping(value="/admin/contents/result/downloadResultDetail.do")
+    public ExcelDownloadView downloadResultDetail(Survey input, ModelMap model, HttpSession session) throws BusinessException{ 
+	        List<SurveyForExcel> resultList = surveyService.retrieveResultDetail(input);
+
+	        ExcelWriter excelWriter = new ExcelWriter(ExcelWriter.XLSX);
+	        excelWriter.createSheet(resultList, "Survey Result List");
+	        
+	        Workbook workbook = excelWriter.getWorkbook();
+
+    		return new ExcelDownloadView(workbook, "SurveyResultList.xlsx");    		
+    }
+	
+}

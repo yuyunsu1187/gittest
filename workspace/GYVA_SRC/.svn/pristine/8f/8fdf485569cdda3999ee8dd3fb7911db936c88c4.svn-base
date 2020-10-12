@@ -1,0 +1,405 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsList.jsp
+ * DESC : 컨텐츠 페이지 목록조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+
+<script type="text/javascript" language="javascript">
+	//<![CDATA[
+	function fnRetrieveList() {
+		document.listForm.action = "<c:url value='/contents.do'/>";
+		document.listForm.submit();
+	}
+	function fnBookmark(menuId, contentsId, bookmarkYn) {	
+		$.ajax({
+			url : "/contents/updateBookmark.do",
+			type : "post",
+			dataType : "json",
+			data : {"menuId" : menuId, "contentsId" : contentsId, "bookmarkYn" : bookmarkYn},
+			success : function(data) {
+	
+			},
+		})
+	}
+	function fnQuestionSave() {
+		document.listForm.action = "<c:url value='/contents/anatomy/insertQuestionInfo.do'/>";
+		document.listForm.submit();
+	}
+	function fnAnswerWrite(seq, answerContents) {
+		document.answerForm.seq.value = seq;
+		document.answerForm.answerContents.value = answerContents;	
+	}
+	function fnAnswerSave(seq, type) {
+		if(type=='S') {
+			document.listForm.seq.value = document.answerForm.seq.value;
+			document.listForm.answerContents.value = document.answerForm.answerContents.value
+		} else {
+			document.listForm.seq.value = seq;
+		}
+		document.listForm.type.value = type;
+		document.listForm.stateCode.value = '02';
+		document.listForm.action = "<c:url value='/contents/anatomy/updateQuestionInfo.do'/>";
+		document.listForm.submit();	
+	}
+	function fnMoveContents(type) {
+		if(type=='P') {
+			document.listForm.contentsId.value = document.listForm.previousContentsId.value 
+		} else if(type=='N') {
+			document.listForm.contentsId.value = document.listForm.nextContentsId.value		
+		}	
+		document.listForm.action = "<c:url value='/contents/anatomyDetail.do'/>";
+		document.listForm.submit();
+	}
+	function fnSurveySave() {
+		if(document.surveyForm.answer1.value == '') {
+			alert("1번 항목을 작성해주세요.");
+			$("#answer1").focus();
+			return false;	
+		} else if(document.surveyForm.answer2.value == '') {
+			alert("2번 항목을 작성해주세요.");
+			$("#answer2").focus();
+			return false;		
+		} else if(document.surveyForm.answer3.value == '') {
+			alert("3번 항목을 작성해주세요.");
+			$("#answer3").focus();
+			return false;		
+		} else if(document.surveyForm.answer4.value == '') {
+			alert("4번 항목을 작성해주세요.");
+			$("#answer4").focus();
+			return false;		
+		} else if(document.surveyForm.answer5.value == '') {
+			alert("5번 항목을 작성해주세요.");
+			$("#answer5").focus();
+			return false;		
+		} else {
+			document.surveyForm.action = "<c:url value='/contents/anatomy/insertSurveyResult.do'/>";
+			document.surveyForm.submit();	
+		}	
+	}
+
+	//글 수정 화면으로 이동
+	function goUpdateContents() {
+		document.listForm.action = "<c:url value='/contents/anatomyEdit.do'/>";
+		document.listForm.submit();
+	}
+	
+	//글 삭제
+	function fnDeleteContents() {
+		var delConfirm = confirm('정말로 삭제 하시겠습니까?');
+		if (delConfirm) {
+			document.listForm.action = "<c:url value='/contents/anatomyDelete.do'/>";
+			document.listForm.submit();
+		}
+	}
+	
+	//]]>
+</script>
+			
+<section id="FR070101-10" class="content-section">
+	<header class="content-header">
+		<h2 class="content-tit">Anatomy</h2>
+	</header>
+	
+	<c:if test="${menuType=='FR'}">
+		<div class="breadcrumb">
+			<span class="home">home</span><span class="depth">Academy Platform</span><span class="page">Anatomy</span>
+		</div>
+	</c:if>
+	
+	<!-- [S] 게시물 보기 --> 
+	<article class="board-wrap" data-board-type="form-view">
+	<!-- [2020-08-28] data-board-header="download" data- 속성값 추가 -->
+		<header class="board-header" data-board-header="comment">
+			<h3 class="board-tit"><c:out value="${result.title}" /></h3>
+		</header>
+		
+		<div class="board-detail" data-list-type="content-detail">
+			<div class="img-wrap" data-type="toggle" data-toggle-action="bookmark">	
+                <button type="button" class="bookmark-btn<c:if test="${result.bookmarkYn =='Y'}"> active</c:if>" onclick="fnBookmark('${menuId}', '${result.contentsId}', '${result.bookmarkYn}');">like</button>
+				<span class="img-area"><img src="${result.lecturerImgPath}" onerror="this.src='/resource/images/common/contents/psimg_200x200.jpg';" alt="" /></span>
+			</div>
+			<ul class="list">
+				<li>
+					<strong class="tit">registration Date</strong>
+					<span class="txt"><c:out value="${result.createDate}" /></span>
+				</li>
+				<li>
+					<strong class="tit">Lecturer Name</strong>
+					<span class="txt"><c:out value="${result.lecturerName}" /></span>
+				</li>
+				<li>
+					<strong class="tit">Lecture Content</strong>
+					<span class="txt"><c:out value="${result.contents}" /></span>
+				</li>
+			</ul>
+		</div>
+
+		<!-- [S] 비디오가 적용된 타입일 때 -->
+		<article class="board-content" data-type="video">
+			<div class="video-area">
+				<video autoplay controls muted poster="/images/w3html5.gif">
+					<source src="${result.filePath}" type="video/mp4">
+				</video>
+			</div>
+			<form:form commandName="helpdeskList" name="listForm" id="listForm" method="post">
+				<input type="hidden" name="userId" id="userId" value="${userId}" />
+				<input type="hidden" name="menuId" id="menuId" value="${menuId}" />
+				<input type="hidden" name="contentsId" id="contentsId" value="${result.contentsId}" />
+				<input type="hidden" name="surveyId" id="surveyId" value="${result.surveyId}" />
+				<input type="hidden" name="readerUserId" id="readerUserId" value="${result.readerUserId}" />
+				<input type="hidden" name="previousContentsId" id="previousContentsId" value="${result.previousContentsId}" />
+				<input type="hidden" name="nextContentsId" id="nextContentsId" value="${result.nextContentsId}" />
+				<input type="hidden" name="seq" id="seq" value="" />
+				<input type="hidden" name="type" id="type" value="" />
+				<input type="hidden" name="stateCode" id="stateCode" value="" />
+				<input type="hidden" name="answerContents" id="answerContents" value="" />
+				<!-- [S] comment -->
+				<ul class="comment-list">
+					<c:forEach var="helpdesk" items="${helpdeskList}" varStatus="status">
+						<li>							
+							<!-- [S] 인증강사 일때 : [data-comment-type="certified-instructor"] -->
+							<div class="comment-wrap" data-comment-type="certified-instructor">
+								<article class="comment-contents">
+									<header class="comment-header">
+										<c:if test="${helpdesk.stateCode=='01'}">
+											<i class="condition-icon" data-comment-condition="waiting">waiting</i>
+										</c:if>
+										<c:if test="${helpdesk.stateCode=='02'}">
+											<i class="condition-icon" data-comment-condition="completed">completed</i>
+										</c:if>
+										<strong class="name"><c:out value="${helpdesk.email}" /></strong>
+									</header>
+		
+									<div class="comment-area">
+										<pre class="text-area"><c:out value="${helpdesk.questionContents}" /></pre>										
+										<c:if test="${helpdesk.stateCode=='01'and helpdesk.readerUserId == userId}">
+											<button type="button" class="list-sub-btn" data-btn-style="modal" data-btn-key="comment" onclick="fnAnswerWrite(${helpdesk.seq}, '${helpdesk.answerContents}');">Reply</button>
+										</c:if>
+									</div>
+									
+									<footer class="comment-footer">
+										<span class="datetime"><c:out value="${helpdesk.questionDate}" /></span>
+									</footer>
+								</article>
+								
+								<c:if test="${helpdesk.stateCode=='02'}">
+									<article class="comment-contents" data-comment-condition="reply">
+										<header class="comment-header">
+											<i class="profile-icon"><img src="${helpdesk.lecturerImgPath}" alt="" /></i>
+											<strong class="name"><c:out value="${helpdesk.lecturerName}" /></strong>
+										</header>
+			
+										<div class="comment-area">
+											<pre class="text-area"><c:out value="${helpdesk.answerContents}" /></pre>
+											<c:if test="${helpdesk.readerUserId == userId}">
+												<button type="button" class="modify-sub-btn" data-btn-style="modal" data-btn-key="comment" onclick="fnAnswerWrite(${helpdesk.seq}, '${helpdesk.answerContents}');"></button>
+												<button type="button" class="delete-sub-btn" onclick="fnAnswerSave(${helpdesk.seq}, 'D');"></button>
+											</c:if>
+										</div>
+										
+										<footer class="comment-footer">
+											<span class="datetime"><c:out value="${helpdesk.answerDate}" /></span>
+										</footer>
+									</article>
+								</c:if>
+							</div>
+							<!-- [E] 인증강사 일때 -->
+						</li>
+					</c:forEach>
+				</ul>
+				<!-- [E] comment -->
+				
+				<div class="form-area" data-combine-form="column-6-form">
+					<div class="form" data-mult-form="comment"><textarea class="input-form" name="questionContents" id="questionContents" placeholder="Please enter your answer."></textarea></div>
+					<div class="form" data-mult-form="btn"><button type="button" class="main-btn" onclick="fnQuestionSave();">Save</button></div>
+				</div>
+			</form:form>
+		</article>
+		<!-- [E] 비디오가 적용된 타입일 때 -->
+		
+		<div class="submit-area">
+			<c:if test="${menuType=='FR'}">
+				<c:if test="${result.contentsId != result.previousContentsId}"> 
+					<button type="submit" class="sub-btn" data-offset="left" onclick="fnMoveContents('P');"><i class="fas fa-chevron-left"></i>Previous</button>
+				</c:if>
+				<c:if test="${result.contentsId != result.nextContentsId}"> 
+					<button type="submit" class="sub-btn" data-offset="left" onclick="fnMoveContents('N');">Next<i class="fas fa-chevron-right"></i></button>
+				</c:if>
+				<button type="submit" class="sub-btn" <c:if test="${result.surveyResult=='N'}">data-btn-style="modal"</c:if> data-btn-key="poll" <c:if test="${result.surveyResult!='N'}">onclick="fnRetrieveList();"</c:if>>
+					<i class="fas fa-list left"></i>List
+				</button>
+			</c:if>
+			<c:if test="${menuType=='AD'}">
+				<button type="submit" class="sub-btn" data-btn-key="poll" onclick="fnRetrieveList();"><i class="fas fa-list left"></i>List</button>
+				<button type="submit" class="sub-btn" onclick="fnDeleteContents();">삭제</button>
+				<button type="submit" class="main-btn" onclick="goUpdateContents();">수정</button>
+			</c:if>
+		</div>
+	</article>
+	<!-- [E] 게시물 보기 -->
+	
+	
+</section>
+
+<!-- [S 2020-09-08] 레이어 팝업 : 설문 레이어 팝업 -->
+<div class="layerPop-wrap" id="FR070101-15" data-pop-action="disabled">
+	<article class="layerPop-area" data-pop-key="poll" data-pop-type="poll">
+		<form:form commandName="surveyList" name="surveyForm" id="surveyForm" method="post">
+			<input type="hidden" name="userId" id="userId" value="${userId}" />
+			<input type="hidden" name="menuId" id="menuId" value="${result.menuId}" />
+			<input type="hidden" name="contentsId" id="contentsId" value="${result.contentsId}" />
+			<input type="hidden" name="surveyId" id="surveyId" value="${surveyList.surveyId}" />
+			<header class="layerPop-header">
+				<h3 class="layerPop-tit"><c:out value="${surveyList.title}" /></h3>
+				<button type="button" class="layerPop-close-btn" data-pop-btn="close" onclick="fnRetrieveList();"><span class="icon-close"></span></button>
+			</header>
+			<article class="layerPop-contents">
+				<div class="list-area">
+					<ol>
+						<li>
+							<div class="question"><c:out value="${surveyList.question1}" /></div>
+							<div class="answer">
+								<c:if test="${surveyList.itemCode1=='MC'}">
+									<ul class="form" data-form="radio">
+										<c:forEach var="mcCodeList" items="${mcCodeList}" varStatus="status">
+										<c:set var="index" value="${status.index}" />								
+											<li>
+												<input type="radio" class="check-form" name="answer1" id="radio1_${index}" value="${mcCodeList.code}" <c:if test="${mcCodeList.code=='5'}">checked</c:if> />	
+												<label for="radio1_${index}" class="label-form">${mcCodeList.value}</label>
+											</li>
+							     		</c:forEach>
+									</ul>
+								</c:if>								
+								<c:if test="${surveyList.itemCode1=='SA'}">
+									<div class="form" data-mult-form="comment"><textarea class="input-form" name="answer1" placeholder="Please enter your answer."></textarea></div>
+								</c:if>
+							</div>
+						</li>
+						
+						<li>
+							<div class="question"><c:out value="${surveyList.question2}" /></div>
+							<div class="answer">
+								<c:if test="${surveyList.itemCode2=='MC'}">
+									<ul class="form" data-form="radio">
+										<c:forEach var="mcCodeList" items="${mcCodeList}" varStatus="status">
+										<c:set var="index" value="${status.index}" />								
+											<li>
+												<input type="radio" class="check-form" name="answer2" id="radio2_${index}" value="${mcCodeList.code}" <c:if test="${mcCodeList.code=='5'}">checked</c:if> />	
+												<label for="radio2_${index}" class="label-form">${mcCodeList.value}</label>
+											</li>
+							     		</c:forEach>
+									</ul>
+								</c:if>								
+								<c:if test="${surveyList.itemCode2=='SA'}">
+									<div class="form" data-mult-form="comment"><textarea class="input-form" name="answer2" placeholder="Please enter your answer."></textarea></div>
+								</c:if>
+							</div>
+						</li>
+						
+						<li>
+							<div class="question"><c:out value="${surveyList.question3}" /></div>
+							<div class="answer">
+								<c:if test="${surveyList.itemCode3=='MC'}">
+									<ul class="form" data-form="radio">
+										<c:forEach var="mcCodeList" items="${mcCodeList}" varStatus="status">
+										<c:set var="index" value="${status.index}" />								
+											<li>
+												<input type="radio" class="check-form" name="answer3" id="radio3_${index}" value="${mcCodeList.code}" <c:if test="${mcCodeList.code=='5'}">checked</c:if> />	
+												<label for="radio3_${index}" class="label-form">${mcCodeList.value}</label>
+											</li>
+							     		</c:forEach>
+									</ul>
+								</c:if>								
+								<c:if test="${surveyList.itemCode3=='SA'}">
+									<div class="form" data-mult-form="comment"><textarea class="input-form" name="answer3" placeholder="Please enter your answer."></textarea></div>
+								</c:if>
+							</div>
+						</li>
+						
+						<li>
+							<div class="question"><c:out value="${surveyList.question4}" /></div>
+							<div class="answer">
+								<c:if test="${surveyList.itemCode4=='MC'}">
+									<ul class="form" data-form="radio">
+										<c:forEach var="mcCodeList" items="${mcCodeList}" varStatus="status">
+										<c:set var="index" value="${status.index}" />								
+											<li>
+												<input type="radio" class="check-form" name="answer4" id="radio4_${index}" value="${mcCodeList.code}" <c:if test="${mcCodeList.code=='5'}">checked</c:if> />	
+												<label for="radio4_${index}" class="label-form">${mcCodeList.value}</label>
+											</li>
+							     		</c:forEach>
+									</ul>
+								</c:if>								
+								<c:if test="${surveyList.itemCode4=='SA'}">
+									<div class="form" data-mult-form="comment"><textarea class="input-form" name="answer4" placeholder="Please enter your answer."></textarea></div>
+								</c:if>
+							</div>
+						</li>
+						
+						<li>
+							<div class="question"><c:out value="${surveyList.question5}" /></div>
+							<div class="answer">
+								<c:if test="${surveyList.itemCode5=='MC'}">
+									<ul class="form" data-form="radio">
+										<c:forEach var="mcCodeList" items="${mcCodeList}" varStatus="status">
+										<c:set var="index" value="${status.index}" />								
+											<li>
+												<input type="radio" class="check-form" name="answer5" id="radio5_${index}" value="${mcCodeList.code}" <c:if test="${mcCodeList.code=='5'}">checked</c:if> />	
+												<label for="radio5_${index}" class="label-form">${mcCodeList.value}</label>
+											</li>
+							     		</c:forEach>
+									</ul>
+								</c:if>								
+								<c:if test="${surveyList.itemCode5=='SA'}">
+									<div class="form" data-mult-form="comment"><textarea class="input-form" name="answer5" placeholder="Please enter your answer."></textarea></div>
+								</c:if>
+							</div>
+						</li>
+					</ol>
+				</div>
+			</article>
+			
+			<footer class="layerPop-footer">
+				<button type="button" class="layerPop-main-btn" onclick="fnSurveySave();">SUBMIT</button>
+				<!-- [2020-09-09] 팝업 소스 삭제 data-pop-btn="delete" -->
+				<button type="button" class="layerPop-sub-btn" data-pop-btn="delete" onclick="fnRetrieveList();">Cancel</button>
+			</footer>
+		</form:form>
+	</article>
+</div>
+<!-- [E] 레이어 팝업 -->
+	
+<!-- [S 2020-09-09] 레이어 팝업 : 댓글작성 팝업 -->
+<div class="layerPop-wrap" id="FR070101-20" data-pop-action="disabled">
+	<article class="layerPop-area" data-pop-key="comment" data-pop-type="comment">
+		<form:form commandName="inquiryAnswer" name="answerForm" id="answerForm" method="post">
+			<input type="hidden" name="seq" id="seq" value="" />
+			<header class="layerPop-header">
+				<h3 class="layerPop-tit">1:1 Inquiry Answer</h3>
+				<button type="button" class="layerPop-close-btn" data-pop-btn="close">close<span class="icon-close"></span></button>
+			</header>
+			<article class="layerPop-contents">
+				<div class="form" data-mult-form="comment"><textarea class="input-form" name="answerContents" id="answerContents" placeholder="Please enter your answer."></textarea></div>
+			</article>
+			<footer class="layerPop-footer">
+				<button type="button" class="layerPop-main-btn" onclick="fnAnswerSave('', 'S');">Save</button>
+				<!-- [2020-09-09] 팝업 소스 삭제 data-pop-btn="delete" -->
+				<button type="button" class="layerPop-sub-btn" data-pop-btn="close">Cancel</button>
+			</footer>
+		</form:form>
+	</article>
+</div>
+<!-- [E] 레이어 팝업 -->

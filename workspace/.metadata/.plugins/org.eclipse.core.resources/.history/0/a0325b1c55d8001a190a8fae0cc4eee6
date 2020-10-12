@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FileInfo">
+
+    <!-- 첨부파일 업로드 -->
+    <insert id="insertFileInfo" parameterType="hashMap">
+            <![CDATA[
+		INSERT INTO file_info(
+        	   file_id
+        	 , file_number
+        	 , file_name
+        	 , file_path
+        	 , file_size
+        	 , file_extension
+        	 , create_id
+        	 , create_date
+        	 , update_id
+        	 , update_date
+        ) VALUES (
+             #{fileId}
+           , #{fileNumber}
+           , #{fileName}
+           , #{uploadFileName}
+           , #{fileSize}
+           , #{fileExtension}
+           , '0'
+           , NOW()
+           , '0'
+           , NOW()
+        )
+        ]]>    
+    </insert>
+    
+    <select id="retrieveFileInfoList" resultType="fileInfo">
+        SELECT FILE_NAME
+             , file_id
+             , file_number
+             , file_name
+             , file_path
+             , file_size
+             , file_extension
+             , create_id
+             , create_date
+             , update_id
+             , update_date
+          FROM file_info
+         WHERE 1=1    
+        <if test="fileName != null and fileName != ''">
+        <![CDATA[ AND file_name like '%'||#{fileName}||'%'  ]]>
+        </if>
+    </select>
+    
+    <delete id="deleteFileInfo">
+        <![CDATA[
+        DELETE FROM file_info
+        WHERE file_id = #{fileId}
+        AND file_path = #{filePath}
+        ]]>    
+    
+    </delete>
+
+</mapper>

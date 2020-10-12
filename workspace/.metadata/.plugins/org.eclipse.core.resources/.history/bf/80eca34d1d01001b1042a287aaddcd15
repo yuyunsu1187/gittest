@@ -1,0 +1,15 @@
+#Mariadb
+db.driverClassName=org.mariadb.jdbc.Driver
+#db.url=jdbc:mariadb://rds-an2a-lsc-gyva-dev-1c.chr1qxsixvzy.ap-northeast-2.rds.amazonaws.com:3306/gyva
+db.username=gyvaadmin
+db.password=!Dlqmdkfm2020
+db.encoding=utf-8
+db.driverlocation=
+
+#Mariadb_local
+#db.driverClassName=org.mariadb.jdbc.Driver
+db.url=jdbc:mariadb://127.0.0.1:3306/gyva
+#db.username=gyvaadmin
+#db.password=!Dlqmdkfm2020
+#db.encoding=utf-8
+#db.driverlocation=

@@ -1,0 +1,184 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsWrite.jsp
+ * DESC : 컨텐츠 페이지 조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>Scientific Data 등록 화면</title>
+
+<script type="text/javaScript" language="javascript">
+	//<![CDATA[
+
+	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+	function checkValue() {
+
+		if (!document.contentsInfo.contentsId.value) {
+			alert("contentsId를 입력하세요.");
+			return false;
+		}
+
+		if (!document.contentsInfo.menuId.value) {
+			alert("menuId를 입력하세요.");
+			return false;
+		}
+
+		if (!document.contentsInfo.title.value) {
+			alert("title를 입력하세요.");
+			return false;
+		}
+
+		if (!document.contentsInfo.contents.value) {
+			alert("contents를 입력하세요.");
+			return false;
+		}
+
+		if (!document.contentsInfo.uploadFile_1.value) {
+			alert("thumbnail image를 등록하세요.");
+			return false;
+		}
+
+		if (!document.contentsInfo.uploadFile_2.value) {
+			alert("업로드 할 파일을 등록하세요.");
+			return false;
+		}
+
+		if (!document.contentsInfo.readerUserId.value) {
+			alert("담당 강사를 선택 하세요.");
+			return false;
+		}
+
+		if (!document.contentsInfo.stateCode.value) {
+			alert("stateCode를 입력하세요.");
+			return false;
+		}
+
+		if (!document.contentsInfo.readerUserId.value) {
+			alert("readerUserId를 입력하세요.");
+			return false;
+		}
+	}
+
+	// 파일 저장
+	function fnSave() {
+		document.contentsInfo.action = "<c:url value='/admin/contents/insertContents.do'/>";
+		document.contentsInfo.submit();
+	}
+	
+	// contentsType으로 div구분
+	$(document).ready(function(){
+		 
+	    // 라디오버튼 클릭시 이벤트 발생
+	    $("input:radio[name=radio]").click(function(){
+	 
+	        if($("input[name=contentsType]:checked").val() == "1"){
+	            $("input:text[name=text]").attr("disabled",false);
+	            // radio 버튼의 value 값이 1이라면 활성화
+	 
+	        }else if($("input[name=radio]:checked").val() == "0"){
+	              $("input:text[name=text]").attr("disabled",true);
+	            // radio 버튼의 value 값이 0이라면 비활성화
+	        }
+	    });
+	});
+
+	
+
+
+	// 취소 버튼 클릭시 로그인 화면으로 이동
+	function goContentWriteForm() {
+		location.href = "contentsWrite.do";
+	}
+
+	// ]]>
+</script>
+<%
+String menuId = (String) request.getAttribute("menuId");
+%>
+</head>
+
+<body>
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="wrap">
+		<br>
+		<br> <b><font size="6" color="gray">Scientific Data 등록</font></b> <br>
+		<br>
+		<br>
+		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+		<form method="post" action="/admin/contents/insertContents.do" name="contentsInfo" id="contentsInfo" onsubmit="return checkValue()" enctype="multipart/form-data">
+			<table>
+			
+			<tr>
+				<td id="title">제목 </td>
+				<td>
+					<input type="text" name="title" id="title" maxlength="50" placeholder ="Enter title" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">키워드 태그 </td>
+				<td>
+					<input type="text" name="keyWord_1" id="keyWord_1" maxlength="255" value="" placeholder ="Enter keyWord 1">
+					<input type="text" name="keyWord_2" id="keyWord_2" maxlength="255" value="" placeholder ="Enter keyWord 2">
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">내용 </td>
+				<td>
+					<input type="text" name="contents" id="contents" placeholder ="Enter contents" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">컨텐츠 타입</td>
+				<td>
+					<input type="radio" id="contentsVideo" name="contentsType" value="video" checked >동영상
+					<input type="radio" id="contentsImage" name="contentsType" value="Image" >슬라이드 이미지
+				</td>
+			</tr>
+			
+			<div id="divVideo" >
+			<tr>
+				<td id="title">upload file </td>
+				<td>
+					<input type="file" id="uploadFile_2" name="uploadFile_2" class="Lbtn"  multiple="multiple"> 
+				 </td>
+			</tr>
+			</div>
+			
+			<div id="divImage">
+			<tr>
+				<td id="title">thumbnail image</td>
+				<td>
+					<input type="file" id="uploadFile_1" name="uploadFile_1" class="Lbtn"  multiple="multiple">
+				</td>
+			</tr>
+			</div>
+
+			</table>
+			<br>  
+				 <input type="button" value="취소" onclick="goContentWriteForm()">
+				 <input type="submit" value="등록" />
+		</form>
+		
+	</div>
+</body>
+</html>
+

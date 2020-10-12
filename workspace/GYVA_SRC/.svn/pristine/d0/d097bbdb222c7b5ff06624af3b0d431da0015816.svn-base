@@ -1,0 +1,20 @@
+@charset "utf-8";
+/********************************************************
+	플러그인 css 파일
+********************************************************/
+@import url("/resource/css/libs/aos.min.css");
+@import url("/resource/css/libs/animate.min.css");
+@import url("/resource/css/libs/fontawesome_all.min.css"); /* 아이콘 폰트 : 소스에서 폰트 경로 수정 */
+@import url("/resource/css/libs/selectordie.css");
+@import url("/resource/css/libs/selectordie_theme_02.css");
+@import url("//unpkg.com/swiper/swiper-bundle.min.css");
+@import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"); /* datepicker 연결 */
+/********************************************************
+	[공통] 퍼블리싱 css 파일
+********************************************************/
+@import url("/resource/css/fonts.css");
+@import url("/resource/css/base.css");
+@import url("/resource/css/component.css");
+@import url("/resource/css/common.css");
+@import url("/resource/css/front/layout.css");
+@import url("/resource/css/front/contents.css");

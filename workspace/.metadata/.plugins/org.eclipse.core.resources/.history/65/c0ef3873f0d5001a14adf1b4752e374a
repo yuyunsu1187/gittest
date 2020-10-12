@@ -1,0 +1,11 @@
+package com.gyva.web.common.fileupload.service;
+
+import org.springframework.stereotype.Service;
+
+import com.gyva.web.common.fileupload.model.FileInfo;
+
+@Service("fileUploadServiceUtil")
+public interface FileUploadServiceUtilImpl {
+
+	public void insertFileInfo(FileInfo fileInfo);
+}

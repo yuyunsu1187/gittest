@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/Update/ControllerTemplate" format="1.0" title="Controller Template for UPDATE">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+#set($voClassPath="${voPackage}.${voClassName}")
+#set($voInstanceName="${table.camelCased}VO")
+##
+#set($servicePackage="${codePackage.packageName}.service")
+#set($serviceClassName="${table.capitalized}Service")
+#set($serviceClassPath="${servicePackage}.${serviceClassName}")
+#set($serviceInstanceName="${table.camelCased}Service")
+##
+#set($controllerPackage="${codePackage.packageName}.controller")
+#set($controllerClassName="${table.capitalized}Controller")
+##
+#set($updateMethodName="update${table.capitalized}")
+##
+#set($listPath="/${table.camelCased}/retrieve${table.capitalized}List.do")
+#set($updatePath="/${table.camelCased}/update${table.capitalized}.do")
+##
+#set($listView="/${table.camelCased}/retrieve${table.capitalized}List")
+]]></prefix>
+
+
+
+	<ifNewFile><![CDATA[
+package ${controllerPackage};
+
+]]></ifNewFile>
+
+
+
+	<ifNotFoundEachLine location="afterImport"><![CDATA[
+import javax.annotation.Resource;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ${voClassPath};
+import ${serviceClassPath};
+]]></ifNotFoundEachLine>
+
+
+
+	<ifNewFile><![CDATA[
+
+
+
+/**
+ * @Class Name: ${controllerClassName}.java
+ * @Description: ${table.capitalized} Controller class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C) LG CNS All right reserved.
+ */
+ 
+@Controller
+public class ${controllerClassName} {
+]]></ifNewFile>
+
+
+
+	<ifNotFound>
+		<findMemberVariable name="${serviceInstanceName}"/>
+		<insert location="afterLastMemberVariable"><![CDATA[
+
+	@Resource(name = "${serviceInstanceName}")
+	private ${serviceClassName} ${serviceInstanceName};
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNotFound>
+		<findMethod name="${updateMethodName}">
+			<parameterClass><![CDATA[${voClassPath}]]></parameterClass>
+			<parameterClass><![CDATA[org.springframework.web.servlet.mvc.support.RedirectAttributes]]></parameterClass>
+		</findMethod>
+		<insert location="afterLastMethod"><![CDATA[
+	
+	/**
+	  * ${table.tableName} 정보를 수정한다.
+	  * @param input - 수정할 정보가 담긴 ${voClassName}
+	  * @return "${listView}"
+	  */	
+	@RequestMapping(value = "${updatePath}")
+	public String ${updateMethodName}(${voClassName} input, RedirectAttributes redirectAttributes) {
+		${serviceInstanceName}.${updateMethodName}(input);
+		return "redirect:${listPath}";
+	}
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNewFile><![CDATA[
+}
+]]></ifNewFile>
+
+</CodeGenTemplate>

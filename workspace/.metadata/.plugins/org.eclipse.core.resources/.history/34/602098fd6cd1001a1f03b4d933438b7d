@@ -1,0 +1,48 @@
+package com.gyva.web.common.user.dao;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.gyva.web.common.user.model.User;
+
+import devonframe.sample.office.uipattern.employee.model.Employee;
+
+@Repository
+public class UserDao {
+	
+	@Resource(name = "sqlSession")
+	private SqlSession sqlSession;
+	
+	private static final String namespace = "User";
+	
+	// 회원 가입 저장
+	public void insertUser(User vo) {
+		sqlSession.insert(namespace + ".insertUserTest", vo);
+	}
+	
+	public Employee retrieveEmployee(Employee employee) {
+		return sqlSession.selectOne("Employee.retrieveEmployee", employee);
+	}
+
+	public List<Employee> retrieveEmployeeList(Employee employee) {
+		return sqlSession.selectList("Employee.retrieveEmployeeList", employee);
+	}
+
+	public void insertEmployee(Employee employee) {
+		sqlSession.insert("Employee.insertEmployee", employee);
+	}
+
+	public void updateEmployee(Employee employee) {
+		sqlSession.update("Employee.updateEmployee", employee);
+	}
+
+	public void deleteEmployee(Employee employee) {
+		sqlSession.delete("Employee.deleteEmployee", employee);
+	}
+
+	
+}

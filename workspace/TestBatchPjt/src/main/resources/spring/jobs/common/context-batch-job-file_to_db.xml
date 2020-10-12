@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--  
+		File(delimited) to DB Job
+	-->
+	
+	<batch:job id="file-to-db-job">
+		<batch:step id="file-to-db-step">			
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="file-to-db-reader" writer="file-to-db-writer" commit-interval="1000" />
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+	
+	<!-- FlatFileItemReader -->
+	<bean id="file-to-db-reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="resource" value="classpath:/data/input/employee.1000.csv" />
+		<property name="linesToSkip" value="1" />
+		<property name="encoding" value="UTF-8" />
+    	<property name="lineMapper">
+        	<bean class="devonframe.batch.item.file.mapping.DefaultStringLineMapper">
+            	<property name="lineTokenizer">
+            		<bean class="devonframe.batch.item.file.transform.DelimitedStringLineTokenizer">
+            			<property name="delimiter" value="," />
+            		</bean>
+            	</property>
+            	<property name="objectMapper">
+            		<bean class="devonframe.batch.item.file.mapping.FastReflectorObjectMapper">
+            			<property name="type" value="devonframe.batch.sample.common.model.Employee" />
+            			<property name="names" 
+            				value="num,name,sex,departmentCode,joblevelCode,skillCode,telephone,birthdate,postal,address" />
+            		</bean>
+            	</property>
+        	</bean>
+    	</property> 
+	</bean>
+	
+	<!-- EnhancedJdbcBatchItemWriter -->
+	<!-- <bean id="file-to-db-writer" class="devonframe.batch.item.database.EnhancedJdbcBatchItemWriter">
+		<property name="assertUpdates" value="false" />
+		<property name="itemPreparedStatementSetter">
+			<bean class="devonframe.batch.item.database.FastReflectorItemPreparedStatementSetter" />
+		</property>
+		<property name="sql">
+			<value>
+				<![CDATA[
+				INSERT INTO EMPLOYEE (
+					num, name, sex, department_code, joblevel_code, skill_code, telephone, birthdate, postal, address
+				) values (
+					?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+				)
+				]]>
+			</value>
+		</property>
+		<property name="params" 
+			value="num, name, sex, departmentCode, joblevelCode, skillCode, telephone, birthdate, postal, address"/>
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	<bean id="file-to-db-writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="statementId" value="employee.insertEmployee"/>
+	</bean>
+	
+</beans>

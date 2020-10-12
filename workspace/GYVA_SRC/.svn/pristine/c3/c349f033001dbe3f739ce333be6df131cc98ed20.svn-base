@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>LG chem : LG aesthetics</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/mobile/import.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+	<!-- [S] wrap : ID 값은 화면 ID와 동일하게 적용 -->
+	<div id="FR010301-05" class="default-section">
+		<!-- [S] contents -->
+		<section class="content-section">
+			<h2 class="content-tit">New Account</h2>
+			<article class="board-wrap" data-board-type="form-write">
+				<div class="form-wrap">
+					<h3 class="article-tit">Personal Information</h3>
+					<p class="article-txt" data-text-style="essential">There are required fields in this form marked</p>
+					
+					<ul class="form-area">
+						<li>
+							<strong class="form-tit" data-text-style="essential">Position</strong>
+							<ul class="form" data-form="radio">
+								<li>
+									<input type="radio" class="check-form" id="radio01" name="Position" data-radio-key="doctor" checked />
+									<label for="radio01" class="label-form">Physician</label>
+								</li>
+								<li>
+									<input type="radio" class="check-form" id="radio02" name="Position" data-radio-key="partner" />
+									<label for="radio02" class="label-form">Partner, LG Chem employee</label>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<label for="password" class="form-tit" data-text-style="essential">Email address</label>
+							<div class="form" data-mult-form="input-btn">
+								<input type="email" class="input-form" data-validate-key="userEmail" placeholder="Enter your email address" required />
+								<button type="button" class="board-sub-btn" disabled>Check</button>
+							</div>
+						</li>
+						<li>
+							<label for="password" class="form-tit" data-text-style="essential">password</label>
+							<div class="form" data-mult-form="password">
+								<input type="password" id="password" class="input-form" data-validate-key="userPassword" placeholder="Enter Password" required />
+								<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+							</div>
+							<div class="form" data-mult-form="password">
+								<input type="password" class="input-form" data-validate-key="userPassword" placeholder="Confirm Password" required />
+								<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+							</div>
+							
+							<p class="form-txt">The password must have at least 8 characters, at least 1 special character</p>
+						</li>
+						
+						<li>
+							<label for="name" class="form-tit" data-text-style="essential">Name</label>
+							<div class="form"><input type="text" class="input-form" id="name" data-validate-key="userFirstName" placeholder="First name" required /></div>
+							<div class="form"><input type="text" class="input-form" data-validate-key="userLastName" placeholder="Last name" required /></div>
+						</li>
+						
+						<li>
+							<strong class="form-tit" data-text-style="essential">Country</strong>
+							<div class="form" data-mult-form="select-list">
+								<button class="select-btn" data-select-init="placeholder" data-validate-key="userCountry" required>-- Select a country --<i class="fas fa-angle-down"></i></button>
+								<ul class="option-list">
+									<li><button type="button" class="option-btn">France</a></li>
+									<li><button type="button" class="option-btn">USA</a></li>
+								</ul>
+							</div>
+						</li>
+						
+						<li data-radio-target="position" data-position-key="doctor">
+							<strong class="form-tit" data-text-style="essential">Specialty</strong>
+							<div class="form" data-mult-form="select-list">
+								<button class="select-btn" data-select-init="placeholder" data-validate-key="userSpecialty" required>-- Select a country --<i class="fas fa-angle-down"></i></button>
+								<ul class="option-list">
+									<li><button type="button" class="option-btn">Dermatologist</a></li>
+									<li><button type="button" class="option-btn">Plastic Surgeon</a></li>
+									<li><button type="button" class="option-btn">Aesthetic Physician</a></li>
+									<li><button type="button" class="option-btn">Ophthalmologist</a></li>
+									<li><button type="button" class="option-btn">General Practitioner</a></li>
+									<li><button type="button" class="option-btn">General Practitioner</a></li>
+								</ul>
+							</div>
+						</li>
+						
+						<li data-radio-target="position" data-position-key="doctor">
+							<p class="note-txt">Please provide a scan or photo of your physician ID and your photo that can prove that the ID belongs to you.</p>
+							
+							<label for="uploadFile_1" class="form-tit" data-text-style="essential">Physician ID</label>
+							<div class="form" data-mult-form="file">
+								<input type="text" class="input-form" data-validate-key="userPhysician" readonly required />
+								<input type="file" class="file-form" id="uploadFile_1" name="uploadFile_1" />
+								<label for="uploadFile_1" class="file-label">찾아보기</label>
+							</div>
+						
+							<span class="img-area"><img src="/resource/images/front/contents/img-physician-example.png" alt="" /></span>
+						</li>
+						
+						<li data-radio-target="position" data-position-key="doctor">
+							<label for="uploadFile_2" class="form-tit" data-text-style="essential">Your photo</label>
+							<div class="form" data-mult-form="file">
+								<input type="text" class="input-form" data-validate-key="userphoto" readonly required />
+								<input type="file" class="file-form" id="uploadFile_2" name="uploadFile_2" />
+								<label for="uploadFile_2" class="file-label">찾아보기</label>
+							</div>
+							
+							<span class="img-area"><img src="/resource/images/front/contents/img-photo-example.png" alt="" /></span>
+						</li>
+						
+						<li data-radio-target="position" data-position-key="partner">
+							<label for="partner" class="form-tit" data-text-style="essential">Partner name</label>
+							<div class="form"><input type="text" id="partner" class="input-form" data-validate-key="userPartnerName" placeholder="Enter Partner name" required /></div>
+						</li>
+					</ul>
+				</div>
+			
+				<div class="form-wrap" data-radio-target="position" data-position-key="doctor">
+					<h3 class="article-tit">Additional Information</h3>			
+					<ul class="form-area">
+						<li>
+							<label for="clinic-name" class="form-tit">Clinic Name</label>
+							<div class="form"><input type="text" id="clinic-name" class="input-form" placeholder="Enter your clinic name" /></div>
+						</li>
+						
+						<li>
+							<label for="clinic-address" class="form-tit">Clinic Address</label>
+							<div class="form"><input type="text" id="clinic-address" class="input-form" placeholder="Enter your clinic address" /></div>
+						</li>
+						
+						<li>
+							<label for="clinic-postcode" class="form-tit">Clinic Postcode / Zip</label>
+							<div class="form"><div class="form"><input type="text" id="clinic-postcode" class="input-form" placeholder="Enter your clinic postcode" /></div></div>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="terms-section">
+					<ul class="form-area">
+						<li>
+							<div class="form" data-form="checkbox" data-text-style="essential">
+								<input type="checkbox" class="check-form" id="checkbox01" name="checkbox" checked>
+								<label for="checkbox01" class="label-form">I accept the Terms of Use.</label>
+							</div>
+							<button type="button" class="terms-main-btn" data-btn-style="modal" data-btn-key="terms">Terms of Use<i class="fas fa-angle-right"></i></button>
+						</li>
+						<li>
+							<div class="form" data-form="checkbox" data-text-style="essential">
+								<input type="checkbox" class="check-form" id="checkbox02" name="checkbox">
+								<label for="checkbox02" class="label-form">I accept the Privacy Policy.</label>
+							</div>
+							<button type="button" class="terms-main-btn" data-btn-style="modal" data-btn-key="privacy">Privacy Policy<i class="fas fa-angle-right"></i></button>
+						</li>
+						<li>
+							<div class="form" data-form="checkbox">
+								<input type="checkbox" class="check-form" id="checkbox03" name="checkbox">
+								<label for="checkbox03" class="label-form">I agree that LG Chem may contact me with offers and promotions available from LG Chem.</label>
+							</div>
+							<button type="button" class="terms-main-btn" data-btn-style="modal" data-btn-key="marketing">Consent to additional marketing information (optional)<i class="fas fa-angle-right"></i></button>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="submit-area">
+					<button type="submit" class="main-btn">Join Membership</button>
+				</div>
+			</article>
+		</section>
+		<!-- [E] contents -->
+	</div>
+	<!-- [E] wrap -->
+	
+	<!-- [S] 레이어 팝업 : Terms of Use -->
+	<div class="layerPop-wrap" id="FR010301-06" data-pop-action="disabled">
+		<article class="layerPop-area" data-pop-key="terms" data-pop-type="terms">
+			<header class="layerPop-header">
+				<h3 class="layerPop-tit">Terms of Use</h3>
+				<button type="button" class="layerPop-close-btn" data-pop-btn="close" data-check-key="terms"><span class="icon-close"></span></button>
+			</header>
+			<article class="layerPop-contents">
+				<div class="terms-content">
+					<div class="text-area">
+						<strong class="tit">General Terms and Conditions for Service Use</strong>
+						<p class="txt">The following provisions are to specify the General Terms and Conditions for Service Use of LG ESS Battery Website provided by LG Chem, Ltd..<br />Please verify the general terms and conditions before using the services.</p>
+
+						<strong class="tit">Chapter 1. General Provisions</strong>
+						<p class="txt">The following provisions are to specify the General Terms and Conditions for Service Use of LG ESS Battery Website provided by LG Chem, Ltd..<br /></p>
+					</div>
+				</div>
+			</article>
+		</article>
+	</div>
+	<!-- [E] 레이어 팝업 : Terms of Use -->
+	
+	<!-- [S] 레이어 팝업 : Privacy Policy -->
+	<div class="layerPop-wrap" id="FR010301-06" data-pop-action="disabled">
+		<article class="layerPop-area" data-pop-key="privacy" data-pop-type="terms">
+			<header class="layerPop-header">
+				<h3 class="layerPop-tit">Privacy Policy</h3>
+				<button type="button" class="layerPop-close-btn" data-pop-btn="close" data-check-key="privacy"><span class="icon-close"></span></button>
+			</header>
+			<article class="layerPop-contents">
+				<div class="terms-content">
+					<div class="text-area">
+						<strong class="tit">General Terms and Conditions for Service Use</strong>
+						<p class="txt">The following provisions are to specify the General Terms and Conditions for Service Use of LG ESS Battery Website provided by LG Chem, Ltd..<br />Please verify the general terms and conditions before using the services.</p>
+
+						<strong class="tit">Chapter 1. General Provisions</strong>
+						<p class="txt">The following provisions are to specify the General Terms and Conditions for Service Use of LG ESS Battery Website provided by LG Chem, Ltd..<br /></p>
+					</div>
+				</div>
+			</article>
+		</article>
+	</div>
+	<!-- [E] 레이어 팝업 : Privacy Policy -->
+	
+	<!-- [S] 레이어 팝업 : Consent to additional marketing information (optional) -->
+	<div class="layerPop-wrap" id="FR010301-06" data-pop-action="disabled">
+		<article class="layerPop-area" data-pop-key="marketing" data-pop-type="terms">
+			<header class="layerPop-header">
+				<h3 class="layerPop-tit">Consent to additional marketing information (optional)</h3>
+				<button type="button" class="layerPop-close-btn" data-pop-btn="close" data-check-key="marketing"><span class="icon-close"></span></button>
+			</header>
+			<article class="layerPop-contents">
+				<div class="terms-content">
+					<div class="text-area">
+						<strong class="tit">General Terms and Conditions for Service Use</strong>
+						<p class="txt">The following provisions are to specify the General Terms and Conditions for Service Use of LG ESS Battery Website provided by LG Chem, Ltd..<br />Please verify the general terms and conditions before using the services.</p>
+
+						<strong class="tit">Chapter 1. General Provisions</strong>
+						<p class="txt">The following provisions are to specify the General Terms and Conditions for Service Use of LG ESS Battery Website provided by LG Chem, Ltd..<br /></p>
+					</div>
+				</div>
+			</article>
+		</article>
+	</div>
+	<!-- [E] 레이어 팝업 : Consent to additional marketing information (optional) -->
+	
+	<!-- [S : 20200924] 로딩이미지 -->
+	<div class="loading-area" data-pop-action="active">
+		<span class="img-area"><img src="/resource/images/common/contents/m_Loading_200923.gif" alt="" /></span>
+	</div>
+	<!-- [E : 20200924] 로딩이미지 -->
+
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript"  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="/resource/js/libs/swiper-5.4.5.min.js"></script>
+	<script type="text/javascript" src="/resource/js/mobile/ui.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

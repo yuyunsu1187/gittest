@@ -1,0 +1,32 @@
+package devonframe.gyva.front.common.fileupload.service;
+
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import devonframe.dataaccess.CommonDao;
+import devonframe.fileupload.FileUpload;
+
+@Service("fileUploadService")
+public class FileUploadServiceImpl implements FileUploadService {
+    
+    @Resource(name = "commonDao")
+    private CommonDao commonDao;
+    
+	@Resource(name = "fileUpload")
+	private FileUpload fileUpload;
+
+    @Override
+	public void insertFileInfo(Map<String, Object> map){
+    	   commonDao.insert("FileInfo.insertFileInfo", map);
+    }
+    
+    @Override
+	public void insertFileInfo(MultipartFile multipartFile){
+    	   commonDao.insert("FileInfo.insertFileInfo", map);
+    }
+
+}

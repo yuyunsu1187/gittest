@@ -1,0 +1,4 @@
+﻿<h1>System.out and System.err should not be used as loggers (S106)</h1>logging 메시지는 두개의 조건을 반드시 만족해야한다.
+1) 사용자가 log를 쉽게 찾아볼 수 있어야 한다.
+2) 메시지 포맷은 반드시 사용자가 쉽게 브라우즈 할 수 있도록 일관되어야 한다.
+만약 프로그램이 직접 standard 아웃풋을 출력했다면 위 조건들을 만족할 수 없다. 전용 Logger 를 정의하고 사용할 것을 권장한다.

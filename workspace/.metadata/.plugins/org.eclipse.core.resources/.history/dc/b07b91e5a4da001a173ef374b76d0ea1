@@ -1,0 +1,5 @@
+package devonframe.gyva.front.common.fileupload.service;
+
+public interface FileParseService {
+
+}

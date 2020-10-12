@@ -1,0 +1,114 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsList.jsp
+ * DESC : 컨텐츠 페이지 목록조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+<script type="text/javascript" language="javascript">
+	//<![CDATA[
+		
+	// Contents 리스트 조회
+	function fnRetrieveList() {
+		document.listForm.action = "<c:url value='/contents.do'/>";
+		document.listForm.submit();
+	}
+
+	// 해당 파일 다운로드
+	function fnDownload(index, contentsId) {
+		var app = document.getElementById("append");
+		app.innerHTML = "<input type=hidden class=Lcheckbox name=checkIndex id=checkIndex value="+ index +">";
+
+		document.listForm.downloadId.value = contentsId;
+		document.listForm.action = "<c:url value='/function/filedownload/downloadFileList.do'/>";
+		document.listForm.submit();
+	}
+	
+	// 글 상세 페이지 화면으로 이동
+	function goContentsDetail(num,fileId) {
+		document.listForm.seq.value = num;
+		document.listForm.fileId.value = fileId;
+	   	document.listForm.action = "<c:url value='/contents/scientificDetail.do'/>";
+	   	document.listForm.submit();
+	}
+	
+	// 글 작성 화면으로 이동
+	function goContentsWrite() {
+		document.listForm.action = "<c:url value='/contents/scientificWrite.do'/>";
+		document.listForm.submit();
+	}
+	
+	//]]>
+</script>
+			
+<section id="FR050103-05" class="content-section">
+	<header class="content-header">
+		<h2 class="content-tit">Scientific Data</h2>
+	</header>
+	
+	<c:if test="${menuType=='FR'}">
+		<div class="breadcrumb">
+			<span class="home">home</span><span class="depth">Medical Platform</span><span class="page">Scientific Data</span>
+		</div>
+	</c:if>
+	
+	<!-- [S] 썸네일 list -->
+	<article class="list-wrap" data-list-type="thumbnail" data-combine-list="column-4-list">
+		<form:form commandName="resultList" name="listForm" id="listForm" method="post">
+			<input type="text" name="seq" id="seq" value="" />
+			<input type="hidden" name="menuId" id="menuId" value="<c:out value='${menuId}'/>" />
+			<input type="hidden" name="menuType" id="menuType" value="<c:out value='${menuType}'/>" />	
+			<input type="hidden" name="downloadId" id="downloadId" value="" />		
+			<input type="hidden" name="fileId" id="fileId" value="" />
+			<div id="append"></div>
+			
+			<ul class="thumbnail-list" data-list-style="clfix">
+				<c:forEach var="result" items="${resultList}" varStatus="status">
+					<c:set var="index" value="${status.index}" />
+					<li>
+					<input type="hidden" name="fileName" value="<c:out value='${result.fileName}'/>" />
+					<input type="hidden" name="uploadFilePath" value="<c:out value='${result.filePath}'/>" />
+						<div class="img-area">
+							<img src="<c:url value='${result.thumFilePath}'/>" onerror="this.src='/resource/images/common/contents/defaultimg_340x190.png';" alt="" onclick="javascript:goContentsDetail('<c:out value='${result.seq}'/>','<c:out value='${result.fileId}'/>');"  />
+							<div class="caption">
+								<a href="#" class="link-btn"><strong class="tit" data-text-style="ellipsisRow" onclick="javascript:goContentsDetail('<c:out value='${result.seq}'/>','<c:out value='${result.fileId}'/>');"><c:out value='${result.title}'/></strong></a>
+								<div class="keywordTag-area">
+									<span class="txt" data-text-style="ellipsis"><c:out value="${result.keyword1}" /></span>
+									<span class="txt" data-text-style="ellipsis"><c:out value="${result.keyword2}" /></span>
+								</div>
+								<!-- 프론트에서만 노출되는 버튼 -->
+								<c:if test="${result.fileType=='SLIDE'}">
+									<a href="#none" class="download-main-btn" onclick="fnDownload(<c:out value='${index}'/>);">DOWNLOAD<i class="fas fa-arrow-down"></i></a>
+								</c:if>
+							</div>
+						</div>
+					</li>
+				</c:forEach>
+			</ul>
+			
+			<div class="button-area">
+				<button type="button" class="more-sub-btn" data-btn-style="more">See more<i class="fas fa-plus"></i></button>
+			</div>
+						
+			<c:if test="${menuType=='AD'}">
+				<div class="submit-area">
+					<button type="button" class="main-btn" onclick="goContentsWrite()">등록</button>
+				</div>
+			</c:if>
+		</form:form>
+	</article>
+	<!-- [E] 썸네일 list -->
+	
+</section>

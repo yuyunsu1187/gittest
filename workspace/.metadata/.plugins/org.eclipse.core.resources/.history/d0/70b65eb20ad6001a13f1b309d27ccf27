@@ -1,0 +1,91 @@
+package com.gyva.web.common.user.service;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.gyva.web.common.fileupload.service.FileUploadService;
+import com.gyva.web.common.fileupload.service.FileUtils;
+import com.gyva.web.common.user.dao.UserDao;
+import com.gyva.web.common.user.model.User;
+
+/**
+ * <pre>
+ * 본 클래스는 사용자 정보에 대한 CRUD를 담당하는 ServiceImpl 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+@Service("userService")
+public class UserServiceImpl implements UserService {
+
+	@Resource(name = "userDao")
+	private UserDao userDao;
+	
+	@Resource(name = "fileUploadService")
+	private FileUploadService fileUploadService;
+	
+	@Resource(name = "fileUtils")
+	private FileUtils fileUtils;
+
+	@Override
+	public User retrieveUser(User user) {
+		return userDao.retrieveUser(user);
+	}
+
+	@Override
+	public List<User> retrieveUserList(User user) {
+		List<User> resultList = userDao.retrieveUserList(user);
+		return resultList;
+	}
+
+	// 회원 가입
+	@Override
+	public void insertUser(User user, MultipartHttpServletRequest mpRequest) {
+		System.out.println("@@@@@@@@@@ insertUser[start]");
+		// 회원 정보 저장
+		userDao.insertUser(user);
+		
+		// file 정보 parsing
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(user, mpRequest);
+		
+		System.out.println("@@@@@@@@@@ insertUserlist.size()["+list.size()+"]");
+		int size = list.size();
+		for (int i = 0; i < size; i++) {
+			System.out.println("@@@@@@@@@@list.get(i)::"+list.get(i).toString());
+			
+			fileUploadService.insertFileInfo(list.get(i));
+		}
+		System.out.println("@@@@@@@@@@ insertUser[end]");
+	}
+	
+	// 회원 정보 수정
+	@Override
+	public void updateUser(User user) {
+		userDao.updateUser(user);
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		userDao.deleteUser(user);
+	}
+	
+	// 회원 비밀번호 수정
+	@Override
+	public void resetPwdUser(User user) {
+		userDao.updatePwdUser(user);
+	}
+
+	// 아이디 중복체크
+	@Override
+	public int idChk(User user) {
+		int result = userDao.idChk(user);
+		return result;
+	}
+
+	
+}

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Survey">
+
+    <select id="retrieveQuestionList" resultType="survey">
+        <![CDATA[
+		SELECT m.*
+		  FROM (
+				SELECT CAST((@ROWNUM := @ROWNUM + 1) AS INT) AS seq 
+		             , si.survey_id
+		             , si.title
+		             , DATE_FORMAT(si.create_date, '%Y.%m.%d') AS create_date
+		             , si.use_yn
+				  FROM survey_info si
+		             , (SELECT @ROWNUM := 0) rn
+                 ORDER BY CAST(si.survey_id AS INT) ASC
+		        ) m
+		  WHERE 1 = 1  
+        ]]>
+        <if test="useYn != null and useYn != ''">
+        <![CDATA[ AND m.use_yn = #{useYn} ]]>
+        </if>
+        <![CDATA[ 
+		 ORDER BY CAST(m.seq AS INT) DESC 
+        ]]>       
+    </select>
+
+    <select id="retrieveQuestionDetail" resultType="survey">
+        <![CDATA[
+        SELECT si.survey_id
+             , si.title
+             , si.question1
+             , si.item_code1
+             , si.question2
+             , si.item_code2
+             , si.question3
+             , si.item_code3
+             , si.question4
+             , si.item_code4
+             , si.question5
+             , si.item_code5
+             , DATE_FORMAT(si.create_date, '%Y.%m.%d') AS create_date      
+          FROM survey_info si
+         WHERE si.survey_id = #{surveyId}  
+        ]]>    
+    </select>
+
+    <select id="retrieveSurveyId" resultType="String">
+        <![CDATA[
+        SELECT fnc_nextval(#{name})  
+        ]]>    
+    </select>
+
+    <insert id="insertQuestionInfo">
+        <![CDATA[  
+        INSERT INTO survey_info(
+               survey_id
+             , title
+             , question1
+             , item_code1
+             , question2
+             , item_code2
+             , question3
+             , item_code3
+             , question4
+             , item_code4
+             , question5
+             , item_code5
+             , use_yn
+             , remark
+             , create_id
+             , create_date
+             , update_id
+             , update_date
+        ) VALUES (
+               #{surveyId}
+             , #{title}
+             , #{question1}
+             , #{itemCode1}
+             , #{question2}
+             , #{itemCode2}
+             , #{question3}
+             , #{itemCode3}
+             , #{question4}
+             , #{itemCode4}
+             , #{question5}
+             , #{itemCode5}
+             , 'Y'
+             , #{remark}
+             , #{userId}
+             , NOW()
+             , #{userId}
+             , NOW()
+        )
+        ]]>    
+    </insert>
+
+    <update id="updateQuestionInfo">
+        <![CDATA[
+        UPDATE survey_info
+           SET title = #{title}
+             , question1 = #{question1}
+             , item_code1 = #{itemCode1}
+             , question2 = #{question2}
+             , item_code2 = #{itemCode2}
+             , question3 = #{question3}
+             , item_code3 = #{itemCode3}
+             , question4 = #{question4}
+             , item_code4 = #{itemCode4}
+             , question5 = #{question5}
+             , item_code5 = #{itemCode5}
+             , update_id = #{userId}
+             , update_date = now() 
+         WHERE survey_id = #{surveyId}  
+        ]]>    
+    </update>
+
+    <select id="retrieveResultList" resultType="survey">
+        <![CDATA[
+		SELECT m.*
+		  FROM (
+				SELECT CAST((@ROWNUM := @ROWNUM + 1) AS INT) AS seq 
+		             , sr.survey_id
+		             , si.title
+		             , sr.menu_id
+		             , mi.menu_name
+		             , sr.contents_id
+		             , DATE_FORMAT(si.create_date, '%Y.%m.%d') AS create_date
+				  FROM (SELECT menu_id
+                             , contents_id
+                             , survey_id
+                          FROM survey_result 
+                         GROUP BY menu_id
+                                , contents_id
+                                , survey_id) sr
+		               INNER JOIN survey_info si
+		            ON sr.survey_id = si.survey_id
+		               INNER JOIN menu_info mi
+		            ON sr.menu_id = mi.menu_id
+		             , (SELECT @ROWNUM := 0) rn
+		        ) m
+		 WHERE 1 = 1 		        
+        ]]>  
+        <if test="surveyId != null and surveyId != ''">
+        <![CDATA[ 
+           AND m.survey_id = #{surveyId}
+           AND m.menu_id = #{surveyMenuId}
+           AND m.contents_id = #{contentsId}   
+        
+        ]]>
+        </if>
+        <![CDATA[ 
+		 ORDER BY m.survey_id DESC
+        ]]>  
+    </select>
+
+    <select id="retrieveResultDetail" resultType="surveyForExcel">
+        <![CDATA[
+        SELECT sr.survey_id
+             , si.title
+             , sr.menu_id
+             , mi.menu_name
+             , sr.contents_id
+             , ui.email
+             , sr.user_id
+             , CONCAT(ui.name_first, ' ', ui.name_last) AS user_name
+             , fnc_codeName('COUNTRY', ui.country_code, 'A') AS country
+             , fnc_codeName('SPECIAL', ui.special_code, 'A') AS specialty
+             , si.question1
+             , IF(si.item_code1='SA', sr.answer1, fnc_codeName('MC', sr.answer1, 'A')) AS answer1
+             , si.question2
+             , IF(si.item_code2='SA', sr.answer2, fnc_codeName('MC', sr.answer2, 'A')) AS answer2
+             , si.question3
+             , IF(si.item_code3='SA', sr.answer3, fnc_codeName('MC', sr.answer3, 'A')) AS answer3
+             , si.question4
+             , IF(si.item_code4='SA', sr.answer4, fnc_codeName('MC', sr.answer4, 'A')) AS answer4
+             , si.question5
+             , IF(si.item_code5='SA', sr.answer5, fnc_codeName('MC', sr.answer5, 'A')) AS answer5
+             , DATE_FORMAT(si.create_date, '%Y.%m.%d') AS create_date
+          FROM survey_result sr
+               INNER JOIN survey_info si
+            ON sr.survey_id = si.survey_id
+               INNER JOIN menu_info mi
+            ON sr.menu_id = mi.menu_id
+               INNER JOIN user_info ui
+            ON sr.user_id = ui.user_id
+         WHERE sr.survey_id = #{surveyId}
+           AND sr.menu_id = #{surveyMenuId}
+           AND sr.contents_id = #{contentsId}          
+        ]]>       
+    </select>
+
+    <insert id="insertSurveyResult">
+        <![CDATA[  
+        INSERT INTO survey_result(
+               menu_id
+             , contents_id
+             , survey_id
+             , user_id
+             , answer1
+             , answer2
+             , answer3
+             , answer4
+             , answer5
+             , create_id
+             , create_date
+             , update_id
+             , update_date
+        ) VALUES (
+               #{menuId}
+             , #{contentsId}
+             , #{surveyId}
+             , #{userId}
+             , #{answer1}
+             , #{answer2}
+             , #{answer3}
+             , #{answer4}
+             , #{answer5}
+             , #{userId}
+             , NOW()
+             , #{userId}
+             , NOW()
+        )
+        ]]>    
+    </insert>
+
+    <update id="updateSurveyResult">
+        <![CDATA[
+        UPDATE survey_result
+           SET answer1 = #{answer1}
+             , answer2 = #{answer2}
+             , answer3 = #{answer3}
+             , answer4 = #{answer4}
+             , answer5 = #{answer5}
+             , update_id = #{userId}
+             , update_date = now() 
+         WHERE menu_id = #{menuId} 
+           AND contents_id = #{contentsId} 
+           AND survey_id = #{surveyId} 
+           AND user_id = #{userId}  
+        ]]>    
+    </update>
+
+</mapper>

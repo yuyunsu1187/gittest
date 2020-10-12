@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenPattern id="DevOnFrame/OneTable/RetrieveWithPagingPattern" format="1.0" title="RETRIEVE with Paging">
+	<description>[DevOnFrame] Generate RETRIEVE Codes with Paging for Rows on a Table and Insert to Existing Files</description>
+
+	<variablePageLink id="DevOnFrame/OneTable/OneTableVariablePage"/>
+
+	<templateLink id="DevOnFrame/OneTable/VOTemplate" type="java" 
+			filePath="${codePackage.folderPath}/vo/${table.capitalized}VO.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/RetrieveWithPaging/ServiceTemplate" type="java"
+			filePath="${codePackage.folderPath}/service/${table.capitalized}Service.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/RetrieveWithPaging/ServiceImplTemplate" type="java"
+			filePath="${codePackage.folderPath}/impl/${table.capitalized}ServiceImpl.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/RetrieveWithPaging/ControllerTemplate" type="java"
+			filePath="${codePackage.folderPath}/controller/${table.capitalized}Controller.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/RetrieveWithPaging/QueryTemplate" type="xml"
+			filePath="${queryFolder}/sql-${StringUtil.camelCase($queryNamespace, false)}.xml"/>
+	
+</CodeGenPattern>

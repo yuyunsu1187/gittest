@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SynchronizeViewSettings">
+		<item value="1602135595899" key="lastactiveparticipant_sec_id"/>
+		<item value="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant" key="lastactiveparticipant_id"/>
+		<item value="false" key="linkWithEditor"/>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1600126531738">
+			<item value="org.eclipse.team.ui.activeModelProvider" key="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1600733001174">
+			<item value="org.eclipse.team.ui.activeModelProvider" key="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1600934668146">
+			<item value="org.eclipse.team.ui.activeModelProvider" key="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601960731544">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601957128394">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601900145256">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601978175782">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1602115348889">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1599639747210">
+			<item value="org.eclipse.team.ui.activeModelProvider" key="org.eclipse.team.ui.activeModelProvider"/>
+			<item value="8" key="org.eclipse.team.ui.P_SYNCVIEWPAGE_MODE"/>
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601855066255">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1600931399084">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601945294316">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1602130368319">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601900543519">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1600732974736">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1602135595899">
+			<item value="org.eclipse.team.ui.activeModelProvider" key="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601900338223">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601980638689">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601960480284">
+		</section>
+		<section name="org.eclipse.team.svn.ui.synchronize.update.SynchronizeModelParticipant.1601945878882">
+		</section>
+	</section>
+	<section name="SynchronizeWizard">
+	</section>
+</section>

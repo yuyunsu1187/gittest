@@ -1,0 +1,100 @@
+package devonframe.gyva.contents.module.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import devonframe.gyva.admin.system.log.model.Log;
+import devonframe.gyva.admin.system.log.service.LogService;
+import devonframe.gyva.contents.model.Contents;
+import devonframe.gyva.contents.service.ContentsService;
+
+@Controller
+public class ModuleContentsController {
+    
+    @Resource(name = "logService")
+    private LogService logService;
+
+    @Resource(name = "contentsService")
+    private ContentsService contentsService;
+    
+    @RequestMapping(value="/contents/module/retrieveContentsList.do")
+    public String retrieveContentsList(Contents input, ModelMap model, HttpSession session){
+	
+    	String loginChk = (String) session.getAttribute("userId");
+    	
+    	if (loginChk != null) {
+			Log log = new Log();
+			log.setUserId((String) loginChk);
+			log.setMenuId((String) input.getMenuId());
+			log.setContentsId((String) input.getContentsId());
+			log.setCategoryCode((String) input.getCategoryCode());
+			
+			logService.insertLog(log);  
+    	
+	    	List<Contents> resultList = contentsService.retrieveContentsList(input);
+	        model.addAttribute("resultList", resultList);
+	        
+	        return "contents/academy/module/contentsList";
+		
+    	} else {    		
+		
+    		return "redirect:/common/error/lostSession.do";  
+			
+    	} 	
+		
+    }
+    
+    @RequestMapping(value="/contents/module/retrieveContents.do")
+    public String retrieveContentsDetail(Contents input, ModelMap model, HttpSession session){
+	
+    	String loginChk = (String) session.getAttribute("userId");
+    	
+    	if (loginChk != null) {
+			Log log = new Log();
+			log.setUserId((String) loginChk);
+			log.setMenuId((String) input.getMenuId());
+			log.setContentsId((String) input.getContentsId());
+			log.setCategoryCode((String) input.getCategoryCode());
+			
+			logService.insertLog(log);  
+
+	    	Contents contents = contentsService.retrieveContents(input);
+	    	
+	        model.addAttribute("result", contents);
+	
+	        return "contents/academy/module/contentsDetail";
+		
+    	} else {    		
+		
+    		return "redirect:/common/error/lostSession.do";  
+			
+    	} 	
+		
+    }
+    
+    @RequestMapping(value="/admin/contents/module/retrieveContentsList.do")
+    public String retrieveContentsList(Contents input, ModelMap model){
+    	
+    	List<Contents> resultList = contentsService.retrieveContentsList(input);
+        model.addAttribute("resultList", resultList);
+        
+        return "admin/contents/academy/module/contentsList";
+    }
+    
+    @RequestMapping(value="/admin/contents/module/retrieveContents.do")
+    public String retrieveContentsDetail(Contents input, ModelMap model){
+
+    	Contents contents = contentsService.retrieveContents(input);
+    	
+        model.addAttribute("result", contents);
+
+        return "admin/contents/academy/module/contentsDetail";
+    }
+    
+}

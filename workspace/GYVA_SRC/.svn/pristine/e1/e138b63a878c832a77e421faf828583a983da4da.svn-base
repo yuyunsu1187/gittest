@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Menu">
+    
+    <select id="retrieveMenuList" resultType="menu">
+        <![CDATA[
+        select menu_id, menu_name
+		  from menu_info
+		 where parent_menu_id = #{parentMenuId};
+        ]]>
+    </select>
+    
+    <select id="retrieveCallMenuInfo" resultType="menu">
+        <![CDATA[
+		SELECT mi.menu_id
+		     , mi.parent_menu_id
+		     , mi.menu_type
+		     , mi.menu_level
+		     , mi.menu_form     
+		     , mi.menu_name
+		     , mi.call_url
+		     , mi.retrun_url
+		     , mi.detail_url
+		     , mi.write_url
+		     , mi.update_url
+		  FROM menu_info mi
+		 WHERE mi.use_yn = 'Y'
+        ]]>        
+        <if test="menuId != null and menuId != ''">
+			<![CDATA[ 
+           AND mi.menu_id = #{menuId}  
+        	]]>
+        </if>    
+        <if test="callUrl != null and callUrl != ''">
+			<![CDATA[ 
+           AND mi.call_url = #{callUrl}  
+        	]]>
+        </if>
+		<![CDATA[ 		 
+		 ORDER BY mi.menu_type DESC 
+		        , mi.menu_id
+		        , mi.menu_level
+        ]]>
+    </select>
+    
+</mapper>

@@ -1,0 +1,88 @@
+package com.gyva.web;
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+import org.junit.Test;
+
+import java.util.regex.Pattern;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
+public class PatterTest {
+
+    @Test
+    public void 특수문자_공백_포함_정규식_테스트() {
+        Pattern pattern = Pattern.compile("[ !@#$%^&*(),.?\":{}|<>]");
+
+        assertThat(pattern.matcher("").find(), is(false));
+        assertThat(pattern.matcher("helloworld").find(), is(false));
+        assertThat(pattern.matcher("hello").find(), is(false));
+
+        assertThat(pattern.matcher("hello world").find(), is(true));
+        assertThat(pattern.matcher(" helloworld ").find(), is(true));
+        assertThat(pattern.matcher("he!!o").find(), is(true));
+        assertThat(pattern.matcher("hell()").find(), is(true));
+        assertThat(pattern.matcher("\"hello\"").find(), is(true));
+        assertThat(pattern.matcher("hello^^").find(), is(true));
+        assertThat(pattern.matcher("<hello>").find(), is(true));
+    }
+
+    @Test
+    public void 특수문자_공백_미포함_정규식_테스트() {
+        Pattern pattern = Pattern.compile("[!@#$%^&*(),.?\":{}|<>]");
+
+        assertThat(pattern.matcher("").find(), is(false));
+        assertThat(pattern.matcher("helloworld").find(), is(false));
+        assertThat(pattern.matcher("hello world").find(), is(false));
+        assertThat(pattern.matcher(" helloworld ").find(), is(false));
+        assertThat(pattern.matcher("hello").find(), is(false));
+
+        assertThat(pattern.matcher("he!!o").find(), is(true));
+        assertThat(pattern.matcher("hell()").find(), is(true));
+        assertThat(pattern.matcher("\"hello\"").find(), is(true));
+        assertThat(pattern.matcher("hello^^").find(), is(true));
+        assertThat(pattern.matcher("<hello>").find(), is(true));
+    }
+}

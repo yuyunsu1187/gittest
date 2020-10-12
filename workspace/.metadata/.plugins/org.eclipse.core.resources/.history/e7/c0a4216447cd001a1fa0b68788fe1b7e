@@ -1,0 +1,23 @@
+package com.gyva.web.common.user.dao;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.gyva.web.common.user.model.UserVO;
+
+@Repository //DAO라고 명시(DAO를 스프링에서 인식시켜줌)
+public class UserDAOImp implements UserDAO {
+
+	@Resource(name = "sqlSession")
+	private SqlSession sqlSession;
+	
+	private static final String namespace = "User";
+	
+	
+	@Override
+	public void insertUserTest(UserVO vo) {
+		sqlSession.insert(namespace + ".insertUserTest", vo);
+	}
+}

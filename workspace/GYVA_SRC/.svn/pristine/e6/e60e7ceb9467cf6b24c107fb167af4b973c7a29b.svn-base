@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="devonframe.gyva.common.user.model.User" %>
+<header class="default-header">
+	<h1 class="logo-tit"><a href="<c:url value="/main.do"/>" class="link-btn"><img src="/resource/images/common/layout/logo-tit.png" alt="LG chem : LG aesthetics"></a></h1>
+
+	<nav class="gnb-menu">
+		<ul>
+			<!-- 메뉴 선택 시 .active 추가 -->
+			<li class="<c:if test="${parentMenuId =='AD01'}">active</c:if>"><a href="<c:url value='/user/managerList.do?menuId=AD010100'/>" class="menu-btn">사용자 관리</a></li>
+			<li class="<c:if test="${parentMenuId =='AD03'}">active</c:if>"><a href="<c:url value='/contents/logoList.do?menuId=AD030101'/>" class="menu-btn">컨텐츠 관리</a></li>
+			<li class="<c:if test="${parentMenuId =='AD05'}">active</c:if>"><a href="<c:url value='/system/groupCodeList.do?menuId=AD050101'/>" class="menu-btn">시스템 관리</a></li>
+		</ul>
+	</nav>
+
+	<a href="<c:url value="/admin.do"/>" class="home-btn">Home</a>
+	<a href="<c:url value="/main.do"/>" class="front-btn">Front</a>
+	<a href="<c:url value="/common/login/logout.do"/>" class="logout-btn">LogOut</a>
+</header>

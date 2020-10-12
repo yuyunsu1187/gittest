@@ -1,0 +1,261 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.java.pjt</groupId>
+	<artifactId>TempPjt</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+	<name>TempPjt</name>
+	<url>http://maven.apache.org</url>
+	<description>devonframe sample office</description>
+
+	<!-- Properties -->
+	<properties>
+
+		<!-- Generic properties -->
+		<java.version>1.7</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<maven.test.skip>false</maven.test.skip>
+		<maven.javadoc.skip>false</maven.javadoc.skip>
+
+		<!-- Dependency library version -->
+
+		<!-- Devon Frame -->
+		<devonframe.version>1.8.1</devonframe.version>
+
+		<!-- Web -->
+		<jstl.version>1.2</jstl.version>
+		<servlet.api.version>3.0.1</servlet.api.version>
+		<taglibs.version>1.1.2</taglibs.version>
+
+		<!-- Spring -->
+		<org.springframework.version>4.3.16.RELEASE</org.springframework.version>
+		<org.spring.modules.validation.version>0.8</org.spring.modules.validation.version>
+
+		<!-- commons -->
+		<commons.io.version>2.5</commons.io.version>
+		<commons.fileupload.version>1.3.3</commons.fileupload.version>
+		<commons.dbcp.version>1.4</commons.dbcp.version>
+
+		<jsr250.api.version>1.0</jsr250.api.version>
+		<hsqldb.version>2.3.5</hsqldb.version>
+
+		<jackson.version>2.6.7</jackson.version>
+
+		<!-- Test -->
+		<junit.version>4.12</junit.version>
+
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>devon-public-repository</id>
+			<name>DevOn Framework Repository</name>
+			<layout>default</layout>
+			<url>http://www.dev-on.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<!-- devonframe -->
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-web</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-dataaccess</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-paging</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-core</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-idgenerator</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-excel</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-fileupload</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-crypto</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-mail</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-validator</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-transaction</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>devonframe</groupId>
+			<artifactId>devon-batch-core</artifactId>
+			<version>${devonframe.version}</version>
+		</dependency>
+		<!-- devonframe -->
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Spring -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+
+		<!-- javax -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>jsr250-api</artifactId>
+			<version>${jsr250.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>${taglibs.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Commons -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons.dbcp.version}</version>
+		</dependency>
+
+		<!-- HSQL DB -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency>
+
+		<!-- UI template : Tiles -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>3.0.5</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- for Using json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- management agent -->
+		<!-- management를 사용할 경우 -->
+		<!-- <dependency> <groupId>devon-management-agent</groupId> <artifactId>devon-management-agent</artifactId> 
+			<version>${devonframe.version}</version> </dependency> -->
+		<!-- Test -->
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<defaultGoal>package</defaultGoal>
+		<directory>${basedir}/target</directory>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+					<includes>
+						<include>devonframe/**/*Test.java</include>
+					</includes>
+					<testFailureIgnore>false</testFailureIgnore>
+					<argLine>-Xms256m -Xmx512m -XX:MaxPermSize=128m -ea
+						-Dfile.encoding=UTF-8</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

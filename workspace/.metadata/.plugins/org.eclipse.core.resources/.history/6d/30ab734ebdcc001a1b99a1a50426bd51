@@ -1,0 +1,5 @@
+package com.gyva.web.common.login.service;
+
+public class LoginService {
+
+}

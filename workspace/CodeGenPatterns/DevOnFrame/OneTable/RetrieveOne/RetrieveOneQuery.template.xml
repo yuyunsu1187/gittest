@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/RetrieveOne/QueryTemplate" format="1.0" title="Query Template for RETRIEVE ONE">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+#set($voClassPath="${voPackage}.${voClassName}")
+##
+#set($selectQueryId="retrieve${table.capitalized}")
+]]></prefix>
+
+
+	<ifNewFile><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${queryNamespace}">
+]]></ifNewFile>
+
+
+	<ifNotFound>
+		<findXMLElement path="/mapper/select[@id='${selectQueryId}']"/>
+		<insert location="xmlChild" parent="/mapper"><![CDATA[
+<select id="${selectQueryId}" resultType="${voClassPath}">{CodeGen:StartOfCDATA}
+#foreach ($row in $table.columns)
+#if ($velocityCount == 1)
+    SELECT   T.${row.name}
+#else
+           , T.${row.name}
+#end
+#end
+    FROM     ${table.tableName} T
+    WHERE    -- Condition for Retrieving One Row
+{CodeGen:EndOfCDATA}</select>
+]]></insert>
+	</ifNotFound>
+
+
+
+	<ifNewFile><![CDATA[
+</mapper>
+]]></ifNewFile>
+
+
+
+</CodeGenTemplate>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+    <select id="searchUser" resultType="user">
+		<![CDATA[
+			SELECT
+			     seq
+				,email
+				,password
+				,name_first
+				,name_last
+				,user_type
+				,division_code
+				,country_code
+				,person_photo
+				,license_photo
+				,request_date
+				,comfirm_id
+				,comfirm_date
+				,state_code
+				,consent_yn
+				,remark
+				,create_id
+				,create_date
+				,update_id
+				,update_date
+			  FROM user_info 
+			 WHERE seq = #{seq}
+		]]>
+    </select>
+
+</mapper>

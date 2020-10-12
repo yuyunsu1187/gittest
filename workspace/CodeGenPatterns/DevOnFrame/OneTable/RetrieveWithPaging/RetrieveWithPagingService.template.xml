@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/RetrieveWithPaging/ServiceTemplate" format="1.0" title="Service Template for RETRIEVE with Paging">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+#set($voClassPath="${voPackage}.${voClassName}")
+##
+#set($voInstanceName="${table.camelCased}VO")
+##
+#set($servicePackage="${codePackage.packageName}.service")
+#set($serviceClassName="${table.capitalized}Service")
+##
+#set($selectPagedListMethodName="retrievePaged${table.capitalized}List")
+]]></prefix>
+
+
+
+	<ifNewFile><![CDATA[
+package ${servicePackage};
+
+]]></ifNewFile>
+
+
+
+	<ifNotFoundEachLine location="afterImport"><![CDATA[
+import java.util.List;
+import ${voClassPath};
+]]></ifNotFoundEachLine>
+
+
+
+	<ifNewFile><![CDATA[
+
+
+
+/**
+ * @Class Name : ${serviceClassName}.java
+ * @Description : ${table.capitalized} Service class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C) LG CNS All rights reserved.
+ */
+
+public interface ${serviceClassName} {
+]]></ifNewFile>
+	
+	
+	
+	<ifNotFound>
+		<findMethod name="${selectPagedListMethodName}">
+			<parameterClass><![CDATA[${voClassPath}]]></parameterClass>
+		</findMethod>
+		<insert location="afterLastMethod"><![CDATA[
+
+	/**
+	 * 페이징 처리된 ${table.tableName} 목록을 조회한다.
+	 * @param ${voInstanceName} - 조회할 정보가 담긴 ${voClassName}
+	 * @return ${table.tableName} 목록
+	 */
+	public List<${voClassName}> ${selectPagedListMethodName}(${voClassName} ${voInstanceName});
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNewFile><![CDATA[
+}
+]]></ifNewFile>
+
+</CodeGenTemplate>

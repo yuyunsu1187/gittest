@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>코드규칙 : 규칙 가이드</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/libs/fontawesome_all.min.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/project-guide/project.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+<!--[if gt IE 9]>
+	<link href="/resource/css/ie/main.css" rel="stylesheet" type="text/css" />
+	<link href="/resource/css/ie/contents.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if !IE]><!-->
+	
+<!--<![endif]-->
+</head>
+<body>
+	<section id="projects" class="project-section">
+		<header class="project-header" data-moving-type="sectionFix">
+			<div class="container">
+				<h1 class="section-tit">Project Role Guide</h1>
+				
+				<nav class="guide-menu">
+					<h2 class="menu-tit">Publishing Guide Page</h2>
+					<ul>
+						<li><a href="/html/project-guide/directory.html">Project Directory</a></li>
+						<li class="active"><a href="/html/project-guide/project-role/info.html">Project Role Guide</a></li>
+						<li><a href="/html/project-guide/elements/layout.html">Component Guide</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		
+		<main class="project-content" data-moving-type="target" data-moving-style="padding-top" data-moving-space="10" data-offset-type="destination">
+			<section class="page-section" data-type="toggle" data-toggle-offset="left" data-toggle-action="animate" data-moving-type="target" data-moving-action="scrollMove" data-moving-space="10" data-moving-style="top">
+				<h2 class="section-tit"><button type="button" class="toggle-btn"><i class="fas fa-align-left"></i>Sub Page</button></h2>
+				
+				<nav class="page-menu" data-toggle-type="contents">
+					<ul>
+						<li><a href="/html/project-guide/project-role/info.html" class="menu-btn">기본정책</a></li>
+						<li><a href="/html/project-guide/project-role/standard.html" class="menu-btn">퍼블리싱 규칙</a></li>
+						<li data-action="active"><a href="/html/project-guide/project-role/code.html" class="menu-btn">코드규칙</a></li>
+						<li><a href="/html/project-guide/project-role/name.html" class="menu-btn">네임규칙</a></li>
+						<li><a href="/html/project-guide/project-role/codeset.html" class="menu-btn">설계패턴</a></li>
+					</ul>
+				</nav>
+			</section>
+			
+			<div class="guide-wrap">
+				<div class="container">
+					<h2 class="content-tit">코드규칙</h2>
+					<section class="guide-section" data-type="toggle" data-toggle-action="slide">
+						<header class="guide-header">
+							<h2 class="section-tit">들여쓰기 줄바꿈</h2>
+							<button type="button" class="toggle-btn"><i class="fas fa-angle-up"></i></button>
+						</header>
+						
+						<article class="guide-content" data-toggle-type="contents">
+							<div class="tab-wrap" data-toggle-type="contents" data-type="tab" data-tab-division="article">
+								<ul class="tab-list">
+									<li data-tab-type="list"><button type="button" class="list-btn">html</button></li>
+									<li data-tab-type="list"><button type="button" class="list-btn">js</button></li>
+									<li data-tab-type="list"><button type="button" class="list-btn">css</button></li>
+								</ul>
+								
+								<article class="tab-contents" data-tab-type="contents" data-tab-view="code">
+									<h3 class="article-tit">html</h3>
+									<ul class="asterisk-list">
+										<li>자식 요소는 1탭 들여 쓰고, 1탭의 크기는 공백 4칸으로 설정</li>
+									</ul>
+									
+									<div data-view-type="code">
+										<pre class="brush: html;">
+											<section class="page-section" data-type="toggle" data-toggle-offset="left" data-toggle-action="animate" data-moving-type="target" data-moving-action="scrollMove" data-moving-space="10" data-moving-style="top">
+												<h2 class="section-tit"><button type="button" class="toggle-btn"><i class="fas fa-align-left"></i>Sub Page</button></h2>
+												
+												<nav class="page-menu" data-toggle-type="contents">
+													<ul>
+														<li><a href="/resource/html/project-guide/project-role/info.html" class="menu-btn">기본정책</a></li>
+														<li><a href="/resource/html/project-guide/project-role/standard.html" class="menu-btn">퍼블리싱 규칙</a></li>
+														<li data-action="active"><a href="/resource/html/project-guide/project-role/code.html" class="menu-btn">코드규칙</a></li>
+														<li><a href="/resource/html/project-guide/project-role/name.html" class="menu-btn">네임규칙</a></li>
+														<li><a href="/resource/html/project-guide/project-role/codeset.html" class="menu-btn">설계패턴</a></li>
+													</ul>
+												</nav>
+											</section></pre>
+									</div>
+									
+									<div data-view-type="code">
+										<pre class="brush: css;">
+											.progress-bar .bar {background-image:linear-gradient(to right, var(--point-color), var(--subPoint-color));border-radius:var(--round-radius);display:block;height:8px;width:0;}
+											
+											.progress-txt *:before, 
+											.progress-txt *:after {display:inline-block;}</pre>
+									</div>
+									
+									<strong class="tit">&lt; 들여쓰기를 하지 않는 경우 &gt;</strong>
+									<p class="txt">html의 자식 요소인 head, body</p>
+									<p class="txt">head의 자식 요소인 meta, link, script</p>
+								</article>
+								
+								<article class="tab-contents" data-tab-type="contents" data-tab-view="code">
+									<h3 class="article-tit">js</h3>
+									<ul class="asterisk-list">
+										<li>자식 요소는 1탭 들여 쓰고, 1탭의 크기는 공백 4칸으로 설정</li>
+									</ul>
+									<div data-view-type="code">
+										<pre class="brush: js;">
+											function activeCotroll(){
+												return{
+													activePop : function(_parent){
+														_parent.addClass("active");
+													},
+													activeCookiePop : function(_parent){
+														if(app.bodyControll._getCookie("notToday")!="done"){
+															_parent.addClass("active");
+														}
+													},
+													show : function(_target){
+														_target.show();
+													},
+												}
+											}</pre>
+									</div>
+								</article>
+								
+								<article class="tab-contents" data-tab-type="contents" data-tab-view="code">
+									<h3 class="article-tit">css</h3>
+									<ul class="asterisk-list">
+										<li>CSS 코드 작성시 들여쓰기는 허용하지 않는다.</li>
+										<li>공통으로 사용되는 속성의 선택자간의 줄 바꿈은 허용하며 이 외의 줄바꿈은 허용하지 않는다.</li>
+									</ul>
+									<div data-view-type="code">
+										<pre class="brush: css;">
+											.progress-bar .bar {background-image:linear-gradient(to right, var(--point-color), var(--subPoint-color));border-radius:var(--round-radius);display:block;height:8px;width:0;}
+											
+											.progress-txt *:before, 
+											.progress-txt *:after {display:inline-block;}</pre>
+									</div>
+								</article>
+
+							</div>
+						</article>
+					</section>
+					
+					<section class="guide-section" data-type="toggle" data-toggle-action="slide">
+						<header class="guide-header">
+							<h2 class="section-tit">주석</h2>
+							<button type="button" class="toggle-btn"><i class="fas fa-angle-up"></i></button>
+						</header>
+						
+						<article class="guide-content" data-toggle-type="contents">
+							<div class="tab-wrap" data-toggle-type="contents" data-type="tab" data-tab-division="article">
+								<h3 class="section-sub-tit">HTML</h3>
+								<ul class="tab-list">
+									<li data-tab-type="list"><button type="button" class="list-btn">view</button></li>
+									<li data-tab-type="list"><button type="button" class="list-btn">html</button></li>
+									<li data-tab-type="list"><button type="button" class="list-btn">css</button></li>
+									<li data-tab-type="list"><button type="button" class="list-btn">js</button></li>
+								</ul>
+								<article class="tab-contents" data-tab-type="contents" data-tab-view="view">
+									<button type="button" class="gotop-btn" data-moving-type="target" data-moving-action="topMove"><i class="fas fa-arrow-up"></i></button>
+								</article>
+								
+								<article class="tab-contents" data-tab-type="contents" data-tab-view="code">
+									<pre class="brush: html;">
+										<button type="button" class="gotop-btn" data-moving-type="target" data-moving-action="topMove"><i class="fas fa-arrow-up"></i></button>
+									</pre>
+								</article>
+								
+								<article class="tab-contents" data-tab-type="contents" data-tab-view="code">
+									<pre class="brush: css;">
+										.gotop-btn {background-color:var(--main-color);border-radius:var(--circle-radius);color:var(--sub-color);height:40px;width:40px;position:relative;}
+										.gotop-btn:before {background-color:var(--point-color);content:"";position:absolute;}
+									</pre>
+								</article>
+								
+								<article class="tab-contents" data-tab-type="contents" data-tab-view="code">
+									<pre class="brush: js;">
+										_document.on("click", '.' + _option.topMove, function(){app.bodyControll.topMoving(_document, _option.init);}); // 04. 최상단으로 스크롤 이동
+									</pre>
+								</article>
+							</div>
+						</article>
+					</section>
+				</div>
+			</div>
+		</main>
+		
+		<footer class="project-footer">
+			<div class="container">
+				<span class="the-51-logo-img"><img src="/resource/images/project-guide/the-51-logo-img.png" alt="" /></span>
+				<button type="button" class="gotop-btn" data-moving-type="target" data-moving-action="topMove"><i class="fas fa-arrow-up"></i></button>
+			</div>
+		</footer>
+	</section>
+	
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript" src="/resource/js/codemirror/lib/codemirror.js"></script>
+	<script type="text/javascript" src="/resource/js/codemirror/mode/javascript/javascript.js"></script>
+	<script type="text/javascript" src="/resource/js/syntaxhighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/resource/js/syntaxhighlighter/scripts/shAutoloader.js"></script>
+	<script type="text/javascript" src="/resource/js/project-guide/project.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

@@ -1,0 +1,28 @@
+package devonframe.gyva.front.common.user.service;
+
+import java.util.List;
+
+import devonframe.gyva.front.common.user.model.User;
+
+/**
+ * <pre>
+ * 본 클래스는 사용자 정보에 대한 CRUD를 담당하는 Service 인터페이스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+public interface UserService {
+
+	public User retrieveUser(User user);
+	public List<User> retrieveUserList(User user);
+	
+	public void insertUser(User user, MultipartHttpServletRequest mpRequest);
+	public void updateUser(User user);
+	public void deleteUser(User user);
+	public void resetPwdUser(User user);
+	
+	// 아이디 중복체크
+	public int idChk(User user);
+
+}

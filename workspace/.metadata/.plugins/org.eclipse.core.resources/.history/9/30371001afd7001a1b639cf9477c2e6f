@@ -1,0 +1,29 @@
+package devonframe.gyva.front.contents.service;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import devonframe.dataaccess.CommonDao;
+import devonframe.gyva.front.contents.model.Contents;
+import devonframe.paging.model.PagingEntity;
+
+@Service("contentsService")
+public class ContentsServiceImpl implements ContentsService{
+
+    @Resource(name = "commonDao")
+    private CommonDao commonDao;
+
+    public Contents retrieveContents(Contents contents) {
+        return commonDao.select("Contents.retrieveContents", contents);
+    }    
+    
+    public List<Contents> retrieveContentsList(Contents contents) {
+        List<Contents> resultList = commonDao.selectList("Contents.retrieveContentsList", contents);
+        return resultList;
+    }
+
+}

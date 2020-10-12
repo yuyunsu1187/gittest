@@ -1,0 +1,5 @@
+﻿<h1>Synchronized classes Vector, Hashtable, Stack and StringBuffer should not be used (S1149)</h1>Java API의 초기 클래스들 (Vector,Hashtable,StringBuffer)는 thread safe 하도록 동기화 되어있다. 하지만, 동기화가 성능에 부정적인 영향을 크게 미치기 때문에 이들의 비동기 대체버전을 사용하는 것이 좋다.
+- Vector 대신 ArrayList 혹은 LinkedList 사용 
+- Stack 대신 Deque 사용
+- Hashtable 대신 HashMap 사용
+- StringBuffer 대신 StringBuilder 사용

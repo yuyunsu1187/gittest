@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenPattern id="DevOnFrame/OneTable/GetCountPattern" format="1.0" title="Get the Number of Rows">
+	<description>[DevOnFrame] Generate Getting the Number of Rows for a Table and Insert to Existing Files</description>
+
+	<variablePageLink id="DevOnFrame/OneTable/OneTableVariablePage"/>
+
+	<templateLink id="DevOnFrame/OneTable/GetCount/ServiceTemplate" type="java"
+			filePath="${codePackage.folderPath}/service/${table.capitalized}Service.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/GetCount/ServiceImplTemplate" type="java"
+			filePath="${codePackage.folderPath}/impl/${table.capitalized}ServiceImpl.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/GetCount/QueryTemplate" type="xml"
+			filePath="${queryFolder}/sql-${StringUtil.camelCase($queryNamespace, false)}.xml"/>
+	
+</CodeGenPattern>

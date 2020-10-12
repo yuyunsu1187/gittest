@@ -1,0 +1,123 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<script type="text/javascript">
+
+	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+	function checkValue() {
+
+		if (!document.userInfo.password.value) {
+			alert("비밀번호를 입력하세요.");
+			return false;
+		}
+
+		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+		if (document.userInfo.password.value != document.userInfo.passwordCheck.value) {
+			alert("비밀번호를 동일하게 입력하세요.");
+			return false;
+		}
+	}
+
+	// 아이디 삭제 처리
+	function fnDelete() {
+
+		var delConfirm = confirm('정말로 회원 탈퇴를 하시겠습니까? \n확인버튼 선택 시 회원 정보가 삭제 됩니다.');
+		if (delConfirm) {
+			alert('삭제되었습니다.');
+			userInfo.action = "<c:url value='/common/user/deleteUser.do'/>";
+			userInfo.submit();
+		} 
+	}
+	
+    
+</script>
+			
+<section id="FR010503-05" class="content-section">
+	<header class="content-header">
+		<h2 class="content-tit">My page</h2>
+	</header>
+	
+	<div class="breadcrumb">
+		<span class="home">home</span><span class="depth">My page</span><span class="page">Profile</span>
+	</div>
+	
+	<!-- [S] tab wrap -->
+	<div class="tab-wrap" data-type="tab" data-tab-division="link">
+		<ul class="tab-list" data-combine-tab="column-4-tab">
+			<li data-tab-type="list" <c:if test="${mainMenuId =='FR0301'}">data-tab-action="active"</c:if>><a href="<c:url value='/mypage/activityList.do?menuId=FR030100'/>" class="list-btn">Recently viewed</a></li>
+			<li data-tab-type="list" <c:if test="${mainMenuId =='FR0303'}">data-tab-action="active"</c:if>><a href="<c:url value='/common/user/retrieveUser.do?menuId=FR030300'/>" class="list-btn">Profile</a></li>
+			<li data-tab-type="list" <c:if test="${mainMenuId =='FR0305'}">data-tab-action="active"</c:if>><a href="<c:url value='/mypage/helpdesk/retrieveContentsList.do?menuId=FR030500'/>" class="list-btn">Helpdesk</a></li>
+			<li data-tab-type="list" <c:if test="${mainMenuId =='FR0307'}">data-tab-action="active"</c:if>><a href="<c:url value='/mypage/bookmark/retrieveContentsList.do?menuId=FR030700'/>" class="list-btn">Bookmark</a></li>
+		</ul>
+		
+		<article class="board-wrap" data-board-type="form-write">
+			<h3 class="article-tit">Check Profile</h3>
+			<p class="article-txt">Please enter your password again.</p>
+			
+			<div class="board-area">
+				<table class="default-table">
+					<caption>Personal Information 입력</caption>
+					<colgroup>
+						<col style="width:350px;" />
+						<col style="width:auto;" />
+					</colgroup>
+					
+					<tbody>
+						<tr>
+							<th scale="col">Email address</th>
+							<td><div class="form" data-mult-form="input-btn"><input type="text" class="input-form" value="Lgyvoire_master@lgcns.com" readonly /></div></td>
+						</tr>
+						
+						<tr>
+							<th scale="col" data-text-style="essential">password</th>
+							<td>
+								<div class="form-area">
+									<div class="form" data-mult-form="password">
+										<input type="password" class="input-form" placeholder="Enter Password">
+										<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="submit-area">
+				<button type="submit" class="main-btn">Confirm</button>
+			</div>
+		</article>
+	</div>
+	<!-- [E] tab wrap -->
+	
+</section>
+
+
+<script>
+	$('#password').focusout(function() {
+		if (!document.userInfo.password.value) {
+			alert("비밀번호를 입력하세요.");
+			return false;
+		}
+		var asValue = document.userInfo.password.value;
+		var regExp = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[@$!%*#?&])[0-9a-zA-Z@$!%*#?&]{8,}$/; //  8자 이상 특수문자는 1자 이상 있어야합니다.
+		
+		if (!regExp.test(asValue)) {
+			alert("Password must be at least 8 characters, at least 1 letter and special character, and 1 number.");
+			return false; // 형식에 맞는 경우 true 리턴	
+		}
+	})
+	$('#passwordCheck').focusout(function() {
+			if (!document.userInfo.passwordCheck.value) {
+				alert("비밀번호 확인을 입력하세요.");
+				return false;
+			}
+			if (document.userInfo.password.value != document.userInfo.passwordCheck.value) {
+				alert("비밀번호와 비밀번호 확인을 동일하게 입력하세요.");
+				return false;
+			}
+		})
+</script>																

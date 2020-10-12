@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenPattern id="DevOnFrame/OneTable/RetrieveListPattern" format="1.0" title="RETRIEVE LIST">
+	<description>[DevOnFrame] Generate RETRIEVE Codes for Rows on a Table and Insert to Existing Files</description>
+
+	<variablePageLink id="DevOnFrame/OneTable/OneTableVariablePage"/>
+
+	<templateLink id="DevOnFrame/OneTable/VOTemplate" type="java" 
+			filePath="${codePackage.folderPath}/vo/${table.capitalized}VO.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/RetrieveList/ServiceTemplate" type="java" 
+			filePath="${codePackage.folderPath}/service/${table.capitalized}Service.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/RetrieveList/ServiceImplTemplate" type="java" 
+			filePath="${codePackage.folderPath}/impl/${table.capitalized}ServiceImpl.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/RetrieveList/ControllerTemplate" type="java" 
+			filePath="${codePackage.folderPath}/controller/${table.capitalized}Controller.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/RetrieveList/QueryTemplate" type="xml"  
+			filePath="${queryFolder}/sql-${StringUtil.camelCase($queryNamespace, false)}.xml"/>
+
+</CodeGenPattern>

@@ -1,0 +1,13 @@
+package com.gyva.web.common.user.dao;
+
+import com.gyva.web.common.user.model.UserVO;
+
+public class UserDAOImp implements UserDAO {
+
+	@Override
+	public void insertUserTest(UserVO vo) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

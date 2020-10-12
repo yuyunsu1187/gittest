@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+	<insert id="insertUser">
+		<![CDATA[
+			INSERT INTO user_info (
+			      email
+				, password
+				, name_first 
+				, name_last
+				, user_type
+				, division_code
+				, country_code
+				, file_id
+				, request_date
+				, state_code
+				, consent_yn
+				, create_id
+				, create_date
+				, update_id
+				, update_date
+			) VALUES (
+			      #{email}
+				, #{password , jdbcType=VARCHAR}
+				, #{nameFirst}
+				, #{nameLast}
+				, #{userType}
+				, #{divisionCode}
+				, #{countryCode}
+				, #{fileId}
+				, NOW()
+				, #{stateCode}
+				, #{consentYn}
+				, #{createId}
+				, NOW()
+				, #{updateId}
+				, NOW()
+			)
+		]]>
+	</insert>
+
+	<select id="duplicateCheckId" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) 
+			  FROM user_info 
+			 WHERE email = #{email}
+		]]>
+	</select>
+
+
+	<select id="retrieveUser" resultType="user">
+		<![CDATA[
+			SELECT
+				  seq
+			    , email
+				, password
+				, name_first AS nameFirst
+				, name_last AS nameLast
+				, user_type AS AS userType
+				, division_code AS divisionCode
+				, country_code AS countryCode
+				, file_id AS fileId
+				, request_date AS requestDate
+				, confirm_id AS confirmId
+				, confirm_date AS confirmDate
+				, state_code AS stateCode
+				, consent_yn AS consentYn
+				, remark
+				, create_id AS createId
+				, create_date AS createDate
+				, update_id AS updateId
+				, update_date AS updateDate
+			  FROM user_info 
+			 WHERE email = #{email}
+		]]>
+	</select>
+
+
+	<update id="updateUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{password , jdbcType=VARCHAR}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE seq = #{seq}
+		]]>
+	</update>
+
+	<delete id="deleteUser">
+		<![CDATA[
+			DELETE
+			  FROM user_info
+			 WHERE seq = #{usrSeq}
+		]]>
+	</delete>
+
+	<update id="updatePwdUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{password , jdbcType=VARCHAR}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE seq = #{seq}
+		]]>
+	</update>
+
+
+</mapper>

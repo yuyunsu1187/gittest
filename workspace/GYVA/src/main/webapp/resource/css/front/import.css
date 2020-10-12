@@ -1,0 +1,21 @@
+@charset "utf-8";
+/********************************************************
+	플러그인 css 파일
+********************************************************/
+@import url("/resource/css/libs/aos.min.css");
+@import url("/resource/css/libs/animate.min.css");
+@import url("/resource/css/libs/fontawesome_all.min.css");
+@import url("/resource/css/libs/selectordie.css");
+@import url("/resource/css/libs/selectordie_theme_02.css");
+@import url("/resource/css/libs/swiper_4.4.2.min.css");
+
+/********************************************************
+	[공통] 퍼블리싱 css 파일
+********************************************************/
+@import url("/resource/css/fonts.css");
+@import url("/resource/css/base.css");
+@import url("/resource/css/component.css");
+@import url("/resource/css/common.css");
+@import url("/resource/css/front/layout.css");
+@import url("/resource/css/front/main.css");
+@import url("/resource/css/front/contents.css");

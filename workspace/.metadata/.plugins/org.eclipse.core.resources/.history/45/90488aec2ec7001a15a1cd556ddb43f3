@@ -1,0 +1,41 @@
+package devonframe.sample.office.uipattern.p13.controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import devonframe.sample.office.common.code.service.CodeService;
+import devonframe.sample.office.uipattern.employee.service.EmployeeService;
+
+/**
+ * <pre>
+ * 본 클래스는 코드 정보에 대한 CRUD를 담당하는 Controller 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class SignUpController {
+
+	@Resource(name = "codeService")
+	private CodeService codeService;
+	
+	@Resource(name = "employeeService")
+	private EmployeeService employeeService;
+	
+	@Resource(name = "messageSrouceAccessor")
+	private MessageSourceAccessor messageSourceAccessor;
+	
+	@RequestMapping(value = "/pattern/p13/signup.do")
+	public String signup(String searchNum, ModelMap model){
+		System.out.println("\t\t ########### [signup]");
+		
+		
+		return "pattern/p13/signUp";
+	}
+	
+}

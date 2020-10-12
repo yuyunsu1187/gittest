@@ -1,0 +1,1 @@
+java -classpath "..\target\classes;..\target\lib\*" devonframe.batch.launch.CommandLineBatchRunner spring\context-commandline.xml file-to-db-job 

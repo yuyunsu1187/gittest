@@ -1,0 +1,167 @@
+###################
+# confirm message #
+###################
+dev.cfm.com.save   = \uc800\uc7a5\ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c?
+dev.cfm.com.delete = \uc0ad\uc81c\ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c?
+dev.cfm.com.update = \ubcc0\uacbd\ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c?
+
+###################
+# sucess message  #
+###################
+dev.suc.com.retrieve = \uc131\uacf5\uc801\uc73c\ub85c \uc870\ud68c\ub418\uc5c8\uc2b5\ub2c8\ub2e4.
+dev.suc.com.process  = \uc131\uacf5\uc801\uc73c\ub85c \ucc98\ub9ac\ub418\uc5c8\uc2b5\ub2c8\ub2e4.
+dev.suc.com.update   = \uc131\uacf5\uc801\uc73c\ub85c \ubcc0\uacbd\ub418\uc5c8\uc2b5\ub2c8\ub2e4.
+dev.suc.com.save     = \uc131\uacf5\uc801\uc73c\ub85c \uc800\uc7a5\ub418\uc5c8\uc2b5\ub2c8\ub2e4.
+dev.suc.com.delete   = \uc131\uacf5\uc801\uc73c\ub85c \uc0ad\uc81c\ub418\uc5c8\uc2b5\ub2c8\ub2e4.
+
+###################
+# error message   #
+###################
+dev.err.com.title    = \uc5d0\ub7ec \ubc1c\uc0dd
+dev.err.com.desc     = \uc54c \uc218 \uc5c6\ub294 \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.
+dev.err.com.retrieve = \uc870\ud68c \uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.
+dev.err.com.save     = \uc800\uc7a5 \uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.
+dev.err.com.delete   = \uc0ad\uc81c \uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.
+dev.err.com.security = \ubcf4\uc548\uc5d0 \ucde8\uc57d\ud55c Injection\uc774 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.
+dev.err.com.limit    = \ub108\ubb34 \ub9ce\uc740 \uc0ac\uc6d0 \uc815\ubcf4\ub97c \uc785\ub825\ud558\uc600\uc2b5\ub2c8\ub2e4.
+dev.err.com.noSearchNum  = \uac80\uc0c9\ud560 \uc0ac\uc6d0\ubc88\ud638\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.
+dev.err.com.requiredSearchNum = \uc0ac\uc6d0\ubc88\ud638\ub294 \ud544\uc218 \uc785\ub825\uc785\ub2c8\ub2e4.
+dev.err.com.requiredNotSearchNum  =\uc874\uc7ac\ud558\ub294 \uc0ac\uc6d0\ubc88\ud638\uc785\ub2c8\ub2e4.
+
+###################
+# info message    #
+###################
+dev.inf.com.nosave    = \uc800\uc7a5\ud560 \ub0b4\uc6a9\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.
+dev.inf.com.nochange  = \ubcc0\uacbd\ub41c \ub0b4\uc6a9\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.
+dev.inf.com.nodelete  = \uc0ad\uc81c\ud560 \ud56d\ubaa9\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.
+dev.inf.com.nodata    = \uac80\uc0c9\ub41c \ub0b4\uc6a9\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.
+dev.inf.com.noselect  = \uc120\ud0dd\ub41c \ud56d\ubaa9\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.
+dev.inf.contact.email = administrator\\@lgcns.com
+dev.inf.contact.phone = 080-2-6363-3935
+dev.inf.excel.result  = \uc804\uccb4 {0}\uac74 \uc911 {1}\uac74\uc774 \uc5c5\ub85c\ub4dc\uc5d0 \uc131\uacf5\ud558\uc600\uc2b5\ub2c8\ub2e4.\ucd1d {2} ms \uac78\ub838\uc2b5\ub2c8\ub2e4.
+
+###################
+# warning message #
+###################
+dev.warn.com.input     = \ud544\uc218 \uc785\ub825 \ud56d\ubaa9\uc785\ub2c8\ub2e4. {0} \ud56d\ubaa9\uc744 \ucc44\uc6cc\uc8fc\uc138\uc694.
+dev.warn.com.required  = \ud544\uc218 \uc785\ub825 \ud56d\ubaa9\uc785\ub2c8\ub2e4. {0} \ud56d\ubaa9\uc744 \ucc44\uc6cc\uc8fc\uc138\uc694.
+dev.warn.com.select    = \ud544\uc218 \uc785\ub825 \ud56d\ubaa9\uc785\ub2c8\ub2e4. {0} \ud56d\ubaa9\uc744 \uc120\ud0dd\ud558\uc138\uc694.
+dev.warn.com.retrieve  = \uba3c\uc800 \uac80\uc0c9\ud558\uc138\uc694.
+dev.warn.com.required1 = \uc9c1\uae09 \ud639\uc740 \uae30\uc220\ub4f1\uae09 \ub458\uc911 \ud558\ub098\ub294 \uc120\ud0dd\ud558\uc154\uc57c \ud569\ub2c8\ub2e4.
+dev.warn.com.required2 = \ud504\ub85c\ud1a0\ucf5c,\ud638\uc2a4\ud2b8,\uc0ac\uc6a9\uc790\uba85, \ud328\uc2a4\uc6cc\ub4dc\ub294 \ud544\uc218 \uc785\ub825\uac12\uc785\ub2c8\ub2e4.
+dev.warn.com.required3 = \uc0ac\uc6d0\ubc88\ud638\ub294 \ud544\uc218 \uc785\ub825\uac12\uc785\ub2c8\ub2e4.
+dev.warn.com.delinfo   = \uc0ad\uc81c\ud560 \uc0ac\uc6d0\uc744 \uc120\ud0dd\ud558\uc138\uc694.
+dev.warn.com.updinfo   = \uc218\uc815\ud560 \uc0ac\uc6d0\uc744 \uc120\ud0dd\ud558\uc138\uc694.
+dev.warn.com.retinfo   = \uac80\uc0c9\ud560 \uc0ac\uc6d0\ubc88\ud638\uc744 \uc785\ub825\ud558\uc138\uc694.
+dev.warn.com.update    = \uc218\uc815\ud560 \uc0ac\uc6d0\uc744 \uba3c\uc800 \uac80\uc0c9\ud558\uc138\uc694.
+dev.warn.com.save      = \uc800\uc7a5\ud560 \uc0ac\uc6d0\uc744 \uba3c\uc800 \uac80\uc0c9\ud558\uc138\uc694.
+dev.warn.com.save2     = \uc2e4\uc801\uc815\ubcf4\ub97c \ub4f1\ub85d\ud560 \uc0ac\uc6d0\uc744 \uac80\uc0c9\ud558\uc138\uc694.
+dev.warn.com.create    = {0} \uc0ac\uc6d0\ubc88\ud638\ub294 \uc774\ubbf8 \uc874\uc7ac\ud569\ub2c8\ub2e4.
+dev.warn.com.add       = \uc2e4\uc801\uc815\ubcf4\ub97c \ucd94\uac00\ud560 \uc0ac\uc6d0\uc744 \uac80\uc0c9\ud558\uc138\uc694.
+dev.warn.com.add2      = \ub4f1\ub85d\ud560 \uc2e4\uc801\uc815\ubcf4\ub97c \ucd94\uac00\ud558\uc138\uc694.
+dev.warn.com.delete    = \uc0ad\uc81c\ud560 \uc0ac\uc6d0\uc744 \uba3c\uc800 \uac80\uc0c9\ud558\uc138\uc694.
+dev.warn.com.delete2   = \uc0ad\uc81c\ud560 \uc2e4\uc801\uc815\ubcf4\ub97c \uc120\ud0dd\ud558\uc138\uc694.
+dev.warn.com.year      = \ub144\ub3c4\ub294 \ud544\uc218 \uc785\ub825\uc785\ub2c8\ub2e4.
+
+###########
+# Default #
+###########
+dev.com.combo.default = -- \uc120\ud0dd --
+
+#################
+# sample Data #
+#################
+gyva.common.code=\ucf54\ub4dc
+gyva.common.code.codeDesc=\ucd94\uac00\uc124\uba85
+gyva.common.code.codeDetail=\ucf54\ub4dc \uc0c1\uc138
+gyva.common.code.codeGroup=\ucf54\ub4dc \uadf8\ub8f9
+gyva.common.code.codeList=\ucf54\ub4dc \ubaa9\ub85d
+gyva.common.code.codeManagement=\ucf54\ub4dc \uad00\ub9ac
+gyva.common.code.codeName=\ucf54\ub4dc \uba85
+gyva.common.code.codeSearch=\ucf54\ub4dc \uac80\uc0c9
+gyva.common.login.invalidPassword=\ube44\ubc00\ubc88\ud638\ub97c \uc798\ubabb \uc785\ub825\ud558\uc168\uc2b5\ub2c8\ub2e4.
+gyva.common.login.invalidUserId=\uc874\uc7ac\ud558\uc9c0 \uc54a\ub294 \uc0ac\uc6a9\uc790 ID\uc785\ub2c8\ub2e4.
+gyva.common.menu.admin=\uad00\ub9ac\uc790
+gyva.common.menu.banking=\uc778\ud130\ub137 \ubc45\ud0b9
+gyva.common.menu.uipattern=UI\ud328\ud134
+gyva.common.menu.employeeManagement=\uc0ac\uc6d0 \uad00\ub9ac
+gyva.common.menu.humanResource=\uc778\uc0ac\uc815\ubcf4
+gyva.common.menu.privateCustomer=\uac1c\uc778 \uace0\uac1d
+gyva.common.menu.recruitManagement=\ucc44\uc6a9 \uad00\ub9ac
+gyva.common.menu.rewardManagement=\uae09\uc5ec / \ubcf4\uc0c1 \uad00\ub9ac
+gyva.common.menu.systemManagement=\uc2dc\uc2a4\ud15c \uad00\ub9ac
+gyva.common.menu.webserviceList=\uc6f9\uc11c\ube44\uc2a4 \uc81c\uacf5 \ubaa9\ub85d
+gyva.common.mypage.author=\uc791\uac00
+gyva.common.mypage.basicInfo=\uae30\ubcf8\uc815\ubcf4
+gyva.common.mypage.configuration=\ub9c8\uc774\ud398\uc774\uc9c0
+gyva.common.mypage.quote=\uba85\uc5b8
+gyva.common.mypage.todaysQuote=\uc624\ub298\uc758 \uba85\uc5b8
+gyva.common.user.chinese=\uc911\uad6d\uc5b4
+gyva.common.user.english=\uc601\uc5b4
+gyva.common.user.invalidPassword=\uc785\ub825\ub41c \uc554\ud638\uac00 \uc62c\ubc14\ub974\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.
+gyva.common.user.invalidUserId=\uc874\uc7ac\ud558\uc9c0 \uc54a\ub294 \uc0ac\uc6a9\uc790 ID\uc785\ub2c8\ub2e4.
+gyva.common.user.korean=\ud55c\uad6d\uc5b4
+gyva.common.user.language=\uc5b8\uc5b4
+gyva.common.user.regDt=\ub4f1\ub85d\uc77c
+gyva.common.user.role=\uc5ed\ud560
+gyva.common.user.usrDetail=\uc0ac\uc6a9\uc790 \uc0c1\uc138\uc815\ubcf4
+gyva.common.user.usrId=\uc0ac\uc6a9\uc790 ID
+gyva.common.user.usrList=\uc0ac\uc6a9\uc790 \ubaa9\ub85d
+gyva.common.user.usrManagement=\uc0ac\uc6a9\uc790 \uad00\ub9ac
+gyva.common.user.usrNm=\uc0ac\uc6a9\uc790\uba85
+gyva.common.user.usrPw=\ube44\ubc00\ubc88\ud638
+gyva.common.user.usrSearch=\uc0ac\uc6a9\uc790 \uac80\uc0c9
+
+gyva.front.achievement.achievDetail=\uc131\uacfc \ub0b4\uc5ed \uc0c1\uc138
+gyva.front.achievement.achievList=\uc131\uacfc \ub0b4\uc5ed
+gyva.front.achievement.achievManagement=\uc131\uacfc \uad00\ub9ac
+gyva.front.achievement.achievSearch=\uc131\uacfc \uac80\uc0c9
+gyva.front.achievement.duplicatedAchievement=\uc774\ubbf8 {0}\ub144 {1}\uc6d4\uc758 \uc2e4\uc801\uc774 \uc874\uc7ac\ud569\ub2c8\ub2e4.
+gyva.front.achievement.etc=\ube44\uace0
+gyva.front.achievement.month=\uc6d4
+gyva.front.achievement.valueInfo=\uc2e4\uc801 \uc815\ubcf4
+gyva.front.achievement.value=\uc2e4\uc801
+gyva.front.achievement.won=\uc6d0
+gyva.front.achievement.year=\uc5f0\ub3c4
+
+gyva.front.department.deptCode=\ubd80\uc11c \ucf54\ub4dc
+gyva.front.department.deptDetail=\ubd80\uc11c \uc815\ubcf4 \uc0c1\uc138
+gyva.front.department.deptDivision=\ubcf8\ubd80
+gyva.front.department.deptList=\ubd80\uc11c \ubaa9\ub85d
+gyva.front.department.deptManagement=\ubd80\uc11c \uad00\ub9ac
+gyva.front.department.deptName=\ubd80\uc11c\uba85
+gyva.front.department.deptSearch=\ubd80\uc11c \uac80\uc0c9
+
+gyva.front.apply.applyManagement=\uc9c0\uc6d0\uc11c \uad00\ub9ac
+
+gyva.front.user.address=\uc8fc\uc18c
+gyva.front.user.applyNum=\uc9c0\uc6d0\ubc88\ud638
+gyva.front.user.army=\ubcd1\uc5ed \uad6c\ubd84
+gyva.front.user.basicInfo =\uae30\ubcf8 \uc815\ubcf4
+gyva.front.user.basicInfoManagement=\uae30\ubcf8\uc815\ubcf4 \uad00\ub9ac
+gyva.front.user.birthdate=\uc0dd\ub144\uc6d4\uc77c
+gyva.front.user.department=\ubd80\uc11c
+gyva.front.user.detailInfo=\uc0ac\uc6d0 \uc0c1\uc138
+gyva.front.user.detailInfoManagement=\ubd80\uac00\uc815\ubcf4 \uad00\ub9ac
+gyva.front.user.empList=\uc0ac\uc6d0 \ubaa9\ub85d
+gyva.front.user.empSearch=\uc0ac\uc6d0 \uac80\uc0c9
+gyva.front.user.firstdate=\ucd5c\ucd08 \uc785\uc0ac\uc77c
+gyva.front.user.gender=\uc131\ubcc4
+gyva.front.user.invalidEmpNum=\uc694\uccad\ud55c \uc0ac\uc6d0\ubc88\ud638\uc5d0 \ud574\ub2f9\ud558\ub294 \uc815\ubcf4\uac00 \uc874\uc7ac\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.
+gyva.front.user.joblevel=\uc9c1\uae09
+gyva.front.user.man=\ub0a8\uc790
+gyva.front.user.marriage=\ud63c\uc778 \uad6c\ubd84
+gyva.front.user.name=\uc0ac\uc6d0\uba85
+gyva.front.user.nowjob=\ud604\uc7ac \uc9c1\ubb34
+gyva.front.user.num=\uc0ac\uc6d0\ubc88\ud638
+gyva.front.user.postal=\uc6b0\ud3b8\ubc88\ud638
+gyva.front.user.resume=\uc774\ub825\uc11c
+gyva.front.user.retirement=\ud734\ud1f4 \uad6c\ubd84
+gyva.front.user.skill=\uae30\uc220\ub4f1\uae09
+gyva.front.user.ssn=\uc8fc\ubbfc\ub4f1\ub85d\ubc88\ud638
+gyva.front.user.telephone=\uc804\ud654\ubc88\ud638
+gyva.front.user.grade=\ub4f1\uae09
+gyva.front.user.title=\uc9c1\ucc45
+gyva.front.user.woman=\uc5ec\uc790
+gyva.front.user.workingdate=\ud604\ud68c\uc0ac \uc785\uc0ac\uc77c
+gyva.front.user.workingyear=\uadfc\ubb34\ub144\uc218

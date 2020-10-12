@@ -1,0 +1,154 @@
+package devonframe.gyva.contents.search.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import devonframe.gyva.admin.contents.survey.model.Survey;
+import devonframe.gyva.admin.contents.survey.service.SurveyService;
+import devonframe.gyva.admin.system.code.model.Code;
+import devonframe.gyva.admin.system.code.service.CodeService;
+import devonframe.gyva.admin.system.log.model.Log;
+import devonframe.gyva.admin.system.log.service.LogService;
+import devonframe.gyva.admin.user.helpdesk.model.Helpdesk;
+import devonframe.gyva.admin.user.helpdesk.service.HelpdeskService;
+import devonframe.gyva.common.menu.model.Menu;
+import devonframe.gyva.common.menu.service.MenuService;
+import devonframe.gyva.contents.model.Contents;
+import devonframe.gyva.contents.service.ContentsService;
+
+@Controller
+public class SearchResultController {
+	
+    @Resource(name = "logService")
+    private LogService logService;
+    
+    @Resource(name = "menuService")
+    private MenuService menuService;
+
+	@Resource(name = "codeService")
+	private CodeService codeService;
+
+    @Resource(name = "helpdeskService")
+    private HelpdeskService helpdeskService;
+
+    @Resource(name = "surveyService")
+    private SurveyService surveyService;
+    
+    @Resource(name = "contentsService")
+    private ContentsService contentsService;
+
+	@RequestMapping(value="/contents/searchList.do")
+    public String retrieveSearchResultList(Contents input, ModelMap model, HttpSession session){
+
+    	String loginChk = (String) session.getAttribute("userId");
+		String deviceType =(String) session.getAttribute("deviceType");
+		String retrunUrl = "contents/search/contentsList";
+    	
+    	if (loginChk != null) {    		
+
+            model.addAttribute("input", input);
+
+    		String resurltCnt = contentsService.retrieveSearchResultCnt(input);
+    		model.addAttribute("resurltCnt", resurltCnt);
+    		
+    		input.setMenuId("FR050000");
+        	List<Contents> resultBrandingList = contentsService.retrieveSearchResultList(input);
+    		input.setMenuId("FR070000");    	
+        	List<Contents> resultMedicalList = contentsService.retrieveSearchResultList(input);
+    		input.setMenuId("FR090000");
+        	List<Contents> resultAcademyList = contentsService.retrieveSearchResultList(input);
+    		input.setMenuId("FR110000");
+        	List<Contents> resultRegistrationList = contentsService.retrieveSearchResultList(input);
+            model.addAttribute("resultBrandingList", resultBrandingList);
+            model.addAttribute("resultMedicalList", resultMedicalList);
+            model.addAttribute("resultAcademyList", resultAcademyList);
+            model.addAttribute("resultRegistrationList", resultRegistrationList);
+    		
+    		if (deviceType != null && deviceType.equals("mobile")) {
+    			
+    			retrunUrl = deviceType + "/" + retrunUrl;
+    			
+    		}
+
+            return retrunUrl;
+    		
+    	} else {
+    		
+    		return "redirect:/common/error/lostSession.do";
+    		
+    	}
+    	
+    }
+    
+    @RequestMapping(value="/contents/searchDetail.do")
+    public String retrieveContentsDetail(Contents input, Code code, ModelMap model, HttpSession session){
+	    	
+		Menu menu = menuService.retrieveCallMenuInfo(input);
+		
+		String loginChk = (String) session.getAttribute("userId");
+		String deviceType =(String) session.getAttribute("deviceType");
+		String retrunUrl = menu.getDetailUrl();
+    	String parentMenuId = menu.getParentMenuId();
+
+		if (loginChk != null) {
+	
+			Log log = new Log();
+			log.setUserId((String) loginChk);
+			log.setMenuId((String) input.getMenuId());
+			log.setContentsId((String) input.getContentsId());
+			log.setCategoryCode((String) input.getCategoryCode());
+
+			logService.insertLog(log);
+
+	    	input.setUserId(loginChk);
+	    	Contents result = contentsService.retrieveContents(input);
+	    	
+	    	if (parentMenuId == "FR090000") {
+
+		    	Helpdesk helpdeskInput = new Helpdesk();
+		    	helpdeskInput.setStateCode(null);
+		    	helpdeskInput.setUserId(input.getUserId());
+		    	helpdeskInput.setMenuId(input.getMenuId());
+		    	helpdeskInput.setContentsId(input.getContentsId());	    	
+		    	List<Helpdesk> helpdeskList = helpdeskService.retrieveHelpdeskContentsList(helpdeskInput);	  
+				
+		    	Survey surveyInput = new Survey();
+		    	surveyInput.setSurveyId(result.getSurveyId());
+		    	Survey surveyList = surveyService.retrieveQuestionDetail(surveyInput);  	
+
+				code.setCodeGroup("MC");
+				List<Code> mcCodeList = codeService.retrieveCodeList(code);
+				
+		        model.addAttribute("helpdeskList", helpdeskList);
+		        model.addAttribute("surveyList", surveyList);
+		        model.addAttribute("mcCodeList", mcCodeList);	    		
+	    		
+	    	}
+
+	        model.addAttribute("input", input);
+	        model.addAttribute("menu", menu);
+	        model.addAttribute("result", result);
+			
+			if (deviceType != null && deviceType.equals("mobile")) {
+				
+				retrunUrl = deviceType + "/" + retrunUrl;
+				
+			}
+	        
+			return retrunUrl;
+		
+    	} else {    		
+		
+    		return "common/error/lostSession";  
+			
+    	} 	
+    	
+    }
+	
+}

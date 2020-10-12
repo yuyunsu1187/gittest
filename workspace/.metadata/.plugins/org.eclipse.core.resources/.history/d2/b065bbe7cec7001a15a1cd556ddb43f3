@@ -1,0 +1,62 @@
+package devonframe.sample.office.uipattern.p13.controller;
+
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import devonframe.sample.office.common.code.model.Code;
+import devonframe.sample.office.common.code.service.CodeService;
+import devonframe.sample.office.uipattern.employee.model.Employee;
+import devonframe.sample.office.uipattern.employee.service.EmployeeService;
+
+/**
+ * <pre>
+ * 본 클래스는 코드 정보에 대한 CRUD를 담당하는 Controller 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class SignUpController {
+
+	@Resource(name = "codeService")
+	private CodeService codeService;
+	
+	@Resource(name = "employeeService")
+	private EmployeeService employeeService;
+	
+	@Resource(name = "messageSourceAccessor")
+	private MessageSourceAccessor messageSourceAccessor;
+	
+	// 화면 노출용 컨트롤러
+	@RequestMapping(value = "/pattern/p13/signup.do")
+	public String signUpForm(ModelMap model){
+		System.out.println("\t\t ########### [signup]");
+		System.out.println("\t\t ########### [signup]");
+		model.addAttribute("result", new Employee());
+        model.addAttribute("joblevelCodeList", codeService.retrieveJobLevelCodeList());
+        model.addAttribute("skillCodeList", codeService.retrieveSkillCodeList());
+        model.addAttribute("divisionCodeList", codeService.retrieveDivisionCodeList());
+        model.addAttribute("departmentCodeList", new ArrayList<Code>());
+		
+		return "pattern/p13/signUpForm";
+	}
+
+	// 회원 가입 신청 용 컨트롤러
+    @RequestMapping(value = "/pattern/p13/insertsignup.do")
+    public String signUpinsert(Employee input, RedirectAttributes redirectAttributes) {
+    	System.out.println("\t\t ########### [signup]");
+    	
+        employeeService.insertEmployee(input);
+        redirectAttributes.addAttribute("searchNum", input.getNum());
+        return "redirect:/pattern/p13/signUpForm.do";
+    }
+	
+}

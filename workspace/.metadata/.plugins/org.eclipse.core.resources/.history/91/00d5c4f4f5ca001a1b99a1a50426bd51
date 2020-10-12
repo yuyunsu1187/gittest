@@ -1,0 +1,5 @@
+package com.java.gyva.common.user.model;
+
+public class BaseModel {
+
+}

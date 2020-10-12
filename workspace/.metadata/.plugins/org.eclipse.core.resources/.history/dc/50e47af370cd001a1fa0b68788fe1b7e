@@ -1,0 +1,14 @@
+com\gyva\web\common\model\BaseModel.class
+com\gyva\web\common\user\service\UserService.class
+com\gyva\web\common\user\controller\UserController.class
+com\gyva\web\common\user\dao\UserDAOImp.class
+com\gyva\web\common\user\model\User.class
+com\gyva\web\common\login\service\LoginService.class
+com\gyva\web\common\login\controller\LoginController.class
+com\gyva\web\common\user\model\UserVO.class
+com\gyva\web\common\login\service\LoginServiceImpl.class
+com\gyva\web\common\view\SingleJsonListMappingJacksonJsonView.class
+com\gyva\web\common\user\dao\UserDAO.class
+com\gyva\web\common\view\AjaxExceptionView.class
+com\gyva\web\common\user\service\UserServiceImpl.class
+com\gyva\web\TestDAO.class

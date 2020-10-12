@@ -1,0 +1,156 @@
+@charset "utf-8";
+/* id="FR000000-05" :main */
+#FR000000-05,
+#FR000000-05 .default-contents {padding-top:0;padding-bottom:0;}
+#FR000000-05 .content-section {padding:0 0;}
+/* id="FR010101-05" : login */
+#FR010101-05 {background-color:#ece8ef;/* background:#efe8ee url("/resource/images/front/contents/bg-section-form.png") no-repeat top center;background-size:270%; */}
+#FR010101-05 .content-tit {background-color:#494444;color:#ffffff;height:16.66vw;line-height:16.66vw;text-align:center;}
+#FR010101-05 .link-btn {border:0.27vw solid #a50034;border-radius:2.77vw;color:#a50034;font-size:3.88vw;height:11.11vw;line-height:11.11vw;width:calc(50% - 1.11vw);padding:0 0;}
+#FR010101-05 .link-btn i {font-size:2.77vw;margin-left:1.38vw;}
+#FR010101-05 .form-area {border:none;padding:8.33vw 5.55vw 0;}
+#FR010101-05 .form-area > li + li {padding-top:2.77vw;}
+#FR010101-05 .submit-area {margin-top:8.33vw;padding:0 5.55vw;}
+#FR010101-05 .submit-area + .form,
+#FR010101-05 [data-combine-form="column-2-form"] {border-top:0.27vw solid #dbdcdf;margin-top:6.94vw;padding-top:8.33vw;}
+#FR010101-05 [data-combine-form="column-2-form"] [data-form="checkbox"],
+#FR010101-05 [data-combine-form="column-2-form"] [data-mult-form="btn"] {width:100%;}
+#FR010101-05 [data-combine-form="column-2-form"] [data-mult-form="btn"] {margin-top:4.16vw;}
+#FR010101-05 .content-section {background-color:#ffffff;box-shadow:0 0 2.77vw rgba(222, 222, 222, 0.75);width:89.73vw;height:65.93vh;padding:0 0;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
+/* id="FR010301-05" : 회원가입 */
+#FR010301-05 {background-color:#ece8ef;/* background:#efe8ee url("/resource/images/front/contents/bg-section-form.png") no-repeat top center;background-size:270%; */height:auto;padding:11.11vw 5.55vw;}
+#FR010301-05 .content-tit {background-color:#494444;color:#ffffff;height:16.66vw;line-height:16.66vw;text-align:center;}
+#FR010301-05 .content-section {background-color:#ffffff;box-shadow:0 0 2.77vw rgba(222, 222, 222, 0.75);padding:0 0;}
+#FR010301-05 .article-tit:before {display:none;}
+#FR010301-05 .article-txt {letter-spacing:-0.05vw;margin-top:0;}
+#FR010301-05 .form-area {border-top:0.27vw solid #dbdcdf;margin-top:5.55vw;padding-top:5.55vw;}
+#FR010301-05 .terms-section {}
+#FR010301-05 [data-board-type="form-write"] {padding:8.33vw 5.55vw;}
+/* id="FR010303-05" : Reset Password */
+#FR010303-05 {background:#efe8ee url("/resource/images/front/contents/bg-section-form.png") no-repeat top center;background-size:270%;}
+#FR010303-05 .content-tit {background-color:#a50034;color:#ffffff;height:16.66vw;line-height:16.66vw;text-align:center;}
+#FR010303-05 .content-txt {font-size:3.33vw;line-height:4.44vw;padding:8.33vw 5.55vw;text-align:center;}
+#FR010303-05 .form {padding:0 5.55vw;}
+#FR010303-05 .submit-area {margin-top:8.33vw;padding:0 5.55vw;}
+#FR010303-05 .content-section {background-color:#ffffff;width:89.73vw;height:90.27vw;padding:0 0;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
+/* id="FR010501-05" : Recently viewed */
+#FR010501-05 .list-wrap .thumbnail-list {display:none;}
+#FR010501-05 .list-wrap [data-useragent="common"] {display:block;}
+#FR010501-05 .list-wrap [data-useragent="common"] .profile {display:none;}
+#FR010501-05 .list-wrap + .list-wrap {border-top:none;margin-top:13.88vw;}
+/* id="FR010503-05" : Check Profile */
+#FR010503-05 .form-wrap {border-top:0.27vw solid #dbdcdf;margin-top:5.55vw;padding-top:5.55vw;}
+#FR010503-05 .submit-area {border-top:0.27vw solid #dbdcdf;margin-top:6.94vw;padding-top: 11.11vw;}
+#FR010503-05 .board-area {display:none;}
+#FR010503-10 .form-wrap {border-top:0.27vw solid #dbdcdf;padding-top:5.55vw;}
+#FR010503-10 .submit-area {border-top:0.27vw solid #dbdcdf;margin-top:6.94vw;padding-top: 11.11vw;}
+#FR010503-10 .submit-area [data-offset] {display:inline-block;}
+#FR010503-10 .article-tit {display:none;}
+#FR010503-10 .board-area {display:none;}
+#FR010503-10 .main-btn {width:calc(50% - 1.11vw);}
+/* id="FR010505-05" : Helpdesk */
+#FR010505-05 .tab-wrap [data-useragent="P"] {display:none;}
+#FR010505-05 .list-wrap .board-list .link-btn .tit {margin:1.38vw 0;}
+/* id="FR010507-05" : Bookmark */
+#FR010507-05 .tab-wrap [data-useragent="P"] {display:none;}
+/* id="FR010901-05" : Search Results */
+#FR010901-05 .default-contents {background-color:#fdfdfd;}
+#FR010901-05 .button-area {display:block;margin-top:8.33vw;}
+#FR010901-05 .content-tit {color:#000000;font-weight:400;margin:9.72vw 0;text-align:center;}
+#FR010901-05 .content-tit * {vertical-align:middle;}
+#FR010901-05 .content-tit .search {border-bottom:0.27vw solid #a50034;color:#a50034;padding-bottom:0.83vw;vertical-align:baseline;}
+#FR010901-05 .content-tit .search:before,
+#FR010901-05 .content-tit .search:after {content:'"';}
+#FR010901-05 .content-tit .search-value {font-weight:600;margin:0 1.94vw;}
+#FR010901-05 .article-tit:before {display:none;}
+#FR010901-05 .list-wrap {border:none;}
+#FR010901-05 .list-wrap .board-list .link-btn {font-size:3.88vw;padding:2.77vw 2.77vw;text-align:left;}
+#FR010901-05 .list-wrap .board-list .tit {color:#6b6b6b;font-size:3.88vw;margin-top:1.38vw;width:83.33vw;}
+#FR010901-05 .list-wrap .board-list .category {color:#a50034;}
+#FR010901-05 .board-wrap[data-useragent="P"] {display:none;}
+/* id="FR030101-05" : Branding Material > Logo */
+#FR030101-05 .article-tit {display:none;}
+#FR030101-05 .article-txt {display:none;}
+#FR030101-05 .list-wrap .img-area {height:31.94vw;}
+#FR030101-05 .list-wrap .img-area > .link-btn {float:left;width:27.77vw;height:20.55vw;}
+#FR030101-05 .list-wrap .img-area .caption {padding:0 0 0 31.11vw;}
+#FR030101-05 .list-wrap .img-area .caption .link-btn {height:20.27VW;}
+#FR030101-05 .list-wrap .img-area .caption .tit {width:45.83vw;}
+#FR030101-05 .list-wrap .img-area .caption .txt {width:52.77vw;}
+#FR030101-05 .list-wrap .img-area .data .download-main-btn i {display:none;}
+/* id="FR030103-05" : Branding Material > Product Image */
+#FR030103-05 .article-tit {display:none;}
+#FR030103-05 .article-txt {display:none;}
+#FR030103-05 .list-wrap .img-area {height:31.94vw;}
+#FR030103-05 .list-wrap .img-area > .link-btn {float:left;width:27.77vw;height:20.55vw;}
+#FR030103-05 .list-wrap .img-area .caption {padding:0 0 0 31.11vw;}
+#FR030103-05 .list-wrap .img-area .caption .link-btn {height:20.27VW;}
+#FR030103-05 .list-wrap .img-area .caption .tit {width:45.83vw;}
+#FR030103-05 .list-wrap .img-area .caption .txt {width:52.77vw;}
+#FR030103-05 .list-wrap .img-area .data .download-main-btn i {display:none;}
+/* id="FR030105-05" : Branding Material > Imagery */
+#FR030105-05 .article-tit {display:none;}
+#FR030105-05 .article-txt {display:none;}
+#FR030105-05 .list-wrap .img-area {height:31.94vw;}
+#FR030105-05 .list-wrap .img-area > .link-btn {float:left;width:27.77vw;height:20.55vw;}
+#FR030105-05 .list-wrap .img-area .caption {padding:0 0 0 31.11vw;}
+#FR030105-05 .list-wrap .img-area .caption .link-btn {height:20.27VW;}
+#FR030105-05 .list-wrap .img-area .caption .tit {width:45.83vw;}
+#FR030105-05 .list-wrap .img-area .caption .txt {width:52.77vw;}
+#FR030105-05 .list-wrap .img-area .data .download-main-btn i {display:none;}
+/* id="FR030107-05" : Branding Material > Video */
+#FR030107-05 .article-tit {display:none;}
+#FR030107-05 .article-txt {display:none;}
+#FR030107-05 .list-wrap .img-area {height:31.94vw;}
+#FR030107-05 .list-wrap .img-area > .link-btn {float:left;width:27.77vw;height:20.55vw;}
+#FR030107-05 .list-wrap .img-area .caption {padding:0 0 0 31.11vw;}
+#FR030107-05 .list-wrap .img-area .caption .link-btn {height:20.27VW;}
+#FR030107-05 .list-wrap .img-area .caption .tit {width:45.83vw;}
+#FR030107-05 .list-wrap .img-area .caption .txt {width:52.77vw;}
+#FR030107-05 .list-wrap .img-area .data .download-main-btn i {display:none;}
+/* id="FR030109-05" : Branding Material > Social Media */
+#FR030109-05 .article-tit {display:none;}
+#FR030109-05 .article-txt {display:none;}
+#FR030109-05 .list-wrap .img-area {height:31.94vw;}
+#FR030109-05 .list-wrap .img-area > .link-btn {float:left;width:27.77vw;height:20.55vw;}
+#FR030109-05 .list-wrap .img-area .caption {padding:0 0 0 31.11vw;}
+#FR030109-05 .list-wrap .img-area .caption .link-btn {height:20.27VW;}
+#FR030109-05 .list-wrap .img-area .caption .tit {width:45.83vw;}
+#FR030109-05 .list-wrap .img-area .caption .txt {width:52.77vw;}
+#FR030109-05 .list-wrap .img-area .data .download-main-btn i {display:none;}
+/* id="FR050103-05" : Scientific Data */
+#FR050103-05 .list-wrap .img-area .caption .tit {font-size: 4.44vw;line-height:6.38vw;height:12.77vw;} 
+#FR050103-05 .list-wrap .img-area .download-main-btn {border-radius:1.38vw;margin-top:5.55vw;width:77.77vw;}
+#FR050103-05 .list-wrap .img-area .download-main-btn i {float:none;font-size:2.77vw;}
+#FR050103-10 .board-header .download-main-btn {display:none;}
+#FR050103-10 .submit-area [data-offset] {display:inline-block;}
+#FR050103-10 .submit-area [class*="btn"] + [class*="btn"] {margin-left:0.83vw;}
+/* id="FR050105-05" : Clinic Material */
+#FR050105-05 .list-wrap .img-area {height:31.94vw;}
+#FR050105-05 .list-wrap .img-area > .link-btn {float:left;width:27.77vw;height:20.55vw;}
+#FR050105-05 .list-wrap .img-area .caption {padding:0 0 0 31.11vw;}
+#FR050105-05 .list-wrap .img-area .caption .link-btn {height:20.27VW;}
+#FR050105-05 .list-wrap .img-area .caption .tit {width:45.83vw;}
+#FR050105-05 .list-wrap .img-area .caption .txt {width:52.77vw;}
+#FR050105-05 .list-wrap .img-area .data .download-main-btn i {display:none;}
+/* id="FR050107-05" : For Parner */
+#FR050107-05 .list-wrap .img-area {height:31.94vw;}
+#FR050107-05 .list-wrap .img-area > .link-btn {float:left;width:27.77vw;}
+#FR050107-05 .list-wrap .img-area .caption {padding:0 0 0 31.11vw;}
+#FR050107-05 .list-wrap .img-area .caption .link-btn {height:20.27VW;}
+#FR050107-05 .list-wrap .img-area .caption .tit {width:45.83vw;}
+#FR050107-05 .list-wrap .img-area .caption .txt {width:52.77vw;}
+#FR050107-05 .list-wrap .img-area .data .download-main-btn i {display:none;}
+/* id="FR090301-05" : registration */
+#FR090301-05 .swiper-scrollbar {display:none;}
+#FR090301-05 .list-wrap .img-area img {height:49.72vw;}
+/* id="FR110101-10" : Contact */
+#FR110101-10 textarea.input-form {border-radius:1.38vw;height:41.66vw;}
+.contact-area {text-align:center;}
+.contact-area .tit {color:#a50034;font-size:4.44vw;font-weight:600;}
+.contact-area .txt {color:#000000;font-size:3.88vw;margin-top:2.77vw;}
+.contact-area .img-area {display:none;}
+.contact-area .email-btn {background-color:#fcfcfc;color:#000000;font-size:3.88vw;font-weight:600;margin:6.94vw 0;padding:5vw 5.55vw;width:100%;text-align:left;}
+.contact-area .email-btn:before {background:url("/resource/images/front/icon/icon-email-btn.png") no-repeat center center;background-size:cover;content:"";display:inline-block;height:11.38vw;margin-right:3.33vw;width:11.38vw;vertical-align:inherit;}
+.contact-area .email-btn span {display:inline-block;vertical-align:middle;}
+.contact-area .email-btn em {display:block;color:#6b6b6b;font-size:2.77vw;}

@@ -1,0 +1,67 @@
+package com.gyva.web.common.manager.service;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.gyva.web.common.manager.dao.ManagerDao;
+import com.gyva.web.common.manager.model.Manager;
+
+
+/**
+ * <pre>
+ * 관리자 정보에 대한 CRUD를 담당하는 ServiceImpl 클래스
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+@Service("managerService")
+public class ManagerServiceImpl implements ManagerService {
+
+	@Resource(name = "managerDao")
+	private ManagerDao managerDao;
+
+	@Override
+	public Manager retrieveManager(Manager manager) {
+		return ManagerDao.retrieveManager(manager);
+	}
+
+	@Override
+	public List<Manager> retrieveManagerList(Manager manager) {
+		List<Manager> resultList = ManagerDao.retrieveManagerList(manager);
+		return resultList;
+	}
+
+	// 회원 가입
+	@Override
+	public void insertManager(Manager manager) {
+		ManagerDao.insertManager(manager);
+	}
+	
+	// 회원 정보 수정
+	@Override
+	public void updateManager(Manager manager) {
+		ManagerDao.updateManager(manager);
+	}
+	
+	// 삭제
+	@Override
+	public void deleteManager(Manager manager) {
+		ManagerDao.deleteManager(manager);
+	}
+	
+	// 회원 비밀번호 수정
+	@Override
+	public void resetPwdManager(Manager manager) {
+		ManagerDao.updatePwdManager(manager);
+	}
+
+	@Override
+	public void resetPwdManager(Manager manager) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

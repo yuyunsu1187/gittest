@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="com.gyva.web.common.user.model.User"/>
+<fullyQualifiedTypeName name="com.gyva.web.common.filedownload.model.FileInfo"/>
+<fullyQualifiedTypeName name="com.gyva.web.common.fileupload.service.FileUtils"/>
+<fullyQualifiedTypeName name="javax.mail.Header"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="com.gyva.web.common.utils.Util"/>
+<fullyQualifiedTypeName name="com.gyva.web.common.fileupload.model.FileInfo"/>
+<fullyQualifiedTypeName name="devonframe.gyva.front.common.fileupload.service.FileUtils"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="devonframe.gyva.front.common.fileupload.service.FileUtilImpl"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="devonframe.gyva.front.common.fileupload.service.FileUtilService"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="devonframe.gyva.front.common.fileUtil.service.FileUtils"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.FileUpload"/>
+<fullyQualifiedTypeName name="org.apache.commons.fileupload.FileUpload"/>
+<fullyQualifiedTypeName name="devonframe.gyva.front.common.fileupload.model.FileInfo"/>
+<fullyQualifiedTypeName name="devonframe.util.DateUtil"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="devonframe.gyva.front.common.fileupload.service.FileParseService"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+<fullyQualifiedTypeName name="devonframe.gyva.front.common.user.model.User"/>
+<fullyQualifiedTypeName name="devonframe.gyva.front.common.code.model.Code"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="devonframe.fileupload.FileUpload"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+</qualifiedTypeNameHistroy>

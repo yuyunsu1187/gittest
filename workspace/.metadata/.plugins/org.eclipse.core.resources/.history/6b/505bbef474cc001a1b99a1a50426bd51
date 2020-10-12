@@ -1,0 +1,14 @@
+package org.hello.web;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class mysqlTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

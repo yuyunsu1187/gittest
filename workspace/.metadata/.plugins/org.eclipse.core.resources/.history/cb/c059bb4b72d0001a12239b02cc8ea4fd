@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Main test Page</title>
+<script type="text/javaScript" language="javascript">
+// <![CDATA[
+function fncInsertCode() {
+	document.pForm.action = "<c:url value='/common/code/insertCode.do'/>";
+	document.pForm.submit();
+}
+function fncUpdateCode() {
+	document.pForm.action = "<c:url value='/common/code/updateCode.do'/>";
+	document.pForm.submit();
+}
+function fncDeleteCode() {
+	document.pForm.action = "<c:url value='/common/code/deleteCode.do'/>";
+	document.pForm.submit();
+}
+function fncRetrieveCodeList() {
+	document.pForm.action = "<c:url value='/common/code/retrieveCodeList.do'/>";
+	document.pForm.submit();
+}
+// ]]>
+</script>
+</head>
+<body>
+<a class="Lbtn" href="#" onclick="fncInsertCode();"><span>HOME</span></a>
+<a class="Lbtn" href="#" onclick="fncInsertCode();"><span>Logout</span></a>
+<a class="Lbtn" href="#" onclick="fncInsertCode();"><span>My Page</span></a>
+<a class="Lbtn" href="#" onclick="fncInsertCode();"><span>Sitemap</span></a>
+<a class="Lbtn" href="#" onclick="fncInsertCode();"><span>Contact Us</span></a>
+	<!-- <table class="tg">
+		<thead>
+			<tr>
+				<th class="tg-0lax">HOME</th>
+				<th class="tg-0lax">Logout</th>
+				<th class="tg-0lax">My Page</th>
+				<th class="tg-0lax">Sitemap</th>
+				<th class="tg-0lax">Contact Us</th>
+			</tr>
+		</thead>
+	</table> -->
+</body>
+</html>

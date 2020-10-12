@@ -1,0 +1,105 @@
+package devonframe.gyva.front.common.user.service;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import devonframe.gyva.front.common.fileUtil.service.FileUtils;
+import devonframe.gyva.front.common.fileupload.service.FileUploadService;
+import devonframe.gyva.front.common.user.dao.UserDao;
+import devonframe.gyva.front.common.user.model.User;
+
+/**
+ * <pre>
+ * 본 클래스는 사용자 정보에 대한 CRUD를 담당하는 ServiceImpl 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Service("userService")
+public class UserServiceImpl implements UserService {
+
+	@Resource(name = "userDao")
+	private UserDao userDao;
+	
+	@Resource(name = "fileUtils")
+	private FileUtils fileUtils;
+	
+	@Resource(name = "fileUploadService")
+	private FileUploadService fileUploadService;
+
+	@Override
+	public User retrieveUser(User user) {
+		return userDao.retrieveUser(user);
+	}
+
+	@Override
+	public List<User> retrieveUserList(User user) {
+		List<User> resultList = userDao.retrieveUserList(user);
+		return resultList;
+	}
+
+	// 회원 가입
+	@Override
+	public void insertUser(User user, MultipartHttpServletRequest mpRequest) {
+		
+		// file_id 생성 후 user정보 세팅
+		String fildId = getRandomUuid(10);
+		user.setFileId(fildId);
+
+		// file 리스트 parsing 후 저장 
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(user.getFileId(), mpRequest);
+		for (int fileIdx = 0; fileIdx < list.size(); fileIdx++) {
+			fileUploadService.insertFileInfo(list.get(fileIdx));
+		}
+		// 회원 정보 저장
+		userDao.insertUser(user);
+	}
+	
+	// 회원 정보 수정
+	@Override
+	public void updateUser(User user) {
+		userDao.updateUser(user);
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		userDao.deleteUser(user);
+	}
+	
+	// 회원 비밀번호 수정
+	@Override
+	public void resetPwdUser(User user) {
+		userDao.updatePwdUser(user);
+	}
+
+	// 아이디 중복체크
+	@Override
+	public int idChk(User user) {
+		int result = userDao.idChk(user);
+		return result;
+	}
+
+/**
+	 * 10자리 random UUID생성
+	 *
+	 * @param length 문자열 길이
+	 * @return 랜덤문자열
+	 */
+	private static String getRandomUuid(int length) {
+		String result = "";
+		for (int i = 0; i < 5; i++) {
+			String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를 제거해 주었다.
+			uuid = uuid.substring(0, length); // uuid를 앞에서부터 10자리 잘라줌.
+			System.out.println(i + ") " + uuid);
+			result = uuid;
+		}
+		return result;
+	}
+}

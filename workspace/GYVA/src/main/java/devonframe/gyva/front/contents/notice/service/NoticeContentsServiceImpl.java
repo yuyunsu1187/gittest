@@ -1,0 +1,38 @@
+package devonframe.gyva.front.contents.notice.service;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import devonframe.dataaccess.CommonDao;
+import devonframe.gyva.front.contents.model.Contents;
+import devonframe.paging.model.PagingEntity;
+
+@Service("contentsServiceForMap")
+public class NoticeContentsServiceImpl implements NoticeContentsService{
+
+    @Resource(name = "commonDaoForMap")
+    private CommonDao commonDao;
+
+    public Contents retrieveFrontMenuId(Map<String, Object> contents) {
+        return commonDao.select("Contents.retrieveFrontMenuId", contents);
+    }    
+    
+    public Contents retrieveContents(Contents contents) {
+        return commonDao.select("Contents.retrieveContents", contents);
+    }
+
+    public List<Map<String, Object>> retrieveContentsList(Map<String, Object> contents) {
+        List<Map<String, Object>> resultList = commonDao.selectList("Contents.retrieveContentsList", contents);
+        return resultList;
+    }
+
+    public List<Map<String, Object>> retrieveContentsPagedList(PagingEntity contents) {
+        List<Map<String, Object>> resultList = commonDao.selectPagedList("Contents.retrieveContentsList", contents);
+        return resultList;
+    }
+
+}

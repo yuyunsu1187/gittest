@@ -1,0 +1,20 @@
+package devonframe.gyva.contents.about.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class AboutController {
+	
+	@RequestMapping(value="/contents/introduce/retrieveContents.do")
+	public String retrieveTerms(ModelMap model){
+		return "contents/about/introduce/contentsDetail";
+	}
+	
+	@RequestMapping(value="/contents/contact/retrieveContents.do")
+	public String retrievePrivacy(ModelMap model){
+		return "contents/about/contact/contentsDetail";
+	}
+	
+}

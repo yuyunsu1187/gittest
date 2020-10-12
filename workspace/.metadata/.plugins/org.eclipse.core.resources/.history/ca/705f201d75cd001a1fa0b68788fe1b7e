@@ -1,0 +1,10 @@
+package com.gyva.web.common.user.dao;
+
+import org.springframework.stereotype.Repository;
+
+import com.gyva.web.common.user.model.User;
+
+@Repository
+public interface UserDAO {
+	public void insertUserTest(User vo);
+}

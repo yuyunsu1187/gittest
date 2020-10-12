@@ -1,0 +1,12 @@
+package devonframe.gyva.front.common.fileupload.service;
+
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+public interface FileParseService {
+	// 첨부파일 업로드
+//	public void fileParseList(Map<String, Object> map);
+	public void fileParseList(MultipartHttpServletRequest mpRequest);
+	
+}

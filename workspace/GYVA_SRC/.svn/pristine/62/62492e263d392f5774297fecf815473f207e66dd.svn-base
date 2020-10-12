@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Helpdesk">
+
+    <select id="retrieveHelpdeskContentsList" resultType="helpdesk">
+        <![CDATA[
+		SELECT CAST((@ROWNUM := @ROWNUM + 1) AS INT) AS num
+             , m.*
+		  FROM (
+        		SELECT qi.seq
+                     , qi.menu_id
+                     , mi.menu_name
+                     , qi.contents_id
+                     , ci.title
+                     , qi.user_id
+                     , qi.question_date
+                     , qi.question_contents
+                     , qi.reader_user_id
+                     , qi.answer_date
+                     , qi.answer_contents
+                     , qi.state_code
+                     , fnc_codeName('QST_STAT', qi.state_code, 'A') AS state_name
+                     , qi.delete_yn
+                     , ui.email
+                     , CONCAT('Dr ', lec_ui.name_first, ' ', lec_ui.name_last) AS lecturer_name
+                     , lec_fi.file_name AS lecturer_img
+                     , lec_fi.file_path AS lecturer_img_path 
+        		  FROM question_info qi
+                       INNER JOIN menu_info mi
+                    ON qi.menu_id = mi.menu_id
+                       INNER JOIN contents_info ci
+                    ON qi.menu_id = ci.menu_id
+                   AND qi.contents_id = ci.contents_id
+                       INNER JOIN user_info ui
+        		    ON qi.user_id = ui.user_id
+        		       INNER JOIN lecturer_info li
+        			ON ci.reader_user_id = li.user_id
+                       INNER JOIN user_info lec_ui
+        		    ON li.user_id = lec_ui.user_id
+        			   LEFT OUTER JOIN file_info lec_fi
+        			ON li.file_id = lec_fi.file_id
+        		   AND lec_fi.file_number = '3'
+                   AND lec_fi.delete_yn = 'N'
+                 ORDER BY qi.seq DESC
+		        ) m
+		      , (SELECT @ROWNUM := 0) rn
+		  WHERE 1 = 1
+        ]]>
+        <if test="userId != null and userId != ''">
+        <![CDATA[ 
+            AND (m.user_id = #{userId} OR m.reader_user_id = #{userId}) 
+        ]]>
+        </if>        
+        
+        <if test="contentsId != null and contentsId != ''">
+        <![CDATA[ 
+            AND m.menu_id = #{menuId}
+            AND m.contents_id = #{contentsId} 
+        ]]>
+        </if>
+        <if test="stateCode != null and stateCode != '' and stateCode != 'All'">
+        <![CDATA[ AND m.state_code = #{stateCode} ]]>
+        </if>
+        <if test= "searchType != null and searchType != '' and email != null and email != ''" >
+			<choose>
+	           <when test="searchType == 'searchId'">
+				<![CDATA[
+					AND m.email LIKE CONCAT('%', UPPER(#{email}), '%')
+				]]> 
+	           </when>
+	           
+	           <when test="searchType == 'searchName'">
+				<![CDATA[
+					AND m.menu_name LIKE CONCAT('%', UPPER(#{email}), '%')
+				]]> 
+	           </when>
+	           <otherwise>
+				<![CDATA[
+					AND (m.email LIKE CONCAT('%', UPPER(#{email}), '%') OR m.menu_name LIKE CONCAT('%', UPPER(#{email}), '%'))
+				]]> 
+	           </otherwise>
+			</choose>
+		</if>  
+        <![CDATA[   
+          ORDER BY CAST((@ROWNUM := @ROWNUM + 1) AS INT) DESC
+        ]]>
+    </select>
+
+    <insert id="insertQuestionInfo">
+        <![CDATA[  
+        INSERT INTO question_info(
+               menu_id
+		     , contents_id
+		     , user_id
+		     , question_date
+		     , question_contents
+		     , reader_user_id
+		     , answer_date
+		     , answer_contents
+		     , state_code
+		     , delete_yn
+             , create_id
+             , create_date
+             , update_id
+             , update_date
+        ) VALUES (
+               #{menuId}
+             , #{contentsId}
+             , #{userId}
+             , NOW()
+             , #{questionContents}
+             , #{readerUserId}
+             , null
+             , null
+             , '01'
+             , 'N'
+             , #{userId}
+             , NOW()
+             , #{userId}
+             , NOW()
+        )
+        ]]>    
+    </insert>
+
+    <update id="updateQuestionInfo">
+        <![CDATA[
+        UPDATE question_info
+           SET answer_date = NOW()
+             , answer_contents = #{answerContents}
+             , state_code = #{stateCode}
+             , update_id = #{userId}
+             , update_date = NOW() 
+         WHERE seq = #{seq}  
+        ]]>    
+    </update>
+
+</mapper>

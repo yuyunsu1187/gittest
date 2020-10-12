@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--  
+		Composite File -> File Job
+			- Using CompositeItemReader(DevOnFrame Batch)
+			- Using CompositeItemWriter(Spring Batch)
+	-->
+	
+	<batch:job id="composite-job">
+		<batch:step id="composite-step1" next="composite-step2">			
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="composite-reader1" processor="composite-processor1" writer="composite-writer1" commit-interval="1000" />
+			</batch:tasklet>
+		</batch:step>
+		<batch:step id="composite-step2">			
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="composite-reader2" processor="composite-processor2" writer="composite-writer2" commit-interval="1000" />
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+ 	
+ 	<!-- CompositeItemReader -->
+	<bean id="composite-reader1" class="devonframe.batch.item.composite.CompositeItemReader">
+    	<property name="compositeMapper">
+        	<bean class="devonframe.batch.item.composite.mapping.PassThroughCompositeItemMapper" />
+    	</property>
+    	<property name="ignoreItemStream" value="false" />
+    	<property name="delegates">
+        	<list>
+           		<ref bean="c-reader1" />
+           		<ref bean="c-reader2" />
+        	</list>
+    	</property>
+	</bean>
+	
+	<!-- CompositeItemReader with CustomCompositeItemMapper -->
+	<bean id="composite-reader2" class="devonframe.batch.item.composite.CompositeItemReader">
+    	<property name="compositeMapper">
+        	<bean class="devonframe.batch.sample.composite.CustomCompositeItemMapper" />
+    	</property>
+    	<property name="ignoreItemStream" value="false" />
+    	<property name="delegates">
+        	<list>
+           		<ref bean="c-reader1" />
+           		<ref bean="c-reader2" />
+        	</list>
+    	</property>
+	</bean> 
+ 
+	<bean id="c-reader1" class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="resource" value="classpath:/data/input/employee.1000.composite(1).csv" />
+		<property name="linesToSkip" value="1" />
+		<property name="encoding" value="UTF-8" />
+    	<property name="lineMapper">
+        	<bean class="devonframe.batch.item.file.mapping.DefaultStringLineMapper">
+            	<property name="lineTokenizer">
+            		<bean class="devonframe.batch.item.file.transform.DelimitedStringLineTokenizer">
+            			<property name="delimiter" value="," />
+            		</bean>
+            	</property>
+            	<property name="objectMapper">
+            		<bean class="devonframe.batch.item.file.mapping.FastReflectorObjectMapper">
+            			<property name="type" value="devonframe.batch.sample.common.model.Employee" />
+            			<property name="names" 
+            				value="num" />
+            		</bean>
+            	</property>
+        	</bean>
+    	</property> 
+	</bean>	
+ 	
+	<bean id="c-reader2" class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="resource" value="classpath:/data/input/employee.1000.composite(2).csv" />
+		<property name="linesToSkip" value="1" />
+		<property name="encoding" value="UTF-8" />
+    	<property name="lineMapper">
+        	<bean class="devonframe.batch.item.file.mapping.DefaultStringLineMapper">
+            	<property name="lineTokenizer">
+            		<bean class="devonframe.batch.item.file.transform.DelimitedStringLineTokenizer">
+            			<property name="delimiter" value="," />
+            		</bean>
+            	</property>
+            	<property name="objectMapper">
+            		<bean class="devonframe.batch.item.file.mapping.FastReflectorObjectMapper">
+            			<property name="type" value="devonframe.batch.sample.common.model.Employee" />
+            			<property name="names" 
+            				value="name,sex,departmentCode,joblevelCode,skillCode,telephone,birthdate,postal,address" />
+            		</bean>
+            	</property>
+        	</bean>
+    	</property> 
+	</bean>	
+
+	<!-- Sample Processor -->
+	<bean id="composite-processor1" class="devonframe.batch.sample.composite.CompositeEmployeeProcessor" />
+
+	<bean id="composite-processor2" class="devonframe.batch.sample.composite.CustomCompositeEmployeeProcessor" />
+ 	
+	<!-- CompositeItemWriter --> 
+	<bean id="composite-writer1" class="org.springframework.batch.item.support.CompositeItemWriter" scope="step">
+    	<property name="delegates">
+    		<list>
+				<ref bean="c-writer1-1" />
+				<ref bean="c-writer1-2" />
+    		</list>
+    	</property>
+	</bean>
+	
+	<bean id="composite-writer2" class="org.springframework.batch.item.support.CompositeItemWriter" scope="step">
+    	<property name="delegates">
+    		<list>
+				<ref bean="c-writer2-1" />
+				<ref bean="c-writer2-2" />
+    		</list>
+    	</property>
+	</bean>
+	
+	<bean id="c-writer1-1" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+		<!-- property name="resource" value="classpath:/devonframe/data/output/employee.1000.composite.out(1).csv" /-->
+		<property name="resource" value="file:///C:/devonbatch/out/employee.1000.composite.out(1-1).csv" />
+   		<property name="lineAggregator" ref="lineAggregator" />
+	</bean>
+	
+	<bean id="c-writer1-2" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+		<!-- property name="resource" value="classpath:/devonframe/data/output/employee.1000.composite.out(2).csv" /-->
+		<property name="resource" value="file:///C:/devonbatch/out/employee.1000.composite.out(1-2).csv" />
+   		<property name="lineAggregator" ref="lineAggregator" />
+	</bean>
+	
+	<bean id="c-writer2-1" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+		<!-- property name="resource" value="classpath:/devonframe/data/output/employee.1000.composite.out(1).csv" /-->
+		<property name="resource" value="file:///C:/devonbatch/out/employee.1000.composite.out(2-1).csv" />
+   		<property name="lineAggregator" ref="lineAggregator" />
+	</bean>
+	
+	<bean id="c-writer2-2" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+		<!-- property name="resource" value="classpath:/devonframe/data/output/employee.1000.composite.out(2).csv" /-->
+		<property name="resource" value="file:///C:/devonbatch/out/employee.1000.composite.out(2-2).csv" />
+   		<property name="lineAggregator" ref="lineAggregator" />
+	</bean>
+	
+	<bean id="lineAggregator" class="org.springframework.batch.item.file.transform.DelimitedLineAggregator" scope="step">
+		<property name="fieldExtractor">
+			<bean class="devonframe.batch.item.file.transform.FastReflectorFieldExtractor">
+		    	<property name="names" value="num,name,sex,departmentCode,joblevelCode,skillCode,telephone,birthdate,postal,address" />
+		    </bean>
+	 	</property>
+        <property name="delimiter" value=","/>
+	</bean>
+	
+</beans>

@@ -1,0 +1,14 @@
+CREATE TABLE DB_LOG   (  
+   log_num INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   thread_name VARCHAR(100),
+   log_timestamp TIMESTAMP,
+   message VARCHAR(4000),
+   logger_name VARCHAR(100),
+   log_level VARCHAR(10),
+   caller_filename VARCHAR(100),
+   caller_class VARCHAR(100),
+   caller_method VARCHAR(100),
+   caller_line VARCHAR(10),
+   exception VARCHAR(1000)
+);
+

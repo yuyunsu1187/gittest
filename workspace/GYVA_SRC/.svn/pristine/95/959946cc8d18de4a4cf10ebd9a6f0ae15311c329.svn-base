@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>LG chem : LG aesthetics</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/front/import.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+<!--[if gt IE 9]>
+	<link href="/resource/css/ie/main-css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if !IE]><!-->
+	
+<!--<![endif]-->
+</head>
+<body>
+	<!-- [S] wrap : ID 값은 화면 ID와 동일하게 적용 -->
+	<div id="FR010303-05" class="default-section">
+		<!-- [S] contents -->
+		<section class="content-section">
+			<div class="form-wrap">
+				<h2 class="content-tit">Forgot Password?</h2>
+				<p class="content-txt">To reset your password, submit your email address below.<br />If we can find you in the database,<br />a new password will be sent to your email address.</p>
+				
+				<div class="form-area" data-combine-form="login-form">
+					<label for="email" class="form-tit">Email address</label>
+					<div class="form"><input type="text" class="input-form" id="email" placeholder=" Enter your email address" value="Lgyvoire_master" /></div>
+				</div>
+				
+				<div class="submit-area">
+					<button type="button" class="sub-btn">Back to login</button>
+					<button type="submit" class="main-btn">Resend email</button>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- [E] wrap -->
+	
+	<!-- [S : 20200924] 로딩이미지 -->
+	<div class="loading-area" data-pop-action="active">
+		<span class="img-area"><img src="/resource/images/common/contents/pc_Loading_200923.gif" alt="" /></span>
+	</div>
+	<!-- [E : 20200924] 로딩이미지 -->
+	
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript"  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> [V6.2.0] 최신버전 : IE 미지원 -->
+	<script src="/resource/js/libs/swiper-5.4.5.min.js"></script> <!-- [2020-09-09] 하위버전으로 변경 -->
+	<script type="text/javascript" src="/resource/js/front/ui.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

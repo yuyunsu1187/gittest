@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="manager">
+
+	<insert id="insertManager">
+		<![CDATA[
+			INSERT INTO user_info (
+			      email
+				, password
+				, name_first
+				, name_last
+				, user_type
+				, special_code
+				, country_code
+				, file_id
+				, request_date
+				, confirm_id
+				, confirm_date
+				, state_code
+				, remark
+				, consent_yn
+				, create_id
+				, create_date
+				, update_id
+				, update_date
+			) VALUES (
+			      #{email}
+				, #{password , jdbcType=VARCHAR}
+				, #{nameFirst}
+				, #{nameLast}
+				, #{userType}
+				, #{specialCode}
+				, #{countryCode}
+				, #{fileId}
+				, NOW()
+				, #{confirmId}
+				, NOW()
+				, #{stateCode}
+				, #{remark}
+				, 'Y'
+				, #{createId}
+				, NOW()
+				, #{updateId}
+				, NOW()
+			)
+		]]>
+	</insert>
+
+	<select id="retrieveManager" resultType="manager">
+		<![CDATA[
+			SELECT seq
+	             , email
+	             , password
+	             , name_first as nameFirst
+	             , name_last as nameLast
+	             , user_type as userType
+	             , (SELECT fnc_codeName('USER', user_type, 'A')) AS userTypeName
+	             , remark
+              FROM user_info  
+             where 1=1 AND delete_yn = 'N' 
+	 	]]>
+		<choose>
+           <when test="email == 'email'">
+			<![CDATA[
+				AND email = #{email}
+			]]> 
+           </when>
+           
+           <otherwise>
+			<![CDATA[
+				AND seq = #{seq}
+			]]> 
+           </otherwise>
+		</choose>
+	</select>
+	
+	<select id="retrieveManagerList" resultType="manager">
+		<![CDATA[
+			SELECT seq
+	             , email
+	             , password
+	             , name_first as nameFirst
+	             , name_last as nameLast
+	             , user_type as userType
+	             , (SELECT fnc_codeName('USER', user_type, 'A')) AS userTypeName
+	             , create_date as createDate
+              FROM user_info 
+             WHERE 1=1 AND delete_yn = 'N'   
+               AND user_type LIKE 'AD%'
+	 	]]>
+		
+		<if test= "userType != null and userType != '' and userType != 'ALL'">
+	 	<![CDATA[
+			AND user_type = #{userType}
+        ]]>  
+        </if>
+        <if test= "searchType != null and searchType != '' and email != null and email != ''" >
+			<choose>
+	           <when test="searchType == 'searchId'">
+				<![CDATA[
+					AND email LIKE CONCAT('%', UPPER(#{email}), '%')
+				]]> 
+	           </when>
+	           
+	           <when test="searchType == 'searchName'">
+				<![CDATA[
+					AND CONCAT(name_first,name_last) LIKE CONCAT('%', UPPER(#{email}), '%')
+				]]> 
+	           </when>
+	           <otherwise>
+				<![CDATA[
+					AND (email LIKE CONCAT('%', UPPER(#{email}), '%') OR CONCAT(name_first,name_last) LIKE CONCAT('%', UPPER(#{email}), '%'))
+				]]> 
+	           </otherwise>
+			</choose>
+		</if>  	
+	</select>
+
+
+	<update id="updateManager">
+		<![CDATA[
+			UPDATE user_info			   
+		]]>
+			<choose>
+				<when test = 'deleteYn != null and deleteYn != ""'>
+				<![CDATA[
+					SET delete_yn = #{deleteYn}
+				  
+				]]>	
+				</when>
+				<otherwise>
+				<![CDATA[
+					SET password = #{password , jdbcType=VARCHAR}
+					  , user_type = #{userType}
+				      , name_first = #{nameFirst}
+				      , name_last = #{nameLast}
+				      , remark = #{remark}
+				      , confirm_id = #{confirmId}
+				      , confirm_date = NOW()
+				      , update_id = #{updateId}
+				      , update_date = NOW()
+				  
+				]]>	
+				</otherwise>		
+			</choose>
+		<![CDATA[
+			WHERE seq = #{seq}
+	    ]]>  
+
+	</update>
+
+	<delete id="deleteManager">
+		<![CDATA[
+			DELETE
+			  FROM user_info
+			 WHERE seq = #{seq}
+			   and userInfo.delete_yn = 'Y'
+		]]>
+	</delete>
+	
+	<select id="retrieveCodeDetailList"  resultType="code">
+		<![CDATA[
+			SELECT group_id
+	             , code
+	             , code_name AS value
+              FROM code_detail
+             WHERE code like CONCAT('AD', '%')
+               AND group_id = 'USER'
+	 	]]>
+	</select>
+	
+	<select id="idChk" resultType="int">
+		<![CDATA[
+			SELECT COUNT(seq) 
+			  FROM user_info
+			 WHERE email = #{email}
+			   AND user_type LIKE 'AD%' 
+		]]> 
+	</select>
+	
+	<select id="checkUserId" resultType="int">
+		<![CDATA[
+			SELECT count(email) idcount
+			  FROM user_info
+			 WHERE email = #{email}
+		]]>
+    </select>
+
+    <select id="checkUser" resultType="int">
+		<![CDATA[
+			SELECT count(email) pwcount
+			  FROM user_info
+			 WHERE email = #{email}
+			   AND password = #{password}
+		]]>
+    </select>
+    
+    <update id="updateUserType">
+		<![CDATA[
+			UPDATE user_info
+				SET update_date = NOW()
+				  , update_id = #{updateId}
+		]]>
+		<if test="userType != null and userType != ''">
+		<![CDATA[, user_type = #{userType} ]]>
+        </if>
+        <![CDATA[
+				WHERE delete_yn = 'N' 
+				  AND seq = #{seq}
+		]]>
+    </update>
+</mapper>

@@ -1,0 +1,277 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsList.jsp
+ * DESC : 컨텐츠 페이지 목록조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+// 필수 입력정보인 확인 함수
+	function checkValue() {
+        
+		if (!document.contentsInfo.title.value) {
+			alert("제목을 입력하세요.");
+			return false;
+		}
+		
+		if (!document.contentsInfo.contents.value) {
+			alert("안내 문구를 입력하세요.");
+			return false;
+		}
+		
+		if (!document.contentsInfo.startDate.value) {
+			alert("시작일자를 입력하세요.");
+			return false;
+		}
+		
+		if (!document.contentsInfo.endDate.value) {
+			alert("종료일자를 입력하세요.");
+			return false;
+		}
+		
+		if (!document.contentsInfo.contentsUrl.value) {
+			alert("링크 URL을 입력하세요.");
+			return false;
+		}
+
+/*  		if (!document.contentsInfo.uploadFileThum.value) {
+			alert("썸네일 이미지를 등록하세요.");
+			return false;
+		}
+		
+		if (!document.contentsInfo.uploadFileDetail.value) {
+			alert("상세 이미지를 등록하세요.");
+			return false;
+		}
+ */ 		
+		
+		if (!document.contentsInfo.readerUserId.value || document.contentsInfo.readerUserId.value == "") {
+			alert("담당 강사를 선택 하세요.");
+			return false;
+		}
+
+	}
+	
+	// 삭제
+	function fnDeleteContents() {
+		var delConfirm = confirm('정말로 삭제 하시겠습니까?');
+		if (delConfirm) {
+			document.contentsInfo.action = "<c:url value='/contents/webinarDelete.do'/>";
+			document.contentsInfo.submit();
+		}
+	}
+
+	function goBack(){
+		window.history.back();
+	}
+
+
+//]]>
+</script>
+			
+<section class="content-section">
+	<header class="content-header">
+		<h2 class="content-tit">Webinar replay</h2>
+	</header>
+	
+	<!-- [S] 게시물 수정/삭제 --> 
+	<article class="board-wrap" data-board-type="form-write">
+		<div class="board-area">
+			<form method="post" action="/contents/webinarUpdate.do" name="contentsInfo" id="contentsInfo" onsubmit="return checkValue()" enctype="multipart/form-data">
+			<input type="hidden" name="seq" id="seq" value="${contentsResult.seq}" />
+			<input type="hidden" name="contentsId" id="contentsId" maxlength="50" value="${contentsResult.contentsId}"/>
+			<input type="hidden" name="stateCode" id="stateCode" maxlength="50" value="${contentsResult.stateCode}"/>
+			<input type="hidden" name="categoryCode" id="categoryCode" value="${contentsResult.categoryCode}"/>
+			<table class="default-table">
+				<caption>Webinar replay 입력</caption>
+				<colgroup>
+					<col style="width:30%;" />
+					<col style="width:auto;" />
+				</colgroup>
+				
+				<tbody>		
+					<tr>
+						<th scale="col" data-text-style="essential">제목</th>
+						<td><div class="form"><input type="text" class="input-form" name="title" id="title" placeholder="제목을 입력해주세요." value="${contentsResult.title}" /></div></td>
+					</tr>
+					
+					<tr>
+						<th scale="col" data-text-style="essential">안내 문구</th>
+						<td><div class="form"><input type="text" class="input-form" name="contents" id="contents" value="${contentsResult.contents}" /></div></td>
+					</tr>
+					
+					<tr>
+						<th scale="col" data-text-style="essential">기간 설정</th>
+						<td>
+							<div class="form-area" data-combine-form="datepicker" name="datepicker" id="datepicker">
+								<div class="form" data-mult-form="date">
+									<input type="text" class="input-form" name="startDate" id="startDate" value="${fn:substring(contentsResult.startDate,0,10)}" />
+									<button type="button" class="icon-btn"><i class="far fa-calendar-alt"></i></button>
+								</div>
+								
+								<span class="symbol">-</span>
+								
+								<div class="form" data-mult-form="date">
+									<input type="text" class="input-form" name="endDate" id="endDate" value="${fn:substring(contentsResult.endDate,0,10)}" />
+									<button type="button" class="icon-btn"><i class="far fa-calendar-alt"></i></button>
+								</div>
+								
+								<div class="form" data-form-type="checkbox">
+									<input type="checkbox" class="check-form" id="allcheck" />
+									<label for="allcheck" class="label-form"><i class="fa-check-square"></i> 당일</label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<c:if test="${not empty contentsResult.date}">
+					<tr style="display:" id="trTime">
+						<th scale="col" >일시</th>
+						<td><div class="form"><input type="text" class="input-form" name="date" id="date" value="${contentsResult.date}" placeholder="일시을 입력해주세요." /></div></td>
+					</tr>
+					</c:if>
+					
+					<tr>
+						<th scale="col" data-text-style="essential">링크 URL</th>
+						<td><div class="form"><input type="text" name="contentsUrl" id="contentsUrl" class="input-form" placeholder="제목을 입력해주세요." value="${contentsResult.contentsUrl}" /></div></td>
+					</tr>
+								
+					<tr>
+						<th scale="col" data-text-style="essential">썸네일 이미지</th>
+						<td>
+							<div class="form-area">
+								<div class="form" data-mult-form="uploade-file">
+									<a href="#none" target="_blank" titile="새창열기" class="link-btn">${contentsResult.thumFileName}</a>
+									<button type="button" class="icon-btn"><i class="far fa-trash-alt"></i></button>
+								</div>
+								<div class="form" data-mult-form="file">
+									<input type="text" class="input-form" readonly />
+									<input type="file" class="file-form" name="uploadFileThum" id="uploadFileThum" />
+									<label for="uploadFileThum" class="file-label">Select file</label>
+								</div>
+								<p class="form-txt"><span class="point-color">000 X 000</span> 해상도 이미지 파일로 업로드하여 주시기 바랍니다</p>
+							</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<th scale="col" data-text-style="essential">메인 이미지</th>
+						<td>
+							<div class="form-area">
+								<div class="form" data-mult-form="uploade-file">
+									<a href="#none" target="_blank" titile="새창열기" class="link-btn">${contentsResult.fileName}</a>
+									<button type="button" class="icon-btn"><i class="far fa-trash-alt"></i></button>
+								</div>
+								<div class="form" data-mult-form="file">
+									<input type="text" class="input-form" readonly />
+									<input type="file" class="file-form" name="uploadFileDetail" id="uploadFileDetail" />
+									<label for="uploadFileDetail" class="file-label">Select file</label>
+								</div>
+								<p class="form-txt"><span class="point-color">000 X 000</span> 해상도 이미지 파일로 업로드하여 주시기 바랍니다</p>
+							</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<th scale="col" data-text-style="essential">강의 영상</th>
+						<td>
+							<div class="form-area">
+								<div class="form" data-mult-form="uploade-file">
+									<a href="#none" target="_blank" titile="새창열기" class="link-btn">Branding logo.mp4</a>
+									<button type="button" class="icon-btn"><i class="far fa-trash-alt"></i></button>
+								</div>
+								<div class="form" data-mult-form="file">
+									<input type="text" class="input-form" readonly />
+									<input type="file" class="file-form" name="uploadFileVideo" id="uploadFileVideo" />
+									<label for="uploadFileVideo" class="file-label">Select file</label>
+								</div>
+							</div>
+						</td>
+					</tr>
+						
+					<tr>
+						<th scale="col" data-text-style="essential">담당 강사</th>
+						<td>
+							<div class="form" data-form="select">
+								<select class="select-form" id="readerUserId" name="readerUserId">
+									<option value=""> 담당 강사를 반드시 선택하세요 </option>
+									<c:forEach var="result" items="${lecturerList}" varStatus="status">
+										<option value="<c:out value='${result.readerUserId}'/>"
+										<c:if test="${contentsResult.readerUserId == result.readerUserId}"> selected="selected"</c:if> > 
+										<c:out value="${result.nameLast} ${result.nameFirst} "/> </option>
+						     		</c:forEach>
+					     		</select>
+								<i class="fas fa-angle-down"></i>
+							</div>
+				     				
+						</td>
+					</tr>
+					
+					<tr>
+						<th scale="col">설문 조사</th>
+						<td>
+							<div class="form" data-form="select">
+								<select class="select-form" id="surveyId" name="surveyId">
+									<option value=""> 설문조사를 선택하세요 </option>
+									<c:forEach var="survey" items="${surveyList}" varStatus="status">
+										<option value="<c:out value='${survey.code}'/>"
+										<c:if test="${contentsResult.surveyId == survey.code}"> selected="selected"</c:if> > 
+										<c:out value="${survey.value}"/> </option>
+						     		</c:forEach>
+					     		</select>
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="submit-area">
+				<button type="button" class="sub-btn" data-offset="left" onclick="fnDeleteContents();">삭제</button>
+				<button type="submit" class="sub-btn" onclick="goBack();">취소</button>
+				<button type="submit" class="main-btn">수정</button>
+			</div>
+			</form>
+		</div>
+	</article>
+	<!-- [E] 게시물 수정/삭제 -->
+</section>
+
+<script>
+//<![CDATA[
+	$.datepicker.setDefaults({
+	        dateFormat: 'yy-mm-dd',	//날짜 포맷이다. 보통 yy-mm-dd 를 많이 사용하는것 같다.
+    });
+	
+	// focusout 처리용 스크립트
+	$('#endDate').focusout(function() {
+		if (!document.contentsInfo.endDate.value) {
+			alert("종료일자를 입력하세요.");
+			return false;
+		}
+		
+		if(document.contentsInfo.startDate.value == document.contentsInfo.endDate.value){
+			trTime.style.display="";
+			
+		}
+		if(document.contentsInfo.startDate.value != document.contentsInfo.endDate.value){
+			trTime.style.display='none';
+			
+			document.contentsInfo.date.value = null;
+		}
+		
+	})
+//]]>	
+</script>

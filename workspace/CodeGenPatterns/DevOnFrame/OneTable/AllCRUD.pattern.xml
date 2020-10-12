@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenPattern id="DevOnFrame/OneTable/AllCRUDPattern" format="1.0" title="All CRUD">
+	<description>[DevOnFrame] Generate All CRUD Codes for a Table and Insert to Existing Files</description>
+
+	<patternLink id="DevOnFrame/OneTable/CreatePattern"/>
+	
+	<patternLink id="DevOnFrame/OneTable/DeletePattern"/>
+	
+	<patternLink id="DevOnFrame/OneTable/GetCountPattern"/>
+	
+	<patternLink id="DevOnFrame/OneTable/RetrieveListPattern"/>
+	
+	<patternLink id="DevOnFrame/OneTable/RetrieveOnePattern"/>
+	
+	<patternLink id="DevOnFrame/OneTable/RetrieveWithPagingPattern"/>
+	
+	<patternLink id="DevOnFrame/OneTable/UpdatePattern"/>
+
+</CodeGenPattern>

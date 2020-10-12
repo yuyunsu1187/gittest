@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>LG chem : LG aesthetics</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/mobile/import.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+	<!-- [S] wrap : ID 값은 화면 ID와 동일하게 적용 -->
+	<section id="FR070101-10" class="default-section">
+		<!-- [S] header -->
+		<header class="default-header">
+			<h1 class="logo-tit"><a href="/" class="link-btn"><img src="/resource/images/common/layout/logo-tit.png" alt="LG chem : LG aesthetics" /></a></h1>
+			
+			<button type="button" class="history-btn"></button>
+			<div class="form-area" data-type="toggle" data-toggle-action="curtain">
+				<button type="button" class="search-btn"><i class="fab fa-sistrix"></i></button>
+				<div class="form" data-mult-form="search">
+					<input type="text" class="input-form" placeholder="Please enter a search word.">
+					<button type="button" class="form-btn">search</button>
+				</div>
+			</div>			
+			<!-- 활성화 : data-pop-action="active", 비활성화 : data-pop-action="disabled" -->
+			<section class="sitemap-wrap" data-pop-action="disabled">
+				<h2 class="sitemap-tit"><button type="button" class="sitemap-btn" data-btn-style="modal" data-btn-key="sitemap"></button></h2>
+				<div class="sitemap-area" data-type="toggle" data-toggle-action="menu" data-pop-key="sitemap">
+					<button type="button" class="layerPop-close-btn" data-pop-btn="close"><span class="icon-close"></span></button>
+					<div class="member-info-area">
+						<i class="member-profile"><img src="/resource/images/temp/@img-tem-profile.png" alt="" /></i>
+						<strong class="member-name">Dr. Kam Lally</strong>
+						<p class="member-email">Kally_loveIU@naver.com</p>
+						<button type="button" class="logout-sub-btn">Logout</button>
+					</div>
+					
+					<ul class="menu-list" data-menu-depth="1">
+						<li><a href="#none" class="menu-btn">Branding Material</a></li>
+						<li>
+							<button type="button" class="menu-btn">Library</button>
+							<ul data-menu-depth="2">
+								<li><a href="#none" class="menu-btn">Journal</a></li>
+								<li><a href="#none" class="menu-btn">Scientific Data</a></li>
+								<li><a href="#none" class="menu-btn">Clinic Material</a></li>
+								<li><a href="#none" class="menu-btn">For Parner</a></li>
+							</ul>
+						</li>
+						<li>
+							<button type="button" class="menu-btn">Academy</button>
+							<ul data-menu-depth="2">
+								<li><a href="#none" class="menu-btn">Anatomy</a></li>
+								<li><a href="#none" class="menu-btn">YVOIRE Injection</a></li>
+								<li><a href="#none" class="menu-btn">Webinar replay</a></li>
+								<li><a href="#none" class="menu-btn">Aesthetic School</a></li>
+								<li><a href="#none" class="menu-btn">Module</a></li>
+								<li><a href="#none" class="menu-btn">YVOIRE Exercise</a></li>
+							</ul>
+						</li>
+						<li><a href="#none" class="menu-btn">Registration</a></li>
+						<li>
+							<button type="button" class="menu-btn">About Us</button>
+							<ul data-menu-depth="2">
+								<li><a href="#none" class="menu-btn">Introduce</a></li>
+								<li><a href="#none" class="menu-btn">Contact</a></li>
+							</ul>
+						</li>
+					</ul>
+					<a href="https://www.instagram.com/yvoire.official/" class="instagram-link-btn" target="_blank"></a>
+				</div>
+			</section>
+		</header>
+		<!-- [E] header -->
+		
+		<!-- [S] contents -->
+		<article class="default-contents">
+			<!-- [S] 관리자, 프론트 PC/모바일 공통 컨텐츠 -->
+			<section class="content-section">
+				<header class="content-header">
+					<h2 class="content-tit">Anatomy</h2>
+				</header>
+				
+				<div class="breadcrumb">
+					<span class="home">home</span><span class="depth">Academy</span><span class="page">Anatomy</span>
+				</div>
+				
+				<!-- [S] 게시물 보기 --> 
+				<article class="board-wrap" data-board-type="form-view">
+				<!-- [2020-08-28] data-board-header="download" data- 속성값 추가 -->
+					<header class="board-header" data-board-header="comment">
+						<h3 class="board-tit">SILHOUETTE SOFT®: A COMPREHENSIVE APPROACH INTO MAXIMIZING YOUR PATIENT’S SATISFACTION</h3>
+					</header>
+					
+					<div class="board-detail" data-list-type="content-detail">
+						<!-- [S : 2020-09-11] 좋아요 토글 기능 추가 -->
+						<div class="img-wrap" data-type="toggle" data-toggle-action="bookmark">	
+							<button type="button" class="bookmark-btn">like</button>
+							<span class="img-area"><img src="/resource/images/common/contents/psimg_200x200.png" onerror="this.src='/resource/images/common/contents/psimg_200x200.jpg';" alt="" /></span>
+						</div>
+						<!-- [E : 2020-09-11] 좋아요 토글 기능 추가 -->
+						<ul class="list">
+							<li>
+								<strong class="tit">registration Date</strong>
+								<span class="txt">2020-07-28</span>
+							</li>
+							<li>
+								<strong class="tit">Lecturer Name</strong>
+								<span class="txt">Dr Daniel Lindemann</span>
+							</li>
+							<li>
+								<strong class="tit">Lecture Content</strong>
+								<span class="txt">Through this webinar, we would like to present the new Silhouette treatment protocols to all your physicians. Apart from the presentations, we will have a live-demo showing the full-face treatment with 10-sutures.</span>
+							</li>
+						</ul>
+					</div>
+
+					<!-- [S] 비디오가 적용된 타입일 때 -->
+					<article class="board-content" data-type="video">
+						<div class="video-area">
+							<video autoplay controls muted poster="/images/w3html5.gif">
+								<source src="/resource/images/temp/2020_LG Chem PR_Video_ENG.mp4" type="video/mp4">
+							</video>
+						</div>
+						<!-- [S] comment -->
+						<ul class="comment-list">
+							<li>
+								<!-- [S] 인증강사 일때 : [data-comment-type="certified-instructor"] -->
+								<div class="comment-wrap" data-comment-type="certified-instructor">
+									<article class="comment-contents">
+										<header class="comment-header">
+											<i class="condition-icon" data-comment-condition="waiting">waiting</i>
+											<strong class="name">GwonYS@lgcns.com</strong>
+										</header>
+
+										<div class="comment-area">
+											<pre class="text-area">
+												Can you help translate this site into a foreign language ? Please email us with details if you can help.
+											</pre>
+											<button type="button" class="list-sub-btn" data-btn-style="modal" data-btn-key="comment">Reply</button>
+										</div>
+										
+										<footer class="comment-footer">
+											<span class="datetime">2020-09-04</span>
+										</footer>
+									</article>
+									
+									<article class="comment-contents" data-comment-condition="reply">
+										<header class="comment-header">
+											<i class="profile-icon"><img src="/resource/images/temp/@img-temp-profile.png" alt="" /></i>
+											<strong class="name">GwonYS@lgcns.com</strong>
+										</header>
+
+										<div class="comment-area">
+											<pre class="text-area">
+												Yes. The incision in 15 minutes and 35 seconds.<br />
+												You can make an incision about 10 to 15mm and seal it.<br />
+												If you have any additional questions, please contact us 1:1.
+											</pre>
+											<button type="button" class="modify-sub-btn" data-btn-style="modal" data-btn-key="comment"></button>
+											<button type="button" class="delete-sub-btn"></button>
+										</div>
+										
+										<footer class="comment-footer">
+											<span class="datetime">2020-09-04</span>
+										</footer>
+									</article>
+								</div>
+								<!-- [E] 인증강사 일때 -->
+							</li>
+							
+							<li>
+								<!-- [S] 사용자 일때 : [data-comment-type="user"] -->
+								<div class="comment-wrap" data-comment-type="user">
+									<article class="comment-contents">
+										<header class="comment-header">
+											<i class="condition-icon" data-comment-condition="completed">completed</i>
+											<strong class="name">GwonYS@lgcns.com</strong>
+										</header>
+
+										<div class="comment-area">
+											<pre class="text-area">
+												Can you help translate this site into a foreign language ? Please email us with details if you can help.
+											</pre>
+										</div>
+										
+										<footer class="comment-footer">
+											<span class="datetime">2020-09-04</span>
+										</footer>
+									</article>
+									
+									<article class="comment-contents" data-comment-condition="reply">
+										<header class="comment-header">
+											<i class="profile-icon"><img src="/resource/images/temp/@img-temp-profile.png" alt="" /></i>
+											<strong class="name">GwonYS@lgcns.com</strong>
+										</header>
+
+										<div class="comment-area">
+											<pre class="text-area">
+												Yes. The incision in 15 minutes and 35 seconds.<br />
+												You can make an incision about 10 to 15mm and seal it.<br />
+												If you have any additional questions, please contact us 1:1.
+											</pre>
+										</div>
+										
+										<footer class="comment-footer">
+											<span class="datetime">2020-09-04</span>
+										</footer>
+									</article>
+								</div>
+								<!-- [E] 사용자 일때 -->
+							</li>
+						</ul>
+						<!-- [E] comment -->
+						
+						<div class="form-area" data-combine-form="column-6-form">
+							<div class="form" data-mult-form="comment"><textarea class="input-form" placeholder="Please enter your answer."></textarea></div>
+							<div class="form" data-mult-form="btn"><button type="button" class="main-btn">Save</button></div>
+						</div>
+					</article>
+					<!-- [E] 비디오가 적용된 타입일 때 -->
+					
+					<div class="submit-area">
+						<button type="submit" class="sub-btn" data-offset="left"><i class="fas fa-chevron-left"></i>Previous</button>
+						<button type="submit" class="sub-btn" data-offset="left">Next<i class="fas fa-chevron-right"></i></button>
+						<button type="submit" class="sub-btn" data-btn-style="modal" data-btn-key="poll"><i class="fas fa-list left"></i>List</button>
+					</div>
+				</article>
+				<!-- [E] 게시물 보기 -->
+			</section>
+			<!-- [E] 관리자, 프론트 PC/모바일 공통 컨텐츠 -->
+			<button type="button" class="gotop-btn" data-moving-type="target" data-moving-action="topMove"><i class="fas fa-angle-up"></i>TOP</button>
+		</article>
+		<!-- [E] contents -->
+		
+		<!-- [S] footer -->
+		<footer class="default-footer">
+			<div class="menu-area">
+				<strong class="logo-tit"><img src="/resource/images/common/layout/logo-footer-tit.png" alt="" /></strong>
+				<nav class="menu-list">
+					<ul>
+						<li><a href="#none" class="menu-btn">Terms And Conditions</a></li>
+						<li><a href="#none" class="menu-btn">Privacy Policy</a></li>
+						<li><button type="button" class="menu-btn" data-btn-style="modal" data-btn-key="sitemap">Site Map</button></li>
+						<li><a href="#none" class="menu-btn">Contact Us</a></li>
+						<li><a href="http://global.lgyvoire.com/news_list.jsp" class="menu-btn">Notice</a></li>
+					</ul>
+				</nav>
+			</div>
+			
+			<div class="form" data-mult-form="select-list">
+				<button class="select-btn">Family site<i class="fas fa-angle-up"></i></button>
+				<ul class="option-list">
+					<li><a href="http://www.lg.co.kr/" target="_blank" class="link-btn">LG</a></li>
+					<li><a href="https://www.lgchem.com/main/index" target="_blank" class="link-btn">LG Chem</a></li>
+				</ul>
+			</div>
+			
+			<span class="copy">© LG Chem. ALL RIGHTS RESERVED.</span>
+		</footer>
+		<!-- [E] footer -->
+	</section>
+	<!-- [E] wrap -->
+	
+	<!-- [S 2020-09-08] 레이어 팝업 : 설문 레이어 팝업 -->
+	<div class="layerPop-wrap" id="FR070101-15" data-pop-action="disabled">
+		<article class="layerPop-area" data-pop-key="poll" data-pop-type="poll">
+			<header class="layerPop-header">
+				<h3 class="layerPop-tit">Poll</h3>
+				<button type="button" class="layerPop-close-btn" data-pop-btn="close"><span class="icon-close"></span></button>
+			</header>
+			<article class="layerPop-contents">
+				<div class="list-area">
+					<ol>
+						<li>
+							<div class="question">Where can I get some?</div>
+							<div class="answer">
+								<ul class="form" data-form="radio">
+									<li>
+										<input type="radio" class="check-form" id="radio01" name="admin">
+										<label for="radio01" class="label-form">Answer1</label>
+									</li>
+									<li>
+										<input type="radio" class="check-form" id="radio02" name="admin">
+										<label for="radio02" class="label-form">Answer1</label>
+									</li>
+									<li>
+										<input type="radio" class="check-form" id="radio03" name="admin">
+										<label for="radio03" class="label-form">Answer1</label>
+									</li>
+									<li>
+										<input type="radio" class="check-form" id="radio04" name="admin">
+										<label for="radio04" class="label-form">Answer1</label>
+									</li>
+									<li>
+										<input type="radio" class="check-form" id="radio05" name="admin">
+										<label for="radio05" class="label-form">Answer1</label>
+									</li>
+								</ul>
+							</div>
+						</li>
+						
+						<li>
+							<div class="question">Can you help translate this site into a foreign language ?</div>
+							<div class="answer"><div class="form" data-mult-form="comment"><textarea class="input-form" placeholder="Please enter your answer."></textarea></div></div>
+						</li>
+						
+						<li>
+							<div class="question">who avoids a pain that produces no resultant pleasure?</div>
+							<div class="answer"><div class="form" data-mult-form="comment"><textarea class="input-form" placeholder="Please enter your answer."></textarea></div></div>
+						</li>
+						
+						<li>
+							<div class="question">who avoids a pain that produces no resultant pleasure?</div>
+							<div class="answer"><div class="form" data-mult-form="comment"><textarea class="input-form" placeholder="Please enter your answer."></textarea></div></div>
+						</li>
+						
+						<li>
+							<div class="question">who avoids a pain that produces no resultant pleasure?</div>
+							<div class="answer"><div class="form" data-mult-form="comment"><textarea class="input-form" placeholder="Please enter your answer."></textarea></div></div>
+						</li>
+					</ol>
+				</div>
+			</article>
+			<footer class="layerPop-footer">
+				<button type="submit" class="layerPop-main-btn">Submit</button>
+				<!-- [2020-09-09] 팝업 소스 삭제 data-pop-btn="delete" -->
+				<button type="submit" class="layerPop-sub-btn" data-pop-btn="delete">Cancel</button>
+			</footer>
+		</article>
+	</div>
+	<!-- [E] 레이어 팝업 -->
+	
+	<!-- [S 2020-09-09] 레이어 팝업 : 댓글작성 팝업 -->
+	<div class="layerPop-wrap" id="FR070101-20" data-pop-action="disabled">
+		<article class="layerPop-area" data-pop-key="comment" data-pop-type="comment">
+			<header class="layerPop-header">
+				<h3 class="layerPop-tit">1:1 Inquiry Answer</h3>
+				<button type="button" class="layerPop-close-btn" data-pop-btn="close"><span class="icon-close"></span></button>
+			</header>
+			<article class="layerPop-contents">
+				<div class="form" data-mult-form="comment"><textarea class="input-form" placeholder="Please enter your answer."></textarea></div>
+			</article>
+			<footer class="layerPop-footer">
+				<button type="submit" class="layerPop-main-btn">Save</button>
+				<!-- [2020-09-09] 팝업 소스 삭제 data-pop-btn="delete" -->
+				<button type="submit" class="layerPop-sub-btn" data-pop-btn="close">Cancel</button>
+			</footer>
+		</article>
+	</div>
+	<!-- [E] 레이어 팝업 -->
+	
+	<!-- [S : 20200924] 로딩이미지 -->
+	<div class="loading-area" data-pop-action="active">
+		<span class="img-area"><img src="/resource/images/common/contents/m_Loading_200923.gif" alt="" /></span>
+	</div>
+	<!-- [E : 20200924] 로딩이미지 -->
+	
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript"  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="/resource/js/libs/swiper-5.4.5.min.js"></script>
+	<script type="text/javascript" src="/resource/js/mobile/ui.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

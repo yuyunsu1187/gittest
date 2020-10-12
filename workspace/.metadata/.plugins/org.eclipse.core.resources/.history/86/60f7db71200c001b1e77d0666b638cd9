@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Code">
+    
+    <select id="retrieveCodeList" resultType="code">
+		<![CDATA[
+		SELECT code
+             , code_name AS value
+          FROM code_detail
+         WHERE group_id = #{codeGroup}
+		]]>
+		<choose>
+		   <when test="codeGroup == 'COUNTRY'">
+		    <![CDATA[ ORDER BY code_name ASC ]]>
+           </when> 
+		   <otherwise>
+		    <![CDATA[ ORDER BY code ASC ]]>
+           </otherwise>
+		</choose>
+	</select>
+	
+	<select id="retrieveGroupList" resultType="code">
+        <![CDATA[
+        SELECT group_id AS code
+        	 , group_name AS value
+		  FROM code_group
+        ]]>
+    </select>
+	
+	<select id="retrieveSurveyList" resultType="code">
+        <![CDATA[
+        SELECT survey_id AS code
+        	 , title AS value
+		  FROM survey_info
+        ]]>
+    </select>
+	
+	<select id="retrieveL1MenuList" resultType="code">
+        <![CDATA[
+		SELECT mi.menu_id AS code
+		     , mi.menu_name AS value
+		  FROM menu_info mi
+		 WHERE mi.menu_level = 1
+		   AND mi.parent_menu_id = 'FR000000'
+		   AND mi.menu_form = '02'
+        ]]>
+    </select>
+	
+	<select id="retrieveL2MenuList" resultType="code">
+        <![CDATA[
+		SELECT mi.menu_id AS code
+		     , mi.menu_name AS value
+		  FROM menu_info mi
+		 WHERE mi.menu_level = 2
+		   AND mi.parent_menu_id = #{menuL1}
+        ]]>
+    </select>
+    
+    <select id="retrieveGroupCodeList" resultType="code">
+		<![CDATA[
+		SELECT cg.group_name
+		     , cg.group_id
+		     , cg.description
+		     , cg.use_yn
+		  FROM code_group cg 
+	 	]]>
+	</select>
+    
+    <select id="retrieveGroupCodeDetail" resultType="code">
+		<![CDATA[
+		SELECT cg.group_name
+		     , cg.group_id
+		     , cg.description
+		     , cg.use_yn
+		  FROM code_group cg 
+         WHERE cg.group_id = #{groupId}
+	 	]]>
+	</select>
+	
+	<select id="retrieveUserTypeList" resultType="code">
+		<![CDATA[
+		SELECT code
+             , code_name AS value
+          FROM code_detail
+         WHERE group_id = #{codeGroup}
+           AND NOT CODE LIKE 'A%' 
+	 	]]>
+	</select>
+	
+	<select id="retrieveManagerTypeList" resultType="code">
+		<![CDATA[
+		SELECT code
+             , code_name AS value
+          FROM code_detail
+         WHERE group_id = #{codeGroup}
+           AND CODE LIKE 'A%' 
+	 	]]>
+	</select>
+	
+    <insert id="insertGroupCode">
+        <![CDATA[  
+		INSERT INTO code_group(
+		       group_id
+		     , group_name
+		     , description
+		     , use_yn
+		     , remark
+		     , create_id
+		     , create_date
+		     , update_id
+		     , update_date
+		) VALUES (
+		       #{groupId}
+		     , #{groupName}
+		     , #{description}
+		     , #{useYn}
+		     , #{remark}
+		     , #{userId}
+		     , NOW()
+		     , #{userId}
+		     , NOW()
+		)         
+        ]]>    
+    </insert>
+
+    <update id="updateGroupCode">
+        <![CDATA[ 
+		UPDATE code_group
+		   SET group_name = #{groupName}
+		     , description = #{description}
+		     , use_yn = #{useYn}
+		     , update_id = #{userId}
+		     , update_date = now() 
+		 WHERE group_id = #{groupId}       
+        ]]>    
+    </update>
+    
+    <select id="retrieveDetailCodeList" resultType="code">
+		<![CDATA[
+		SELECT cd.group_id
+		     , cd.code
+		     , cd.code_name
+		     , cd.description
+		     , cd.use_yn
+		  FROM code_detail cd 
+	 	]]>
+	</select>
+    
+    <select id="retrieveDetailCodeDetail" resultType="code">
+		<![CDATA[
+		SELECT cd.group_id
+		     , cd.code
+		     , cd.code_name
+		     , cd.description
+		     , cd.use_yn
+		  FROM code_detail cd 
+         WHERE cd.group_id = #{groupId}
+           AND cd.code = #{code}
+	 	]]>
+	</select>
+	
+    <insert id="insertDetailCode">
+        <![CDATA[  
+		INSERT INTO code_detail(
+		       group_id
+		     , code
+		     , code_name
+		     , description
+		     , use_yn
+		     , remark
+		     , create_id
+		     , create_date
+		     , update_id
+		     , update_date
+		) VALUES (
+		       #{groupId}
+		     , #{code}
+		     , #{codeName}
+		     , #{description}
+		     , #{useYn}
+		     , #{remark}
+		     , #{userId}
+		     , NOW()
+		     , #{userId}
+		     , NOW()
+		)         
+        ]]>    
+    </insert>
+
+    <update id="updateDetailCode">
+        <![CDATA[ 
+		UPDATE code_detail
+		   SET code_name = #{codeName}
+		     , description = #{description}
+		     , use_yn = #{useYn}
+		     , update_id = #{userId}
+		     , update_date = now() 
+         WHERE group_id = #{groupId}
+           AND code = #{code}    
+        ]]>    
+    </update>
+    
+</mapper>

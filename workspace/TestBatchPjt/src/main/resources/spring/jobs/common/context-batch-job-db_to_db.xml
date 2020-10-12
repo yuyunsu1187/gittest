@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--  
+		DB to DB Job
+		
+		config(1): - Using JdbcCursorItemReader(Spring Batch)
+			       - Using FastReflectorRowMapper(DevOnFrame Batch)
+	
+		config(2): - Using JdbcPagingItemReader(Spring Batch)
+				   - Using FastReflectorRowMapper(DevOnFrame Batch)
+				 
+		config(3): - Using MyBatisPagingItemReader(Mybatis)
+	-->
+	
+	<batch:job id="db-to-db-job">
+		<!-- Step for data insert -->
+		<batch:step id="file-to-db-step" next="db-to-db-step">			
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="file-to-db-reader" writer="file-to-db-writer" commit-interval="1000" />
+			</batch:tasklet>
+		</batch:step>
+		<!-- DB->DB Step -->
+		<batch:step id="db-to-db-step">			
+			<batch:tasklet transaction-manager="transactionManager">
+				<!-- config(1) --><batch:chunk reader="db-to-db-cursorReader" writer="db-to-db-writer" commit-interval="1000" />
+				<!-- config(2) --><!-- batch:chunk reader="db-to-db-pagingReader" writer="db-to-db-writer" commit-interval="1000" /-->
+				<!-- config(3) --><!-- batch:chunk reader="db-to-db-mybatisReader" writer="db-to-db-writer" commit-interval="1000" /-->
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+	
+	<!-- JdbcCursorItemReader -->
+	<bean id="db-to-db-cursorReader" class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="dataSource" />
+		<property name="fetchSize" value="1000"/>
+		<property name="sql">
+		    <value>
+				<![CDATA[
+					SELECT num, name, sex, department_code, joblevel_code, skill_code, telephone, birthdate, postal, address
+					FROM   EMPLOYEE
+				]]>
+			</value>
+	    </property>  
+		<property name="rowMapper">
+		    <bean class="devonframe.batch.item.database.FastReflectorRowMapper">
+		        <property name="mappedClass" value="devonframe.batch.sample.common.model.Employee"/>
+		    </bean>
+		</property>
+	</bean>
+	
+	<!-- JdbcPagingItemReader -->
+	<bean id="db-to-db-pagingReader" class="org.springframework.batch.item.database.JdbcPagingItemReader">
+		<property name="dataSource" ref="dataSource" />
+		<property name="fetchSize" value="200"/>
+	    <property name="queryProvider">
+	        <bean class="org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean">
+	        	<property name="dataSource" ref="dataSource" />
+	            <property name="selectClause">
+				    <value>
+						<![CDATA[
+							SELECT num, name, sex, department_code, joblevel_code, skill_code, telephone, birthdate, postal, address
+						]]>
+					</value>	            
+	            </property>
+	            <property name="fromClause">
+				    <value>
+						<![CDATA[
+							EMPLOYEE
+						]]>
+					</value>	            
+	            </property>
+                <property name="sortKey" value="num"/>
+	        </bean>
+	    </property>
+	    <property name="pageSize" value="1000"/>
+		<property name="rowMapper">
+		    <bean class="devonframe.batch.item.database.FastReflectorRowMapper">
+		        <property name="mappedClass" value="devonframe.batch.sample.common.model.Employee"/>
+		    </bean>
+		</property>
+	</bean>
+	
+	<!-- MyBatisPagingItemReader -->
+	<bean id="db-to-db-mybatisReader" class="org.mybatis.spring.batch.MyBatisPagingItemReader">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		<property name="queryId" value="employee.retrieveEmployee"/>
+		<property name="pageSize" value="1000"/>
+	</bean>
+	
+	<!-- EnhancedJdbcBatchItemWriter -->
+	<bean id="db-to-db-writer" class="devonframe.batch.item.database.EnhancedJdbcBatchItemWriter">
+		<property name="assertUpdates" value="false" />
+		<property name="itemPreparedStatementSetter">
+			<bean class="devonframe.batch.item.database.FastReflectorItemPreparedStatementSetter" />
+		</property>
+		<property name="sql">
+			<value>
+				<![CDATA[
+				INSERT INTO EMPLOYEE_OUT (
+					num, name, sex, department_code, joblevel_code, skill_code, telephone, birthdate, postal, address
+				) values (
+					?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+				)
+				]]>
+			</value>
+		</property>
+		<property name="params" 
+			value="num, name, sex, departmentCode, joblevelCode, skillCode, telephone, birthdate, postal, address"/>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+</beans>

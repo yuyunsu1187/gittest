@@ -1,0 +1,8 @@
+package com.gyva.web.common.user.dao;
+
+import com.gyva.web.common.user.model.UserVO;
+
+public interface UserDAO {
+	public void insertUser(UserVO vo);
+
+}

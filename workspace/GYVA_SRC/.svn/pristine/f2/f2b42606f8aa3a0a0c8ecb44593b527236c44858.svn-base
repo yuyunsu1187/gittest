@@ -1,0 +1,171 @@
+package devonframe.gyva.common.menu.model;
+
+
+public class Menu {
+    
+    private String menuId;    
+    private String  menuName;    
+    private int menuLevel;    
+    private String parentMenuId;    
+    private String menuUrl;
+    private String userId;    
+    private String contentsId;
+
+    private String menuType;
+    private String menuForm;
+
+    private String listUrl;
+    private String detailUrl;
+    private String registUrl;
+    private String modifyUrl;
+    private String returnUrl;
+    private String listDo;
+    private String detailDo;
+    private String registDo;
+    private String modifyDo;
+    private String returnDo;
+    
+    private String modCode;
+    private String frontId;
+    private String adminId; 
+    
+    public String getMenuId() {
+        return menuId;
+    }    
+    public void setMenuId(String menuId) {
+        this.menuId = menuId;
+    }
+    
+    public String getMenuName() {
+        return menuName;
+    }    
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+    
+    public int getMenuLevel() {
+        return menuLevel;
+    }    
+    public void setMenuLevel(int menuLevel) {
+        this.menuLevel = menuLevel;
+    }
+    
+    public String getParentMenuId() {
+        return parentMenuId;
+    }    
+    public void setParentMenuId(String parentMenuId) {
+        this.parentMenuId = parentMenuId;
+    }
+    
+    public String getMenuUrl() {
+        return menuUrl;
+    }    
+    public void setMenuUrl(String menuUrl) {
+        this.menuUrl = menuUrl;
+    }
+    
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
+	public String getContentsId() {
+		return contentsId;
+	}
+	public void setContentsId(String contentsId) {
+		this.contentsId = contentsId;
+	}
+	public String getMenuType() {
+		return menuType;
+	}
+	public String getModCode() {
+		return modCode;
+	}
+	public void setModCode(String modCode) {
+		this.modCode = modCode;
+	}
+	public void setMenuType(String menuType) {
+		this.menuType = menuType;
+	}
+	public String getMenuForm() {
+		return menuForm;
+	}
+	public void setMenuForm(String menuForm) {
+		this.menuForm = menuForm;
+	}
+	public String getListUrl() {
+		return listUrl;
+	}
+	public void setListUrl(String listUrl) {
+		this.listUrl = listUrl;
+	}
+	public String getDetailUrl() {
+		return detailUrl;
+	}
+	public void setDetailUrl(String detailUrl) {
+		this.detailUrl = detailUrl;
+	}
+	public String getRegistUrl() {
+		return registUrl;
+	}
+	public void setRegistUrl(String registUrl) {
+		this.registUrl = registUrl;
+	}
+	public String getModifyUrl() {
+		return modifyUrl;
+	}
+	public void setModifyUrl(String modifyUrl) {
+		this.modifyUrl = modifyUrl;
+	}
+	public String getReturnUrl() {
+		return returnUrl;
+	}
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
+	}
+	public String getListDo() {
+		return listDo;
+	}
+	public void setListDo(String listDo) {
+		this.listDo = listDo;
+	}
+	public String getDetailDo() {
+		return detailDo;
+	}
+	public void setDetailDo(String detailDo) {
+		this.detailDo = detailDo;
+	}
+	public String getRegistDo() {
+		return registDo;
+	}
+	public void setRegistDo(String registDo) {
+		this.registDo = registDo;
+	}
+	public String getModifyDo() {
+		return modifyDo;
+	}
+	public void setModifyDo(String modifyDo) {
+		this.modifyDo = modifyDo;
+	}
+	public String getReturnDo() {
+		return returnDo;
+	}
+	public void setReturnDo(String returnDo) {
+		this.returnDo = returnDo;
+	}
+	public String getFrontId() {
+		return frontId;
+	}
+	public void setFrontId(String frontId) {
+		this.frontId = frontId;
+	}
+	public String getAdminId() {
+		return adminId;
+	}
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
+	}
+	
+}

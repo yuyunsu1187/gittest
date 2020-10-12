@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/VOTemplate" format="1.0" title="VO Template">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+]]></prefix>
+
+
+
+	<ifNewFile><![CDATA[
+package ${voPackage};
+
+]]></ifNewFile>
+
+
+
+	<ifNewFile><![CDATA[
+		
+/**
+ * @Class Name : ${voClassName}.java
+ * @Description : ${table.capitalized} VO class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C) LG CNS All rights reserved.
+ */
+public class ${voClassName} {
+	
+#foreach($attribute in $table.columns)
+	/** ${attribute.name} */
+	private ${attribute.javaType} ${attribute.camelCased};
+	
+#end
+#foreach($attribute in $table.columns)
+	public ${attribute.javaType} get${attribute.capitalized}() {
+		return this.${attribute.camelCased};
+	}
+	
+	public void set${attribute.capitalized}(${attribute.javaType} ${attribute.camelCased}) {
+		this.${attribute.camelCased} = ${attribute.camelCased};
+	}
+	
+#end  
+}
+]]></ifNewFile>
+
+</CodeGenTemplate>

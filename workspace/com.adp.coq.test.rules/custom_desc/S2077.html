@@ -1,0 +1,1 @@
+﻿<h1>Values passed to SQL commands should be sanitized (S2077)</h1>SQL 을 실행하는 어플리케이션은 외부에서 받은 value 를 SQL 구문에 직접 넣지 말고 parameter 화 하여 사용한다. (예제 참조) 그렇게 하지 않으면 attacker 가 쿼리에 임의의 input 을 넣어서 개발자가 의도하지 않은 명령이 실행될 수 있다.  이 룰은 메쏘드 파라미터가 non-Hibernate SQL 구문에 직접적으로 사용되고 있지는 않은지, Hibernate 구문에서 concatenation 이 아닌 parameter 바인딩이 사용되고 있지는 않은지를 체크한다.

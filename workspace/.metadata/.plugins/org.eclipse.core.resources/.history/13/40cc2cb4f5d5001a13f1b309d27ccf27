@@ -1,0 +1,8 @@
+package com.gyva.web.common.fileupload.service;
+
+import com.gyva.web.common.fileupload.model.FileInfo;
+
+public interface FileUploadServiceUtil {
+	public void insertFileInfo(FileInfo fileInfo);
+	public List<Map<String, Object>> parseInsertFileInfo(BoardVO boardVO, MultipartHttpServletRequest mpRequest);
+}

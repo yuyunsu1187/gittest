@@ -1,0 +1,29 @@
+package com.gyva.web.common.user.dao;
+
+import javax.annotation.Resource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.gyva.web.common.user.model.User;
+
+@Repository
+public class UserDAO {
+	
+	@Resource(name = "sqlSession")
+	private SqlSession sqlSession;
+	
+	private static final String namespace = "User";
+	
+	// 회원 가입 저장
+	public void insertUser(User vo) {
+		sqlSession.insert(namespace + ".insertUserTest", vo);
+	}
+	
+	// 회원 가입 id check	
+	public int userCheck(User vo) {
+		int result = sqlSession.selectOne(namespace + ".userCheck", vo);
+		return result;
+	}
+	
+}

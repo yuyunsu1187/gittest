@@ -1,0 +1,94 @@
+package devonframe.gyva.front.common.filedownload.model;
+
+
+
+public class FileInfo {
+    
+	String fileId = "";
+	
+	int fileNumber;
+    
+    String fileName ="";
+    
+    String uploadFilePath = "";
+    
+    String uploadFileName ="";
+    
+    long fileSize = 0;
+    
+    String fileExtension = "";
+    
+    String uploadDate;
+
+	public String getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+
+	public int getFileNumber() {
+		return fileNumber;
+	}
+
+	public void setFileNumber(int fileNumber) {
+		this.fileNumber = fileNumber;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getUploadFilePath() {
+		return uploadFilePath;
+	}
+
+	public void setUploadFilePath(String uploadFilePath) {
+		this.uploadFilePath = uploadFilePath;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public long getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
+
+	public String getFileExtension() {
+		return fileExtension;
+	}
+
+	public void setFileExtension(String fileExtension) {
+		this.fileExtension = fileExtension;
+	}
+
+	public String getUploadDate() {
+		return uploadDate;
+	}
+
+	public void setUploadDate(String uploadDate) {
+		this.uploadDate = uploadDate;
+	}
+
+	@Override
+	public String toString() {
+		return "FileInfo [fileId=" + fileId + ", fileNumber=" + fileNumber + ", fileName=" + fileName
+				+ ", uploadFilePath=" + uploadFilePath + ", uploadFileName=" + uploadFileName + ", fileSize=" + fileSize
+				+ ", fileExtension=" + fileExtension + ", uploadDate=" + uploadDate + "]";
+	}
+
+}

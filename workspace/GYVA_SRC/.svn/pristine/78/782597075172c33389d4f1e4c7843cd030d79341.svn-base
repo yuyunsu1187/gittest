@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+/*************************************************************************************************
+	[Reset]
+	
+	1. 모바일에서 하이라이트 삭제 (-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;outline:0;)
+	2. IOS 기기의 폰트 속성 삭제(-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-ms-text-size-adjust:none;)
+	3. 요소의 뒷면을 볼 수 있어야하는지 여부를 정의 (-webkit-backface-visibility:hidden;backface-visibility:hidden;)
+	4. 요소의 기본 스타일 없애기 (appearance:none;-webkit-appearance:none;-moz-appearance:none;-o-appearance:none;)
+	5. 폼 및 버튼 요소의 포커스 라인 삭제 (outline:0;)
+*************************************************************************************************/
+html {overflow-y:scroll;} /* 크롬 브라우저에서 스크롤이 삭제되는 현상 */
+html,body {height:100%;}
+body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,hr,figure,menu,p,pre,fieldset,legend,button {margin:0;padding:0;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,p,blockquote,th,td,header,footer,section,article,aside,nav,hgroup,details,menu,figure,figcaption,form,fieldset,legend,select,input,textarea,span,em,strong,a,button {-webkit-word-break:keep-all;word-break:keep-all;word-wrap:break-word;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-ms-box-sizing:border-box;}
+address,cite,em,dfn,i {font-style:inherit;}
+h1,h2,h3,h4,h5,h6,th,strong,b {font-size:inherit;font-weight:inherit;}
+select,button,input,textarea {font-family:inherit;font-size:inherit;vertical-align:middle;}
+legend,fieldset {border:none;}
+input,button,table,textarea,select,option {font-weight:inherit;}
+textarea {resize:none;}
+table {border-collapse:collapse;border-spacing:0;width:100%;table-layout:fixed;}
+caption,legend {width:0;height:0;font-size:0;line-height:0;visibility:hidden;}
+ul,ol,li {list-style:none;}
+
+img {display:block;border:none;width:100%;}
+a,button {color:inherit;appearance:none;-webkit-appearance:none;-moz-appearance:none;-o-appearance:none;}
+button {background:transparent;border:none;cursor:pointer;outline:0;} /* 버튼 클릭 시 확인되는 라인 삭제 : 접근성 작업 시 해당 부분 주석 필요 */
+a,a:link,a:visited,a:active {color:inherit;text-decoration:none;} 
+a:hover {color:inherit;}
+
+/*************************************************************************************************
+	컴포넌트 정의
+*************************************************************************************************/
+.clfix:after, [data-list-style="clfix"]:after {content:"";display:block;clear:both;visibility:hidden;height:0;} /* float 해제 적용 */
+.ellipsis, [data-text-style="ellipsis"] {display:inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} /* 글씨 말줄임 정의 */
+.ellipsisRow, [data-text-style="ellipsisRow"] {display:block;display:-webkit-box;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-wrap:break-word;overflow:hidden;height:48px;line-height:24px;} /* 2줄 말줄임 (폰트사이즈가 12로 가정할 때) */
+.ellipsisRow03, [data-text-style="ellipsisRow03"] {display:block;display:-webkit-box;text-overflow:ellipsis;-webkit-line-clamp:3;-webkit-box-orient:vertical;word-wrap:break-word;overflow:hidden;} /* 3줄 말줄임 */
+.essential:after, [data-text-style="essential"]:after {content:"*";margin-left:4px;color:#a50034;vertical-align:middle;} /* 필수입력 항목 */
+.blind {position:absolute;top:0;left:0;overflow:hidden;width:0;height:0;font-size:0;line-height:0;} /* 영역 숨김 정의 */
+/*************************************************************************************************
+	복수 클래스 정의
+*************************************************************************************************/
+.inlind {display:inline;}
+.inlindBlock {display:inline-block;}
+.block {display:block;}
+/*************************************************************************************************
+	input 스타일 정의
+*************************************************************************************************/
+input:focus, textarea:focus {outline:0;}
+input[disabled], .disabled, input[disabled]:focus, .disabled:focus, input[disabled]:hover, .disabled:hover {opacity:1;background-color:#e6e6e8;border:1px solid #c6c8ca;}
+input[readonly], .readonly, input[readonly]:focus, .readonly:focus, input[readonly]:hover, .readonly:hover {border:none;}
+input[type=text]::-ms-clear, input[type=text]::-ms-reveal {display:none;height:0;width:0;} /* clear button 삭제 */
+
+/* placeholder css 적용 */
+::-webkit-input-placeholder {color:#cccccc;} /* Chrome/Opera/Safari */
+::-moz-placeholder {color:#cccccc;opacity:1;} /* Firefox 19+ */
+:-moz-placeholder {color:#cccccc;opacity:1;} /* Firefox 18- */
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#cccccc;} /* IE 10+ */
+input:focus::-webkit-input-placeholder {color:transparent;}
+input:focus::-moz-placeholder {color:transparent;}
+input:focus:-ms-input-placeholder {color:transparent;}
+input:focus::-ms-input-placeholder {color:transparent;}
+textarea:focus::-webkit-input-placeholder {color:transparent;}
+textarea:focus::-moz-placeholder {color:transparent;}
+textarea:focus:-ms-input-placeholder {color:transparent;}
+textarea:focus::-ms-input-placeholder {color:transparent;}
+
+/* select */
+select{appearance:none;-webkit-appearance:none;-moz-appearance:none;-o-appearance:none;outline:0;}/* 선택박스 기본 스타일 없애기 */
+select::-ms-expand {display:none;}/* ie에서 기본 스타일 없애줌 */
+/*************************************************************************************************
+	[공통] 스크롤 스타일 정의
+	* 스크롤바 보이지 않게 하기
+	  -  특정 div안에 -ms-overflow-style: none;
+	  - ::-webkit-scrollbar {display:none;}
+*************************************************************************************************/
+/* scroll */
+::-webkit-scrollbar {height:8px;width:8px;}
+::-webkit-scrollbar-track {background-color:#ebebeb;border-radius:4px;}
+::-webkit-scrollbar-thumb {background-color:#6b6b6b;border-radius:4px;}
+::webkit-scrollbar-track-piece {}
+::webkit-scrollbar-corner {}
+::webkit-scrollbar-resizer {}
+::-webkit-scrollbar-button {display:none;}
+
+/* ie 수정 
+html{scrollbar-3dLight-Color: #FFB85A;scrollbar-arrow-color: black;scrollbar-Face-Color: #FF5E00;scrollbar-Track-Color: #efefef;scrollbar-DarkShadow-Color: #000000;scrollbar-Highlight-Color: #FF8224;scrollbar-Shadow-Color: #ED4C00;}
+*/
+
+
+/***************************************************************************
+	[기기별 모바일 해상도 정의]
+	- 갤럭시 S7 Edge 이하 : 360 x 640
+	- 갤럭시 S8 : 360 x 740
+	- 아이폰 5 : 320 x 568
+	- 아이폰 6~ 8 : 375 x 667
+	- 아이폰 6~ 8 plus : 414 x 736
+	- 아이폰 XR, XS Max : 414 x 896
+	- 아이폰 XS : 375 x 812
+	!! max 사이즈 기준으로 지정하여 모바일 작업 진행
+***************************************************************************/
+@media screen and (max-width:900px) {
+/* 컴포넌트 정의 */
+.ellipsisRow, [data-text-style="ellipsisRow"] {height:11.11vw;;line-height:5.55vw;} /* 2줄 말줄임 (폰트사이즈가 12로 가정할 때) */
+.ellipsisRow03, [data-text-style="ellipsisRow03"] {height:13.33vw;line-height:4.72vw;} /* 3줄 말줄임 (폰트사이즈가 11로 가정할 때) */
+.essential:after, [data-text-style="essential"]:after {margin-left:1.11vw;} /* 필수입력 항목 */
+}

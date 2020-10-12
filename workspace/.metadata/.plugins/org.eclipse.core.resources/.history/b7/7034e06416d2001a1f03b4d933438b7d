@@ -1,0 +1,17 @@
+package com.gyva.web.common.manager.service;
+
+import java.util.List;
+
+import com.gyva.web.common.manager.model.Manager;
+
+public interface ManagerService {
+
+	public Manager retrieveManager(Manager manager);
+	public List<Manager> retrieveManagerList(Manager manager);
+	
+	public void insertManager(Manager manager);
+	public void updateManager(Manager manager);
+	public void deleteManager(Manager manager);
+	public void resetPwdUser(Manager manager);
+
+}

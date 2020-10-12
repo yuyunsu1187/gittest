@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="login" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/common/login/loginForm.jsp"/>
+    </definition>
+
+	<definition name="common/login/loginForm" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/common/login/loginForm.jsp"/>
+    </definition>
+
+	<definition name="common/login/joinForm" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/common/login/joinForm.jsp"/>
+    </definition>
+
+	<definition name="common/login/resetPassword" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/common/login/resetPassword.jsp"/>
+    </definition>
+
+	<!-- Front -->
+	<definition name="front" template="/WEB-INF/jsp/tiles/layouts/layout.jsp">
+	    <put-attribute name="title" value="LG chem : LG aesthetics" />
+        <put-attribute name="left" value="/WEB-INF/jsp/tiles/menu/left.jsp" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/top.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/menu/footer.jsp" />
+    </definition>
+	<definition name="main" extends="front">
+    	<put-attribute name="content" value="/WEB-INF/jsp/common/main.jsp"/>
+    </definition>
+
+    <definition name="main/**/contents" extends="front">
+        <put-attribute name="content" value="/WEB-INF/jsp/{1}/contents.jsp" />
+    </definition>
+
+    <definition name="mypage/**" extends="front">
+        <put-attribute name="content" value="/WEB-INF/jsp/mypage/{1}.jsp" />
+    </definition>
+
+    <definition name="common/login/myPageForm" extends="front">
+        <put-attribute name="content" value="/WEB-INF/jsp/mypage/userInfo/myPageForm.jsp" />
+    </definition>
+
+    <definition name="contents/**" extends="front">
+        <put-attribute name="content" value="/WEB-INF/jsp/contents/{1}.jsp" />
+    </definition>
+
+	<!-- Admin -->
+	<definition name="adminMain" template="/WEB-INF/jsp/tiles/layouts/layout-adminMain.jsp">
+	    <put-attribute name="title" value="LG chem : LG aesthetics / Admin" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/admin/top.jsp" />
+    	<put-attribute name="content" value="/WEB-INF/jsp/admin/main.jsp"/>
+    </definition>
+
+	<definition name="admin" template="/WEB-INF/jsp/tiles/layouts/layout-admin.jsp">
+	    <put-attribute name="title" value="LG chem : LG aesthetics" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/admin/top.jsp" />
+        <put-attribute name="left" value="/WEB-INF/jsp/tiles/menu/admin/left.jsp" />
+    </definition>
+
+    <definition name="admin/user/**" extends="admin">
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/user/{1}.jsp" />
+    </definition>
+
+    <definition name="admin/contents/**" extends="admin">
+        <put-attribute name="content" value="/WEB-INF/jsp/contents/{1}.jsp" />
+    </definition>
+
+    <definition name="admin/system/**" extends="admin">
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/system/{1}.jsp" />
+    </definition>
+    
+    <!-- Mobile -->
+	<definition name="mobile/login" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/mobile/common/login/loginForm.jsp"/>
+    </definition>
+
+	<definition name="mobile/login/loginForm" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/mobile/common/login/loginForm.jsp"/>
+    </definition>
+
+	<definition name="mobile/login/joinForm" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/mobile/common/login/joinForm.jsp"/>
+    </definition>
+
+	<definition name="mobile/login/resetPassword" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/mobile/common/login/resetPassword.jsp"/>
+    </definition>
+    
+	<definition name="mobile" template="/WEB-INF/jsp/tiles/layouts/layout-mobile.jsp">
+	    <put-attribute name="title" value="LG chem : LG aesthetics" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/mobile/top.jsp" />
+    	<put-attribute name="content" value="/WEB-INF/jsp/mobile/common/main.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/menu/footer.jsp" />
+    </definition>
+
+    <definition name="mobile/login/myPageForm" extends="front">
+        <put-attribute name="content" value="/WEB-INF/jsp/mypage/userInfo/myPageForm.jsp" />
+    </definition>
+
+    <definition name="mobile/mypage/**/contentsList" extends="mobile">
+        <put-attribute name="content" value="/WEB-INF/jsp/mypage/{1}/contentsList.jsp" />
+    </definition>
+
+    <definition name="mobile/login/myPageForm" extends="mobile">
+        <put-attribute name="content" value="/WEB-INF/jsp/mobile/mypage/userInfo/myPageForm.jsp" />
+    </definition>
+
+    <definition name="mobile/contents/**" extends="mobile">
+        <put-attribute name="content" value="/WEB-INF/jsp/contents/{1}.jsp" />
+    </definition>
+        
+	<!-- Mobile -->
+    <definition name="common/error/**" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/common/error/{1}.jsp" />
+    </definition>
+
+</tiles-definitions>

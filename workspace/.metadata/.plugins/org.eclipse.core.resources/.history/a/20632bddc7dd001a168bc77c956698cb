@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<definition name="popup" template="/WEB-INF/jsp/tiles/layouts/layout-popup.jsp">
+    </definition>
+
+	<definition name="contentsPopUp" extends="popup">
+    </definition>
+
+	<definition name="login" template="/WEB-INF/jsp/tiles/layouts/layout-login.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/common/loginForm.jsp"/>
+    </definition>
+
+	<!-- Front -->
+	<definition name="main" template="/WEB-INF/jsp/tiles/layouts/layout-main.jsp">
+	    <put-attribute name="title" value="LG Chem YVOIRE Academy" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/top.jsp" />
+        <put-attribute name="left" value="/WEB-INF/jsp/tiles/menu/left.jsp" />
+    	<put-attribute name="content" value="/WEB-INF/jsp/common/main.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/menu/footer.jsp" />
+    </definition>
+
+	<definition name="mypage" template="/WEB-INF/jsp/tiles/layouts/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/top.jsp" />
+        <put-attribute name="left" value="/WEB-INF/jsp/tiles/menu/left.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/menu/footer.jsp" />
+    </definition>
+
+    <definition name="mypage/**/contentsList" extends="contents">
+    	<put-attribute name="title" value="My Page" />
+        <put-attribute name="content" value="/WEB-INF/jsp/mypage/{1}/contentsList.jsp" />
+    </definition>
+
+    <definition name="common/login/myPageForm" extends="contents">
+    	<put-attribute name="title" value="Profile" />
+        <put-attribute name="content" value="/WEB-INF/jsp/mypage/userInfo/myPageForm.jsp" />
+    </definition>
+
+	<definition name="contents" template="/WEB-INF/jsp/tiles/layouts/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/top.jsp" />
+        <put-attribute name="left" value="/WEB-INF/jsp/tiles/menu/left.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/tiles/menu/footer.jsp" />
+    </definition>
+
+    <definition name="contents/**/contentsList" extends="contents">
+    	<put-attribute name="title" value="Contents List" />
+        <put-attribute name="content" value="/WEB-INF/jsp/contents/{1}/contentsList.jsp" />
+    </definition>
+
+    <definition name="contents/**/contentsDetail" extends="contents">
+    	<put-attribute name="title" value="Contents Detail" />
+        <put-attribute name="content" value="/WEB-INF/jsp/contents/{1}/contentsDetail.jsp" />
+    </definition>
+
+	<!-- Admin -->
+	<definition name="adminMain" template="/WEB-INF/jsp/tiles/layouts/layout-adminMain.jsp">
+	    <put-attribute name="title" value="LG Chem YVOIRE Academy" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/admin/top.jsp" />
+    	<put-attribute name="content" value="/WEB-INF/jsp/admin/main.jsp"/>
+    </definition>
+
+	<definition name="admin" template="/WEB-INF/jsp/tiles/layouts/layout-admin.jsp">
+	    <put-attribute name="title" value="LG Chem YVOIRE Academy" />
+        <put-attribute name="header" value="/WEB-INF/jsp/tiles/menu/admin/top.jsp" />
+        <put-attribute name="left" value="/WEB-INF/jsp/tiles/menu/admin/left.jsp" />
+    </definition>
+
+    <definition name="admin/contents/**/contentsList" extends="admin">
+    	<put-attribute name="title" value="Contents List" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/contents/{1}/contentsList.jsp" />
+    </definition>
+
+    <definition name="admin/contents/**/contentsDetail" extends="admin">
+    	<put-attribute name="title" value="Contents Detail" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/contents/{1}/contentsDetail.jsp" />
+    </definition>
+
+    <definition name="admin/contents/**/contentsWrite" extends="admin">
+    	<put-attribute name="title" value="Contents Form" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/contents/{1}/contentsWrite.jsp" />
+    </definition>
+
+    <definition name="admin/user/**/managerList" extends="admin">
+    	<put-attribute name="title" value="Manager List" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/user/{1}/managerList.jsp" />
+    </definition>
+
+    <definition name="admin/user/**/detailForm" extends="admin">
+    	<put-attribute name="title" value="Manager List" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/user/{1}/detailForm.jsp" />
+    </definition>
+
+    <definition name="admin/user/**/updateForm" extends="admin">
+    	<put-attribute name="title" value="Manager List" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/user/{1}/updateForm.jsp" />
+    </definition>
+
+    <definition name="admin/user/**/joinForm" extends="admin">
+    	<put-attribute name="title" value="Manager List" />
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/user/{1}/joinForm.jsp" />
+    </definition>
+
+    <definition name="common/error/*" extends="function">
+    	<put-attribute name="title" value="Error Page" />
+        <put-attribute name="content" value="/WEB-INF/jsp/common/error/{1}.jsp" />
+    </definition>
+
+</tiles-definitions>

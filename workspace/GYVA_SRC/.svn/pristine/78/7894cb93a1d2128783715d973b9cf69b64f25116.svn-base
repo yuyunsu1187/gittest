@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+    <insert id="insertUser">
+		<![CDATA[
+			INSERT INTO user_info (
+			      email
+			    , user_id
+				, password
+				, name_first
+				, name_last
+				, user_type
+				, special_code
+				, country_code
+				, hp_name 
+				, hp_zipcode
+				, hp_add
+				, file_id
+				, request_date
+				, state_code
+				, partner_name
+				, consent_yn
+				, consent2_yn
+				, create_id
+				, create_date
+				, update_id
+				, update_date
+			) VALUES (
+			      #{email}
+			    , (SELECT fnc_nextval('user_id')) 
+				, #{password , jdbcType=VARCHAR}
+				, #{nameFirst}
+				, #{nameLast}
+				, #{userType}
+				, #{specialCode}
+				, #{countryCode}
+				, #{hpName}
+				, #{hpZipcode}
+				, #{hpAdd}
+				, #{fileId}
+				, NOW()
+				, #{stateCode}
+				, #{partnerName}
+				, #{consentYn}
+				, #{consent2Yn}
+				, #{createId}
+				, NOW()
+				, #{updateId}
+				, NOW()
+			)
+		]]>
+	</insert>
+
+	<select id="duplicateCheckId" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) 
+			  FROM user_info 
+			 WHERE email = #{email}
+		]]>
+	</select>
+
+
+	<select id="retrieveUser" resultType="user">
+		<![CDATA[
+			SELECT
+				  ui.seq
+				, ui.email
+				, ui.password
+				, ui.name_first as nameFirst
+				, ui.name_last as nameLast
+				, ui.user_type as userType
+				, ui.special_code as specialCode
+				, ui.country_code as countryCode
+				, ui.file_id as fileId
+				, ui.request_date as requestDate
+				, ui.confirm_id as confirmId
+				, ui.confirm_date as confirmDate
+				, ui.state_code as stateCode
+				, ui.partner_name as partnerName
+				, ui.consent_yn as consentYn
+				, ui.remark
+				, ui.create_id as createId
+				, ui.create_date as createDate
+				, ui.update_id as updateId
+				, ui.update_date as updateDate
+				, ui.hp_name as hpName
+				, ui.hp_zipcode as hpZipcode
+				, ui.hp_add as hpAdd
+				, (SELECT fnc_codeName('USER', ui.user_type, 'A')) AS userTypeName
+				, (SELECT fnc_codeName('COUNTRY', ui.country_code, 'A')) AS countryName
+				, (SELECT fnc_codeName('SPECIAL', ui.special_code, 'A')) AS specialName
+				, (SELECT fnc_codeName('REQ_STAT', ui.state_code, 'A')) AS stateName
+				, li.user_id as readerUserId
+				, li.career_1 as career1
+				, li.career_2 as career2
+				, li.career_3 as career3
+				, fi.file_name as fileName
+				, fi.file_path as lecturerImgPath
+			FROM user_info ui
+			left outer join lecturer_info li
+				ON ui.seq = li.user_id AND ui.delete_yn = li.delete_yn 
+			left outer join file_info fi
+				ON li.file_id = fi.file_id AND ui.delete_yn = fi.delete_yn 
+			WHERE 1 = 1 
+				AND ui.delete_yn = 'N'
+		]]>
+        <if test="email != null and email != ''">
+        <![CDATA[ AND ui.email = #{email} ]]>
+        </if>
+        <if test="seq != null and seq != ''">
+        <![CDATA[ AND ui.seq = #{seq} ]]>
+        </if>
+	</select>
+
+
+    <update id="updateUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{password , jdbcType=VARCHAR}
+			       , hp_name = #{hpName}
+			       , hp_add = #{hpAdd}
+			       , hp_zipcode = #{hpZipcode}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE seq = #{seq}
+		]]>
+    </update>
+    
+    <update id="updateUserLecturer">
+		<![CDATA[
+			UPDATE user_info
+			   SET name_first = #{nameFirst}
+			   	   , name_last = #{nameLast}
+			   	   , user_type = #{userType}
+			   	   , special_code = #{specialCode}
+			   	   , country_code = #{countryCode}
+			   	   , partner_name = #{partnerName}
+			   	   , hp_name = #{hpName}
+			   	   , hp_add = #{hpAdd}
+			   	   , hp_zipcode = #{hpZipcode}
+			   	   , remark = #{remark}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE seq = #{seq}
+		]]>
+    </update>
+
+	<update id="updateLecturer">
+		<![CDATA[
+
+			UPDATE lecturer_info
+			   SET career_1 = #{career1}
+				   , career_2 = #{career2}
+				   , career_3 = #{career3}
+			       , update_date = NOW()
+			       , update_id = #{updateId}
+		]]>
+		<if test="fileId != null and fileId != ''">
+        <![CDATA[ , file_id = #{fileId} ]]>
+        </if>
+        <![CDATA[
+			 WHERE delete_yn = 'N' 
+			   AND user_id = #{seq}
+		]]>
+    </update>
+    
+    <insert id="insertLecturer">
+		<![CDATA[
+			INSERT INTO lecturer_info (
+			      user_id
+				, career_1
+				, career_2
+				, career_3
+				, file_id
+				, remark
+				, create_id
+				, create_date
+				, update_id
+				, update_date
+			) VALUES (
+			      #{seq}
+				, #{career1}
+				, #{career2}
+				, #{career3}
+				, #{fileId}
+				, #{remark}
+				, #{updateId}
+				, NOW()
+				, #{updateId}
+				, NOW()
+			) ]]>
+	</insert>
+    
+    <update id="updateUserType">
+		<![CDATA[
+			UPDATE user_info
+				SET update_date = NOW()
+				  , update_id = #{updateId}
+		]]>
+		<if test="userType != null and userType != ''">
+				  <![CDATA[, user_type = #{userType} ]]>
+        </if>
+        <if test="stateCode != null and stateCode != ''">
+		<![CDATA[
+				  , state_code = #{stateCode}
+				  , confirm_id = #{updateId}
+				  , confirm_date = NOW() 
+		]]>
+        </if>
+        <![CDATA[
+				WHERE delete_yn = 'N' 
+				  AND seq = #{seq}
+		]]>
+    </update>
+    
+     <!-- id 삭제 처리 -->
+    <update id="deleteUser">
+		<![CDATA[
+			UPDATE user_info
+			SET delete_yn = 'Y'
+				, update_date = NOW()
+				, update_id = #{updateId}
+			WHERE seq = #{seq}
+		]]>
+    </update>
+
+	<update id="updatePwdUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{password , jdbcType=VARCHAR}
+			       , update_date = NOW()
+			       , update_id = #{seq}
+			 WHERE seq = #{seq}
+		]]>
+	</update>
+
+	<!-- 아이디 중복 체크 -->
+	<select id="idChk" resultType="int">
+		<![CDATA[
+			SELECT COUNT(seq) FROM user_info
+			WHERE email = #{email} 
+		]]>
+	</select>
+
+	
+    <select id="retrieveUserList" resultType="user">
+		<![CDATA[
+			SELECT
+			     seq
+				,email
+				,password
+				,name_first
+				,name_last
+				,user_type
+				,special_code
+				,country_code
+				,file_id
+				,request_date
+				,confirm_id
+				,confirm_date
+				,state_code
+				,consent_yn
+				,remark
+				,create_id
+				,create_date
+				,update_id
+				,update_date
+				,(SELECT fnc_codeName('USER', user_type, 'A')) AS userTypeName
+				,(SELECT fnc_codeName('COUNTRY', country_code, 'A')) AS countryName
+				,(SELECT fnc_codeName('SPECIAL', special_code, 'A')) AS specialName
+			  FROM user_info 
+			 WHERE 1=1 AND delete_yn = 'N' 
+			   AND NOT user_type LIKE 'AD%'
+		]]>
+		
+		<if test= "userType != null and userType != '' and userType != 'ALL'">
+	 	<![CDATA[
+			AND user_type = #{userType}
+        ]]>  
+        </if>
+        <if test= "searchType != null and searchType != '' and email != null and email != ''" >
+			<choose>
+	           <when test="searchType == 'searchId'">
+				<![CDATA[
+					AND email LIKE CONCAT('%', UPPER(#{email}), '%')
+				]]> 
+	           </when>
+	           
+	           <when test="searchType == 'searchName'">
+				<![CDATA[
+					AND CONCAT(name_first,name_last) LIKE CONCAT('%', UPPER(#{email}), '%')
+				]]> 
+	           </when>
+	           <otherwise>
+				<![CDATA[
+					AND (email LIKE CONCAT('%', UPPER(#{email}), '%') OR CONCAT(name_first,name_last) LIKE CONCAT('%', UPPER(#{email}), '%'))
+				]]> 
+	           </otherwise>
+			</choose>
+		</if>
+		<if test= "stateCode != null and stateCode != ''">
+	 	<![CDATA[
+			AND state_code = #{stateCode}
+        ]]>  
+        </if>
+    </select>
+    
+    <select id="retrieveLecturerList" resultType="user">
+		<![CDATA[
+			SELECT
+				  ui.seq as readerUserId
+			    , ui.email
+				, ui.name_first as nameFirst
+				, ui.name_last as nameLast
+				, ui.user_type as userType
+                , li.career_1 as career1
+             	, li.career_2 as career2
+             	, li.career_3 as career3
+             	, lec_fi.file_path AS lecturerImgPath
+			  FROM lecturer_info li
+					LEFT OUTER JOIN user_info ui
+				 ON li.user_id = ui.seq
+                AND li.delete_yn = 'N'
+                    LEFT JOIN file_info lec_fi
+				 ON li.file_id = lec_fi.file_id
+		   		AND lec_fi.file_number = '3'
+           		AND lec_fi.delete_yn = 'N'
+		]]>
+		<if test="readerUserId != null and readerUserId != ''">
+        <![CDATA[ WHERE li.user_id = #{readerUserId}  ]]>
+        </if>
+    </select>
+    
+    <!-- country code 조회 -->
+	<select id="retrieveCodeList" resultType="code" >
+        <![CDATA[
+        SELECT code AS "code"
+             , code_name AS "value"
+          FROM code_detail
+         WHERE 1 = 1
+        ]]>
+        <if test="codeGroup != null and codeGroup != ''">
+        <![CDATA[ AND GROUP_ID = 'COUNTRY' ]]>
+        </if>
+    </select>
+    
+</mapper>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--  
+		File to File Job
+		
+		config(1): delimited -> delimited
+		config(2): delimited(using Custom Mapper) -> fixed length
+		config(3): fixed length  -> fixed length
+	-->
+	
+	<batch:job id="file-to-file-job">
+		<batch:step id="file-to-file-step">			
+			<batch:tasklet transaction-manager="non-transactionManager">
+				<!-- config(1) --><batch:chunk reader="file-to-file-d-reader" writer="file-to-file-d-writer" commit-interval="1000" />
+				<!-- config(2) --><!-- batch:chunk reader="file-to-file-c-reader" writer="file-to-file-f-writer" commit-interval="1000" /-->
+				<!-- config(3) --><!-- batch:chunk reader="file-to-file-f-reader" writer="file-to-file-f-writer" commit-interval="1000" /-->
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+	
+	<!-- FlatFileItemReader(Delimited) -->
+	<bean id="file-to-file-d-reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="resource" value="classpath:/data/input/employee.1000.csv" />
+		<property name="linesToSkip" value="1" />
+		<property name="encoding" value="UTF-8" />
+    	<property name="lineMapper">
+        	<bean class="devonframe.batch.item.file.mapping.DefaultStringLineMapper">
+            	<property name="lineTokenizer">
+            		<bean class="devonframe.batch.item.file.transform.DelimitedStringLineTokenizer">
+            			<property name="delimiter" value="," />
+            		</bean>
+            	</property>
+            	<property name="objectMapper">
+            		<bean class="devonframe.batch.item.file.mapping.FastReflectorObjectMapper">
+            			<property name="type" value="devonframe.batch.sample.common.model.Employee" />
+            			<property name="names" 
+            				value="num,name,sex,departmentCode,joblevelCode,skillCode,telephone,birthdate,postal,address" />
+            		</bean>
+            	</property>
+        	</bean>
+    	</property> 
+	</bean>
+	
+	
+	<!-- FlatFileItemReader(Delimited - Using CustomMapper) -->
+	<bean id="file-to-file-c-reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="resource" value="classpath:/data/input/employee.1000.csv" />
+		<property name="linesToSkip" value="1" />
+		<property name="encoding" value="UTF-8" />
+    	<property name="lineMapper">
+        	<bean class="devonframe.batch.item.file.mapping.DefaultStringLineMapper">
+            	<property name="lineTokenizer">
+            		<bean class="devonframe.batch.item.file.transform.DelimitedStringLineTokenizer">
+            			<property name="delimiter" value="," />
+            		</bean>
+            	</property>
+            	<property name="objectMapper">
+					<bean class="devonframe.batch.sample.common.mapper.EmployeeObjectMapper" />
+            	</property>
+        	</bean>
+    	</property> 
+	</bean>	
+	
+	
+	<!-- FlatFileItemReader(FixedLength) -->
+	<bean id="file-to-file-f-reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="resource" value="classpath:/data/input/employee.1000.fixed.txt" />
+		<property name="encoding" value="UTF-8" />
+    	<property name="lineMapper">
+        	<bean class="devonframe.batch.item.file.mapping.DefaultStringLineMapper">
+            	<property name="lineTokenizer">
+            		<bean class="devonframe.batch.item.file.transform.FixedLengthStringLineTokenizer">
+            			<property name="columns" value="10,20,10,10,5,20,20,10,6,40" />
+            		</bean>
+            	</property>
+            	<property name="objectMapper">
+            		<bean class="devonframe.batch.item.file.mapping.FastReflectorObjectMapper">
+            			<property name="type" value="devonframe.batch.sample.common.model.Employee" />
+            			<property name="names" 
+            				value="num,name,sex,departmentCode,joblevelCode,skillCode,telephone,birthdate,postal,address" />
+            		</bean>
+            	</property>
+        	</bean>
+    	</property> 
+	</bean>
+	
+	
+	<!-- FlatFileItemWriter(Delimited) -->
+	<bean id="file-to-file-d-writer" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+   		<!-- property name="resource" value="classpath:devonframe/data/output/employee.1000.out.csv" /-->
+   		<property name="resource" value="file:///C:/devonbatch/out/employee.1000.out.csv" />
+   		<property name="lineAggregator">
+      		<bean class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+	 			<property name="fieldExtractor">
+		    		<bean class="devonframe.batch.item.file.transform.FastReflectorFieldExtractor">
+		       			<property name="names"
+							value="num,name,sex,departmentCode,joblevelCode,skillCode,telephone,birthdate,postal,address" />
+		    		</bean>
+	 			</property>
+        		<property name="delimiter" value=","/>
+      		</bean>
+   		</property>
+	</bean>
+	
+	
+	<!-- FlatFileItemWriter(FixedLength) -->
+	<bean id="file-to-file-f-writer" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+		<!-- property name="resource" value="classpath:devonframe/data/output/employee.1000.fixed.out.txt" /-->
+		<property name="resource" value="file:///C:/devonbatch/out/employee.1000.fixed.out.txt" />
+	   	<property name="lineAggregator">
+	    	<bean class="devonframe.batch.item.file.transform.FixedLengthLineAggregator">
+	        	<property name="fieldExtractor">
+		    		<bean class="devonframe.batch.item.file.transform.FastReflectorFieldExtractor">
+		       			<property name="names" 
+            				value="num,name,sex,departmentCode,joblevelCode,skillCode,telephone,birthdate,postal,address" />
+		    		</bean>
+		 		</property>
+		 		<property name="fieldRanges" value="10,20,10,10,5,20,20,10,6,40" />						
+	      	</bean>
+	   	</property>
+	</bean>
+	
+	
+</beans>

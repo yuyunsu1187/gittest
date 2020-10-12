@@ -1,0 +1,33 @@
+<%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" session="false"%>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
+<head>
+</head>
+<body>
+index.jsp
+
+<%
+    String driverName="com.mysql.jdbc.Driver";
+    String url = "jdbc:mysql://127.0.0.1:3306/test";
+    String id = "root"; // MySQL ID
+    String pwd ="mariaA$z1";     // MYSQL Password
+   
+    try{
+        //[1] JDBC 드라이버 로드
+        Class.forName(driverName);     
+    }catch(ClassNotFoundException e){
+        out.println("Where is your mysql jdbc driver?");
+        e.printStackTrace();
+        return;
+    }
+    out.println("mysql jdbc Driver registered!!");
+   
+    //[2]데이타베이스 연결 
+    Connection conn = DriverManager.getConnection(url,id,pwd);
+    out.println("DB연결성공!!");
+     
+    //[3]데이타베이스 연결 해제
+    conn.close(); //대체로 finally 블록에 시스템 자원을 반납하는 Code를 넣는다.
+%>
+</body>
+</html>

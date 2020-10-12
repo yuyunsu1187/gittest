@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+
+    <select id="searchUser" resultType="user">
+		<![CDATA[
+			SELECT
+			     seq
+				,email
+				,password
+				,name_first
+				,name_last
+				,user_type
+				,division_code
+				,country_code
+				,person_photo
+				,license_photo
+				,request_date
+				,comfirm_id
+				,comfirm_date
+				,state_code
+				,consent_yn
+				,remark
+				,create_id
+				,create_date
+				,update_id
+				,update_date
+			  FROM user_info 
+			 WHERE seq = #{seq}
+		]]>
+    </select>
+
+    <insert id="insertUser">
+		<![CDATA[
+			INSERT INTO user_info (
+			      USR_ID
+			    , USR_NM
+			    , USR_PW
+			    , REG_DT
+			    , CHNG_USR_ID
+			    , CHNG_DT
+			    , LANG_CLCD
+			    , ROLE
+			) VALUES (
+			      #{usrId}
+			    , #{usrNm}
+			    , #{usrPw}
+			    , TO_CHAR(CURRENT_TIMESTAMP,'YYYYMMDDHH24MISS')
+			    , #{chngUsrId}
+			    , TO_CHAR(CURRENT_TIMESTAMP,'YYYYMMDDHH24MISS')
+			    , #{language}
+			    , #{role}
+			)
+		]]>
+    </insert>
+
+    <update id="updateEmployee">
+		<![CDATA[
+			UPDATE user_info
+			   SET USR_ID = #{usrId}
+			       , USR_NM = #{usrNm}
+			       , USR_PW = #{usrPw}
+			       , ROLE = #{role}
+			       , CHNG_USR_ID = #{chngUsrId}
+			       , CHNG_DT = TO_CHAR(CURRENT_TIMESTAMP,'YYYYMMDDHH24MISS')
+			       , LANG_CLCD = #{language}
+			 WHERE USR_ID = #{usrId}
+		]]>
+    </update>
+
+    <delete id="deleteUser">
+		<![CDATA[
+			DELETE
+			  FROM user_info
+			 WHERE USR_ID = #{usrId}
+		]]>
+    </delete>
+
+    <select id="searchUserList" resultType="user">
+		<![CDATA[
+			SELECT
+			       A.USR_ID "usrId"
+			       , A.USR_NM "usrNm"
+			       , A.USR_PW "usrPw"
+			       , A.REG_DT "regDt"
+			       , A.CHNG_USR_ID "chngUsrId"
+			       , A.CHNG_DT "chngDt"
+	      	       , role.NAME "roleNm"
+			       , A.LANG_CLCD "language"
+			  FROM TDT_USER A
+	  		  LEFT OUTER JOIN SAM_CODE role ON (A.role = role.code AND role.code_group = 'ROLE')
+			 WHERE 1=1
+		]]>
+    </select>
+
+</mapper>

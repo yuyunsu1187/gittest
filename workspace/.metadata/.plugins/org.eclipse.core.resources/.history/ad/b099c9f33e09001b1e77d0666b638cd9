@@ -1,0 +1,428 @@
+package devonframe.gyva.contents.model;
+
+import devonframe.scrollpaging.model.ScrollPagingEntity;
+
+public class Contents extends ScrollPagingEntity{
+	
+	private String seq;
+	private String contentsId;
+	private String menuId;
+	private String title;
+	private String contents;
+	private String contentsUrl;
+	private String keyword1;
+	private String keyword2;
+	private String startDate;
+	private String endDate;
+	private String fileId;
+	private String stateCode;
+	private String readerUserId;
+	private String surveyId;
+	private String deleteYn;
+	private String remark;
+	private String createId;
+	private String createDate;
+	private String updateId;
+	private String updateDate;
+
+	private String categoryCode;
+	private String categoryName;
+
+	private String thumFilePath;
+	private String thumFileName;
+	private String sldFilePath;
+	private String sldFileName;
+	private String filePath;
+	private String fileExtension;
+	private String fileSize;
+	private String fileName;
+	private String fileType;
+
+	private String recent;
+	private String popular;
+	private String ordertype;
+	
+	private String lecturerName;
+	private String lecturerImg;
+	private String lecturerImgPath;
+	private String lecturer;
+	private String place;
+	private String date;
+	private String career1;
+	private String career2;
+	private String career3;
+
+	private String userId;
+	private String menuName;
+	private String parentMenuName;
+	private String bookmarkMenuId;
+	
+	private String bookmarkYn;
+
+	private String views;
+	
+	private String resultCnt;
+	private String keyWord;
+
+	private String surveyResult;
+	private String previousContentsId;
+	private String nextContentsId;
+
+    private String menuType;
+    private String returnUrl;
+    private String returnDo;
+	
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+	public String getContentsId() {
+		return contentsId;
+	}
+	public void setContentsId(String contentsId) {
+		this.contentsId = contentsId;
+	}
+	public String getMenuId() {
+		return menuId;
+	}
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+	public String getContentsUrl() {
+		return contentsUrl;
+	}
+	public void setContentsUrl(String contentsUrl) {
+		this.contentsUrl = contentsUrl;
+	}
+	public String getKeyword1() {
+		return keyword1;
+	}
+	public void setKeyword1(String keyword1) {
+		this.keyword1 = keyword1;
+	}
+	public String getKeyword2() {
+		return keyword2;
+	}
+	public void setKeyword2(String keyword2) {
+		this.keyword2 = keyword2;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	public String getFileId() {
+		return fileId;
+	}
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+	public String getStateCode() {
+		return stateCode;
+	}
+	public void setStateCode(String stateCode) {
+		this.stateCode = stateCode;
+	}
+	public String getReaderUserId() {
+		return readerUserId;
+	}
+	public void setReaderUserId(String readerUserId) {
+		this.readerUserId = readerUserId;
+	}
+	public String getSurveyId() {
+		return surveyId;
+	}
+	public void setSurveyId(String surveyId) {
+		this.surveyId = surveyId;
+	}
+	public String getDeleteYn() {
+		return deleteYn;
+	}
+	public void setDeleteYn(String deleteYn) {
+		this.deleteYn = deleteYn;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getCreateId() {
+		return createId;
+	}
+	public void setCreateId(String createId) {
+		this.createId = createId;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateId() {
+		return updateId;
+	}
+	public void setUpdateId(String updateId) {
+		this.updateId = updateId;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	public String getCategoryCode() {
+		return categoryCode;
+	}
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getThumFilePath() {
+		return thumFilePath;
+	}
+
+	public void setThumFilePath(String thumFilePath) {
+		this.thumFilePath = thumFilePath;
+	}
+
+	public String getThumFileName() {
+		return thumFileName;
+	}
+	public void setThumFileName(String thumFileName) {
+		this.thumFileName = thumFileName;
+	}
+	
+	public String getSldFilePath() {
+		return sldFilePath;
+	}
+	public void setSldFilePath(String sldFilePath) {
+		this.sldFilePath = sldFilePath;
+	}
+	public String getSldFileName() {
+		return sldFileName;
+	}
+	public void setSldFileName(String sldFileName) {
+		this.sldFileName = sldFileName;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	public String getFileExtension() {
+		return fileExtension;
+	}
+	public void setFileExtension(String fileExtension) {
+		this.fileExtension = fileExtension;
+	}
+	public String getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}	
+	
+	public String getRecent() {
+		return recent;
+	}
+	public void setRecent(String recent) {
+		this.recent = recent;
+	}
+	public String getPopular() {
+		return popular;
+	}
+	public void setPopular(String popular) {
+		this.popular = popular;
+	}
+	
+	public String getOrdertype() {
+		return ordertype;
+	}
+	public void setOrdertype(String ordertype) {
+		this.ordertype = ordertype;
+	}
+	public String getLecturerName() {
+		return lecturerName;
+	}
+	public void setLecturerName(String lecturerName) {
+		this.lecturerName = lecturerName;
+	}	
+	public String getLecturerImg() {
+		return lecturerImg;
+	}
+	public void setLecturerImg(String lecturerImg) {
+		this.lecturerImg = lecturerImg;
+	}
+	
+	public String getLecturerImgPath() {
+		return lecturerImgPath;
+	}
+	public void setLecturerImgPath(String lecturerImgPath) {
+		this.lecturerImgPath = lecturerImgPath;
+	}
+	
+	public String getLecturer() {
+		return lecturer;
+	}
+	public void setLecturer(String lecturer) {
+		this.lecturer = lecturer;
+	}
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getCareer1() {
+		return career1;
+	}
+	public void setCareer1(String career1) {
+		this.career1 = career1;
+	}
+	public String getCareer2() {
+		return career2;
+	}
+	public void setCareer2(String career2) {
+		this.career2 = career2;
+	}
+	public String getCareer3() {
+		return career3;
+	}
+	public void setCareer3(String career3) {
+		this.career3 = career3;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getMenuName() {
+		return menuName;
+	}
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+	
+	public String getParentMenuName() {
+		return parentMenuName;
+	}
+	public void setParentMenuName(String parentMenuName) {
+		this.parentMenuName = parentMenuName;
+	}
+	public String getBookmarkMenuId() {
+		return bookmarkMenuId;
+	}
+	public void setBookmarkMenuId(String bookmarkMenuId) {
+		this.bookmarkMenuId = bookmarkMenuId;
+	}
+	public String getBookmarkYn() {
+		return bookmarkYn;
+	}
+	public void setBookmarkYn(String bookmarkYn) {
+		this.bookmarkYn = bookmarkYn;
+	}
+	public String getViews() {
+		return views;
+	}
+	public void setViews(String views) {
+		this.views = views;
+	}
+	public String getResultCnt() {
+		return resultCnt;
+	}
+	public void setResultCnt(String resultCnt) {
+		this.resultCnt = resultCnt;
+	}
+	public String getKeyWord() {
+		return keyWord;
+	}
+	public void setKeyWord(String keyWord) {
+		this.keyWord = keyWord;
+	}
+	public String getSurveyResult() {
+		return surveyResult;
+	}
+	public void setSurveyResult(String surveyResult) {
+		this.surveyResult = surveyResult;
+	}
+	public String getPreviousContentsId() {
+		return previousContentsId;
+	}
+	public void setPreviousContentsId(String previousContentsId) {
+		this.previousContentsId = previousContentsId;
+	}
+	public String getNextContentsId() {
+		return nextContentsId;
+	}
+	public void setNextContentsId(String nextContentsId) {
+		this.nextContentsId = nextContentsId;
+	}
+	
+	public String getMenuType() {
+		return menuType;
+	}
+	public void setMenuType(String menuType) {
+		this.menuType = menuType;
+	}
+	public String getReturnUrl() {
+		return returnUrl;
+	}
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
+	}
+	public String getReturnDo() {
+		return returnDo;
+	}
+	public void setReturnDo(String returnDo) {
+		this.returnDo = returnDo;
+	}
+		
+}

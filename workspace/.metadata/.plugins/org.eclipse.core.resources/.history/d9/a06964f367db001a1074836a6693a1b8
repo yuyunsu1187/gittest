@@ -1,0 +1,106 @@
+package devonframe.gyva.admin.contents.model;
+
+
+public class Contents {
+	
+	private String contentsId;
+	private String menuId;
+	private String title;
+	private String contents;
+	private String fileId;
+	private String stateCode;
+	private String readerUserId;
+	private String surveyId;
+	private String deleteYn;
+	private String remark;
+	private String createId;
+	private String createDate;
+	private String updateId;
+	private String updateDate;
+	
+	public String getContentsId() {
+		return contentsId;
+	}
+	public void setContentsId(String contentsId) {
+		this.contentsId = contentsId;
+	}
+	public String getMenuId() {
+		return menuId;
+	}
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+	public String getFileId() {
+		return fileId;
+	}
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+	public String getStateCode() {
+		return stateCode;
+	}
+	public void setStateCode(String stateCode) {
+		this.stateCode = stateCode;
+	}
+	public String getReaderUserId() {
+		return readerUserId;
+	}
+	public void setReaderUserId(String readerUserId) {
+		this.readerUserId = readerUserId;
+	}
+	public String getSurveyId() {
+		return surveyId;
+	}
+	public void setSurveyId(String surveyId) {
+		this.surveyId = surveyId;
+	}
+	public String getDeleteYn() {
+		return deleteYn;
+	}
+	public void setDeleteYn(String deleteYn) {
+		this.deleteYn = deleteYn;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getCreateId() {
+		return createId;
+	}
+	public void setCreateId(String createId) {
+		this.createId = createId;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateId() {
+		return updateId;
+	}
+	public void setUpdateId(String updateId) {
+		this.updateId = updateId;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+		
+}

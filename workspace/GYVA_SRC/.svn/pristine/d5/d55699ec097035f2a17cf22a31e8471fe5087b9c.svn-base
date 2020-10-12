@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>LG chem : LG aesthetics</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/front/import.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+<!--[if gt IE 9]>
+	<link href="/resource/css/ie/main-css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if !IE]><!-->
+	
+<!--<![endif]-->
+</head>
+<body>
+	<!-- [S] wrap : ID 값은 화면 ID와 동일하게 적용 -->
+	<section id="FR010503-10" class="default-section">
+		<!-- [S] header -->
+		<header class="default-header">
+			<h1 class="logo-tit"><a href="/" class="link-btn"><img src="/resource/images/common/layout/logo-tit.png" alt="LG chem : LG aesthetics" /></a></h1>
+			<!-- [S] 왼쪽 메뉴 : 2depth 메뉴부터 리스트 노출 -->
+			<!-- 활성화 : data-pop-action="active", 비활성화 : data-pop-action="disabled" -->
+			<section class="sitemap-wrap" data-pop-action="disabled">
+				<h2 class="sitemap-tit"><button type="button" class="sitemap-btn" data-btn-style="modal" data-btn-key="sitemap"><span class="blind">전체메뉴</span></button></h2>
+				<div class="sitemap-area" data-type="toggle" data-toggle-action="menu" data-pop-key="sitemap">
+					<button type="button" class="layerPop-close-btn" data-pop-btn="close"><span class="icon-close"></span></button>
+					<ul class="menu-list" data-menu-depth="1">
+						<li><a href="#none" class="menu-btn">Branding Material</a></li>
+						<!-- 하위 메뉴가 있을 때 button 태그적용 -->
+						<li>
+							<button type="button" class="menu-btn">Library</button>
+							<ul data-menu-depth="2">
+								<li><a href="#none" class="menu-btn">Journal</a></li>
+								<li><a href="#none" class="menu-btn">Scientific Data</a></li>
+								<li><a href="#none" class="menu-btn">Clinic Material</a></li>
+								<li><a href="#none" class="menu-btn">For Parner</a></li>
+							</ul>
+						</li>
+						<li>
+							<button type="button" class="menu-btn">Academy</button>
+							<ul data-menu-depth="2">
+								<li><a href="#none" class="menu-btn">Anatomy</a></li>
+								<li><a href="#none" class="menu-btn">YVOIRE Injection</a></li>
+								<li><a href="#none" class="menu-btn">Webinar replay</a></li>
+								<li><a href="#none" class="menu-btn">Aesthetic School</a></li>
+								<li><a href="#none" class="menu-btn">Module</a></li>
+								<li><a href="#none" class="menu-btn">YVOIRE Exercise</a></li>
+							</ul>
+						</li>
+						<li>
+							<button type="button" class="menu-btn">News&Event</button>
+							<ul data-menu-depth="2">
+								<li><a href="#none" class="menu-btn">Notice</a></li>
+								<li><a href="#none" class="menu-btn">Webinar</a></li>
+							</ul>
+						</li>
+						<li>
+							<button type="button" class="menu-btn">About Us</button>
+							<ul data-menu-depth="2">
+								<li><a href="#none" class="menu-btn">Introduce</a></li>
+								<li><a href="#none" class="menu-btn">Contact</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			
+			<nav class="gnb-menu" data-type="toggle" data-toggle-action="menu">
+				<ul class="menu-list" data-menu-depth="1">
+					<li><a href="#none" class="menu-btn">Branding Material</a></li>
+					<!-- 하위 메뉴가 있을 때 button 태그적용 -->
+					<li>
+						<button type="button" class="menu-btn">Library</button>
+						<ul data-menu-depth="2">
+							<li><a href="#none" class="menu-btn">Journal</a></li>
+							<li><a href="#none" class="menu-btn">Scientific Data</a></li>
+							<li><a href="#none" class="menu-btn">Clinic Material</a></li>
+							<li><a href="#none" class="menu-btn">For Parner</a></li>
+						</ul>
+					</li>
+					<li>
+						<button type="button" class="menu-btn">Academy</button>
+						<ul data-menu-depth="2">
+							<li><a href="#none" class="menu-btn">Anatomy</a></li>
+							<li><a href="#none" class="menu-btn">YVOIRE Injection</a></li>
+							<li><a href="#none" class="menu-btn">Webinar replay</a></li>
+							<li><a href="#none" class="menu-btn">Aesthetic School</a></li>
+							<li><a href="#none" class="menu-btn">Module</a></li>
+							<li><a href="#none" class="menu-btn">YVOIRE Exercise</a></li>
+						</ul>
+					</li>
+					<li>
+						<button type="button" class="menu-btn">News&Event</button>
+						<ul data-menu-depth="2">
+							<li><a href="#none" class="menu-btn">Notice</a></li>
+							<li><a href="#none" class="menu-btn">Webinar</a></li>
+						</ul>
+					</li>
+					<li>
+						<button type="button" class="menu-btn">About Us</button>
+						<ul data-menu-depth="2">
+							<li><a href="#none" class="menu-btn">Introduce</a></li>
+							<li><a href="#none" class="menu-btn">Contact</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- [E] 왼쪽 메뉴 -->
+			<a href="https://www.instagram.com/yvoire.official/" class="instagram-link-btn" target="_blank"></a>
+		</header>
+		<!-- [E] header -->
+		
+		<!-- [S] contents -->
+		<article class="default-contents">
+			<div class="menu-area">
+				<nav class="menu-list">
+					<ul>
+						<!-- 메뉴 선택 시 .active 추가 -->
+						<li><a href="#none" class="menu-btn">Home</a></li>
+						<li class="active"><a href="#none" class="menu-btn">My page</a></li>
+						<li><a href="#none" class="menu-btn">Admin</a></li>
+						<li><a href="#none" class="menu-btn">Logout</a></li>
+					</ul>
+				</nav>
+				<div class="form" data-mult-form="search">
+					<input type="text" class="input-form" placeholder="Please enter a search word." />
+					<button type="button" class="icon-btn"><i class="fab fa-sistrix"></i></button>
+				</div>
+			</div>
+			
+			<!-- [S] 관리자, 프론트 PC/모바일 공통 컨텐츠 -->
+			<section class="content-section">
+				<header class="content-header">
+					<h2 class="content-tit">My page</h2>
+				</header>
+				
+				<div class="breadcrumb">
+					<span class="home">Home</span><span class="depth">My page</span><span class="page">Profile</span>
+				</div>
+				
+				<!-- [S] tab wrap -->
+				<div class="tab-wrap" data-type="tab" data-tab-division="link">
+					<!-- [S] 관리자, 프론트PC 탭 리스트 영역 -->
+					<ul class="tab-list" data-combine-tab="column-4-tab">
+						<li data-tab-type="list"><a href="#none" class="list-btn">Recently viewed</a></li>
+						<li data-tab-type="list" data-tab-action="active"><a href="#none" class="list-btn">Profile</a></li>
+						<li data-tab-type="list"><a href="#none" class="list-btn">Helpdesk</a></li>
+						<li data-tab-type="list"><a href="#none" class="list-btn">Bookmark</a></li>
+					</ul>
+					<!-- [E] 관리자, 프론트PC 탭 리스트 영역 -->
+					<!-- [S] 프론트 모바일 탭 리스트 영역 -->
+					<div class="form" data-mult-form="select-list" data-tab-area="tab-list">
+						<button type="button" class="select-btn">Profile<i class="fas fa-angle-down"></i></button>
+						<ul class="option-list">
+							<li data-tab-type="list"><a href="#none" class="list-btn">Recently viewed</a></li>
+							<li data-tab-type="list"><a href="#none" class="list-btn">Profile</a></li>
+							<li data-tab-type="list"><a href="#none" class="list-btn">Helpdesk</a></li>
+							<li data-tab-type="list"><a href="#none" class="list-btn">Bookmark</a></li>
+						</ul>
+					</div>
+					<!-- [E] 프론트 모바일 탭 리스트 영역 -->
+					
+					<article class="board-wrap" data-board-type="form-write">
+						<!-- [S] 관리자, 프론트PC 컨텐츠 영역 -->
+						<h3 class="article-tit">Profile</h3>
+						<div class="board-area">
+							<table class="default-table">
+								<caption>Personal Information 입력</caption>
+								<colgroup>
+									<col style="width:350px;" />
+									<col style="width:auto;" />
+								</colgroup>
+								
+								<tbody>
+									<tr>
+										<th scale="col">Email address</th>
+										<td><div class="form" data-mult-form="input-btn"><input type="text" class="input-form" value="Lgyvoire_master@lgcns.com" disabled /></div></td>
+									</tr>
+									
+									<tr>
+										<th scale="col">password</th>
+										<td>
+											<div class="form-area" data-combine-form="column-2-form">
+												<div class="form" data-mult-form="password">
+													<input type="password" class="input-form" placeholder="Enter Password">
+													<!-- 비밀번호 보기 : <i class="fas fa-eye"></i> -->
+													<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+												</div>
+												
+												<div class="form" data-mult-form="password">
+													<input type="password" class="input-form" placeholder="Confirm Password">
+													<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+												</div>
+												
+												<p class="form-txt">The password must have at least 8 characters, at least 1 special character</p>
+											</div>
+										</td>
+									</tr>
+									
+									<tr>
+										<th scale="col">Name</th>
+										<td>
+											<div class="form-area" data-combine-form="column-2-form">
+												<div class="form"><input type="text" class="input-form" placeholder="First name" value="cho" disabled /></div>
+												<div class="form"><input type="text" class="input-form" placeholder="Last name" value="mj" disabled /></div>
+											</div>
+										</td>
+									</tr>
+									
+									<tr>
+										<th scale="col">Country</th>
+										<td><div class="form"><input type="text" class="input-form" placeholder="Country" value="korea" disabled /></div></td>
+									</tr>
+									
+									<tr data-row-key="doctor">
+										<th scale="col">Specialty</th>
+										<td><div class="form"><input type="text" class="input-form" placeholder="Specialty" value="Seoul" disabled /></div></td>
+									</tr>
+									
+									<tr>
+										<th scale="col">Partner name</th>
+										<td><div class="form"><input type="text" class="input-form" placeholder="Enter Partner name" value="이브아르 제약" disabled /></div></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+						<!-- [S] 의사그룹일때만 노출 -->
+						<h3 class="article-tit">Additional Information</h3>
+						<div class="board-area">
+							<table class="default-table">
+								<caption>Additional Information</caption>
+								<colgroup>
+									<col style="width:350px;" />
+									<col style="width:auto;" />
+								</colgroup>
+								
+								<tbody>
+									<tr>
+										<th scale="col">Clinic Name</th>
+										<td><div class="form"><input type="text" class="input-form" placeholder="Enter your clinic name" value="Hospital Kyriad Paris Bercy" /></div></td>
+									</tr>
+									
+									<tr>
+										<th scale="col">Clinic Address</th>
+										<td><div class="form"><input type="text" class="input-form" placeholder="Enter your clinic address" value="17 Rue Baron le Roy, 75012 Paris" /></div></td>
+									</tr>
+									
+									<tr>
+										<th scale="col">Clinic Postcode / Zip</th>
+										<td><div class="form"><input type="text" class="input-form" placeholder="Enter your clinic postcode" value="+33144677575" /></div></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- [E] 의사그룹일때만 노출 -->
+						<!-- [E] 관리자, 프론트PC 컨텐츠 영역 -->
+						<!-- [S] 프론트 모바일 컨텐츠 영역 -->
+						<div class="form-wrap">
+							<ul class="form-area">
+								<li>
+									<label for="email" class="form-tit">Email address</label>
+									<div class="form"><input type="text" id="email" class="input-form" value="Lgyvoire_master@lgcns.com" disabled /></div>
+								</li>
+								<li>
+									<label for="password" class="form-tit">password</label>
+									<div class="form" data-mult-form="password">
+										<input type="password" id="password" class="input-form" placeholder="Enter Password">
+										<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+									</div>
+									<div class="form" data-mult-form="password">
+										<input type="password" class="input-form" placeholder="Confirm Password">
+										<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+									</div>
+									
+									<p class="form-txt">The password must have at least 8 characters, at least 1 special character</p>
+								</li>
+								<li>
+									<label for="name" class="form-tit">Name</label>
+									<div class="form"><input type="text" id="name" class="input-form" placeholder="First name" value="cho" disabled /></div>
+									<div class="form"><input type="text" class="input-form" placeholder="Last name" value="mj" disabled /></div>
+								</li>
+								<li>
+									<label for="country" class="form-tit">Country</label>
+									<div class="form"><input type="text" id="country" class="input-form" placeholder="Country" value="korea" disabled /></div>
+								</li>
+								<li>
+									<label for="specialty" class="form-tit">Specialty</label>
+									<div class="form"><input type="text" id="specialty" class="input-form" placeholder="Specialty" value="Seoul" disabled /></div>
+								</li>
+								<li>
+									<label for="partner" class="form-tit">Partner name</label>
+									<div class="form"><input type="text" id="partner" class="input-form" placeholder="Enter Partner name" value="이브아르 제약" disabled /></div>
+								</li>
+							</ul>
+						</div>
+						
+						<!-- [S] 의사그룹일때만 노출 -->
+						<div class="form-wrap">
+							<ul class="form-area">
+								<li>
+									<label for="email" class="form-tit">Clinic Name</label>
+									<div class="form"><input type="text" class="input-form" placeholder="Enter your clinic name" value="Hospital Kyriad Paris Bercy" /></div>
+								</li>
+								<li>
+									<label for="email" class="form-tit">Clinic Address</label>
+									<div class="form"><input type="text" class="input-form" placeholder="Enter your clinic address" value="17 Rue Baron le Roy, 75012 Paris" /></div>
+								</li>
+								<li>
+									<label for="email" class="form-tit">Clinic Postcode / Zip</label>
+									<div class="form"><input type="text" class="input-form" placeholder="Enter your clinic postcode" value="+33144677575" /></div>
+								</li>
+							</ul>
+						</div>
+						<!-- [E] 의사그룹일때만 노출 -->
+						<!-- [E] 프론트 모바일 컨텐츠 영역 -->
+						
+						<div class="submit-area">
+							<button type="submit" class="sub-btn" data-offset="left">Delete Account</button>
+							<button type="submit" class="main-btn">Save</button>
+						</div>
+					</article>
+				</div>
+				<!-- [E] tab wrap -->
+			</section>
+			<!-- [E] 관리자, 프론트 PC/모바일 공통 컨텐츠 -->
+		</article>
+		<!-- [E] contents -->
+		
+		<!-- [S] footer -->
+		<footer class="default-footer">
+			<div class="menu-area">
+				<strong class="logo-tit"><img src="/resource/images/common/layout/logo-footer-tit.png" alt="" /></strong>
+				<nav class="menu-list">
+					<ul>
+						<li><a href="#none" class="menu-btn">Terms And Conditions</a></li>
+						<li><a href="#none" class="menu-btn">Privacy Policy</a></li>
+						<li><button type="button" class="menu-btn" data-btn-style="modal" data-btn-key="sitemap">Site Map</button></li>
+						<li><a href="#none" class="menu-btn">Contact Us</a></li>
+						<li><a href="http://global.lgyvoire.com/news_list.jsp" class="menu-btn" target="_blank">Notice</a></li>
+					</ul>
+				</nav>
+			</div>
+			<span class="copy">© LG Chem. ALL RIGHTS RESERVED.</span>
+			<div class="form" data-mult-form="select-list">
+				<button type="button" class="select-btn">Family site<i class="fas fa-angle-up"></i></button>
+				<ul class="option-list">
+					<li><a href="http://www.lg.co.kr/" target="_blank" class="link-btn">LG</a></li>
+					<li><a href="https://www.lgchem.com/main/index" target="_blank" class="link-btn">LG Chem</a></li>
+				</ul>
+			</div>
+		</footer>
+		<!-- [E] footer -->
+	</section>
+	<!-- [E] wrap -->
+
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript"  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script type="text/javascript" src="/resource/js/front/ui.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

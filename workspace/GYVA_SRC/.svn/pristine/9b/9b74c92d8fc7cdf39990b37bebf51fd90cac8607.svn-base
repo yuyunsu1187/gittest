@@ -1,0 +1,143 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsList.jsp
+ * DESC : 컨텐츠 페이지 목록조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+<script type="text/javascript" language="javascript">
+	//<![CDATA[
+	
+	//]]>
+</script>
+
+		
+<!-- [S] contents -->
+<section id="FR000000-05" class="content-section">
+	<div class="visual-wrap" data-type="swiper" data-swiper-option="visual">
+		<div class="swiper-container">
+			<ul class="swiper-wrapper">
+				<li class="swiper-slide">
+					<a href="none" class="link-btn">
+						<div class="text-area">
+							<h3 class="visual-tit">love yourself, YVOIRE<sub>&circledR;</sub></h3>
+							<p class="visual-txt">What makes you perfect is to be yourself.<br />YVOIRE<sub>&circledR;</sub> is partner for confidence.</p>
+							<span class="visual-btn">view more<i class="fas fa-plus"></i></span>
+						</div>
+						<span class="img-area"><img src="/resource/images/mobile/contents/img-main-visual-01.png" alt="" /></span>
+					</a>
+				</li>
+				<li class="swiper-slide">Slide 2</li>
+				<li class="swiper-slide">Slide 3</li>
+				<li class="swiper-slide">Slide 4</li>
+			</ul>
+
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	
+	<div class="post-wrap">
+		<article class="post-board">
+			<header class="post-header">
+				<h3 class="post-tit">REGISTRTION</h3>
+				<a href="#none" class="link-btn">more<i class="fas fa-plus"></i></a>
+			</header>
+			
+			<div class="post-content" data-type="swiper" data-swiper-option="navigation">
+				<div class="swiper-container">
+					<ul class="swiper-wrapper">
+						<li class="swiper-slide">
+							<div class="img-area">
+								<a href="#none" class="link-btn"><img src="/resource/images/front/contents/img-main-thumbnail-02.png" alt="" /></a>
+								<div class="caption">
+									<strong class="tit" data-text-style="ellipsis">Academy Platform Webinars</strong>
+									<span class="host">Academy Platform Webinars</span>
+									<span class="date">2020.08.20 20:00-21:30</span>
+								</div>
+							</div>
+						</li>
+						<li class="swiper-slide">
+							<div class="img-area">
+								<a href="#none" class="link-btn"><img src="/resource/images/front/contents/img-main-thumbnail-02.png" alt="" /></a>
+								<div class="caption">
+									<strong class="tit" data-text-style="ellipsis">Academy Platform Webinars</strong>
+									<span class="host">Academy Platform Webinars</span>
+									<span class="date">2020.08.20 20:00-21:30</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+					
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="post-thumbnail">
+			<header class="post-header">
+				<!-- [2020-09-25] 타이틀명 변경 --> 
+				<h3 class="post-tit">ACADEMY PLATFORM</h3>
+				<a href="#none" class="link-btn">more<i class="fas fa-plus"></i></a>
+			</header>
+			
+			<div class="post-content">
+				<div class="thumbnail-list" data-type="swiper" data-swiper-option="thumbnail">
+					<div class="swiper-container">
+						<ul class="swiper-wrapper">
+							<li class="swiper-slide">
+								<a href="#none" class="link-btn">
+									<img src="/resource/images/front/contents/img-main-thumbnail-01.png" alt="" />
+									<div class="caption" data-text-style="ellipsis">
+										<strong class="tit">Rejuvenation beyond face : Neck line & Neck skin Neck line & Neck skin</strong>
+										<span class="txt">/ YVOIRE Injection</span>
+									</div>
+								</a>
+							</li>
+							<li class="swiper-slide">
+								<a href="#none" class="link-btn">
+									<img src="/resource/images/front/contents/img-main-thumbnail-02.png" alt="" />
+									<div class="caption" data-text-style="ellipsis">
+										<strong class="tit">Rejuvenation beyond face : Neck line & Neck skin Neck line & Neck skin</strong>
+										<span class="txt">/ YVOIRE Injection</span>
+									</div>
+								</a>
+							</li>
+							<li class="swiper-slide">
+								<a href="#none" class="link-btn">
+									<img src="/resource/images/front/contents/img-main-thumbnail-03.png" alt="" />
+									<div class="caption" data-text-style="ellipsis">
+										<strong class="tit">Rejuvenation beyond face : Neck line & Neck skin Neck line & Neck skin</strong>
+										<span class="txt">/ YVOIRE Injection</span>
+									</div>
+								</a>
+							</li>
+							<li class="swiper-slide">
+								<a href="#none" class="link-btn">
+									<img src="/resource/images/front/contents/img-main-thumbnail-02.png" alt="" />
+									<div class="caption" data-text-style="ellipsis">
+										<strong class="tit">Rejuvenation beyond face : Neck line & Neck skin Neck line & Neck skin</strong>
+										<span class="txt">/ YVOIRE Injection</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</section>
+
+<!-- [E] contents -->

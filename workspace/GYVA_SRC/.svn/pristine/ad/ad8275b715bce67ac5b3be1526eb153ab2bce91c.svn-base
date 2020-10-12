@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="devonframe.gyva.common.user.model.User" %>
+
+
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+function fnTopSearch() {
+	if(document.topSearchForm.keyWord.value == "") {
+		alert("검색어를 입력하세요.");
+		return false;
+	} else {
+		document.topSearchForm.action = "<c:url value='/contents/searchList.do'/>";
+		document.topSearchForm.submit();
+	}
+}
+//]]>
+</script>
+
+
+<div class="menu-area">
+	<nav class="menu-list">
+		<ul>
+			<!-- 메뉴 선택 시 .active 추가 -->
+			<li><a href="<c:url value='/main.do' />" class="menu-btn">Home</a></li>
+			<li><a href="<c:url value='/mypage/activityList.do?menuId=FR030100' />" class="menu-btn">My page</a></li>
+			<c:if test="${userType =='AD00' || userType =='AD01'}"><li><a href="<c:url value='/admin.do' />" class="menu-btn">Admin</a></li></c:if>
+			<li><a href="<c:url value='/common/login/logout.do' />" class="menu-btn">Logout</a></li>
+		</ul>
+	</nav>
+	
+	<div class="form" data-mult-form="search">
+		<form name="topSearchForm" id="topSearchForm" method="post">
+			<input type="text" class="input-form" name="keyWord" id="keyWord" placeholder="Please enter a search word." />
+			<button type="button" class="icon-btn" onclick="fnTopSearch();return false;"><i class="fab fa-sistrix"></i></button>
+		</form>
+	</div>
+</div>

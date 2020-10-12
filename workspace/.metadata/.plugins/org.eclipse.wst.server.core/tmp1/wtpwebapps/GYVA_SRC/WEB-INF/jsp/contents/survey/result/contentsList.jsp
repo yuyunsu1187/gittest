@@ -1,0 +1,98 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : list.jsp
+ * DESC : 로그 목록조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+<script type="text/javascript" language="javascript">
+	//<![CDATA[
+	function fnDetail(surveyId, surveyMenuId, contentsId) {
+	    document.listForm.surveyId.value = surveyId;
+	    document.listForm.surveyMenuId.value = surveyMenuId;
+	    document.listForm.contentsId.value = contentsId;
+		document.listForm.action = "<c:url value='/admin/contents/resultDetail.do'/>";
+		document.listForm.submit();
+	}	
+	//]]>
+</script>
+			
+<section id="AD050903-05" class="content-section">
+	<header class="content-header">
+		<h2 class="content-tit">설문결과</h2>
+	</header>
+	
+	<!-- [S] 게시물 리스트 --> 
+	<article class="board-wrap" data-board-type="form-list">
+		<Tag:paging resultList='${resultList}' >
+		<Tag:pagingOut value="showJavaScript" /> 
+		<!-- 리스트 노출 개수는 최대 10줄 -->
+		<div class="board-area">
+			<form:form commandName="resultList" name="listForm" id="listForm" method="post">
+				<input type="hidden" name="surveyId" id="surveyId" value="" />
+				<input type="hidden" name="surveyMenuId" id="surveyMenuId" value="" />
+				<input type="hidden" name="contentsId" id="contentsId" value="" />
+				<input type="hidden" name="menuId" id="menuId" value="<c:out value='${menuId}'/>" />
+				<table class="default-table">
+					<caption>설문결과 리스트</caption>
+					<colgroup>
+						<col style="width:10%;" />
+						<col style="width:15%;" />
+						<col style="width:auto;" />
+						<col style="width:20%;" />
+					</colgroup>
+					
+					<thead>
+						<tr>
+							<th scope="row">No</th>
+							<th scope="row">컨텐츠 메뉴</th>
+							<th scope="row">제목</th>
+							<th scope="row">등록일자</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<c:forEach var="result" items="${resultList}" varStatus="status">
+							<tr>
+								<td><c:out value="${result.seq}" /></td>
+								<td><c:out value="${result.menuName}" /></td>
+								<td data-text-style="ellipsis"><a href="javascript:fnDetail('<c:out value="${result.surveyId}"/>', '<c:out value="${result.menuId}"/>', '<c:out value="${result.contentsId}"/>')"><c:out value="${result.title}" /></a></td>
+								<td><Tag:mask mask="###########"><c:out value="${result.createDate}" /></Tag:mask></td>
+							</tr>
+						</c:forEach>
+						
+						<!-- 검색결과가 값이 없을 때 -->
+						<c:if test="${empty resultList && !empty input}">
+							<tr>
+								<td colspan="4" data-td-type="board-noData">등록된 사용자가 없습니다</td>
+							</tr>
+						</c:if>
+					</tbody>
+				</table>
+			</form:form>
+		</div>
+						
+		<!-- [S] paging -->
+		<div class="paging-area" <c:if test="${empty resultList}">style="display:none"</c:if>>
+		    <Tag:pagingOut value='showMoveFirstPage' />
+		    <Tag:pagingOut value='showMoveBeforePage' />
+		    <Tag:pagingOut value='showIndex' />
+		    <Tag:pagingOut value='showMoveNextPage' />
+		    <Tag:pagingOut value='showMoveEndPage' />
+		</div>
+		<!-- [S] paging -->
+		</Tag:paging>
+	</article>
+	<!-- [E] 게시물 리스트 -->
+</section>

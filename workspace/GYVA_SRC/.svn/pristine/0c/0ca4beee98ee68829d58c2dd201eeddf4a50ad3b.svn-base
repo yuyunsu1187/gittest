@@ -1,0 +1,26 @@
+package devonframe.gyva.common.menu.service;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import devonframe.dataaccess.CommonDao;
+import devonframe.gyva.common.menu.model.Menu;
+import devonframe.gyva.common.menu.service.MenuService;
+import devonframe.gyva.contents.model.Contents;
+
+@Service("menuService")
+public class MenuServiceImpl implements MenuService {
+
+    @Resource(name = "commonDao")
+    private CommonDao commonDao;
+
+	public void retrieveMenuList(Menu menu) {
+		commonDao.selectList("Menu.retrieveMenuList", menu);
+	}
+	
+	public Menu retrieveCallMenuInfo(Contents contents) {
+		return commonDao.select("Menu.retrieveCallMenuInfo", contents);
+	}
+	
+}

@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Main test Page</title>
+
+<%-- <c:set var="name" value="<%=(String)request.getSession().getAttribute("email")%>" /> --%>
+</head>
+<body>
+	<form:form commandName="codeVO" name="pForm" method="post">
+		<div id="LblockButton">
+			<label class="Lbtn1" href="#" onclick="location.href='/main.do'"><span>HOME   | </span></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<label class="Lbtn2" href="#" onclick="location.href='/common/login/joinForm.do'"><span>Join   | </span></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<label class="Lbtn3" href="#" onclick="location.href='/common/login/loginForm.do'"><span>Login   | </span></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<label class="Lbtn4" href="#" onclick="location.href='/common/login/myPageForm.do';"><span>MyPage   | </span></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<label class="Lbtn5" href="#" onclick="location.href='/common/login/logout.do'"><span> Logout</span></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<label class="Lbtn6" href="#" onclick="location.href='/common/login/fileDownloadList.do'"><span> fileDownLoad</span></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		</div>
+		<div></div>
+	</form:form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="employee">
+
+	<select id="retrieveEmployee" resultType="devonframe.batch.sample.common.model.Employee">
+			SELECT 	num,
+					name, 
+					sex, 
+					department_code, 
+					joblevel_code, 
+					skill_code, 
+					telephone, 
+					birthdate, 
+					postal, 
+					address
+			FROM    EMPLOYEE
+			ORDER BY num ASC
+	</select>
+	
+	<insert id="insertEmployee">
+	<![CDATA[
+			INSERT INTO EMPLOYEE (
+				num, name, sex, department_code, joblevel_code, skill_code, telephone, birthdate, postal, address
+			) values (
+				#{num},
+				#{name},
+				#{sex},
+				#{departmentCode},
+				#{joblevelCode},
+				#{skillCode},
+				#{telephone},
+				#{birthdate},
+				#{postal},
+				#{address}
+			)
+	]]>
+	</insert>
+</mapper>

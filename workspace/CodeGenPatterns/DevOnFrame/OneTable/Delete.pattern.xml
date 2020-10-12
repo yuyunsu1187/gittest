@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenPattern id="DevOnFrame/OneTable/DeletePattern" format="1.0" title="DELETE">
+	<description>[DevOnFrame] Generate DELETE Codes for a Table and Insert to Existing Files</description>
+
+	<variablePageLink id="DevOnFrame/OneTable/OneTableVariablePage"/>
+
+	<templateLink id="DevOnFrame/OneTable/VOTemplate" type="java" 
+			filePath="${codePackage.folderPath}/vo/${table.capitalized}VO.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/Delete/ServiceTemplate" type="java"
+			filePath="${codePackage.folderPath}/service/${table.capitalized}Service.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/Delete/ServiceImplTemplate" type="java"
+			filePath="${codePackage.folderPath}/impl/${table.capitalized}ServiceImpl.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/Delete/ControllerTemplate" type="java"
+			filePath="${codePackage.folderPath}/controller/${table.capitalized}Controller.java"/>
+	
+	<templateLink id="DevOnFrame/OneTable/Delete/QueryTemplate" type="xml"
+			filePath="${queryFolder}/sql-${StringUtil.camelCase($queryNamespace, false)}.xml"/>
+	
+</CodeGenPattern>

@@ -1,0 +1,237 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsWrite.jsp
+ * DESC : 컨텐츠 페이지 조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+
+<html>
+<head>
+<title>contents 등록 화면</title>
+
+<script type="text/javaScript" language="javascript">
+//<![CDATA[
+	
+	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+	function checkValue() {
+
+		if (!document.userInfo.email.value) {
+			alert("이메일 형식의 아이디를 입력하세요.");
+			return false;
+		}
+		
+		if (document.userInfo.idChk.value == "N") {
+			alert("id 중복 확인 하세요.");
+			return false;
+		}
+
+		if (!document.userInfo.password.value) {
+			alert("비밀번호를 입력하세요.");
+			return false;
+		}
+
+		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+		if (document.userInfo.password.value != document.userInfo.passwordCheck.value) {
+			alert("비밀번호를 동일하게 입력하세요.");
+			return false;
+		}
+
+		if ($("input:checkbox[name=consentYn]").is(":checked") == false) {
+			alert("동의 하기를 체크 하세요.");
+			return false;
+		} 
+	}
+function fnRetrieveList() {
+	document.detailForm.action = "<c:url value='/contents/notice/retrieveContentsList.do'/>";
+	document.detailForm.submit();
+}
+function fnDownloadDetail(index) {
+	$("input:checkbox[name=checkIndex]").prop("checked", false);	
+	$("input:checkbox[id=checkIndex_"+index+"]").prop("checked", true);	
+	
+	document.listForm.action = "<c:url value='/function/filedownload/downloadFileList.do'/>";
+	document.listForm.submit();
+}
+// 취소 버튼 클릭시 로그인 화면으로 이동
+function goContentWriteForm() {
+	location.href = "contentsWrite.do";
+}
+goContentWriteForm
+// ]]>
+</script>
+</head>
+<body>
+<div id="LblockBody">
+	<div id="LblockPageHeader">
+		<div id="LblockPageTitle">
+			<h1>Clinic Material</h1>
+		</div>
+
+		<div id="LblockPageLocation">
+			<ul>
+				<li class="Llast"><span>Clinic Material Detail</span></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="LblockBodyMain">
+
+		<div id="LblockListTable01" class="LblockListTable" >
+			
+			<div class="Lwrapper">
+				<form:form commandName="resultList" name="listForm" id="listForm" method="post">
+				<input type="hidden" name="seq" id="seq" value="" />
+				<input type="hidden" name="menuId" id="menuId" value="${param.menuId}" />
+				<div width=0 height=0 style="visibility: hidden">
+					<input type="checkbox" class="Lcheckbox" name="checkIndex" id="checkIndex_0" value="0" />
+				</div>
+				<input type="hidden" name="fileName" value="${result.fileName}" />
+				<input type="hidden" name="uploadFilePath" value="${result.filePath}" />
+					<table summary="Clinic Material Detail" style="font:100%/1.5em Gulim;">
+						<caption>Clinic Material</caption>
+						<thead>
+							<tr>
+								<th class="Lfirst">썸네일 이미지</th>
+								<th>파일 확장자</th>
+								<th>컨텐츠 제목</th>
+								<th>안내 문구</th>
+								<th>등록일자</th>
+								<th>파일크기</th>
+								<th>비고</th>
+								<th class="Llast">파일다운로드버튼</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="Lfirst" >
+								<td class="Lfirst"><img src="${result.thumFilePath}" width=40px, height=30px /></td>
+								<td><c:out value="${result.fileExtension}" /></td>
+								<td><c:out value="${result.title}" /></td>
+								<td><c:out value="${result.contents}" /></td>
+								<td><c:out value="${result.createDate}" /></td>
+								<td><c:out value="${result.fileSize}" />MB</td>
+								<td><c:out value="" /></td>
+								<td class="Llast"><a class="Lbtn" href="#"><span onclick="fnDownloadDetail(0);">다운로드</span></a></td>
+							</tr>
+							<c:if test="${empty result && !empty input}">
+								<tr id="empty" style="background-color: #FFFFFF">
+									<td colspan="5"><spring:message code="dev.inf.com.nodata" /></td>
+								</tr>
+							</c:if>
+						</tbody>
+					</table>
+				</form:form>
+			</div>
+		</div>
+		</div>
+</div>
+
+
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="wrap">
+		<br>
+		<br> <b><font size="6" color="gray">contents 등록</font></b> <br>
+		<br>
+		<br>
+		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+		<form method="post" action="/admin/contents/insertContents.do" name="contentsInfo" id="contentsInfo" onsubmit="return checkValue()" enctype="multipart/form-data">
+			<table>
+			
+			<tr>
+				<td id="title">contents_id </td>
+				<td>
+					<input type="text" name="contentsId" id="contentsId" maxlength="50" placeholder ="Enter contentsId" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">menu_id </td>
+				<td>
+					<input type="text" name="menuId" id="menuId" maxlength="50" placeholder ="Enter menuId" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">category_code </td>
+				<td>
+					<input type="text" name="categoryCode" id="categoryCode" maxlength="50" placeholder ="Enter categoryCode" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">title </td>
+				<td>
+					<input type="text" name="title" id="title" maxlength="50" placeholder ="Enter title" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">contents </td>
+				<td>
+					<input type="text" name="contents" id="contents" maxlength="50" placeholder ="Enter contents" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">thumbnail image</td>
+				<td>
+					<input type="file" id="uploadFile_1" name="uploadFile_1" class="Lbtn"  multiple="multiple">
+				</td>
+			</tr>
+			<tr>
+				<td id="title">download file </td>
+				<td>
+					<input type="file" id="uploadFile_2" name="uploadFile_2" class="Lbtn"  multiple="multiple"> 
+				 </td>
+			</tr>
+			
+			<tr>
+				<td id="title">contents </td>
+				<td>
+					<input type="text" name="contents" id="contents" maxlength="50" placeholder ="Enter contents" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">state_code </td>
+				<td>
+					<input type="text" name="stateCode" id="stateCode" maxlength="50" placeholder ="Enter stateCode" >
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<td id="title">readerUserId </td>
+				<td>
+					<input type="text" name="readerUserId" id="readerUserId" maxlength="50" placeholder ="Enter readerUserId" >
+				</td>
+			</tr>
+			
+			<tr>
+				<td id="title">surveyId </td>
+				<td>
+					<input type="text" name="surveyId" id="surveyId" maxlength="50" placeholder ="Enter surveyId" >
+				</td>
+			</tr>
+			
+			
+			</table>
+			<br> <input type="submit" value="등록" /> 
+				 <input type="button" value="취소" onclick="goContentWriteForm()">
+		</form>
+	</div>
+</body>
+</html>
+

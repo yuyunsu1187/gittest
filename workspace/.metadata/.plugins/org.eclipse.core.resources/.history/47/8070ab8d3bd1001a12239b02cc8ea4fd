@@ -1,0 +1,170 @@
+package com.gyva.web.common.login.controller;
+
+import java.util.Locale;
+import java.util.Random;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+import com.gyva.web.common.login.service.LoginService;
+import com.gyva.web.common.user.model.User;
+import com.gyva.web.common.user.service.UserService;
+
+/**
+ * <pre>
+ * 본 클래스는 로그인 처리를 담당하는 Controller 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class LoginController {
+
+	@Resource(name = "loginService")
+	private LoginService loginService;
+
+	@Resource(name = "userService")
+	private UserService userService;
+
+    @Resource(name="messageSourceAccessor")
+    private MessageSourceAccessor messageSourceAccessor;
+
+    // 회원 가입 page
+	@RequestMapping(value="/common/login/joinForm.do")
+	public String LoginForm(String redirectUrl, ModelMap model){
+		System.out.println("\t\t\t ################################# LoginForm start");
+		if(redirectUrl != null && !redirectUrl.trim().equals("")) {
+			model.addAttribute("redirectUrl", redirectUrl);
+		}
+		System.out.println("\t\t\t ################################# LoginForm end");
+		return "common/login/joinForm";
+	}
+	
+	// 회원 가입 page
+	@RequestMapping(value="/common/login/resetPassword.do")
+	public String ResetPasswordForm(String redirectUrl, ModelMap model){
+		System.out.println("\t\t\t ################################# ResetPasswordForm start");
+		if(redirectUrl != null && !redirectUrl.trim().equals("")) {
+			model.addAttribute("redirectUrl", redirectUrl);
+		}
+		System.out.println("\t\t\t ################################# ResetPasswordForm end");
+		return "common/login/resetPassword";
+	}
+	
+    // 로그인 page
+	@RequestMapping("/common/login/loginForm.do")
+	public String loginForm(@ModelAttribute User input, String redirectUrl, ModelMap model, HttpSession session) {
+		System.out.println("\t\t\t ################################# loginForm start");
+		System.out.println("input :::[" + input + "]");
+		System.out.println("\t\t\t ################################# loginForm end");
+		return "common/login/loginForm";
+	}
+
+	// 로그아웃
+    @RequestMapping("/common/login/logout.do")
+    public String logout(@ModelAttribute User input, ModelMap model, HttpSession session) {
+    	session.removeAttribute("loginUser");
+		return "redirect:/common/login/retrieveLoginForm.do";
+    }
+
+    // login
+    @RequestMapping("/common/login/login.do")
+    public String login(@ModelAttribute User input, String redirectUrl, ModelMap model, HttpSession session) {
+		System.out.println("\t\t\t ################################# login start");
+		System.out.println("input :::[" + input + "]");
+
+        boolean isExistUser = loginService.checkUserId(input);
+        if(!isExistUser) {
+            model.addAttribute("errorMsg", messageSourceAccessor.getMessage("sample.common.login.invalidUserId"));
+
+            return "common/login/loginForm";
+        }
+
+        boolean isValidUser = loginService.checkUser(input);
+        if(isValidUser) {
+        	User loginUser = userService.searchUser(input);
+
+        	// language대신 국가 코드 세팅 차후 삭제 가능
+        	String language = loginUser.getCountry_code(); 
+        	if(language == null) {
+        		language = "";
+        	}
+
+            session.setAttribute("loginUser", loginUser);
+            session.setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale(language));
+            session.setAttribute("email", loginUser.getEmail());
+            /* redirectUrl 필요할 경우 주석 제거            
+            if(redirectUrl != null && !redirectUrl.trim().equals("") && !redirectUrl.trim().equals("null")) {
+    			return "redirect:/main.do?redirectUrl="+redirectUrl;
+    		}
+    		*/
+            
+            // 차후 메인페이지로 이동
+            return "main";
+//        	return "redirect:/main.do";
+        }
+
+        model.addAttribute("errorMsg", messageSourceAccessor.getMessage("sample.common.login.invalidPassword"));
+		System.out.println("\t\t\t ################################# login end");
+        return "common/login/loginForm";
+    }
+    
+    // 회원 비밀번호 수정
+ 	@RequestMapping(value = "/common/login/resetPasswordUser.do")
+ 	public String resetPasswordUser(User input, ModelMap model) {
+ 		System.out.println("\t\t\t ################################# resetPasswordUser start");
+ 		boolean idCheck = loginService.checkUserId(input);	// 아이디  존재 여부 조회 있을 경우 다음 로직 실행
+ 		if(idCheck){
+ 			System.out.println("\t\t\t id 존 재 ");
+ 			// Random 변수 생성
+ 			Random rnd =new Random();
+
+ 		    StringBuffer buf =new StringBuffer();
+
+ 		    for(int i=0;i<10;i++){
+
+ 		        // rnd.nextBoolean() 는 랜덤으로 true, false 를 리턴. true일 시 랜덤 한 소문자를, false 일 시 랜덤 한 숫자를 StringBuffer 에 append 한다.
+
+ 		        if(rnd.nextBoolean()){
+
+ 		            buf.append((char)((int)(rnd.nextInt(26))+97));
+
+ 		        }else{
+
+ 		            buf.append((rnd.nextInt(10)));
+
+ 		        }
+
+ 		    }
+ 		   System.out.println("\t\t\t 신규 생성 pwd :["+buf.toString()+"]");
+ 			input.setPassword(buf.toString());
+ 			userService.updateUser(input);
+ 		}else{
+ 			System.out.println("\t\t\t id 미존재 ");
+ 		}
+ 		System.out.println("\t\t\t ################################# resetPasswordUser e n d");
+ 		return "redirect:/common/login/loginForm";
+ 	}
+ 	
+    // 메인 페이지 호출 컨트롤러 (컨트롤러 명 수정가능)
+	@RequestMapping(value="/main.do")
+	public String retrieveMainPage(String redirectUrl, ModelMap model){
+		if(redirectUrl != null && !redirectUrl.trim().equals("")) {
+			model.addAttribute("redirectUrl", redirectUrl);
+			String menuCode = redirectUrl.substring(0, redirectUrl.indexOf("/"));
+			if(redirectUrl.startsWith("/")) {
+				menuCode = redirectUrl.substring(1);
+				menuCode = menuCode.substring(0, menuCode.indexOf("/"));
+			}
+			model.addAttribute("menuCode", menuCode);
+		}
+		return "main";
+	}
+}

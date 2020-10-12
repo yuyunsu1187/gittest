@@ -1,0 +1,273 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+ 
+<html>
+<head>
+<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<title>회원가입 화면</title>
+<style type="text/css">
+div.main{
+    position: relative;
+    padding: 20px;
+}
+div.main input{
+    width: 300px;
+    height: 30px;
+    background-color: black;
+    border: 0;
+    color: white;
+    text-indent: 10px;
+}
+div.main i{
+    position: absolute;
+    left: 75%;
+    top: 27px;
+    color: orange;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('.main i').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa fa-eye-slash fa-lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+});
+
+	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+	function checkValue() {
+
+		if (!document.userInfo.email.value) {
+			alert("이메일 형식의 아이디를 입력하세요.");
+			return false;
+		}
+		
+		if (document.userInfo.idChk.value == "N") {
+			alert("id 중복 확인 하세요.");
+			return false;
+		}
+
+		if (!document.userInfo.password.value) {
+			alert("비밀번호를 입력하세요.");
+			return false;
+		}
+
+		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+		if (document.userInfo.password.value != document.userInfo.passwordCheck.value) {
+			alert("비밀번호를 동일하게 입력하세요.");
+			return false;
+		}
+		
+		if (!document.contentsInfo.uploadFile_1.value) {
+			alert("의사 면허증 image를 등록하세요.");
+			return false;
+		}
+		
+		if (!document.contentsInfo.uploadFile_2.value) {
+			alert("의사 면허증2 image를 등록하세요.");
+			return false;
+		}
+		if ($("input:checkbox[name=consentYn]").is(":checked") == false) {
+			alert("동의 하기를 체크 하세요.");
+			return false;
+		} 
+	}
+
+	// 취소 버튼 클릭시 로그인 화면으로 이동
+	function goLoginForm() {
+		location.href = "/common/login/login.do";
+	}
+
+	// 파일 저장
+	function fnSave() {
+		document.userInfo.action = "<c:url value='/common/login/insertFileInfo.do'/>";
+		document.userInfo.submit();
+	}
+
+
+	// 체크 박스 1개만 선택 하게 하기위한 함수
+	function doOpenCheck(chk) {
+		var obj = document.getElementsByName("userType");
+		for (var i = 0; i < obj.length; i++) {
+			if (obj[i] != chk) {
+				obj[i].checked = false;
+			}
+		}
+	}
+	
+	// 비밀번호 형식 체크
+	function fnPwdChk() {
+		if (!document.userInfo.password.value) {
+			alert("비밀번호를 입력하세요.");
+			return false;
+		}
+		var asValue = document.userInfo.password.value;
+		var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
+		if (!regExp.test(asValue)) {
+			alert("password를 (8 ~ 10자 영문, 숫자 조합)형태로 입력하세요.");
+			return false; // 형식에 맞는 경우 true 리턴	
+		}
+	}
+	
+	// 아이디 중복 체크
+ 	function fnIdChk() {
+		if (!document.userInfo.email.value) {
+			alert("아이디를 입력하세요.");
+			return false;
+		}
+		var asValue = document.userInfo.email.value;
+		var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		if (!regExp.test(asValue)) {
+			alert("이메일 형식의 아이디를 입력하세요.");
+			return false; // 형식에 맞는 경우 true 리턴	
+		}
+		$.ajax({
+			url : "/common/user/idChk.do",
+			type : "post",
+			dataType : "json",
+			data : {"email" : $("#email").val()},
+			success : function(data) {
+				if (data == 1) {
+					$("#idChk").attr("value", "N");
+					alert("이미 존재 하는 아이디 입니다.");
+				} else if (data == 0) {
+					$("#idChk").attr("value", "Y");
+					alert("사용가능 아이디입니다.");
+				}
+			},
+		})
+	} 
+
+
+</script>
+
+
+</head>
+<body>
+
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="wrap">
+		<br>
+		<br> <b><font size="6" color="gray">회원가입</font></b> <br>
+		<br>
+		<br>
+		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+		<form method="post" action="/common/user/insertUser.do" name="userInfo" id="userInfo" onsubmit="return checkValue()" enctype="multipart/form-data">
+			<table>
+			<input type="hidden" name="stateCode" id="stateCode" value="01" placeholder ="요청 상태 코드 : 01"/>
+			<input type="hidden" name="createId" id="createId" value="0"/>
+			<input type="hidden" name="updateId" id="updateId" value="0"/>
+				<tr>
+					<td id="title">user_type</td>
+					<td>
+						<p class="remember">
+							<input type="checkbox" id="userType" name="userType" value="DR02" onclick="doOpenCheck(this);" checked="checked" />
+							<label for="login_remember">의사 그룹</label>
+							 
+							<input type="checkbox" id="userType" name="userType" value="PT01" onclick="doOpenCheck(this);" />
+							<label for="login_remember">협력 업체</label>
+							
+						</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td id="title">email </td>
+					<td>
+						<input type="text" name="email" id="email" maxlength="50" placeholder ="Enter Email" onblur="onblur_event();">
+						<button type="button" name="idChk" id="idChk" value="N" onclick="fnIdChk()">중복확인</button>
+					</td>
+				</tr>
+				
+				<tr>
+					<td id="title">password </td>
+					<td>
+						<input type="password" name="password" id="password" maxlength="50" placeholder ="Enter Password" >
+						<i class="fa fa-eye fa-lg"></i>
+						<input type="password" name="passwordCheck" id="passwordCheck" maxlength="50" placeholder ="Confirm Password" onclick="fnPwdChk()">
+						<i class="fa fa-eye fa-lg"></i>
+					</td>
+				</tr>
+
+				<tr>
+					<td id="title"> Name </td>
+					<td><input type="text" name="nameFirst" id="nameFirst" maxlength="50" placeholder ="First name"> 
+					    <input type="text" name="nameLast" id="nameLast" maxlength="50" placeholder ="Sur name"></td>
+				</tr>
+
+				<tr>
+					<td id="title">Country </td>
+					<td><select name="countryCode" id="countryCode" placeholder="-- Plasses choose--">
+							<option value="">-- Plasses choose--</option>
+							<option value="K001">KOR</option>
+							<option value="U001">USA</option>
+					</select> </td>
+				</tr>
+
+				<tr>
+					<td id="title">City</td>
+					<td><input type="text" name="divisionCode" id="divisionCode" placeholder ="For quicker approval please enter the city." /></td>
+				</tr>
+								
+				<tr>
+					<td id="title">Physician ID </td>
+					<td>
+						<input type="file" id="uploadFile_1" name="uploadFile_1" class="Lbtn"  multiple="multiple">
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td id="title">Phycician Face </td>
+					<td>
+						<input type="file" id="uploadFile_2" name="uploadFile_2" class="Lbtn"  multiple="multiple"> 
+					 </td>
+				</tr>
+				
+				<tr>
+					<td id="title">consent_yn</td>
+					<td>
+					<label><input type="checkbox" name="consentYn" id="consentYn" value="Y"> 동의</label>
+					</td>
+				</tr>
+
+				<tr>
+					<td id="title">Hospital Name </td>
+					<td><input type="text" name="hpName" id="hpName" value="" placeholder ="Enter hospital Name"/></td>
+				</tr>
+				
+				<tr>
+					<td id="title">Hospital Address</td>
+					<td><input type="text" name="hpAdd" id="hpAdd" value="" placeholder ="Enter hospital Address"/></td>
+				</tr>
+				
+				<tr>
+					<td id="title">Hospital Zip </td>
+					<td><input type="text" name="hpZipcode" id="hpZipcode" value="" placeholder ="Enter hospital Zip"/></td>
+				</tr>
+			
+				<!-- <tr>
+					<td id="title">Partner Name </td>
+					<td><input type="text" name="hpName" id="hpName" value="02" placeholder ="Enter Partner Name"/></td>
+				</tr> -->
+			
+				
+			</table>
+			<br> <input type="submit" value="가입" /> 
+				 <input type="button" value="취소" onclick="goLoginForm()">
+		</form>
+	</div>
+</body>
+</html>

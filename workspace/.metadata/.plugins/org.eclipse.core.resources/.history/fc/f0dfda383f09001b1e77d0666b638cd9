@@ -1,0 +1,168 @@
+###################
+# confirm message #
+###################
+dev.cfm.com.save   = are you sure to save?
+dev.cfm.com.delete = are you sure to delete?
+dev.cfm.com.update = are you sure to update?
+
+###################
+# sucess message  #
+###################
+dev.suc.com.retrieve = successfully retrieved.
+dev.suc.com.process  = successfully processed.
+dev.suc.com.update   = successfully updated.
+dev.suc.com.save     = successfully saved.
+dev.suc.com.delete   = successfully deleted.
+
+###################
+# error message   #
+###################
+dev.err.com.title    = error occurred.
+dev.err.com.desc     = unknown error occurred.
+dev.err.com.retrieve = error while retrieved.
+dev.err.com.save     = error while saved.
+dev.err.com.delete   = error while deleted.
+dev.err.com.security = error for XSS injection security.
+dev.err.com.limit    = too many employees.
+dev.err.com.noSearchNum  = please insert to retrieve employee number.
+dev.err.com.requiredSearchNum = employee number is required.
+dev.err.com.requiredNotSearchNum  =employee number is exist.
+
+###################
+# info message    #
+###################
+dev.inf.com.nosave    = no data for saving
+dev.inf.com.nochange  = no data for change.
+dev.inf.com.nodata    = no such data found.
+dev.inf.com.nodelete  = no data for deleting.
+dev.inf.com.noselect  = no selected data.
+dev.inf.contact.email = administrator\\@lgcns.com
+dev.inf.contact.phone = 080-2-6363-3935
+dev.inf.excel.result = Total {0}/ Success {1} (Total Elapsed Time {2} ms)
+
+###################
+# warning message #
+###################
+dev.warn.com.input     = required field. please fill {0}.
+dev.warn.com.required  = required field. please fill {0}.
+dev.warn.com.select    = required field. please select {0}.
+dev.warn.com.retrieve  = please first retrieve.
+dev.warn.com.required1 = you must choose a combo List between jobLevel and skillLevel.
+dev.warn.com.required2 = Protocol, host, username and password is required.
+dev.warn.com.required3 = employee number is required.
+dev.warn.com.delinfo   = please select employee to delete.
+dev.warn.com.updinfo   = please select employee to update.
+dev.warn.com.retinfo   = please enter employee to retrieve.
+dev.warn.com.update    = please retrieve employee to update first.
+dev.warn.com.save      = please retrieve employee to save first.
+dev.warn.com.save2     = please retrieve employee to save amount.
+dev.warn.com.create    = {0} employee number is exist.
+dev.warn.com.add       = please retrieve employee to add amount.
+dev.warn.com.add2      = please add amount to insert.
+dev.warn.com.delete    = please retrieve employee to delete first.
+dev.warn.com.delete2   = please select employee to amount.
+dev.warn.com.year      = year is required.
+
+###########
+# Default #
+###########
+dev.com.combo.default = -- SELECT --
+
+#################
+# sample Data #
+#################
+gyva.common.code=Code
+gyva.common.code.codeDesc=Code Description
+gyva.common.code.codeDetail=Code Detail
+gyva.common.code.codeGroup=Code Group
+gyva.common.code.codeList=Code List
+gyva.common.code.codeManagement=Code Management
+gyva.common.code.codeName=Code Name
+gyva.common.code.codeSearch=Code Search
+gyva.common.login.invalidPassword=Invalid password.
+gyva.common.login.invalidUserId=User Id dose not exist
+gyva.common.join.successMessage=Sign up is complete.\nAfter approval is complete, you can log in.
+gyva.common.menu.admin=Administrator
+gyva.common.menu.banking=Internet Banking
+gyva.common.menu.uipattern=UI Pattern
+gyva.common.menu.employeeManagement=Employee Management
+gyva.common.menu.humanResource=Human Resource
+gyva.common.menu.privateCustomer=Private Customer
+gyva.common.menu.recruitManagement=Recruit Management
+gyva.common.menu.rewardManagement=Reward Management
+gyva.common.menu.systemManagement=System Management
+gyva.common.menu.webserviceList=Web Service List
+gyva.common.mypage.author=Author
+gyva.common.mypage.basicInfo=Basic Info
+gyva.common.mypage.configuration=Configuration
+gyva.common.mypage.quote=Quote
+gyva.common.mypage.todaysQuote=Todays Quote
+gyva.common.user.chinese=Chinese
+gyva.common.user.english=Englist
+gyva.common.user.invalidPassword=Invalid passwod
+gyva.common.user.invalidUserId=User Id dose not exist.
+gyva.common.user.korean=Korean
+gyva.common.user.language=Language
+gyva.common.user.regDt=Registration Date
+gyva.common.user.role=Role
+gyva.common.user.usrDetail=User Detail
+gyva.common.user.usrId=User ID
+gyva.common.user.usrList=User List
+gyva.common.user.usrManagement=User Management
+gyva.common.user.usrNm=User Name
+gyva.common.user.usrPw=User Password
+gyva.common.user.usrSearch=User Search
+
+gyva.front.achievement.achievDetail=Achievement Detail
+gyva.front.achievement.achievList=Achievement List
+gyva.front.achievement.achievManagement=Achievement Management
+gyva.front.achievement.achievSearch=Achievement Search
+gyva.front.achievement.duplicatedAchievement=There is already achievement data of {0}-{1}.
+gyva.front.achievement.etc=Etc
+gyva.front.achievement.month=Month
+gyva.front.achievement.valueInfo=Amount Info
+gyva.front.achievement.value=Amount
+gyva.front.achievement.won=won
+gyva.front.achievement.year=Year
+
+gyva.front.department.deptCode=Department Code
+gyva.front.department.deptDetail=Department Detail
+gyva.front.department.deptDivision=Division
+gyva.front.department.deptList=Department List
+gyva.front.department.deptManagement=Department Management
+gyva.front.department.deptName=Department Name
+gyva.front.department.deptSearch=Department Search
+
+gyva.front.apply.applyManagement=Resume Management
+
+gyva.front.user.address=Address
+gyva.front.user.applyNum=Apply Num
+gyva.front.user.army=Army
+gyva.front.user.basicInfo =Basic Info
+gyva.front.user.basicInfoManagement=Basic Info Management
+gyva.front.user.birthdate=Birthdate
+gyva.front.user.department=Department
+gyva.front.user.detailInfo=Employee Detail Info
+gyva.front.user.detailInfoManagement=Detail Info
+gyva.front.user.empList=Employee List
+gyva.front.user.empSearch=Employee Search
+gyva.front.user.firstdate=First Enter Date
+gyva.front.user.gender=Gender
+gyva.front.user.invalidEmpNum=Requested employee number is not valid.
+gyva.front.user.joblevel=Job Level
+gyva.front.user.man=Man
+gyva.front.user.marriage=Marriage
+gyva.front.user.name=Employee Name
+gyva.front.user.nowjob=Now Job
+gyva.front.user.num=Employee Num
+gyva.front.user.postal=Postal
+gyva.front.user.resume=Resume
+gyva.front.user.retirement=Retirement
+gyva.front.user.skill=Skill Grade
+gyva.front.user.ssn=Social Security Number
+gyva.front.user.telephone=Telephone
+gyva.front.user.grade=Grade
+gyva.front.user.title=Title
+gyva.front.user.woman=Woman
+gyva.front.user.workingdate=Working Date
+gyva.front.user.workingyear=Working Year

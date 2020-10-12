@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/RetrieveList/QueryTemplate" format="1.0" title="Query Template for RETRIEVE LIST">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+#set($voClassPath="${voPackage}.${voClassName}")
+##
+#set($selectListQueryId="retrieve${table.capitalized}List")
+]]></prefix>
+
+
+	<ifNewFile><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${queryNamespace}">
+]]></ifNewFile>
+
+
+	<ifNotFound>
+		<findXMLElement path="/mapper/select[@id='${selectListQueryId}']"/>
+		<insert location="xmlChild" parent="/mapper"><![CDATA[
+<select id="${selectListQueryId}" resultType="${voClassPath}">{CodeGen:StartOfCDATA}
+#foreach ($row in $table.columns)
+#if ($velocityCount == 1)
+    SELECT   T.${row.name}
+#else
+           , T.${row.name}
+#end
+#end
+    FROM     ${table.tableName} T
+    WHERE    1 = 1 {CodeGen:EndOfCDATA}
+#foreach ($row in $table.columns)
+    <if test="${row.camelCased} != null and ${row.camelCased} != ''">{CodeGen:StartOfCDATA}
+      AND    T.${row.name} = #{${row.camelCased}}
+    {CodeGen:EndOfCDATA}</if>
+#end
+    -- ORDER BY  Condition
+</select>
+]]></insert>
+	</ifNotFound>
+
+
+
+	<ifNewFile><![CDATA[
+</mapper>
+]]></ifNewFile>
+
+
+
+</CodeGenTemplate>

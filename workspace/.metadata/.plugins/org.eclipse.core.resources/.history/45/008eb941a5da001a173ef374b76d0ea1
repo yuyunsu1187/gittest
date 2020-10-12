@@ -1,0 +1,15 @@
+package devonframe.gyva.front.common.fileupload.service;
+
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+@Service("fileParseService")
+public class FileParseServiceImpl implements FileParseService{
+	
+	@Override
+	public void fileParseList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		
+	}
+}

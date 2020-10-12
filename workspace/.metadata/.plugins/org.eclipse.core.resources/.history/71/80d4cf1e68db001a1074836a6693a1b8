@@ -1,0 +1,47 @@
+package devonframe.gyva.front.contents.service;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import devonframe.dataaccess.CommonDao;
+import devonframe.gyva.front.common.fileupload.service.FileUploadService;
+import devonframe.gyva.front.common.user.model.User;
+import devonframe.gyva.front.contents.model.Contents;
+
+@Service("contentsService")
+public class ContentsServiceImpl implements ContentsService{
+
+    @Resource(name = "commonDao")
+    private CommonDao commonDao;
+    
+	@Resource(name = "fileUploadService")
+	private FileUploadService fileUploadService;
+
+    @Override
+	public Contents retrieveContents(Contents contents) {
+        return commonDao.select("Contents.retrieveContents", contents);
+    }    
+    
+    @Override
+	public List<Contents> retrieveContentsList(Contents contents) {
+        List<Contents> resultList = commonDao.selectList("Contents.retrieveContentsList", contents);
+        return resultList;
+    }
+    
+	// Contents 저장
+	@Override
+	public void insertContents(Contents contents, List<Map<String, Object>> list) {
+
+		// file 리스트 parsing 후 저장
+		for (int fileIdx = 0; fileIdx < list.size(); fileIdx++) {
+			fileUploadService.insertFileInfo(list.get(fileIdx));
+		}
+		// 회원 정보 저장
+		commonDao.insert("Contents.insertContents", contents);
+	}
+
+}

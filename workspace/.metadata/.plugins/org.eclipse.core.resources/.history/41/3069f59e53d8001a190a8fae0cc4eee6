@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Contents">
+
+    <select id="retrieveContents" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq
+		     , ci.contents_id
+		     , ci.menu_id
+		     , ci.category_code
+		     , (SELECT code_name FROM code_detail WHERE group_id = #{menuId} AND CODE = ci.category_code) AS category_name
+             , ci.title
+             , ci.contents
+             , DATE_FORMAT(ci.create_date, '%Y.%m.%d') create_date
+		  FROM contents_info ci
+         WHERE ci.seq = #{seq}
+        ]]>
+    </select>
+
+    <select id="retrieveContentsList" resultType="hashmap">
+        <![CDATA[
+		SELECT ci.seq
+		     , ci.contents_id AS contentsId
+		     , ci.menu_id AS menuId 
+		     , ci.category_code AS categoryCode 
+		     , (SELECT code_name FROM code_detail WHERE group_id = #{menuId} AND CODE = ci.category_code) AS categoryName
+             , ci.title
+             , DATE_FORMAT(ci.create_date, '%Y.%m.%d') createDate
+             , fi.file_size AS fileSize
+             , fi.file_extension AS fileExtension
+		  FROM contents_info ci
+		       LEFT OUTER JOIN file_info fi
+          ON ci.file_id = fi.file_id
+         AND fi.delete_yn = 'N'
+		 WHERE ci.state_code = '02'
+		   AND ci.menu_id = #{menuId}
+        ]]>
+        <if test="categoryCd != null and categoryCd != ''">
+        <![CDATA[ AND ci.category_code = #{categoryCd} ]]>
+        </if>
+        <if test="title != null and title != ''">
+        <![CDATA[ AND UPPER(ci.title) LIKE '%' || UPPER(#{title}) || '%'  ]]>
+        </if>
+		 ORDER BY CAST(ci.contents_id AS SIGNED) DESC       
+    </select>
+
+</mapper>

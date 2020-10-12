@@ -1,0 +1,49 @@
+package com.gyva.web;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.inject.Inject;
+import javax.sql.DataSource;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(
+        locations ={"file:src/main/resources/spring/**/*.xml"})
+
+public class testDataSource {
+   
+    @Inject
+    private DataSource ds;
+   
+    @Test
+    public void testDS() throws Exception{
+
+        try(Connection con = ds.getConnection()){
+            System.out.println("dataSource설정 성공");
+            String sql = "SELECT * FROM gyva.user_info WHERE seq = ?";
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setString(1, "1");
+            ResultSet rs = pre.executeQuery();
+            
+            while(rs.next()){
+            	for(int i = 1; i<19; i++){
+            		System.out.println(i+" :"+rs.getString(i));	
+            	}
+            }
+            rs.close();
+            pre.close();
+            con.close();
+            
+        }catch(Exception e){
+            System.out.println("실패");
+            e.printStackTrace();
+        }
+    }
+}

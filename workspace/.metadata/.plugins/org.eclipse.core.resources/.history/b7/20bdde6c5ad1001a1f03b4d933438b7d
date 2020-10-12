@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<html>
+<head>
+<title>회원가입 화면</title>
+
+
+<script type="text/javascript">
+function fnRetrieve() {
+	var num = document.detailForm.searchNum;
+	if (!fnValidateRequired(num,"<spring:message code="dev.err.com.noSearchNum"/>")) return false;
+	document.detailForm.action = "<c:url value='/pattern/p11/retrieveEmployee.do'/>";
+    document.detailForm.submit();
+}
+        // 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+        function checkValue()
+        {
+
+            if(!document.userInfo.password.value){
+                alert("비밀번호를 입력하세요.");
+                return false;
+            }
+
+            // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+            if(document.userInfo.password.value != document.userInfo.passwordCheck.value ){
+                alert("비밀번호를 동일하게 입력하세요.");
+                return false;
+            }
+
+        }
+        
+        // 취소 버튼 클릭시 로그인 화면으로 이동
+        function goLoginForm() {
+            location.href="joinForm.do";
+        }
+
+    </script>
+
+</head>
+<body>
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="wrap">
+		<br>
+		<br> <b><font size="6" color="gray">회원정보 수정</font></b> <br>
+		<br>
+		<br>
+		
+		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+		<form method="post" action="/common/user/updateUser.do" name="userInfo" onsubmit="return checkValue()">
+			<table>
+			<input type="hidden" name="state_code" id="state_code" value="01" placeholder ="요청 상태 코드 : 01"/>
+			<input type="hidden" name="update_id" id="update_id" value="0"/>
+				<tr>
+					<td id="title">email </td>
+					<td>
+						<input type="text" name="email" id="email" maxlength="50" value="" readonly> 
+					</td>
+				</tr>
+				
+				<tr>
+					<td id="title">password </td>
+					<td>
+						<input type="password" name="password" id="password" maxlength="50" placeholder ="Enter Password">
+						<input type="password" name="passwordCheck" id="passwordCheck" maxlength="50" placeholder ="Confirm Password">
+					</td>
+				</tr>
+
+				<tr>
+					<td id="title"> Name </td>
+					<td><input type="text" name="name_last" id="name_last" maxlength="50" value="" readonly> 
+					    <input type="text" name="name_first" id="name_first" maxlength="50" value="" readonly>
+					</td>
+				</tr>
+
+				<tr>
+					<td id="title">Country </td>
+					<td><input type="text" name="country_code" id="country_code" value="" readonly/></td>
+				</tr>
+
+				<tr>
+					<td id="title">City</td>
+					<td><input type="text" name="division_code" id="division_code" value="" readonly/></td>
+				</tr>
+				
+				<tr>
+					<td id="title">Partner name</td>
+					<td><input type="text" name="partner_name" id="partner_name" value="" readonly/></td>
+				</tr>
+								
+				<tr>
+					<td id="title">Hospital Name </td>
+					<td><input type="text" name="hospital_name" id="hospital_name" value="" readonly/></td>
+				</tr>
+				
+				<tr>
+					<td id="title">Hospital Address</td>
+					<td><input type="text" name="hospital_address" id="hospital_address" value="" readonly/></td>
+				</tr>
+				
+				<tr>
+					<td id="title">Hospital Zip </td>
+					<td><input type="text" name="hospital_zip" id="hospital_zip" value="" readonly/></td>
+				</tr>
+			</table>
+			<br> <input type="submit" value="저장" /> 
+			<input type="button" value="취소" onclick="goLoginForm()">
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Contents">
+
+    <select id="retrieveContents" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq as seq
+		     , ci.contents_id as contentsId
+		     , ci.menu_id as menuId
+		     , ci.category_code as categoryCode
+		     , (SELECT code_name FROM code_detail WHERE group_id = #{menuId} AND CODE = ci.category_code) AS categorName
+             , ci.title as title
+             , ci.contents as contents
+             , ci.contents_url as contentsUrl
+             , ci.keyword_1 as keyword1
+             , ci.keyword_2 as keyword2
+             , ci.start_date as startDate
+             , ci.end_date as endDate
+             , ci.reader_user_id as readerUserId
+             , ci.file_id as fileId
+             , ci.state_code as stateCode
+             , DATE_FORMAT(ci.create_date, '%Y-%m-%d') as createDate
+             , ci.survey_id as surveyId
+             , fi_thum.file_path as thumFilePath
+             , fi_thum.file_name as thumFileName
+             , fi.file_name as fileName
+             , fi.file_path as filePath
+             , fi.file_size as fileSize
+             , fi.file_extension as fileExtension
+             , CONCAT(ui.name_first, ' ', ui.name_last) AS lecturerName
+             , li.career_1 as career1
+             , li.career_2 as career2
+             , li.career_3 as career3
+             , lec_fi.file_name AS lecturerImg
+             , lec_fi.file_path AS lecturerImgPath              
+             , lki.delete_yn AS dislikeYn 
+             , lki.user_id AS userId
+             , lki.seq AS likeSeq
+             , ifnull(cl.views, 0) AS views
+             , ci.remark
+		  FROM contents_info ci
+		       LEFT OUTER JOIN file_info fi_thum
+            ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+           AND fi_thum.delete_yn = 'N'
+		  	   LEFT OUTER JOIN file_info fi
+            ON ci.file_id = fi.file_id
+           AND fi.file_number = '2'
+           AND fi.delete_yn = 'N'
+               LEFT OUTER JOIN (SELECT COUNT(seq) AS views
+		                             , menu_id
+				                     , contents_id
+								  FROM connect_log 
+							     GROUP BY menu_id
+								        , contents_id) cl
+            ON ci.menu_id = cl.menu_id
+           AND ci.contents_id = cl.contents_id
+               LEFT JOIN user_info ui
+		    ON ci.reader_user_id = ui.seq
+		       LEFT JOIN lecturer_info li
+			ON ci.reader_user_id = li.user_id
+			   LEFT JOIN file_info lec_fi
+			ON li.file_id = lec_fi.file_id
+		   AND lec_fi.file_number = '3'
+           AND lec_fi.delete_yn = 'N'
+			   LEFT JOIN (select seq
+			   				   , user_id
+							   , menu_id
+							   , contents_id
+							   , delete_yn
+							from like_info
+						   where user_id = #{userId}) lki
+			ON ci.menu_id = lki.menu_id
+		   AND ci.contents_id = lki.contents_id
+		]]>
+		   
+		<choose>
+		   <when test="seq != null and seq != ''">
+           <![CDATA[ 
+             WHERE ci.seq = #{seq}
+	     AND ci.delete_yn = 'N' 
+           ]]>
+           </when> 
+		   
+		   <otherwise>
+           <![CDATA[ 
+             WHERE ci.menu_id = #{menuId}
+               AND ci.contents_id = #{contentsId}
+           ]]>
+           </otherwise>
+		</choose>
+		
+    </select>
+
+    <insert id="insertContents">
+        <![CDATA[
+        INSERT INTO contents_info(
+               contents_id
+             , menu_id
+             , category_code
+             , title
+             , contents
+             , contents_url
+             , keyword_1
+             , keyword_2
+             , start_date
+             , end_date
+             , file_id
+             , state_code
+             , reader_user_id
+             , survey_id
+             , remark
+             , create_id
+             , create_date
+             , update_id
+             , update_date
+        ) VALUES (
+               #{contentsId}
+             , #{menuId}
+             , #{categoryCode}
+             , #{title}
+             , #{contents}
+             , #{contentsUrl}
+             , #{keyword1}
+             , #{keyword2}
+             , #{startDate}
+             , #{endDate}
+             , #{fileId}
+             , #{stateCode}  
+             , #{readerUserId}
+             , #{surveyId}
+             , #{remark}
+             , #{userId}
+             , NOW()
+             , #{userId}
+             , NOW()
+        )
+        ]]>
+    </insert>
+
+    <update id="updateContents">
+        <![CDATA[
+        UPDATE contents_info
+           SET category_code = #{categoryCode}
+             , title = #{title}
+             , contents = #{contents}
+             , file_id = #{fileId}
+             , reader_user_id = #{readerUserId}
+             , survey_id = #{surveyId}
+             , update_id = #{userId}
+             , update_date = NOW()
+             , remark = #{remark}
+		     , state_code = #{stateCode}  
+         WHERE menu_id = #{menuId}
+           AND contents_id = #{contentsId}
+        ]]>
+    </update>
+    
+    <update id="updateDeleteYnContents">
+        <![CDATA[
+        UPDATE contents_info
+           SET delete_yn = 'Y'
+             , update_id = #{userId}
+             , update_date = NOW()
+         WHERE menu_id = #{menuId}
+           AND contents_id = #{contentsId}
+        ]]>
+    </update>
+
+    <update id="updateContentsForP2">
+        <![CDATA[
+        UPDATE SAM_EMPLOYEE
+           SET NAME = #{name}
+             , JOBLEVEL_CODE = #{joblevelCode}
+             , SKILL_CODE = #{skillCode}
+             , TELEPHONE = #{telephone}
+             , BIRTHDATE = #{birthdate}
+         WHERE NUM = #{num}
+        ]]>
+    </update>
+
+
+    <delete id="deleteContents">
+        <![CDATA[
+        DELETE
+          FROM SAM_EMPLOYEE
+         WHERE NUM = #{num}
+        ]]>
+    </delete>
+
+    <select id="retrieveFrontMenuId" resultType="contents">
+        <![CDATA[
+        SELECT front_id AS menu_id
+		  FROM menu_map
+		 WHERE admin_id = #{menuId}
+        ]]>
+    </select>
+    
+    <insert id="insertLikeDislike">
+        <![CDATA[
+        INSERT INTO like_info (
+              user_id
+            , menu_id
+            , contents_id
+            , create_id
+            , create_date
+            , update_id
+            , update_date
+        ) VALUES (
+        	  #{userId}
+        	, #{menuId}
+        	, #{contentsId}
+        	, #{userId}
+        	, NOW()
+        	, #{userId}
+        	, NOW()
+        )
+        ]]>
+    </insert>
+    
+    <update id="updateLikeDislike">
+        <![CDATA[
+        UPDATE like_info
+		   SET update_date = NOW()
+		]]>		
+	    
+	    <choose>
+		   <when test='"Y".equals(dislikeYn)'>
+           <![CDATA[ 
+             , delete_yn = 'N'  
+           ]]>
+           </when> 
+		   
+		   <otherwise>
+           <![CDATA[ 
+             , delete_yn = 'Y'  
+           ]]>
+           </otherwise>
+		</choose>
+		  
+		<![CDATA[
+		 WHERE menu_id = #{menuId}
+		   AND contents_id = #{contentsId}
+		   AND user_id = #{userId}
+		   AND seq = #{likeSeq}
+        ]]>
+    </update>
+    
+    <select id="retrieveNextContentsId" resultType="String">
+        <![CDATA[
+        SELECT IFNULL(MAX(CAST(contents_id as unsigned)),0)+1
+		  FROM contents_info
+		 WHERE menu_id = #{menuId}
+        ]]>
+    </select>
+    
+    <select id="retrieveSmallestContentsId" resultType="String">
+        <![CDATA[
+        SELECT MIN(CAST(contents_id as unsigned))
+		  FROM contents_info
+		 WHERE menu_id = #{menuId}
+		   AND category_code = #{categoryCode}
+        ]]>
+        
+        <if test="contentsId != null and contentsId != ''">
+        <![CDATA[ AND contents_id > cast(#{contentsId} as unsigned)  ]]>
+        </if>
+    </select>
+    
+    <select id="retrieveBiggestContentsId" resultType="String">
+        <![CDATA[
+        SELECT MAX(CAST(contents_id as unsigned))
+		  FROM contents_info
+		 WHERE menu_id = #{menuId}
+		   AND category_code = #{categoryCode}
+        ]]>
+        
+        <if test="contentsId != null and contentsId != ''">
+        <![CDATA[ AND contents_id < cast(#{contentsId} as unsigned)  ]]>
+        </if>
+    </select>
+
+    <select id="retrieveContentsList" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq as seq
+		     , ci.contents_id as contentsId
+		     , ci.menu_id as menuId
+		     , ci.category_code as categoryCode
+		     , (SELECT code_name FROM code_detail WHERE group_id = #{menuId} AND CODE = ci.category_code) AS categoryName
+             , ci.title as title
+             , ci.contents as contents
+             , ci.contents_url as contentsUrl
+             , ci.keyword_1 as keyword1
+             , ci.keyword_2 as keyword2
+             , ci.start_date as startDate
+             , ci.end_date as endDate
+             , ci.reader_user_id as readerUserId
+             , DATE_FORMAT(ci.create_date, '%Y-%m-%d') as createDate
+             , fi_thum.file_id as fileId
+             , fi_thum.file_path as thumFilePath
+             , fi_thum.file_name as thumFileName
+             , fi.file_name as fileName
+             , fi.file_path as filePath
+             , fi.file_size as fileSize
+             , fi.file_extension as fileExtension
+             , CONCAT(ui.name_first, ' ', ui.name_last) AS lecturerName
+             , li.career_1 as career1
+             , li.career_2 as career2
+             , li.career_3 as career3
+             , lec_fi.file_name AS lecturerImg
+             , lec_fi.file_path AS lecturerImgPath                
+             , lki.delete_yn AS dislikeYn 
+             , lki.user_id AS userId
+             , lki.seq AS likeSeq   
+             , ifnull(cl.views, 0) AS views          
+		  FROM contents_info ci
+		       LEFT OUTER JOIN file_info fi_thum
+            ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+           AND fi_thum.delete_yn = 'N'
+		       LEFT OUTER JOIN file_info fi
+            ON ci.file_id = fi.file_id
+           AND fi.file_number = '2'
+           AND fi.delete_yn = 'N'
+               LEFT OUTER JOIN (SELECT COUNT(seq) AS views
+		                             , menu_id
+				                     , contents_id
+								  FROM connect_log 
+							     GROUP BY menu_id
+								        , contents_id) cl
+            ON ci.menu_id = cl.menu_id
+           AND ci.contents_id = cl.contents_id
+               LEFT JOIN user_info ui
+		    ON ci.reader_user_id = ui.seq
+		       LEFT JOIN lecturer_info li
+			ON ci.reader_user_id = li.user_id
+			   LEFT JOIN file_info lec_fi
+			ON li.file_id = lec_fi.file_id
+		   AND lec_fi.file_number = '3'
+           AND lec_fi.delete_yn = 'N'
+
+			   LEFT JOIN (select seq
+			   				   , user_id
+							   , menu_id
+							   , contents_id
+							   , delete_yn
+							from like_info
+						   where user_id = #{userId}) lki
+			ON ci.menu_id = lki.menu_id
+		   AND ci.contents_id = lki.contents_id
+		 WHERE ci.state_code = '02'
+		   AND ci.menu_id = #{menuId}
+		   AND ci.delete_yn = 'N'
+        ]]>
+        
+        <if test="categoryCode != null and categoryCode != ''">
+        <![CDATA[ AND ci.category_code = #{categoryCode}  ]]>
+        </if>
+        <if test="title != null and title != ''">
+        <![CDATA[ AND UPPER(ci.title) LIKE CONCAT('%', UPPER(#{title}), '%')  ]]>
+        </if>
+        <choose>
+		<when test="newest != null and newest != ''">
+		<![CDATA[ ORDER BY CAST(ci.contents_id AS SIGNED) DESC ]]>
+		</when>
+		<when test="popularity != null and popularity != ''">
+		<![CDATA[ ORDER BY ifnull(cl.views, 0) DESC  ]]>
+		</when>
+		<otherwise>
+		<![CDATA[ ORDER BY ci.seq DESC  ]]>
+		</otherwise>
+	</choose>
+    </select>
+    
+
+    <select id="retrieveLikeContentsList" resultType="contents">
+        <![CDATA[
+		SELECT (@ROWNUM := @ROWNUM + 1) AS seq 
+		     , ci.contents_id
+		     , ci.menu_id
+		     , ci.title
+		     , mi.menu_name
+		     , fi_thum.file_path AS thum_file_path
+		     , DATE_FORMAT(ci.create_date, '%Y-%m-%d') AS create_date
+		  FROM contents_info ci
+		       LEFT OUTER JOIN file_info fi_thum
+		    ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+		   AND fi_thum.delete_yn = 'N'
+		       INNER JOIN menu_info mi
+		    ON ci.menu_id = mi.menu_id
+		       INNER JOIN like_info li
+		    ON ci.menu_id = li.menu_id
+		   AND li.delete_yn ='N'
+		   AND ci.contents_id = li.contents_id
+		     , (SELECT @ROWNUM := 0) AS rn
+		 WHERE ci.state_code = '02'
+		   AND li.user_id = #{userId}
+		 ORDER BY li.seq DESC
+        ]]>
+    </select>
+    
+    <select id="retrieveFunNextContentsId" resultType="String">
+       <![CDATA[
+       SELECT fnc_nextval(#{contentsName}) AS contents_id;
+       ]]>
+    </select>
+    
+
+    <select id="retrieveShuttleContentsList" resultType="contents">
+        SELECT A.NUM
+             , A.NAME
+             , B.NAME AS "JOBLEVEL_CODE_NAME"
+             , C.NAME AS "DEPARTMENT_CODE_NAME"
+          FROM
+		<choose>
+			<when test="type == 'dlt'">
+			 SAM_EMPLOYEE_DLT A
+			</when>
+			<otherwise>
+			 SAM_EMPLOYEE A
+			</otherwise>
+		</choose>
+               LEFT OUTER JOIN SAM_JOBLEVEL B
+            ON A.JOBLEVEL_CODE = B.CODE
+               LEFT OUTER JOIN SAM_DEPARTMENT C
+            ON (A.DIVISION_CODE || A.DEPARTMENT_CODE) = (C.DIV_CODE || C.CODE)
+         WHERE 1=1
+        <if test="skillCode != null and skillCode != ''">
+        <![CDATA[ AND A.skill_code = #{skillCode} ]]>
+        </if>
+        <if test="joblevelCode != null and joblevelCode != ''">
+        <![CDATA[ AND A.joblevel_code = #{joblevelCode}  ]]>
+        </if>
+        <if test="name != null and name != ''">
+        <![CDATA[ AND A.name LIKE '%'||#{name}||'%'  ]]>
+        </if>
+    </select>
+
+    <insert id="insertShuttleContents">
+        INSERT INTO
+        <choose>
+			<when test="type == 'dlt'">
+			 SAM_EMPLOYEE_DLT
+			</when>
+			<otherwise>
+			 SAM_EMPLOYEE
+			</otherwise>
+		</choose>
+        SELECT *
+          FROM
+        <choose>
+			<when test="type == 'dlt'">
+			 SAM_EMPLOYEE
+			</when>
+			<otherwise>
+			 SAM_EMPLOYEE_DLT
+			</otherwise>
+		</choose>
+         WHERE NUM = #{num}
+    </insert>
+
+    <delete id="deleteShuttleContents">
+        DELETE
+          FROM
+        <choose>
+			<when test="type == 'dlt'">
+			 SAM_EMPLOYEE
+			</when>
+			<otherwise>
+			 SAM_EMPLOYEE_DLT
+			</otherwise>
+		</choose>
+         WHERE NUM = #{num}
+    </delete>
+    
+     <select id="retrieveContentsDetail" resultType="contents">
+        <![CDATA[
+         SELECT NUM
+             , NOWJOB
+             , TITLE 
+             , RETIREMENT
+             , WORKINGYEAR
+             , FIRSTDATE
+             , WORKINGDATE
+             , MARRIAGE
+             , ARMY
+          FROM SAM_EMPLOYEE_MASTERDETAIL
+         WHERE NUM = #{num}  
+        ]]>
+    </select>   
+    
+    <insert id="insertContentsDetail">
+        <![CDATA[
+        INSERT INTO SAM_EMPLOYEE_MASTERDETAIL(
+               NUM
+             , NOWJOB
+             , TITLE 
+             , RETIREMENT
+             , WORKINGYEAR
+             , FIRSTDATE
+             , WORKINGDATE
+             , MARRIAGE
+             , ARMY
+        ) VALUES (
+               #{num}
+             , #{nowjob}
+             , #{title}
+             , #{retirement}
+             , #{workingyear}
+             , #{firstdate}
+             , #{workingdate}
+             , #{marriage}
+             , #{army}
+        ) 
+        ]]>
+    </insert>
+    
+    <update id="updateContentsDetail">
+        <![CDATA[
+       UPDATE SAM_EMPLOYEE_MASTERDETAIL
+           SET NOWJOB = #{nowjob} 
+             , TITLE = #{title}  
+             , RETIREMENT = #{retirement}
+             , WORKINGYEAR = #{workingyear}
+             , FIRSTDATE = #{firstdate} 
+             , WORKINGDATE = #{workingdate}
+             , MARRIAGE = #{marriage}
+             , ARMY = #{army}
+         WHERE NUM = #{num}
+        ]]>
+    </update> 
+    
+    <delete id="deleteContentsDetail">
+        <![CDATA[
+        DELETE 
+          FROM SAM_EMPLOYEE_MASTERDETAIL
+         WHERE NUM = #{num}
+        ]]>
+    </delete>   
+    
+     <update id="updateContentsForP41">
+        <![CDATA[
+       UPDATE SAM_EMPLOYEE
+           SET JOBLEVEL_CODE = #{joblevelCode}
+             , DIVISION_CODE = #{divisionCode}
+             , DEPARTMENT_CODE = #{departmentCode}
+         WHERE NUM = #{num} 
+        ]]>
+    </update>
+    
+    <select id="retrieveContentsTreeList" resultType="contents">
+        <![CDATA[  
+        SELECT A.CODE AS "DIVISION_CODE"
+             , B.CODE AS "DEPARTMENT_CODE"
+             , C.NUM
+             , A.NAME AS "DIVISION_CODE_NAME"
+             , B.NAME AS "DEPARTMENT_CODE_NAME"
+             , C.NAME 
+          FROM SAM_DIVISION A
+               LEFT OUTER JOIN SAM_DEPARTMENT B
+            ON A.CODE = B.DIV_CODE
+               LEFT OUTER JOIN SAM_EMPLOYEE C
+            ON A.CODE || B.CODE = C.DIVISION_CODE || C.DEPARTMENT_CODE
+         ORDER BY A.CODE
+                , B.CODE
+                , C.NUM
+        ]]>            
+    </select>   
+
+</mapper>

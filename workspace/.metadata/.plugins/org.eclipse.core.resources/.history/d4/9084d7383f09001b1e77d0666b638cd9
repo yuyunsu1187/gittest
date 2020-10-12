@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="6" packages="devonframe.log.log4j">
+<!-- <Configuration status="error" monitorInterval="6" packages="devonframe.log.log4j"> -->
+
+  <Appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %5p [%c] %m%n"/>
+    </Console>
+    
+     <File name="file" fileName="/logs/file/sample.log" append="false">
+	  <PatternLayout pattern="%d %5p [%c] %m%n" />
+	 </File>	
+	 
+	 <File name="mdcFile" fileName="/logs/file/mdcSample.log" append="false">
+	  <!-- Thread Context Map(also known as MDC) 객체의 key와 매칭되는 value를 로깅 - %X{key} -->
+	  <!-- ex) ThreadContext.put("testKey", "testValue");인 경우, 레이아웃 패턴 %X{testKey}에 의해 "testValue" 로깅 -->
+	  <PatternLayout pattern="%d %5p [%c] [%X{testKey}] %m%n" />
+	 </File>
+	 
+	 <RollingFile name="rollingFile" fileName="/logs/file/rollingSample.log" filePattern="/logs/file/rollingSample.%i.log">
+	  <PatternLayout pattern="%d %5p [%c] %m%n" />
+	  <Policies>
+	   <!-- size 단위: Byte(default), KB, MB, or GB -->
+	   <SizeBasedTriggeringPolicy size="1000" />
+	  </Policies>
+	  <!-- 기존 maxIndex 속성이 Strategy 엘리먼트로 변경됨 -->
+	  <!-- index는 min(default 1)부터 max(default 7)까지 증가, 아래에는 max="3"으로 settting -->
+	  <!-- fileIndex="min"이므로 target file의 size가 1000 byte를 넘어가면, fileIndex가 1(min)인 history file에 백업 (fixed window strategy) -->
+	  <!-- 그 다음 1000 byte를 넘어가면, rollingSample.1.log을 rollingSample.2.log 파일에 복사하고, target 파일을 rollingSample.1.log에복사한 후 target 파일에 새로 로깅 -->
+	  <DefaultRolloverStrategy max="3" fileIndex="min" />
+	 </RollingFile>
+	 
+	 
+	 <!--  기존 SizeDailyFileAppender 기능 대체 가능 -->
+<!-- 	 <RollingFile name="rollingFileTime" fileName="c:/logs/file/dailyRollingSample.log" filePattern="c:/logs/file/dailyRollingSample.log.%d{yyyy-MM-dd-HH-mm-ss}"> -->
+	 <RollingFile name="rollingFileTime" fileName="/logs/file/dailyRollingSample.log" filePattern="/logs/file/dailyRollingSample.log.%d{yyyy-MM-dd-HH-mm}">
+	  <PatternLayout pattern="%d %5p [%c] %m%n" />
+	  <Policies>
+	   <!-- interval(default 1)이므로 1초 간격으로 rolling 수행 --> 
+	   <TimeBasedTriggeringPolicy />
+	   <SizeBasedTriggeringPolicy size="1000"/>
+	  </Policies>
+	 </RollingFile>
+	 
+	 <!-- ServiceID 별로 파일을 나누고 싶을때는 해당 Appender를 붙여 사용한다. -->
+	 <Routing name="routingAppender">
+        <Routes pattern="${ctx:devonServiceId}">
+            <Route>
+                <RollingFile name="Rolling-${ctx:devonServiceId}"  fileName="/logs/file/${ctx:devonServiceId}.log" 
+                	filePattern="/logs/file/${ctx:devonServiceId}.log.%d{yyyy-MM-dd-HH}">
+                    <PatternLayout pattern="%d %5p [%c] [%X{global-Id}] %m%n"/>
+                    <Policies>
+                        <TimeBasedTriggeringPolicy />
+	   					<SizeBasedTriggeringPolicy size="100000000"/>
+                    </Policies>
+                </RollingFile>
+            </Route>
+        </Routes>
+   	 </Routing>
+	 
+  </Appenders>
+
+  <Loggers>
+    <Logger name="org.springframework" level="error"/>>
+    
+    <!-- TraceLog -->
+    <Logger name="devonframe.log.trace.aspect" level="trace" additivity="false">
+    	<AppenderRef ref="STDOUT"/>    	
+    </Logger>
+    
+    <Logger name="devonframe.gyva" level="info" additivity="false">
+    	<AppenderRef ref="STDOUT"/>
+    	<AppenderRef ref="file"/>
+    </Logger>
+    
+    <Root level="error">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>
+
+

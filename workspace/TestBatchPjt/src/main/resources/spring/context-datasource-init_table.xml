@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:util="http://www.springframework.org/schema/util"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:annotation-config/>
+
+	<!-- jdbc:embedded-database id="dataSource" /-->
+	<bean id="dataSourceInitializer" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+	    <property name="dataSource" ref="dataSource"/>
+	    <property name="databasePopulator" ref="databasePopulator" />
+	</bean>
+
+	<bean id="databasePopulator" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+		<property name="sqlScriptEncoding" value="UTF-8" />
+		<property name="scripts">
+			<!-- HSQL -->
+			<list>
+                <value>classpath:/org/springframework/batch/core/schema-drop-hsqldb.sql</value>
+                <value>classpath:/org/springframework/batch/core/schema-hsqldb.sql</value>
+				<value>classpath:/hsqldb/table.sql</value>
+			</list>
+			<!-- Oracle -->
+			<!-- list>
+                <value>classpath:/org/springframework/batch/core/schema-drop-oracle10g.sql</value>
+                <value>classpath:/org/springframework/batch/core/schema-oracle10g.sql</value>
+				<value>classpath:/hsqldb/table.sql</value>
+			</list -->
+		</property>
+	</bean>
+
+</beans>

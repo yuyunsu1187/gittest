@@ -1,0 +1,8 @@
+﻿<h1>Multithreaded correctness - Inconsistent synchronization (IS2_INCONSISTENT_SYNC)</h1>이 룰에 검출된 클래스의 필드들은 Synchronization 의 정합성이 완벽하지 않을 수 있다. 다음과 같은 경우에 이 룰을 위반한 것으로 표시된다.
+• 이 클래스는 locked access 와 unlocked access 를 포함한다.
+• 하나 이상의 locked access 가 클래스 자신의 메서드에 의해서 수행된다.
+•  unsynchronized field 접근(읽기,쓰기) 수는 전체 접근의 1/3을 넘지 않고, 읽기 접근보다 쓰기접근이 두배 정도 많다.
+이 룰에 검출되는 전형적인 버그는 thread-safe 인 클래스 내부에서 메서드 중 하나가 동기화 되지 않는 것이다.
+당신은 동기화 없이 접근가능한 filed 라고 감지된 코드의 위치를 비동기적으로("Unsynchronized access") 접근하는 부분이라고 선택할 수 있다. 
+참고 : 이 룰이 완벽히 정확한 것은 아니다. 예를 들면, 이 룰은 락이 걸린 모든 상황을 감지하지는 못한다. 또한 이 룰이 locked accesses 와 unlocked accesses 를 정확히 구분했다고 해도 해당 코드는 여전히 버그가 아닐 수 있다.
+

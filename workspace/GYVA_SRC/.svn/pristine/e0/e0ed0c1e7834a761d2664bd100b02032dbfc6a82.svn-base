@@ -1,0 +1,185 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+	function checkValue() {
+		
+		if(!document.detailInfo.email.value){
+            alert("아이디를 입력하세요.");
+            return false;
+        }
+			
+		if (!document.detailInfo.password.value) {
+			alert("비밀번호를 입력하세요.");
+			return false;
+		} else {
+			var asValue = document.detailInfo.password.value;
+			var regExp = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[@$!%*#?&])[0-9a-zA-Z@$!%*#?&]{8,}$/; //  8자 이상 특수문자는 1자 이상 있어야합니다.
+			if (!regExp.test(asValue)) {
+				alert("Password must be at least 8 characters, at least 1 letter and special character, and 1 number.");
+				return false; // 형식에 맞는 경우 true 리턴	
+			}
+		}
+
+		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+		if (document.detailInfo.password.value != document.detailInfo.passwordCheck.value) {
+			alert("비밀번호를 동일하게 입력하세요.");
+			return false;
+		}
+		
+		if(!document.detailInfo.nameFirst.value){
+            alert("이름을 입력하세요.");
+            return false;
+        }
+        
+        
+        // radio 버튼 체크후 userType 세팅
+        var check_count = document.getElementsByName("admin").length;
+        for (var i=0; i<check_count; i++) {
+            if (document.getElementsByName("admin")[i].checked == true) {
+                document.detailInfo.userType.value = document.getElementsByName("admin")[i].value;
+            }
+        }
+	}
+	
+	/* function fnUpdate() {
+		alert('1');
+		document.detailInfo.action = "<c:url value='/admin/user/manager/updateManager.do'/>";
+		document.detailInfo.submit();
+		alert('2');
+	} */
+	
+    // 취소 버튼 클릭시 상세 화면으로 이동
+    function goBack() {
+        location.href="/admin/user/managerList.do";
+    }
+    
+ 	// 아이디 중복 체크
+	function fnIdChk() {
+		if (!document.detailInfo.email.value) {
+			alert("아이디를 입력하세요.");
+			return false;
+		}
+		$.ajax({
+			url : "/admin/user/manager/idChk.do",
+			type : "post",
+			dataType : "json",
+			data : {"email" : $("#email").val()},
+			success : function(data) {
+				if (data == 1) {
+					$("#idChk").attr("value", "N");
+
+				} else if (data == 0) {
+					$("#idChk").attr("value", "Y");
+
+				}
+			},
+		})
+	}
+</script>
+
+
+
+<section class="content-section">
+	<header class="content-header">
+		<h2 class="content-tit">관리자 관리</h2>
+		<p class="content-txt">Information Registration</p>
+	</header>
+	
+	<!-- [S] 게시물 수정/삭제 --> 
+	<article class="board-wrap" data-board-type="form-write">
+	<form method="post" action="/admin/user/manager/updateManager.do" name="detailInfo" id="detailInfo" onsubmit="return checkValue()" >
+		<input type="hidden" name="updateId" id="updateId" value="<c:out value='${userId}'/>"/>
+		<input type="hidden" name="seq" id="seq" value="<c:out value='${result.seq}'/>"/>
+		<input type="hidden" name="email" id="email" value="<c:out value='${result.email}'/>"/>
+		<input type="hidden" name="userType" id="userType" value="<c:out value='${result.userType}'/>"/>
+		
+		<div class="board-area">
+			<h3 class="article-tit">관리자 정보 수정</h3>
+			<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+			
+				
+				<table class="default-table">
+					<caption>관리자 정보 수정</caption>
+					<colgroup>
+						<col style="width:30%;" />
+						<col style="width:auto;" />
+					</colgroup>
+					
+					<tbody>					
+						<tr>
+							<th scale="col" data-text-style="essential">관리자 등급</th>
+							<td>
+								<ul class="form" data-form="radio">
+								<c:forEach items="${managerTypeList}" var="userType" varStatus="status">
+								<c:set var="index" value="${status.index}" />
+									<li>
+										<input type="radio" class="check-form" id="radio_<c:out value='${index}'/>" name="admin" data-radio-key="teacher" value="<c:out value='${userType.code}'/>" <c:if test="${result.userType == userType.code}">checked</c:if>/>
+										<label for="radio_<c:out value='${index}'/>" class="label-form"><c:out value='${userType.value}'/></label>
+									</li>
+								</c:forEach>
+								</ul>
+							</td>
+						</tr>
+						
+						<tr>
+							<th scale="col" data-text-style="essential">아이디</th>
+							<td>
+								<div class="form">
+									<input type="text" class="input-form" maxlength="50" value="<c:out value='${result.email}'/>" disabled />
+								</div>
+							</td>
+						</tr>
+		
+						<tr>
+							<th scale="col" data-text-style="essential">비밀번호</th>
+							<td>
+								<div class="form-area" data-combine-form="column-2-form">
+									<div class="form" data-mult-form="password">
+										<input type="password" class="input-form" name="password" id="password" maxlength="50" placeholder="비밀번호를 입력해주세요." />
+										<!-- 비밀번호 보기 : <i class="fas fa-eye"></i> -->
+										<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+									</div>
+									
+									<div class="form" data-mult-form="password">
+										<input type="password" class="input-form" name="passwordCheck" id="passwordCheck" maxlength="50" placeholder="비밀번호를 다시 입력해주세요." />
+										<button type="button" class="icon-btn"><i class="far fa-eye"></i></button>
+									</div>
+									
+									<p class="form-txt">비밀번호는 8자 이상이어야 하고, 특수문자는 1자 이상 있어야합니다.</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scale="col" data-text-style="essential">이름</th>
+							<td>
+								<div class="form">
+									<input type="text" class="input-form" name="nameFirst" id="nameFirst" maxlength="50" value="<c:out value='${result.nameFirst}'/>" >
+									<input type="hidden" class="input-form" name="nameLast" id="nameLast" value="">
+								</div>
+							</td>
+						</tr>	
+								
+						<tr>
+							<th scale="col">담당</th>
+							<td><div class="form"><input type="text" name="remark" id="remark" class="input-form" value="<c:out value='${result.remark}'/>" /></div></td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+		
+		<div class="submit-area">
+			<button type="button" class="sub-btn" onclick="goBack()">취소</button>
+			<button type="submit" class="main-btn"  >수정</button>
+		</div>
+		
+		</form>
+	</article>
+	<!-- [E] 게시물 수정/삭제 -->
+</section>													

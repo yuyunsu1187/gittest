@@ -1,0 +1,9 @@
+package com.gyva.web.common.fileupload.service;
+
+import com.gyva.web.common.fileupload.model.FileInfo;
+
+@Service(fileUploadServiceUtil)
+public interface FileUploadServiceUtilImpl {
+
+	public void insertFileInfo(FileInfo fileInfo);
+}

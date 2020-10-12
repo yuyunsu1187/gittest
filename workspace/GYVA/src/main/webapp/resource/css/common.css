@@ -1,0 +1,133 @@
+@charset "utf-8";
+
+/* 00.settion */
+html, body {font-weight:400;font-family:'LGSmHa',sans-serif;}
+
+/* 10.box-area */
+.img-area {display:block;overflow:hidden;}
+.img-area img {width:100%;}
+
+.paging-area {text-align:center;}
+.paging-area > * {width:34px;height:34px;line-height:34px;vertical-align:middle;}
+.paging-area strong {display:inline-block;}
+.paging-area .paging-btn {padding:0 0;}
+
+.button-area {margin-top:70px;text-align:center;}
+.button-area [data-btn-style="add-list"] i {font-size:10px;margin-left:4px;vertical-align:super;}
+.button-area [data-btn-style="add-list"] {border-radius:30px;font-size:16px;height:60px;line-height:60px;width:500px;}
+
+.submit-area {margin-top:20px;}
+.submit-area [class*="btn"] {font-size:14px;height:50px;line-height:50px;min-width:160px;}
+.submit-area [class*="btn"] + [class*="btn"] {margin-left:6px;}
+.submit-area [class*="btn"] i {line-height:50px;}
+.submit-area [class*="btn"] [class*="left"] {float:left;}
+.submit-area [class*="btn"] [class*="right"] {float:right;}
+
+/* 11.tab-wrap */
+.default-table {}
+.default-table th {font-weight:700;}
+.default-table th, td {min-height:40px;padding:12px 10px;text-align:center;}
+
+/* 12.board-wrap */
+.board-wrap {}
+.board-wrap .article-tit, 
+.board-wrap .article-txt {margin-bottom:5px;}
+.board-wrap .article-txt {margin-left:10px;}
+.board-wrap .board-area + .board-area {margin-top:30px;}
+.board-wrap .submit-area {text-align:right;}
+.board-wrap .paging-area {margin-top:20px;}
+/* admin, front 동일하게 사용 */
+.board-wrap .board-header {background-color:#f6e5ea;padding:20px 60px;font-size:16px;line-height:30px;position:relative;}
+.board-header > * {display:inline-block;vertical-align:middle;}
+.board-header .board-tit {display:inline-block;font-size:17px;font-weight:600;padding:0 40px 0 100px;position:relative;width:100%;}
+.board-header .board-tit:before {background-color:#a7a9ac;content:"";width:1px;position:absolute;top:6px;bottom:6px;left:60px;}
+.board-header .category-txt {border-radius:15px;height:30px;text-align:center;}
+.board-header .download-main-btn {width:130px;}
+.board-wrap .board-content {background-color:#ffffff;border-bottom:1px solid #dbdcdf;padding:60px 60px;}
+.board-content .img-area {max-width:750px;margin:0 auto 50px;}
+
+/* 12-01.board-wrap [data-board-type="form-list"] */
+[data-board-type="form-list"] {}
+[data-board-type="form-list"] [data-board-type="inquiry"] {margin-bottom:20px;overflow:hidden;}
+[data-board-type="form-list"] [data-board-type="inquiry"] .form * {height:40px;line-height:40px;}
+[data-board-type="form-list"] [data-board-type="inquiry"] [data-combine-form="column-2-form"] {float:left;width:50%;}
+[data-board-type="form-list"] [data-board-type="inquiry"] [data-combine-form="column-2-form"] + *,
+[data-board-type="form-list"] [data-board-type="inquiry"] [data-offset="right"] {text-align:right;}
+[data-board-type="form-list"] [data-board-type="inquiry"] [data-offset="right"] {float:right;}
+[data-board-type="form-list"] [data-board-type="inquiry"] [data-combine-form="column-3-form"] {width:50%;}
+[data-board-type="form-list"] [data-text-style="ellipsis"] {display:table-cell;text-align:left;}
+[data-board-type="form-list"] [data-text-style="ellipsis"] * {display:inline;}
+[data-board-type="form-list"] [data-td-type="board-noData"] {height:250px;}
+[data-board-type="form-list"] .board-main-btn {height:34px;line-height:34px;}
+
+/* 12-02.board-wrap [data-board-type="form-write"] */
+[data-board-type="form-write"] th,
+[data-board-type="form-write"] td {padding:12px 20px;text-align:left;vertical-align:top;}
+[data-board-type="form-write"] [readonly] {height:auto;}
+/*  data-radio-key값에 연결된 tr의 key값 정의 :  라디오 선택값에 따라 노출여부 변경, 두 값은 동일하게 설정  */
+/* [data-board-type="form-view"] [data-row-key] {display:none;}*/
+
+/* 12-03.board-wrap [data-board-type="form-view"] */
+[data-board-type="form-view"] {}
+
+
+/* 13.list-wrap */
+.list-wrap {}
+/* 13-01.list-wrap [data-board-type="content-list"] */
+[data-list-type="content-list"] {}
+/* 13-02.list-wrap [data-board-type="content-view"] */
+[data-list-type="content-view"] {}
+
+/* admin : 설문 내용 보기 */
+.board-wrap [data-list-type="question-view"] {padding:30px 0 0;border-bottom:none;}
+[data-list-type="question-view"] > li + li .toggle-btn * {border-top:none;}
+[data-list-type="question-view"] .toggle-btn {display:block;width:100%;padding:0 0;overflow:hidden;}
+[data-list-type="question-view"] .toggle-btn * {width:25%;float:left;height:34px;line-height:34px;border:1px solid #eee;}
+[data-list-type="question-view"] .toggle-btn * + * {border-left:none;}
+[data-list-type="question-view"] .question {padding:10px 20px;}
+[data-list-type="question-view"] .question:before {margin-right:5px;}
+[data-list-type="question-view"] .answer {background-color:#f5f5f5;padding:10px 45px;}
+[data-list-type="question-view"] .list-area {border-bottom:1px solid #eee;}
+[data-list-type="question-view"] .list-area li:nth-child(1) .question:before {content:"01.";}
+[data-list-type="question-view"] .list-area li:nth-child(2) .question:before {content:"02.";}
+[data-list-type="question-view"] .list-area li:nth-child(3) .question:before {content:"03.";}
+[data-list-type="question-view"] .list-area li:nth-child(4) .question:before {content:"04.";}
+[data-list-type="question-view"] .list-area li:nth-child(5) .question:before {content:"05.";}
+[data-list-type="question-view"] .list-area li:nth-child(6) .question:before {content:"06.";}
+[data-list-type="question-view"] .list-area li:nth-child(7) .question:before {content:"07.";}
+[data-list-type="question-view"] .list-area li:nth-child(8) .question:before {content:"08.";}
+[data-list-type="question-view"] .list-area li:nth-child(9) .question:before {content:"09.";}
+[data-list-type="question-view"] .list-area li:nth-child(10) .question:before {content:"10.";}
+
+/* 20. section, contents */
+
+
+/* 21. layout */
+
+/* 공통 : 팝업 노출 상태 컨트롤 */
+[data-pop-action="disabled"] {display:none;}
+[data-pop-action="active"] {display:block;}
+[data-pop-action="active"] .layerPop-area {opacity:1;}
+
+/* data-btn-key 버튼값에 연결된 팝업 key값 정의 : 두 값은 동일하게 설정 */
+[data-pop-key="doctor"],
+[data-pop-key="face"] {width:560px;}
+
+/* 공통 : 레이어 팢업 */
+.layerPop-wrap {background-color:rgba(0,0,0,0.2);position:fixed;left:0;top:0;right:0;bottom:0;z-index:10;text-align:center;}
+.layerPop-wrap:after {display:inline-block;content:"";height:100%;vertical-align:middle;}
+.layerPop-area {background-color:#ffffff;border-radius:12px;display:inline-block;position:relative;min-width:560px;vertical-align:middle;opacity:0;transition:opacity .35s ease-in-out;}
+.layerPop-area .layerPop-tit {font-size:24px;}
+.layerPop-area * + .layerPop-tit {margin-top:30px;} /* 확인필요 */
+.layerPop-area .layerPop-tit + * {margin-top:16px;}
+.layerPop-area .layerPop-txt {font-size:18px;}
+.layerPop-area [class*="btn"] {margin-top:34px;width:138px;height:50px;}
+.layerPop-area .layerPop-header {border-bottom:1px solid #e9ebf2;padding:20px 40px;text-align:left;}
+.layerPop-header .layerPop-tit {color:#1a1a1a;font-weight:700;}
+.layerPop-header .layerPop-close-btn {font-size:20px;height:20px;line-height:20px;margin-top:0;position:absolute;top:28px;right:40px;width:20px;}
+.layerPop-area .layerPop-contents {padding:40px 40px;min-height:200px;overflow-y:auto;text-align:left;}
+.layerPop-area .layerPop-footer {padding:0 40px 40px;}
+.layerPop-footer [class*="btn"] {margin:0 0;}
+.layerPop-footer [class*="btn"] + [class*="btn"] {margin-left:8px;}
+
+/* 22. etc */

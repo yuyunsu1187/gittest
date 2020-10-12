@@ -1,0 +1,3 @@
+﻿<h1>Performance - Method invokes inefficient new String(String) constructor (DM_STRING_CTOR)</h1>String 생성자의 메모리 낭비를 줄이기 위해 String arument 값을 직접 할당해주는 것이 좋다.
+String a = new String("abc")
+            -> String a = "abc";

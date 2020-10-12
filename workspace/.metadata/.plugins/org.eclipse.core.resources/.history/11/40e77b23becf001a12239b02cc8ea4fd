@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+
+	<insert id="insertUser">
+		<![CDATA[
+			INSERT INTO user_info (
+			      email
+				, password
+				, name_first
+				, name_last
+				, user_type
+				, division_code
+				, country_code
+				, file_id
+				, request_date
+				, state_code
+				, consent_yn
+				, create_id
+				, create_date
+				, update_id
+				, update_date
+			) VALUES (
+			      #{email}
+				, #{password}
+				, #{name_first}
+				, #{name_last}
+				, #{user_type}
+				, #{division_code}
+				, #{country_code}
+				, #{file_id}
+				, NOW()
+				, #{state_code}
+				, #{consent_yn}
+				, #{create_id}
+				, NOW()
+				, #{update_id}
+				, NOW()
+			)
+		]]>
+	</insert>
+
+	<select id="searchUser" resultType="user">
+		<![CDATA[
+			SELECT
+			     seq
+				,email
+				,password
+				,name_first
+				,name_last
+				,user_type
+				,division_code
+				,country_code
+				,person_photo
+				,license_photo
+				,request_date
+				,confirm_id
+				,confirm_date
+				,state_code
+				,consent_yn
+				,remark
+				,create_id
+				,create_date
+				,update_id
+				,update_date
+			  FROM user_info 
+			 WHERE seq = #{usrSeq}
+		]]>
+	</select>
+
+	
+
+	<update id="updateUser">
+		<![CDATA[
+			UPDATE user_info
+			   SET password = #{usrPwd}
+			       , updateDt = TO_CHAR(CURRENT_TIMESTAMP,'YYYYMMDDHH24MISS')
+			 WHERE seq = #{usrSeq}
+		]]>
+	</update>
+
+	<delete id="deleteUser">
+		<![CDATA[
+			DELETE
+			  FROM user_info
+			 WHERE seq = #{usrSeq}
+		]]>
+	</delete>
+
+
+
+</mapper>

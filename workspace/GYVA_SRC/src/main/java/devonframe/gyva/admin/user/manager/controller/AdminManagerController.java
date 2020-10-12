@@ -1,0 +1,203 @@
+package devonframe.gyva.admin.user.manager.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import devonframe.gyva.admin.system.code.model.Code;
+import devonframe.gyva.admin.system.code.service.CodeService;
+import devonframe.gyva.admin.user.manager.model.Manager;
+import devonframe.gyva.admin.user.manager.model.PagingManager;
+import devonframe.gyva.admin.user.manager.service.ManagerService;
+import devonframe.paging.policy.annotation.PagingPolicy;
+
+/**
+ * <pre>
+ * 관리자 정보에 대한 CRUD를 담당하는 Controller 클래스
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+
+@Controller("adminListToDetailManagerWebPagingController")
+public class AdminManagerController {
+
+	@Resource(name = "codeService")
+	private CodeService codeService;
+	
+	@Resource(name = "managerService")
+	private ManagerService managerService;
+
+	@Resource(name = "messageSourceAccessor")
+	private MessageSourceAccessor messageSourceAccessor;
+
+	// 관리자 회원 단일 조회
+	@RequestMapping(value = "/admin/user/managerDetail.do")
+	public String retrieveManager(Manager input, ModelMap model, Code code){
+
+		Manager manager = managerService.retrieveManager(input);
+		
+		Code codeGroup = new Code();
+		codeGroup.setCodeGroup("USER");
+		
+		model.addAttribute("managerTypeList", codeService.retrieveManagerTypeList(codeGroup));
+		model.addAttribute("result", manager);
+
+		return "admin/user/manager/edit";
+
+	}
+
+	// 관리자 회원 다중 조회
+	@RequestMapping(value = "/admin/user/managerList.do")
+	public String retrieveManagerList(@PagingPolicy("policy2")PagingManager manager, Manager input, Code code, ModelMap model) {
+		
+		List<Manager> managerList = null;
+		managerList = managerService.retrieveManagerPagedList(manager);
+		
+		Code codeGroup = new Code();
+		codeGroup.setCodeGroup("USER");
+		
+		model.addAttribute("input", manager);
+		model.addAttribute("resultList", managerList);
+		model.addAttribute("managerTypeList", codeService.retrieveManagerTypeList(codeGroup));
+		
+		return "admin/user/manager/list";
+
+	}
+
+	// 관리자 회원 가입
+	@RequestMapping(value = "/admin/user/manager/insertManager.do")
+	public String insertManager(Manager input, ModelMap model) {
+
+		managerService.insertManager(input);
+		return "redirect:/admin/user/managerList.do";
+	}
+
+	// 관리자 회원 정보 수정
+	@RequestMapping(value = "/admin/user/manager/updateManager.do")
+	public String updateManager(Manager input, ModelMap model) {
+
+		managerService.updateManager(input);
+		return "redirect:/admin/user/managerList.do";
+	}
+
+	// 관리자 회원 정보 삭제
+	@RequestMapping(value = "/admin/user/manager/deleteManager.do")
+	public String deleteManager(Manager input, String realDelete, ModelMap model) {
+
+		if (realDelete.equals("N")) {
+			input.setDeleteYn("Y");
+			managerService.updateManager(input);
+		}
+
+		return "redirect:/admin/user/managerList.do";
+	}
+
+	// 관리자 가입 페이지
+	@RequestMapping(value = "/admin/user/managerJoinForm.do")
+	public String joinForm(Code code, ModelMap model) {
+
+		List<Code> codeDetailList = null;
+		codeDetailList = managerService.retrieveCodeDetailList(code);
+		
+		Code codeGroup = new Code();
+		codeGroup.setCodeGroup("USER");
+		
+		model.addAttribute("managerTypeList", codeService.retrieveManagerTypeList(codeGroup));
+		model.addAttribute("codeDetailList", codeDetailList);
+		return "admin/user/manager/create";
+	}
+
+	// 아이디 중복체크
+	@ResponseBody
+	@RequestMapping(value = "/admin/user/manager/idChk.do")
+	public int idChk(Manager input, ModelMap model) {
+
+		int result = managerService.idChk(input);
+		return result;
+	}
+
+	// 일반 관리자 인증 페이지
+	@RequestMapping("/admin/user/manager/certificationForm.do")
+	public String certificationForm(@ModelAttribute Manager input, ModelMap model, HttpSession session) {
+
+		String email = (String) session.getAttribute("email");
+		input.setEmail(email);
+		
+		model.addAttribute("result", input);
+		return "admin/user/manager/checkPassword";
+	}
+
+	// 일반관리자 인증
+	@RequestMapping("/admin/user/manager/certification.do")
+	public String certification(@ModelAttribute Manager input, ModelMap model, HttpSession session) {
+
+		boolean isExistUser = managerService.checkUserId(input);
+		if (!isExistUser) {
+			model.addAttribute("errorMsg", messageSourceAccessor.getMessage("gyva.common.login.invalidUserId"));
+
+			return "redirect:/admin/user/manager/certificationForm.do";
+			
+		}
+
+		boolean isValidUser = managerService.checkUser(input);
+		if (isValidUser) {
+			Manager manager = managerService.retrieveManager(input);
+			session.setAttribute("result", manager);
+			return "admin/user/manager/resetPassword";
+		}
+
+		model.addAttribute("errorMsg", messageSourceAccessor.getMessage("gyva.common.login.invalidPassword"));
+
+		return "admin/user/manager/checkPassword";
+	}
+	
+	// 관리자 password 확인 form
+    @RequestMapping(value="/admin/user/manager/checkPassword.do")
+    public String checkPasswordForm(Manager input, ModelMap model,  HttpSession session){
+    	
+    	
+		model.addAttribute("email", input.getEmail());
+		
+        return "admin/user/manager/checkPassword";
+    }
+	
+   
+	// 회원 정보 수정 (userType - update)
+	@RequestMapping(value = "/admin/user/manager/updateUserType.do")
+	public String updateUserType(@RequestParam(value="userCheckList[]") List<String> userCheckList, Manager input, HttpSession session) throws Exception {
+		
+		for(String seq : userCheckList){
+			// checkbox list 세팅
+			input.setSeq(seq);
+			// user_info 테이블 update
+			managerService.updateUserType(input);
+		}
+		return "redirect:/admin/user/managerList.do";
+	}
+ 	
+	// 회원 정보 삭제
+	@RequestMapping(value="/admin/user/manager/deleteUserList.do")
+	public String deleteUserList(@RequestParam(value="userCheckList[]") List<String> userCheckList, Manager input, HttpSession session) throws Exception {
+		
+		for(String seq : userCheckList){
+			// checkbox list 세팅
+			input.setSeq(seq);
+			
+			// user_info 테이블 update
+			managerService.deleteManager(input);
+		}
+		return "redirect:/admin/user/managerList.do";
+	}
+    
+}

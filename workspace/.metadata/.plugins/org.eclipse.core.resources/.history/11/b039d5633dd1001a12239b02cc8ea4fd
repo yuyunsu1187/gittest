@@ -1,0 +1,61 @@
+package com.gyva.web.common.user.service;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.gyva.web.common.user.model.User;
+
+import devonframe.dataaccess.CommonDao;
+
+/**
+ * <pre>
+ * 본 클래스는 사용자 정보에 대한 CRUD를 담당하는 ServiceImpl 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+@Service("userService")
+public class UserServiceImpl implements UserService {
+
+	@Resource(name = "commonDao")
+	private CommonDao commonDao;
+
+	@Override
+	public User searchUser(User user) {
+		return commonDao.select("User.searchUser", user);
+	}
+
+	@Override
+	public List<User> searchUserList(User user) {
+		List<User> resultList = commonDao.selectList("User.searchUserList", user);
+		return resultList;
+	}
+
+	// 회원 id 중복 체크
+	@Override
+	public int duplicateCheckId(User user){
+		int result = commonDao.select("User.duplicateCheckId", user);
+		return result;
+	}
+	
+	// 회원 가입
+	@Override
+	public userid insertUser(User user) {
+	    commonDao.insert("User.insertUser", user);
+	}
+	
+	// 회원 정보 수정
+	@Override
+	public void updateUser(User user) {
+	    commonDao.update("User.updateUser", user);
+	}
+
+	@Override
+	public void deleteUser(User user) {
+	    commonDao.delete("User.deleteUser", user);
+	}
+
+}

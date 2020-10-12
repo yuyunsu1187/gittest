@@ -1,0 +1,82 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsDetail.jsp
+ * DESC : 컨텐츠 페이지 조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+<script type="text/javaScript" language="javascript">
+	//<![CDATA[
+
+	function fnRetrieveList() {
+		document.detailForm.action = "<c:url value='/contents/journalList.do'/>";
+		document.detailForm.submit();
+	}
+	
+	function fnDownloadDetail(index) {
+		$("input:checkbox[name=checkIndex]").prop("checked", false);	
+		$("input:checkbox[id=checkIndex_"+index+"]").prop("checked", true);	
+		
+		document.detailForm.action = "<c:url value='/function/filedownload/downloadFileList.do'/>";
+		document.detailForm.submit();
+	}
+	
+	function goBack(){
+		window.history.back();
+	}
+	
+	// ]]>
+</script>
+			
+<section id="FR050101-10" class="content-section">
+	<header class="content-header">
+		<h2 class="content-tit">Journal</h2>
+	</header>
+	
+	<div class="breadcrumb">
+		<span class="home">home</span><span class="depth">Medical Platform</span><span class="page">Journal</span>
+	</div>
+	
+	<!-- [S] 게시물 보기 --> 
+	<article class="board-wrap" data-board-type="form-view">
+	<!-- [2020-08-28] data-board-header="download" data- 속성값 추가 -->
+		<form:form commandName="resultList" name="detailForm" id="detailForm" method="post">
+		<input type="hidden" name="seq" id="seq" value="${result.seq}" />
+		<input type="hidden" name="menuId" id="menuId" value="${param.menuId}" />
+		<input type="hidden" name="categoryCode" id="categoryCode" value="${result.categoryCode}" />
+		<input type="hidden" name="contentsId" id="contentsId" value="${result.contentsId}" />
+		<div width=0 height=0 style="visibility: hidden">
+			<input type="checkbox" class="Lcheckbox" name="checkIndex" id="checkIndex_0" value="0" />
+		</div>
+		<input type="hidden" name="fileName" value="${result.fileName}" />
+		<input type="hidden" name="uploadFilePath" value="${result.filePath}" />
+			<header class="board-header" data-board-header="download">
+				<h3 class="board-tit"><c:out value="${result.title}" /></h3>
+				<a href="#none" class="download-main-btn" onclick="fnDownloadDetail(0);">DOWNLOAD<i class="fas fa-arrow-down"></i></a>
+			</header>
+				
+			<article class="board-content">
+				<embed src="${result.filePath}#toolbar=0&pagemode=bookmarks&view=FitH" type="application/pdf" class="embed-area" />
+			</article>
+			
+			<div class="submit-area">
+				<button type="submit" class="main-btn" onclick="goBack();">Go Back</button>
+			</div>
+		</form:form>
+	</article>
+	<!-- [E] 게시물 보기 -->
+	
+</section>
+

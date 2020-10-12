@@ -1,0 +1,1787 @@
+package com.gyva.web.common.utils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+/*
+ * @ Util.java
+ *
+ * TYPE : 공통 클래스
+ *
+ *
+ * 사용법
+ *    - static method는 Util.mehtod()로 호출한다.
+ *    - 기타 메소드는 객체생성후 접근한다.
+ */
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
+import java.util.UUID;
+
+public class Util {
+
+	public Util() {
+
+	}
+	
+	/**
+	 * 랜덤한 문자열을 원하는 길이만큼 반환합니다.
+	 *
+	 * @param length 문자열 길이
+	 * @return 랜덤문자열
+	 */
+	private static String getRandomString(int length)
+	{
+	  StringBuffer buffer = new StringBuffer();
+	  Random random = new Random();
+	 
+	  String chars[] ="a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(",");
+	 
+	  for (int i=0 ; i<length ; i++)
+	  {
+	    buffer.append(chars[random.nextInt(chars.length)]);
+	  }
+	  return buffer.toString();
+	}
+	
+	/**
+	 * 10자리 random UUID생성
+	 *
+	 * @param length 문자열 길이
+	 * @return 랜덤문자열
+	 */
+	private static String getRandomUuid() {
+		String result = "";
+		for (int i = 0; i < 5; i++) {
+			String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를
+																			// 제거해
+																			// 주었다.
+			uuid = uuid.substring(0, 10); // uuid를 앞에서부터 10자리 잘라줌.
+			System.out.println(i + ") " + uuid);
+			result = uuid;
+		}
+		return result;
+	}
+
+
+	/**
+	 * 반올림 또는 내림 하는 메소드
+	 *
+	 * Parameter : 입력값, 소수점 이하 자리수, 올림내림 구분
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static float round(float f, int len, int round_type) {
+		float retval = 0F;
+		try {
+			retval = (new java.math.BigDecimal(f).setScale(len, round_type)).floatValue();
+		} catch (NumberFormatException nfe) {
+		}
+		return retval;
+	}
+
+	/**
+	 * 분모가 0이면 ArithmeticException이 발생하는 것을 방지하기 위한 메소드<br>
+	 *
+	 * Parameter : 분자, 분모
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static float division(float son, float mother) {
+		float retval = 0F;
+		if (mother == 0) {
+			retval = son;
+		} else {
+			retval = (son / mother);
+		}
+		return retval;
+	}
+
+	/**
+	 * 8859_1 -> KSC5601 <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String toEN(String ko) {
+		String new_str = null;
+		try {
+			if (ko != null) {
+				new_str = new String(ko.getBytes("KSC5601"), "8859_1");
+			}
+		} catch (UnsupportedEncodingException e) {
+		}
+		return new_str;
+	}
+
+	/**
+	 * KSC5601 -> 8859_1 <br>
+	 * from web to server from file to web
+	 * 
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String toKSC(String en) {
+		String new_str = null;
+		try {
+			if (en != null) {
+				new_str = new String(en.getBytes("8859_1"), "KSC5601");
+			}
+		} catch (UnsupportedEncodingException e) {
+		}
+		return new_str;
+	}
+
+	/**
+	 * KSC5601 -> 8859_1 <br>
+	 * from server to web
+	 * 
+	 * @author : 정철우
+	 * @e-mail : cwjung@mirenet.com return : null일 경우, ""을 return
+	 */
+
+	public static String toKSC2(String en) {
+		String new_str = null;
+		try {
+			if (en != null) {
+				new_str = new String(en.getBytes("8859_1"), "KSC5601");
+			} else {
+				new_str = "";
+			}
+		} catch (UnsupportedEncodingException e) {
+		}
+		return new_str;
+	}
+
+	/**
+	 * jsp에서 세션값의 한글처리 한글처리 <br>
+	 * jsp에서 db한글값이 깨질경우 new String(en.getBytes("8859_1"),"KSC5601"); jsp에서
+	 * db한글값이 개지지 않은 경우 받을 값을 그대로 리턴 각 시스템마다 틀리므로 테스트후 고쳐준다. from sesseion to
+	 * web
+	 * 
+	 * @author : 최의엽
+	 * @e-mail : cwjung@mirenet.com return : null일 경우, ""을 return
+	 */
+
+	public static String toKS(String str) {
+		String new_str = null;
+		try {
+			if (str != null) {
+				// new_str = new String (str.getBytes("8859_1"), "KSC5601");
+				new_str = str;
+			} else {
+				new_str = "";
+			}
+		} catch (Exception e) {
+		}
+
+		return new_str;
+	}
+
+	/**
+	 * jsp에서 자체 한글처리 한글처리 <br>
+	 * jsp에서 한드코딩된 글값이 깨질경우 new String(en.getBytes("8859_1"),"KSC5601"); jsp에서
+	 * 하드코딩된 한글값이 개지지 않은 경우 받을 값을 그대로 리턴 각 시스템마다 틀리므로 테스트후 고쳐준다.
+	 *
+	 * @author : 최의엽
+	 * @e-mail : cwjung@mirenet.com return : null일 경우, ""을 return
+	 */
+
+	public static String toJKS(String str) {
+		String new_str = null;
+		try {
+			if (str != null) {
+				// new_str = new String (str.getBytes("8859_1"), "KSC5601");
+				new_str = str;
+			} else {
+				new_str = "";
+			}
+		} catch (Exception e) {
+		}
+
+		return new_str;
+	}
+
+	/**
+	 * space -> <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String spaceToNBSP(String source) {
+		StringBuffer sb = new StringBuffer(source);
+		StringBuffer result = new StringBuffer();
+		String ch = null;
+		for (int i = 0; i < source.length(); i++) {
+
+			if (Character.isSpaceChar(sb.charAt(i)))
+				ch = " ";
+			else
+				ch = String.valueOf(sb.charAt(i));
+
+			result.append(ch);
+		}
+		return result.toString();
+	}
+
+	/**
+	 * 현재날짜를 지정된 포맷으로 만들어 리턴 <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String dateFormat(String format) {
+		String date = null;
+		try {
+			TimeZone tz = new SimpleTimeZone(9 * 60 * 60 * 1000, "KST");
+			TimeZone.setDefault(tz);
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			date = sdf.format(d);
+		} catch (Exception kkkk) {
+		}
+		return date;
+	}
+
+	/**
+	 * 현재날짜를 YYYY-MM-DD 형식으로 만들어 리턴 <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String getDate() {
+		String ch = null;
+		try {
+			TimeZone tz = new SimpleTimeZone(9 * 60 * 60 * 1000, "KST");
+			TimeZone.setDefault(tz);
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy'-'MM'-'dd");
+			ch = sdf.format(d);
+		} catch (Exception dfdf) {
+		}
+		return ch;
+	}
+
+	/**
+	 * 입력받은 Date 오브젝트를 YYYY-MM-DD 형식의 String 으로 만들어 리턴 <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String dateToString(Date d) {
+		String ch = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy'-'MM'-'dd");
+			ch = sdf.format(d);
+		} catch (Exception dfdf) {
+		}
+		return ch;
+	}
+
+	/**
+	 * 입력받은 Date 오브젝트를 특정한 포멧 형식의 String 으로 만들어 리턴 <br>
+	 *
+	 * 예) dateToString(new Date(), "MMM d, yyyy")<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String dateToString(Date d, String format) {
+		String ch = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			ch = sdf.format(d);
+		} catch (Exception dfdf) {
+		}
+		return ch;
+	}
+
+	/**
+	 * 입력받은 String오브젝트를 특정한 포멧 형식의 Date 형으로 만들어 리턴 <br>
+	 *
+	 * 예) stringToDate("2001-06-01", "yyyy-'-'MM'-'dd")<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static java.util.Date stringToDate(String d, String format) {
+		java.util.Date ch = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			ch = sdf.parse(d);
+		} catch (Exception dfdf) {
+		}
+		return ch;
+
+	}
+
+	public static java.util.Date dateFormat(Date d, String format) {
+		String str = dateToString(d, format);
+		return stringToDate(str, format);
+	}
+
+	public static String stringToDateString(String d, String format) {
+		if (d == null || d.length() < 6)
+			return "";
+		if (d.length() < 7) {
+			d = d.substring(0, 4) + "-" + d.substring(4, 6) + "-" + d.substring(6);
+		}
+		return dateToString(stringToDate(d, "yyyy'-'MM'-'dd"), format);
+	}
+
+	/**
+	 * 현재날짜를 YYYY-MM-DD HH:MM:SS 형식으로 만들어 리턴 <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String getTime() {
+		String ch = null;
+		try {
+			TimeZone tz = new SimpleTimeZone(9 * 60 * 60 * 1000, "KST");
+			TimeZone.setDefault(tz);
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy'-'MM'-'dd'-'HH'-'mm'-'ss");
+			ch = sdf.format(d);
+		} catch (Exception dfdf) {
+		}
+		return ch;
+	}
+
+	/**
+	 * 현재 날짜를 타입에 따라 년, 월,일 만을 리턴 <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String getDate(int type) {
+		String ch = getDate();
+		String format = null;
+		switch (type) {
+		case 1:
+			format = ch.substring(0, 4);
+			break;
+		case 2:
+			format = ch.substring(5, 7);
+			break;
+		case 4:
+			format = ch.substring(0, 4) + ch.substring(5, 7) + ch.substring(8, 10);
+			break;
+
+		default:
+			format = ch.substring(8, 10);
+			break;
+		}
+		return format;
+	}
+
+	/**
+	 * Encode URL -> Decode URL : jdk 1.x 버전에서는 java.net.URLDecoder 클래스를 지원하지 않기
+	 * 때문에<br>
+	 * jdk1.x 에서 URL 디코딩시 사용. <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String decodeURL(String s) {
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream(s.length());
+		for (int i = 0; i < s.length(); i++) {
+			int c = (int) s.charAt(i);
+			if (c == '+')
+				out.write(' ');
+			else if (c == '%') {
+				int c1 = Character.digit(s.charAt(++i), 16);
+				int c2 = Character.digit(s.charAt(++i), 16);
+				out.write((char) (c1 * 16 + c2));
+			} else
+				out.write(c);
+		}
+		return out.toString();
+	}
+
+	/**
+	 * 스트링을 int로 변환. NumberFormatException, NullPointerException 을 검사하기 위해,
+	 * Exception 발생시 0 리턴
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static int parseInt(String str) {
+		int parseInt = 0;
+		try {
+			parseInt = Integer.parseInt(str);
+		} catch (Exception nf) {
+		}
+		return parseInt;
+	}
+
+	/**
+	 * 스트링을 int로 변환. NumberFormatException, NullPointerException 을 검사하기 위해,
+	 * Exception 발생시 0 리턴
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static float parseFloat(String str) {
+		float parseFloat = 0.0f;
+		try {
+			parseFloat = Float.parseFloat(str);
+		} catch (Exception nf) {
+		}
+		return parseFloat;
+	}
+
+	/**
+	 * 스트링을 int로 변환. NumberFormatException, NullPointerException 을 검사하기 위해,
+	 * Exception 발생시 0 리턴
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static long parseLong(String str) {
+		long parseLong = 0L;
+		try {
+			parseLong = Long.parseLong(str);
+		} catch (Exception nf) {
+		}
+		return parseLong;
+	}
+
+	/**
+	 * 스트링을 int로 변환. NumberFormatException, NullPointerException을 검사하기 위해,
+	 * Exception 발생시 default value 리턴<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static int parseInt(String str, int def) {
+		int parseInt = 0;
+		try {
+			parseInt = Integer.parseInt(str);
+		} catch (Exception nf) {
+			parseInt = def;
+		}
+		return parseInt;
+	}
+
+	/**
+	 * 파라미터의 값이 "" 일때 null 을 리턴하게끔 하는 메소드<br>
+	 * URL에서 파라미터를 받을때 name 값이 존재하면 "" 이 넘어올 수 있기 때문에 null 값을 검사할때 사용.<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 * 
+	 */
+	public static String checkNull(String key) {
+		String value = key;
+		if (key == null || key.equals(""))
+			value = null;
+		return value;
+	}
+
+	/**
+	 * 날짜형을 년, 월, 일로 나누어 리턴하는 메소드<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String parseDate(String date, int type) {
+		String parse = "";
+		if (date != null && date.length() == 8) {
+			switch (type) {
+			case 1: // 년
+				parse = date.substring(0, 4);
+				break;
+			case 2: // 월
+				parse = date.substring(4, 6);
+				break;
+			default: // 일
+				parse = date.substring(6, 8);
+				break;
+			}
+		}
+		return parse;
+	}
+
+	public static String parseMMDD(String date, String delim) {
+		String parse = null;
+		if (date != null && date.length() == 8) {
+			parse = date.substring(4, 6) + delim + date.substring(6, 8);
+		}
+		return parse;
+	}
+
+	/**
+	 * -> ""
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String nbspToSpace(String nbsp) {
+		String value = "";
+		if (nbsp != null && !nbsp.trim().equals(" ")) {
+			value = nbsp;
+		}
+		return value;
+	}
+
+	/**
+	 * null -> "" 로 변환하는 메소드<br>
+	 * : 데이터 수정시 데이터 베이스로 부터 읽은 값이 null이면 수정 폼에 null이 들어가므로 이값을 변환하는 메소드 <br>
+	 * : 데이터 수정시 null 값을 수정 폼에 setting 할때 사용하면 유용한 메소드. <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String nullToString(String str) {
+		String value = str;
+		if (str == null) {
+			value = "";
+		}
+		return value;
+	}
+
+	/**
+	 * null or "" --> " " <br>
+	 * : HTML에서 테이블의 셀에 "" 이 들어가면 테이블이 깨지므로(netscape) 공백문자( )로 대치하는 메소드<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String nullToNbsp(String str) {
+		String value = str;
+		if (str == null || str.equals("")) {
+			value = " ";
+		}
+		return value;
+	}
+
+	/**
+	 * Object 형을 String 으로 변환<br>
+	 * : Object 가 null 일때 NullpointerException 을 검사하기 위해서 사용.<br>
+	 * : ResultSet 으로부터 getObject()로 값을 가져왔을경우 String으로 변환할때 사용하면 유용한 메소드.<br>
+	 *
+	 * @author : 심재진
+	 * @E-mail : sim11@miraenet.com
+	 */
+	public static String toString(Object obj) {
+		String str = "";
+		if (obj != null)
+			str = obj.toString();
+		return str;
+	}
+
+	/**
+	 * 전체 데이터수로 마지막페이지를 계산해오기 위한 Method.<br>
+	 * : 게시판 목록 같은 경우 몇 페이지 까지 있는지 계산할때 사용하면 유용한 메소드<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static int getPageCount(int token, int allPage) {
+		int lastPage = (int) (((allPage - 1) / token) + 1);
+		return lastPage;
+	}
+
+	/**
+	 * 데이터의 번호를 주기위해 번호를 계산해오는 Method <br>
+	 * : 게시판 목록 같은 경우 페이지별 데이터의 번호를 계산해 주는 메소드. <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static int getDataNum(int token, int page, int allPage) {
+		if (allPage <= token) {
+			return allPage;
+		}
+		int num = allPage - (token * page) + token;
+		return num;
+	}
+
+	/**
+	 * 문자열의 값이 null 이거나 ""이면 default 값을 리턴하는 메소드<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String getString(String line, String def) {
+		if (line == null || line.equals(""))
+			return def;
+		return line;
+	}
+
+	/**
+	 * 현재일이 특정 기간에 속해있는지 검사하는 메소드<br>
+	 * : argument : 시작일(yyyy-mm-dd), 종료일(yyyy-mm-dd)
+	 * 
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static boolean betweenDate(String first, String second) {
+		boolean flag = false;
+		java.util.Date start = null;
+		java.util.Date end = null;
+		java.util.Date current = null;
+
+		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.KOREA);
+
+		try {
+			start = df.parse(first);
+			end = df.parse(second);
+			current = df.parse(getDate());
+		} catch (Exception pe) {
+			return false;
+		}
+
+		if ((start.before(current) && end.after(current)) || start.equals(current) || end.equals(current))
+			flag = true;
+
+		return flag;
+	}
+
+	public static String reqTime() {
+		String ch = null;
+		try {
+			TimeZone tz = new SimpleTimeZone(9 * 60 * 60 * 1000, "KST");
+			TimeZone.setDefault(tz);
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy'-'MM'-'dd' 'HH");
+			ch = sdf.format(d);
+		} catch (Exception dfdf) {
+		}
+		return ch;
+	}
+
+	/******************************************************
+	 ** 현재일이 종료일 이후에 있는지 검사**
+	 ******************************************************/
+	public static boolean afterDate(String second) {
+		boolean flag = false;
+		java.util.Date end = null;
+		java.util.Date current = null;
+
+		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.KOREA);
+
+		try {
+			end = df.parse(second);
+			current = df.parse(Util.reqTime());
+		} catch (Exception pe) {
+			System.err.println("afterDate 에러입니다." + pe.getMessage());
+		}
+
+		if (end.before(current) || end.equals(current))
+			flag = true;
+
+		return flag;
+	}
+
+	/******************************************************
+	 ** 현재일이 시작일 이전에 있는지 검사**
+	 ******************************************************/
+	public static boolean beforeDate(String first) {
+		boolean flag = false;
+		java.util.Date start = null;
+		java.util.Date current = null;
+
+		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.KOREA);
+
+		try {
+			start = df.parse(first);
+			current = df.parse(Util.reqTime());
+		} catch (Exception pe) {
+			System.err.println("beforeDate 에러입니다." + pe.getMessage());
+		}
+
+		if (start.after(current) || start.equals(current))
+			flag = true;
+
+		return flag;
+	}
+
+	/**
+	 * 가격등의 값을 3자리 마다 comma(,)로 분리하여 리턴<br>
+	 * 
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String parseDecimal(double unFormat) {
+		DecimalFormat df = new DecimalFormat("###,###.##");
+		String format = df.format(unFormat);
+		return format;
+	}
+
+	/**
+	 * 가격등의 값을 3자리 마다 comma(,)로 분리하여 리턴<br>
+	 * 
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String parseDecimal(double unFormat, String foramt) {
+		DecimalFormat df = new DecimalFormat(foramt);
+		String format = df.format(unFormat);
+		return format;
+	}
+
+	/**
+	 * Object 의 복제하여 주는 메소드<br>
+	 * 일반적으로 java.lang.Object.clone() 메소드를 사용하여 Object를 복제하면 Object내에 있는
+	 * Primitive type을 제외한 Object <br>
+	 * field들은 복제가 되는 것이 아니라 같은 Object의 reference를 갖게 된다.<br>
+	 * 그러나 이 Method를 사용하면 각 field의 동일한 Object를 새로 복제(clone)하여 준다.<br>
+	 * java.lang.reflect API 를 사용하였음. <br>
+	 * 
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static Object clone(Object object) {
+		Class c = object.getClass();
+		Object newObject = null;
+		try {
+			newObject = c.newInstance();
+		} catch (Exception e) {
+			return null;
+		}
+
+		java.lang.reflect.Field[] field = c.getFields();
+		for (int i = 0; i < field.length; i++) {
+			try {
+				Object f = field[i].get(object);
+				field[i].set(newObject, f);
+			} catch (Exception e) {
+			}
+		}
+		return newObject;
+	}
+
+	/**
+	 * 디버깅시 Servlet 에서는 PrintWriter 를 넣어서 쉽게 디버깅을 할 수 있었지만 <br>
+	 * JSP 에서 처럼 PrintWriter가 없을때 디버깅을 쉽게 하기 위하여 메세지를 문자열로 만들어 리턴하게 하였음.<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 */
+	public static String getStackTrace(Throwable e) {
+		java.io.ByteArrayOutputStream bos = new java.io.ByteArrayOutputStream();
+		java.io.PrintWriter writer = new java.io.PrintWriter(bos);
+		e.printStackTrace(writer);
+		writer.flush();
+		return bos.toString();
+	}
+
+	/**
+	 * 특정 문자열을 다른 문자열로 대체하는 메소드<br>
+	 * : 문자열 검색시 검색어에 색깔을 넣거나 ... 테그를 HTML 문자로 바꾸는데 사용하면 유용할거 같음.<br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com @ 참고 문헌 : JAVA Servlet Programming(Oreilly)
+	 */
+	public static String replace(String line, String oldString, String newString) {
+		int index = 0;
+		while ((index = line.indexOf(oldString, index)) >= 0) {
+			line = line.substring(0, index) + newString + line.substring(index + oldString.length());
+			index += newString.length();
+		}
+		return line;
+	}
+
+	/**
+	 * 입력받은 메일주소가 메일주소 포멧에 맞는지 검사하는 메소드 <br>
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 * @date : 2001-04-17
+	 *
+	 */
+	public static boolean isValidAddress(String usermail) {
+		if (usermail.indexOf("@") > 0) {
+			try {
+				javax.mail.internet.InternetAddress.parse(usermail);
+			} catch (Exception e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 문자열을 substring할때 문자열 길이를 넘어설 경우 "" 를리턴하는 메소드
+	 *
+	 * @author : 심재진
+	 * @e-mail : sim11@mirenet.com
+	 * @date : 2001-04-21
+	 *
+	 */
+	public static String substring(String str, int start, int end) {
+		String val = null;
+		try {
+			val = str.substring(start, end);
+		} catch (Exception e) {
+			return "";
+		}
+		return val;
+	}
+
+	/**
+	 * ','로 분리되어 있는 문자열을 분리하여 Return List에서 일괄 삭제시 ID값을 일괄로 받아와서 Parsing...
+	 * written by Blue.
+	 */
+
+	public static String[] getItemArray(String src) {
+
+		String[] retVal = null;
+		if (src.length() == 0)
+			return null;
+
+		int nitem = 1;
+
+		for (int i = 0; i < src.length(); i++)
+			if (src.charAt(i) == ',')
+				nitem++;
+
+		retVal = new String[nitem];
+
+		int ep = 0;
+		int sp = 0;
+
+		for (int i = 0; i < nitem; i++) {
+			ep = src.indexOf(",", sp);
+			if (ep == -1)
+				ep = src.length();
+			retVal[i] = new String(src.substring(sp, ep));
+			sp = ep + 1;
+		}
+
+		return retVal;
+	}
+
+	public static String[] getItemArray(String src, char parser) {
+
+		String[] retVal = null;
+		if (src.length() == 0)
+			return null;
+
+		int nitem = 1;
+
+		for (int i = 0; i < src.length(); i++)
+			if (src.charAt(i) == parser)
+				nitem++;
+
+		retVal = new String[nitem];
+
+		int ep = 0;
+		int sp = 0;
+
+		for (int i = 0; i < nitem; i++) {
+			ep = src.indexOf(parser, sp);
+			if (ep == -1)
+				ep = src.length();
+			retVal[i] = new String(src.substring(sp, ep));
+			sp = ep + 1;
+		}
+
+		return retVal;
+	}
+
+	/**
+	 * 특정 날짜를 'YYYY/MM/DD' 형식으로 return<br>
+	 *
+	 *
+	 * @author : 정철우
+	 * @e-mail : cwjung@mirenet.com
+	 *
+	 */
+	public static String returnDate(String date) {
+
+		if (date == null) {
+			return "";
+		} else if (date.length() < 8) {
+			return date;
+		}
+
+		String year = date.substring(0, 4);
+		String month = date.substring(4, 6);
+		String day = date.substring(6, 8);
+
+		return year + "/" + month + "/" + day;
+	}
+
+	/**
+	 * 윤년 check Method... : 올해가 윤년인지를 check하여 booelan으로 return;
+	 *
+	 * @author : 정철우
+	 * @e-mail : cwjung@mirenet.com
+	 *
+	 */
+
+	public static boolean checkEmbolism(int year) {
+
+		int remain = 0;
+		int remain_1 = 0;
+		int remain_2 = 0;
+
+		remain = year % 4;
+		remain_1 = year % 100;
+		remain_2 = year % 400;
+
+		// the ramain is 0 when year is divided by 4;
+		if (remain == 0) {
+
+			// the ramain is 0 when year is divided by 100;
+			if (remain_1 == 0) {
+
+				// the remain is 0 when year is divided by 400;
+				if (remain_2 == 0)
+					return true;
+				else
+					return false;
+
+			} else
+				return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * 각 월의 마지막 일을 return 해당 월의 마지막일을 return. 윤년 check후 해당 일을 return
+	 *
+	 * @author : 정철우
+	 * @e-mail : cwjung@mirenet.com
+	 *
+	 */
+
+	public static int getMonthDate(int year, int month) {
+
+		int[] dateMonth = new int[12];
+
+		dateMonth[0] = 31;
+		dateMonth[1] = 28;
+		dateMonth[2] = 31;
+		dateMonth[3] = 30;
+		dateMonth[4] = 31;
+		dateMonth[5] = 30;
+		dateMonth[6] = 31;
+		dateMonth[7] = 31;
+		dateMonth[8] = 30;
+		dateMonth[9] = 31;
+		dateMonth[10] = 30;
+		dateMonth[11] = 31;
+
+		if (Util.checkEmbolism(year))
+			dateMonth[1] = 29;
+
+		return dateMonth[month - 1];
+	}
+
+	/**
+	 * 한 자리 숫자에 앞에 '0'을 붙여 String으로 return하는 메소드<br>
+	 * : argument : str, int
+	 * 
+	 * @author : 정철우
+	 * @e-mail : cwjung@mirenet.com
+	 */
+
+	public static String addZero(String str) {
+
+		return (Integer.toString(Integer.parseInt(str) + 100)).substring(1, 3);
+	}
+
+	public static String addZero2(int num) {
+
+		return (Integer.toString(num + 100)).substring(1, 3);
+	}
+
+	/**
+	 * 특정 디렉토리의 파일 삭제 : argument : 파일위치 + 파일명
+	 * 
+	 * @author : 김영진
+	 * @e-mail : yalli@miraenet.com
+	 */
+
+	public static void DeleteFile(String path) {
+
+		File f = new File(path);
+		f.delete();
+
+	}
+
+	/**
+	 * 현재 년/월/일
+	 * 
+	 * @author :
+	 * @e-mail :
+	 */
+	public static String[] GetTodayString() {
+
+		java.util.SimpleTimeZone kst = new java.util.SimpleTimeZone(9 * 60 * 60 * 1000, "KST");
+		java.util.Calendar cal = java.util.Calendar.getInstance(kst);
+
+		String[] today = new String[3];
+
+		int year = cal.get(Calendar.YEAR);
+		today[0] = Integer.toString(year);
+
+		if ((cal.get(Calendar.MONTH) + 1) < 10)
+			today[1] = "0" + (cal.get(Calendar.MONTH) + 1);
+		else
+			today[1] += (cal.get(Calendar.MONTH) + 1);
+
+		if (cal.get(Calendar.DAY_OF_MONTH) < 10)
+			today[2] = "0" + cal.get(Calendar.DAY_OF_MONTH);
+		else
+			today[2] += cal.get(Calendar.DAY_OF_MONTH);
+
+		return today;
+	}
+
+	public static int[] GetTodayInt() {
+
+		java.util.SimpleTimeZone kst = new java.util.SimpleTimeZone(9 * 60 * 60 * 1000, "KST");
+		java.util.Calendar cal = java.util.Calendar.getInstance(kst);
+
+		int[] today = new int[3];
+
+		today[0] = cal.get(Calendar.YEAR);
+		today[1] = cal.get(Calendar.MONTH) + 1;
+		today[2] = cal.get(Calendar.DAY_OF_MONTH);
+
+		return today;
+	}
+
+	/*
+	 * Date : yyyymmdd -> yyyy-mm-dd
+	 */
+	public static String makeDateString(String date) {
+
+		if (date.length() > 9)
+			return date;
+		return date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6);
+	}
+
+	/************************************************
+	 * 메서드명 : convertDateType
+	 * <p>
+	 * 메서드 기능 : 날짜문자열을 날짜표시타입으로 변환한다.
+	 * <p>
+	 * PARAM : string,string 예)String s = convertDateType("20010101","-")
+	 * <p>
+	 * dateString 날짜문자열 구분자 존재하지 않는 숫자로만 구성된 날짜 (yyyyMMdd)or (yyyyMM)
+	 * <p>
+	 * Dash format : "/",".","-" 등등 날짜 나타내는 형식 구분자
+	 * <p>
+	 * RETURN VALUE : 변경된 날짜 문자열.(구분자가 첨가된 날짜 형태) string 예)s = "2001-01-01"
+	 * <p>
+	 *************************************************/
+	public static String convertDateType(String dateString, String dashformat) {
+		if (dateString == null)
+			return "";
+		if ((dateString.length() != 8) && (dateString.length() != 6) && (dateString.length() != 12)
+				&& (dateString.length() != 14))
+			return "";
+		if (dateString == null)
+			dashformat = "/"; // default Dash
+		if (dateString.length() == 0)
+			dashformat = "/"; // default Dash
+
+		String ret = "";
+
+		ret = dateString.substring(0, 4);
+		ret += dashformat;
+		ret += dateString.substring(4, 6);
+
+		if (dateString.length() >= 8) {
+			ret += dashformat;
+			ret += dateString.substring(6, 8);
+		}
+
+		if (dateString.length() >= 12) {
+			ret += " ";
+			ret += dateString.substring(8, 10);
+			ret += dashformat;
+			ret += dateString.substring(10, 12);
+		}
+
+		if (dateString.length() >= 14) {
+			ret += dashformat;
+			ret += dateString.substring(12, 14);
+		}
+		return ret;
+	}
+
+	/**
+	 * <pre>
+	 * text를 format에 맞추어 출력한다.
+	 * getFormatedText("0193372412","???-???-????") --->> 019-337-2412로 출력
+	 * </pre>
+	 *
+	 * @param String
+	 *            text
+	 * @param String
+	 *            format
+	 *
+	 * @return String
+	 */
+	public static String getFormatedText(String text, String format) {
+		String rtn;
+		int start, i, j, len;
+		int tCount, fCount;
+
+		tCount = text.length();
+		fCount = format.length();
+
+		rtn = "";
+
+		if (text.equals(""))
+			return rtn;
+		if (text.equals(" "))
+			return " ";
+		// text가 01252412 이고 format 이 ????-???? 이면 0125-2412로 출력
+		// text에서 -를 제거한다.
+		for (i = 0; i < tCount; ++i) {
+			if (!text.substring(i, i + 1).equals("-"))
+				rtn = rtn + text.substring(i, i + 1);
+		}
+
+		text = rtn;
+		tCount = text.length();
+
+		// 포멧에서 ?의 count
+		len = 0;
+		for (j = 0; j < fCount; ++j) {
+			if (format.substring(j, j + 1).equals("?"))
+				++len;
+		}
+		// text의 길이가 len보다 작으면 앞에 0를 붙인다.
+		if (tCount < len) {
+			for (i = 0; i < (len - tCount); ++i) {
+				text = '0' + text;
+			}
+			tCount = len;
+		}
+
+		rtn = "";
+		start = 0;
+		for (i = 0; i < tCount; ++i) {
+			for (j = start; j < fCount; ++j) {
+				if (format.substring(j, j + 1).equals("?")) {
+					rtn = rtn + text.substring(i, i + 1);
+					start = start + 1;
+					break;
+				} else {
+					rtn = rtn + format.substring(j, j + 1);
+					start = start + 1;
+				}
+			}
+		}
+		return rtn + format.substring(start);
+	}
+
+	public static String lectureDate(String sdate, String edate) {
+		String retval = null;
+		boolean s = sdate.equals("00000000");
+		boolean e = edate.equals("00000000");
+		if (s) {
+			if (e) {
+				retval = "제한없음";
+			} else {
+				retval = edate.substring(4, 6) + "/" + edate.substring(6) + " 까지";
+			}
+		} else {
+			if (e) {
+				retval = sdate.substring(4, 6) + "/" + sdate.substring(6) + " 부터";
+			} else {
+				retval = sdate.substring(4, 6) + "/" + sdate.substring(6) + " ~ " + edate.substring(4, 6) + "/"
+						+ edate.substring(6);
+			}
+		}
+		return retval;
+	}
+
+	public static void MoveFiles(String[] filename, String src, String des) {
+
+		// 파일을 이동한다
+		if (filename != null && filename.length > 0) {
+			for (int i = 0; i < filename.length; i++) {
+				File sf = new File(src + Util.toKSC(filename[i]));
+				File desDir = new File(des);
+				if (!desDir.exists()) {
+					desDir.mkdirs();
+				}
+				File df = new File(des + Util.toKSC(filename[i]));
+				sf.renameTo(df);
+			}
+		}
+	}
+
+	/************************************************
+	 * 메서드명 : getStringCut
+	 * <p>
+	 * 메서드 기능 : 문자가 길경우에 특정 길이 단위로 자른다.
+	 * <p>
+	 * CREATE BY 최의엽 2003.03.02
+	 * <p>
+	 * PARAM : str 문자열
+	 * <p>
+	 * PARAM : sz 남길 문자열의 길이
+	 * <p>
+	 * RETURN VALUE : string 자르고 남은 문자열
+	 * <p>
+	 *************************************************/
+	public static String getStringCut(String str, int sz) throws UnsupportedEncodingException {
+
+		str = spacechk(str);
+
+		if (str.length() > sz) {
+			str = str.substring(0, sz - 3) + "...";
+		}
+
+		return str;
+	}
+
+	/************************************************
+	 * 메서드명 : getByteCut
+	 * <p>
+	 * 메서드 기능 : 문자가 길경우에 특정 바이트 단위 길이로 자른다.
+	 * <p>
+	 * CREATE BY 최의엽 2003.03.02
+	 * <p>
+	 * PARAM : str 문자열
+	 * <p>
+	 * PARAM : sz 남길 문자열의 길이
+	 * <p>
+	 * RETURN VALUE : string 자르고 남은 문자열
+	 * <p>
+	 *************************************************/
+	public static String getByteCut(String str, int sz) throws UnsupportedEncodingException {
+
+		str = nullToString(str);
+
+		if (str.equals("") || str.getBytes().length <= sz) {
+			return str;
+		}
+
+		String a = str;
+		int i = 0;
+		String imsi = "";
+		String rlt = "";
+		imsi = a.substring(0, 1);
+		while (i < sz) {
+			byte[] ar = imsi.getBytes();
+
+			i += ar.length;
+
+			rlt += imsi;
+			a = a.substring(1);
+			if (a.length() == 1) {
+				imsi = a;
+			} else if (a.length() > 1) {
+				imsi = a.substring(0, 1);
+			}
+		}
+
+		return rlt + "...";
+	}
+
+	/************************************************
+	 * 메서드명 : spacechk
+	 * <p>
+	 * 메서드 기능 : 받은값이 0,null,"" 인값을 " "로 만든다.
+	 * <p>
+	 * db의 값을 웹에 보여줄때 사용한다.
+	 * <p>
+	 * CREATE BY 최의엽 2003.03.02
+	 * <p>
+	 * PARAM : string 예)String s = spacechk("")
+	 * <p>
+	 * RETURN VALUE : string 예)s = " "
+	 * <p>
+	 *************************************************/
+	public static String spacechk(String str) throws UnsupportedEncodingException {
+		if ((str == "") || (str == null) || (str == "null")) {
+			str = " ";
+		} else {
+			str = str.trim();
+			if (str.equals("0") || str.equals("null") || str.equals("") || str == null) {
+				str = " ";
+			}
+		}
+		return str;
+	}
+
+	/************************************************
+	 * 메서드명 : makeNbsp
+	 * <p>
+	 * 메서드 기능 : 단답형 게시판에서 답변의 들여쓰기를
+	 * <p>
+	 * @ 만들어준다.
+	 * <p>
+	 * CREATE BY 최의엽 2003.03.02
+	 * <p>
+	 * PARAM : siz 들여쓰기한 깊이값
+	 * <p>
+	 * RETURN VALUE : string 예)s = " "
+	 * <p>
+	 *************************************************/
+	public static String makeNbsp(int siz) throws UnsupportedEncodingException {
+		String str = "";
+
+		if (siz < 1) {
+			str = "";
+		} else {
+			for (int i = 0; i < siz; i++) {
+				str += "  ";
+			}
+		}
+
+		return str;
+	}
+
+	/************************************************
+	 * 메서드명 : getCalsDate
+	 * <p>
+	 * 메서드 기능 : 원하는 시점의 날짜를 찾는다.
+	 * <p>
+	 * PARAM : string
+	 * <p>
+	 * getCalsDate(0,1) :오늘
+	 * <p>
+	 * getCalsDate(1,1) :년, -1(1년전 오늘),-2(2년전 오늘)
+	 * <p>
+	 * getCalsDate(2,1) :개월, -1(1개월전 오늘),-2(2개월전 오늘), 1(1개월후 오늘)
+	 * <p>
+	 * getCalsDate(3 or 4 or 8,1) :주, -1(일주일전 같은요일), 1(1주일후 같은요일)
+	 * <p>
+	 * getCalsDate(5 or 6 or 7,1) :하루, -1(오늘부터 하루전), 1(오늘부터 하루후)
+	 * <p>
+	 * getCalsDate(9,1) :12시간, -1(12시간전) 1(12시간후) 2(24시간후)
+	 * <p>
+	 * PARAM date_type : 출력을 원하는 날짜형식
+	 * <p>
+	 * RETURN VALUE : string
+	 * <p>
+	 *************************************************/
+	public static String getCalsDate(int y, int z, String date_type) throws Exception {
+
+		Calendar cal = Calendar.getInstance(Locale.KOREAN);
+		TimeZone timezone = cal.getTimeZone();
+		timezone = timezone.getTimeZone("Asia/Seoul");
+		cal = Calendar.getInstance(timezone);
+
+		cal.add(y, z);
+		Date currentTime = cal.getTime();
+		SimpleDateFormat formatter = new SimpleDateFormat(date_type, Locale.KOREAN);
+		String timestr = formatter.format(currentTime);
+
+		return timestr;
+	}
+
+	/************************************************
+	 * 메서드명 : getKrDate
+	 * <p>
+	 * 메서드 기능 : 날짜를 몇월 몇일 무슨요일의 형태로 리턴한다.
+	 * <p>
+	 * 
+	 * @PARAM :
+	 *        <p>
+	 * @RETURN String xx월 xx일 xx요일
+	 *         <p>
+	 *************************************************/
+	public static String getKrDate() {
+		String Day1 = "";
+		String Month1 = "";
+		String yoil = "";
+		String Week1 = "";
+
+		try {
+			Day1 = getDate("dd");
+			Month1 = getDate("MM");
+			Week1 = getDate("EEE");
+
+			if (Week1.equals("Mon"))
+				yoil = "월요일";
+			else if (Week1.equals("Tue"))
+				yoil = "화요일";
+			if (Week1.equals("Wed"))
+				yoil = "수요일";
+			if (Week1.equals("Thu"))
+				yoil = "목요일";
+			if (Week1.equals("Fri"))
+				yoil = "금요일";
+			if (Week1.equals("Sat"))
+				yoil = "토요일";
+			if (Week1.equals("Sun"))
+				yoil = "일요일";
+		} catch (Exception e) {
+		}
+		return Month1 + "월 " + Day1 + "일 " + yoil;
+	}
+
+	/************************************************
+	 * 메서드명 : getYoil
+	 * <p>
+	 * 메서드 기능 : 지정일의 요일의 순서값을 찾아서 리턴한다.
+	 * <p>
+	 * 
+	 * @PARAM : year 년
+	 *        <p>
+	 * @PARAM : mon 월
+	 *        <p>
+	 * @PARAM : da 일
+	 *        <p>
+	 * @RETURN 요일값
+	 *         <p>
+	 *************************************************/
+	public static String getYoil(String year, String mon, String da) {
+		String yoil = "";
+		String Week1 = "";
+
+		try {
+			Date d2 = stringToDate(year + mon + da, "yyyyMMdd");
+
+			Week1 = getDate2(d2, "EEE");
+
+			if (Week1.equals("Mon") || Week1.equals("월"))
+				yoil = "1";
+			else if (Week1.equals("Tue") || Week1.equals("화"))
+				yoil = "2";
+			else if (Week1.equals("Wed") || Week1.equals("수"))
+				yoil = "3";
+			else if (Week1.equals("Thu") || Week1.equals("목"))
+				yoil = "4";
+			else if (Week1.equals("Fri") || Week1.equals("금"))
+				yoil = "5";
+			else if (Week1.equals("Sat") || Week1.equals("토"))
+				yoil = "6";
+			else if (Week1.equals("Sun") || Week1.equals("일"))
+				yoil = "0";
+			else
+				yoil = Week1;
+		} catch (Exception e) {
+		}
+		return yoil;
+	}
+
+	/************************************************
+	 * 메서드명 : getDate
+	 * <p>
+	 * 메서드 기능 : 현재 일자를 원하는 format을 파라메터로 바꾸어서 리턴한다.
+	 * <p>
+	 * PARAM : string
+	 * <p>
+	 * getDate("yyyyMMdd")
+	 * <p>
+	 * getDate("yyyyMMddHHmmss")
+	 * <p>
+	 * getDate("yyyy/MM/dd HH:mm:ss")
+	 * <p>
+	 * getDate("yyyy/MM/dd")
+	 * <p>
+	 * getDate("HHmm")
+	 * <p>
+	 * getDate("yyyy년 M월 d일 E요?")
+	 * <p>
+	 * RETURN VALUE : string
+	 * <p>
+	 *************************************************/
+	public static String getDate(String date_type) throws Exception {
+		Calendar calendar = Calendar.getInstance(Locale.KOREAN);
+		TimeZone timezone = calendar.getTimeZone();
+		timezone = timezone.getTimeZone("Asia/Seoul");
+		calendar = Calendar.getInstance(timezone);
+
+		Date date = calendar.getTime();
+
+		SimpleDateFormat sdf = new SimpleDateFormat(date_type, Locale.KOREAN);
+		sdf.setTimeZone(timezone);
+
+		return sdf.format(date);
+	}
+
+	/************************************************
+	 * 메서드명 : getDate2
+	 * <p>
+	 * 메서드 기능 : 특정 일자를 원하는 format을 파라메터로 바꾸어서 리턴한다.
+	 * <p>
+	 * PARAM : string
+	 * <p>
+	 * getDate("yyyyMMdd")
+	 * <p>
+	 * getDate("yyyyMMddHHmmss")
+	 * <p>
+	 * getDate("yyyy/MM/dd HH:mm:ss")
+	 * <p>
+	 * getDate("yyyy/MM/dd")
+	 * <p>
+	 * getDate("HHmm")
+	 * <p>
+	 * getDate("yyyy년 M월 d일 E요?")
+	 * <p>
+	 * RETURN VALUE : string
+	 * <p>
+	 *************************************************/
+	public static String getDate2(Date dt, String date_type) throws Exception {
+		Calendar calendar = Calendar.getInstance(Locale.KOREAN);
+		TimeZone timezone = calendar.getTimeZone();
+		timezone = timezone.getTimeZone("Asia/Seoul");
+		calendar = Calendar.getInstance(timezone);
+
+		Date date = dt;
+
+		SimpleDateFormat sdf = new SimpleDateFormat(date_type, Locale.KOREAN);
+		sdf.setTimeZone(timezone);
+
+		return sdf.format(date);
+	}
+
+	/************************************************
+	 * 메서드명 : 엔터키를 \<br\> 로 바꿔준다.
+	 * <p>
+	 * 메서드 기능 : 값을 db에 넣기전에 엔터키를 \<br\>로 바꿔준다..
+	 * <p>
+	 * PARAM : mdh 스트링
+	 * <p>
+	 * RETURN VALUE : 스트링
+	 * <p>
+	 *************************************************/
+	public static String makeHtml(String mdh) {
+		int i = 0;
+
+		if (mdh == null || mdh.equals(""))
+			return "";
+
+		if (mdh.trim().equals(""))
+			return "";
+
+		for (i = 0; i < mdh.length() - 2; i++) {
+			if (mdh.substring(i, i + 1).hashCode() == 10 || mdh.substring(i, i + 1).hashCode() == 13) {
+				mdh = mdh.substring(0, i) + "<br>" + mdh.substring(i + 2);
+			}
+		}
+
+		return mdh;
+	}
+
+	/************************************************
+	 * 메서드명 :\<br\> 을 엔터키로 바꿔준다..
+	 * <p>
+	 * 메서드 기능 : 값을 에서 뺄때 \<br\>을 엔터키로 바꿔준다..
+	 * <p>
+	 * PARAM : mdh 스트링
+	 * <p>
+	 * RETURN VALUE : 스트링
+	 * <p>
+	 *************************************************/
+	public static String makeText(String mdh) {
+		int i = 0;
+		int j = 0;
+		String imsi = "";
+		String imsi2 = "";
+
+		if (mdh == null || mdh.equals(""))
+			return "";
+
+		if (mdh.trim().equals(""))
+			return "";
+
+		for (i = 0; mdh.length() > 4 && i < mdh.length(); i++) {
+			if (i < mdh.length() - 4 && mdh.substring(i, i + 4).equals("<br>")) {
+				mdh = mdh.substring(0, i) + new String("\n") + mdh.substring(i + 4);
+			}
+		}
+
+		if (mdh.length() > 4 && mdh.substring(mdh.length() - 4, mdh.length()).equals("<br>")) {
+			mdh = mdh.substring(0, mdh.length() - 4);
+		}
+		return mdh;
+	}
+
+	/************************************************
+	 * 메서드명 :한글 url값을 처리한다.
+	 * <p>
+	 * 메서드 기능 :
+	 * <p>
+	 * PARAM : mdh 스트링
+	 * <p>
+	 * RETURN VALUE : 스트링
+	 * <p>
+	 *************************************************/
+	public static String encodeUrl(String mdh) {
+		String imsi = "";
+
+		if (mdh == null || mdh.equals(""))
+			return "";
+
+		try {
+			imsi = java.net.URLEncoder.encode(mdh, "KSC5601");
+		} catch (Exception e) {
+		}
+
+		return imsi;
+	}
+
+	/************************************************
+	 * 메서드명 :한글 url값을 처리한다.
+	 * <p>
+	 * 메서드 기능 :
+	 * <p>
+	 * PARAM : mdh 스트링
+	 * <p>
+	 * RETURN VALUE : 스트링
+	 * <p>
+	 *************************************************/
+	public static String decodeUrl(String mdh) {
+		String imsi = "";
+
+		if (mdh == null || mdh.equals(""))
+			return "";
+		try {
+			imsi = java.net.URLDecoder.decode(mdh, "KSC5601");
+		} catch (Exception e) {
+		}
+
+		return imsi;
+	}
+
+	/************************************************
+	 * 메서드명 :강의코드에서 분반번호를 리턴한다.
+	 * <p>
+	 * 메서드 기능 : 년도(4)학기(2)과목코드(6)분반코드(2)대학구분(1) -- 일반적 모드
+	 * <p>
+	 * PARAM : mdh 스트링
+	 * <p>
+	 * RETURN VALUE : 스트링
+	 * <p>
+	 *************************************************/
+	public static String subStr(String mdh) {
+		String imsi = "";
+
+		if (mdh == null || mdh.equals(""))
+			return "";
+
+		if (mdh.substring(mdh.length() - 1).equals("U")) {
+			// 대학 강의코드
+			imsi = mdh.substring(12, 14);
+		} else {
+			// 대학원 강의코드
+			imsi = mdh.substring(12, 14);
+		}
+
+		return imsi;
+	}
+
+	/************************************************
+	 * 메서드명 :JDBC용 현재 시점의 DATE를 리턴한다.
+	 * <p>
+	 * 메서드 기능 :
+	 * <p>
+	 * PARAM : format 날짜로 변환하고픈 날짜 스트링
+	 * <p>
+	 * format yyyymmdd hh:mm:ss 이 형태의 날짜만 가능
+	 * <p>
+	 * RETURN VALUE : yyyy-mm-dd hh:mm:ss.0 형태의 날짜만리턴
+	 * <p>
+	 *************************************************/
+	public static java.sql.Timestamp getSqlDateTime(String format) {
+		java.util.Date d = new java.util.Date();
+
+		if (format != null && format.length() == 19) {
+			// 특정 날짜 스트리을 날짜로 변환한다.
+			return new java.sql.Timestamp(d.getTime()).valueOf(format);
+		} else {
+			// 오늘날짜를 리턴한다.
+			return new java.sql.Timestamp(d.getTime());
+		}
+	}
+
+	/************************************************
+	 * 메서드명 :JDBC용 현재 시점의 DATE를 리턴한다.
+	 * <p>
+	 * 메서드 기능 :
+	 * <p>
+	 * PARAM : format 날짜로 변환하고픈 날짜 스트링
+	 * <p>
+	 * format yyyymmdd 이 형태의 날짜포멧만 가능
+	 * <p>
+	 * RETURN VALUE : yyyy-mm-dd이 형태로만 리턴
+	 * <p>
+	 *************************************************/
+	public static java.sql.Date getSqlDate(String format) {
+		java.util.Date d = new java.util.Date();
+
+		if (format != null && format.length() == 10) {
+			// 특정 날짜 스트리을 날짜로 변환한다.
+			return new java.sql.Date(d.getTime()).valueOf(format);
+		} else {
+			// 오늘날짜를 리턴한다.
+			return new java.sql.Date(d.getTime());
+		}
+	}
+
+	/************************************************
+	 * 메서드명 :JDBC용 현재 시점의 시간을 리턴한다.
+	 * <p>
+	 * 메서드 기능 :
+	 * <p>
+	 * PARAM : format 시간으로 변환하고픈 시간 스트링
+	 * <p>
+	 * format hh:mm:ss 이 형태의 시간만 가능(포멧은 자유)
+	 * <p>
+	 * RETURN VALUE : hh:mm:ss 형태의 시간만 리턴
+	 * <p>
+	 *************************************************/
+	public static java.sql.Time getSqlTime(String format) {
+		java.util.Date d = new java.util.Date();
+
+		if (format != null && format.length() == 8) {
+			// 특정 시간 스트링을 시간으로 변환한다.
+			return new java.sql.Time(d.getTime()).valueOf(format);
+		} else {
+			// 현재시간을 리턴한다.
+			return new java.sql.Time(d.getTime());
+		}
+	}
+
+	/************************************************
+	 * 메서드명 : getMinValue
+	 * <p>
+	 * 메서드 기능 : 오라클 쿼리에서 결과를 가져올 최소 값을 가져온다.
+	 * <p>
+	 * PARAM : page 페이지번호
+	 * <p>
+	 * format max 보여줄 리트스 라인수
+	 * <p>
+	 * RETURN VALUE : 가져올 최소값
+	 * <p>
+	 *************************************************/
+	public static String getMinValue(int page, int max) {
+		return Integer.toString((max * page) - (max - 1));
+	}
+
+	/************************************************
+	 * 메서드명 : getMaxValue
+	 * <p>
+	 * 메서드 기능 : 오라클 쿼리에서 결과를 가져올 최대값을 가져온다.
+	 * <p>
+	 * PARAM : minvalue 최소값
+	 * <p>
+	 * format max 보여줄 리트스 라인수
+	 * <p>
+	 * RETURN VALUE : 가져올 최소값
+	 * <p>
+	 *************************************************/
+	public static String getMaxValue(String minvalue, int max) {
+		return Integer.toString(Integer.parseInt(minvalue) + (max - 1));
+	}
+
+}

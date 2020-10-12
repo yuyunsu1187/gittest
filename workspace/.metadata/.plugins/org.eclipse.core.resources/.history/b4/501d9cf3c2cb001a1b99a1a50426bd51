@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="sqlSessionFactory"
+		class="devonframe.dataaccess.mybatis.factory.CommonDaoSqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/sql/configuration.xml" />
+		<property name="mapperLocations" value="classpath:/sql/hsql/**/sql-*.xml" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="commonDao" class="devonframe.dataaccess.mybatis.MyBatisCommonDao">
+		<property name="useOriginalException" value="true" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		<property name="pagingExecutor" ref="myBatisPagingExecutor" />
+		<property name="scrollPagingExecutor" ref="myBatisScrollPagingExecutor" />
+	</bean>
+
+	<bean id="myBatisPagingExecutor" class="devonframe.paging.executor.MyBatisPagingExecutor" />
+	<bean id="myBatisScrollPagingExecutor"
+		class="devonframe.scrollpaging.executor.MyBatisScrollPagingExecutor">
+		<property name="scrollPagingTransfer" ref="scrollPagingTransfer" />
+	</bean>
+
+	<bean id="scrollPagingTransfer" class="devonframe.scrollpaging.util.ScrollPagingTransfer">
+		<property name="conditionKeySeparator" value="|" />
+		<property name="conditionKeyOrderbySeparator" value="@" />
+		<property name="conditionKeyValueEquitySeparator" value="=" />
+	</bean>
+	
+	
+
+</beans>

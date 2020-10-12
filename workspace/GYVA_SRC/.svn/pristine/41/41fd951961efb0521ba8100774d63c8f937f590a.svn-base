@@ -1,0 +1,101 @@
+package devonframe.gyva.common.main.controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import devonframe.fileupload.FileUpload;
+import devonframe.gyva.admin.system.code.service.CodeService;
+import devonframe.gyva.common.fileupload.service.FileUploadService;
+import devonframe.gyva.common.menu.service.MenuService;
+import devonframe.gyva.common.user.service.UserService;
+import devonframe.gyva.common.util.UtilService;
+import devonframe.gyva.contents.service.ContentsService;
+
+/**
+ * <pre>
+ * 본 클래스는 로그인 처리를 담당하는 Controller 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class MainController {
+
+	@Resource(name = "userService")
+	private UserService userService;
+    
+    @Resource(name = "menuService")
+    private MenuService menuService;
+	
+	@Resource(name = "codeService")
+	private CodeService codeService;
+    
+    @Resource(name = "contentsService")
+    private ContentsService contentsService;
+	
+	@Resource(name = "utilService")
+	private UtilService utilService;
+
+	@Resource(name = "fileUpload")
+	private FileUpload fileUpload;
+	
+	@Resource(name = "fileUploadService")
+	private FileUploadService fileUploadService;
+ 	
+    // 메인 페이지 호출 컨트롤러 (컨트롤러 명 수정가능)
+	@RequestMapping(value="/main.do")
+	public String retrieveMainPage(String redirectUrl, ModelMap model, HttpSession session){
+		String deviceType = (String) session.getAttribute("deviceType");
+		
+		if(redirectUrl != null && !redirectUrl.trim().equals("")) {
+			model.addAttribute("redirectUrl", redirectUrl);
+			String menuCode = redirectUrl.substring(0, redirectUrl.indexOf("/"));
+			if(redirectUrl.startsWith("/")) {
+				menuCode = redirectUrl.substring(1);
+				menuCode = menuCode.substring(0, menuCode.indexOf("/"));
+			}
+			model.addAttribute("menuCode", menuCode);
+		}
+		
+		session.removeAttribute("menuId");
+		session.removeAttribute("mainMenuId");
+		session.removeAttribute("parentMenuId");
+		session.removeAttribute("menuType");
+
+        if (deviceType != null && deviceType.equals("mobile")) {
+        
+        	return "mobile";
+        
+        } else {
+        	
+        	return "main";        	
+        	
+        }
+	}
+ 	
+    // admin 메인 페이지 호출 컨트롤러 (컨트롤러 명 수정가능)
+	@RequestMapping(value="/admin.do")
+	public String retrieveAdminMainPage(String redirectUrl, ModelMap model, HttpSession session){
+		if(redirectUrl != null && !redirectUrl.trim().equals("")) {
+			model.addAttribute("redirectUrl", redirectUrl);
+			String menuCode = redirectUrl.substring(0, redirectUrl.indexOf("/"));
+			if(redirectUrl.startsWith("/")) {
+				menuCode = redirectUrl.substring(1);
+				menuCode = menuCode.substring(0, menuCode.indexOf("/"));
+			}
+			model.addAttribute("menuCode", menuCode);
+		}
+		
+		session.removeAttribute("menuId");
+		session.removeAttribute("mainMenuId");
+		session.removeAttribute("parentMenuId");
+		session.removeAttribute("menuType");
+		return "adminMain";
+	}
+	
+}

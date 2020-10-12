@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/Create/QueryTemplate" format="1.0" title="Query Template for CREATE">
+
+	<prefix><![CDATA[
+#set($insertQueryId="insert${table.capitalized}")
+]]></prefix>
+
+
+	<ifNewFile><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${queryNamespace}">
+]]></ifNewFile>
+
+
+	<ifNotFound>
+		<findXMLElement path="/mapper/insert[@id='${insertQueryId}']"/>
+		<insert location="xmlChild" parent="/mapper"><![CDATA[
+<insert id="${insertQueryId}">{CodeGen:StartOfCDATA}
+    INSERT   INTO ${table.tableName} (
+#foreach ($row in $table.columns)
+#if ($velocityCount == 1)
+             $row.name
+#else
+           , $row.name
+#end
+#end
+    ) VALUES (
+#foreach ($row in $table.columns)
+#if ($velocityCount == 1)
+             #{${row.camelCased}}
+#else
+           , #{${row.camelCased}}
+#end
+#end
+    )
+{CodeGen:EndOfCDATA}</insert>
+]]></insert>
+	</ifNotFound>
+
+
+
+	<ifNewFile><![CDATA[
+</mapper>
+]]></ifNewFile>
+
+
+
+</CodeGenTemplate>

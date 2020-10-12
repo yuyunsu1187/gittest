@@ -1,0 +1,17 @@
+package com.gyva.web.common.user.service;
+
+import java.util.List;
+
+import com.gyva.web.common.user.model.User;
+
+public interface UserService {
+
+	public User searchUser(User vo);
+	public List<User> searchUserList(User vo);
+	
+	public void insertUser(User vo);
+	public void updateUser(User vo);
+	public void deleteUser(User vo);
+	public int duplicateCheckId(User vo);
+
+}

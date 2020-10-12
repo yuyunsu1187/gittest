@@ -1,0 +1,91 @@
+package devonframe.gyva.front.common.fileupload.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import devonframe.fileupload.FileUpload;
+import devonframe.fileupload.model.UploadFileInfo;
+
+@Component("fileUtils")
+public class FileParseServiceImpl implements FileParseService{
+	
+    @Resource(name = "fileUpload")
+    private FileUpload fileUpload;
+	
+	@Override
+	public List<Map<String, Object>> fileParseList(MultipartHttpServletRequest mpRequest) {
+		// file_id 생성 후 user정보 세팅
+		String fildId = getRandomUuid(10);
+		
+		Iterator<String> iterator = mpRequest.getFileNames();
+		
+		MultipartFile multipartFile = null;
+		int fileNumber = 1;
+		String fileName = null;
+		String uploadFilePath = null;
+		String uploadFileName = null;
+		long fileSize = 0;
+		String fileExtension = null;
+		
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		Map<String, Object> listMap = null;
+		
+		while(iterator.hasNext()) {
+			multipartFile = mpRequest.getFile(iterator.next());
+			if(multipartFile.isEmpty() == false) {
+				UploadFileInfo uploadFileInfo = fileUpload.upload(multipartFile);
+				
+				fileName = uploadFileInfo.getClientFileName();
+				uploadFilePath = uploadFileInfo.getServerPath();
+				uploadFileName = uploadFileInfo.getServerFileName();
+				fileSize = uploadFileInfo.getSize();
+				fileExtension = uploadFileInfo.getClientFileName().substring(uploadFileInfo.getClientFileName().lastIndexOf(".")+1);
+				
+				try {
+					listMap = new HashMap<String, Object>();
+					listMap.put("fileId", fildId);
+					listMap.put("fileNumber", fileNumber++);
+					listMap.put("fileName", fileName);
+					listMap.put("uploadFilePath", uploadFilePath);
+					listMap.put("uploadFileName", uploadFileName);
+					listMap.put("fileSize", fileSize);
+					listMap.put("fileExtension", fileExtension);
+					list.add(listMap);
+					
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return list;
+		
+	}
+	/**
+	 * 10자리 random UUID생성
+	 *
+	 * @param length 문자열 길이
+	 * @return 랜덤문자열
+	 */
+	private static String getRandomUuid(int length) {
+		String result = "";
+		for (int i = 0; i < 5; i++) {
+			String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를 제거해 주었다.
+			uuid = uuid.substring(0, length); // uuid를 앞에서부터 10자리 잘라줌.
+//			System.out.println(i + ") " + uuid);
+			result = uuid;
+		}
+		return result;
+	}
+}

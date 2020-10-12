@@ -1,0 +1,509 @@
+<%@ page language="java" pageEncoding="utf-8"
+	contentType="text/html; charset=utf-8"%>
+<%--
+/**
+ *******************************************************************************
+ * DevOn Framework Sample JSP
+ * NAME : fileDownloadList.jsp
+ * DESC : 파일다운로드 예제
+ * VER  : v1.0
+ * Copyright 2014 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"  %>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--  meta http-equiv="Cache-Control" content="no-cache; no-store; no-save" -->
+
+<title>회원 사진 다운로드 화면</title>
+
+
+<script type="text/javascript" language="javascript">
+	function fnRetrieve() {
+		document.searchForm.action = "<c:url value="/function/filedownload/retrieveFileList.do"/>";
+		document.searchForm.submit();
+	}
+
+	function fnSelectAll(checkbox) {
+		if (checkbox.checked) {
+			$(".Lcheckbox").attr("checked", true);
+		} else {
+			$(".Lcheckbox").removeAttr("checked");
+		}
+	}
+
+	function fnDownload() {
+		document.listForm.action = "<c:url value="/function/filedownload/downloadFileList.do"/>";
+		document.listForm.submit();
+	}
+
+	function fnDelete() {
+		document.listForm.action = "<c:url value="/function/filedownload/deleteFileList.do"/>";
+		document.listForm.submit();
+	}
+</script>
+<style type="text/css">
+/* Block : bodyMain
+---------------------------------------------------------*/
+
+/* Block : detail
+---------------------------------------------------------*/
+.LblockDetail table {
+	width:100%;
+	border-collapse:collapse;
+}
+.LblockDetail table caption {
+	display:none;
+}
+.LblockDetail th,
+.LblockDetail td {
+	border:solid 1px #c9c9c9;
+	height:28px;
+	padding:0 10px 0 5px;
+}
+.LblockDetail th {
+	background-color:#f7f7f7;
+	font-weight:bold;
+	text-align:center;
+	white-space:nowrap;
+}
+.LblockDetail td textarea {
+	margin:2px;
+}
+
+/* Block : pageLocation
+---------------------------------------------------------*/
+#LblockPageLocation {
+	font-size:0.9em;
+	padding:10px 0px 0px 0px;
+	color:#939393;
+}
+#LblockPageLocation li {
+	display:inline;
+	margin-left:4px;
+}
+#LblockPageLocation li span {
+	color:#0076B5;
+	padding-left:11px;
+	background:url(../images/pageLocation_separater.gif) no-repeat left top;
+}
+#LblockPageLocation li.Lfirst span {
+	background:none;
+}
+#LblockPageLocation li span a {
+	color:#727271;
+}
+
+/* Block : tab
+---------------------------------------------------------*/
+.LblockTab {
+	background:url(../images/tab_bg.gif) repeat-x left bottom;
+	margin-bottom:7px;
+}
+.LblockTab li {
+	float:left;
+	margin-right:5px;
+	background:url(../images/tab_l.gif) no-repeat;
+}
+.LblockTab li.Lcurrent {
+	background-position:left -33px;
+}
+.LblockTab li span {
+	display:block;
+	background:url(../images/tab_r.gif) no-repeat right top;
+}
+.LblockTab li.Lcurrent span {
+	background-position:right -33px;
+}
+.LblockTab li span a {
+	display:block;
+	line-height:24px;
+	color:#7f7f7f;
+	text-decoration:none;
+	padding:8px 25px 0px;
+}
+.LblockTab li.Lcurrent span a:link,
+.LblockTab li.Lcurrent span a:visited {
+	font-weight:bold;
+	color:#ffc539;
+}
+.LblockTab li span a:link,
+.LblockTab li span a:visited {
+	color:#7f7f7f;
+}
+.LblockTab li span a:hover,
+.LblockTab li span a:active {
+	color:#f1aa00;
+}
+.LblockTab li.Lcurrent span a:hover,
+.LblockTab li.Lcurrent span a:active {
+	color:#f1aa00;
+}
+
+/* Block : popupBody
+---------------------------------------------------------*/
+
+/* Block : tree
+---------------------------------------------------------*/
+.LblockTree {
+	border:1px solid #c9c9c9;
+	padding:5px;
+}
+.LblockTree a {
+	text-decoration:none;
+}
+.LblockTree a:link, .LblockTree a:visited {
+	color:#7F7F7F;
+}
+
+/* Block : search
+---------------------------------------------------------*/
+#LblockSearch {
+	background-color:#ffffff;
+}
+#LblockSearch div {
+	position:relative;
+	width:100%;
+}
+#LblockSearch div div div {
+	padding-bottom:29px;
+}
+#LblockSearch table caption {
+	display:none;
+}
+#LblockSearch table {
+	border-collapse:collapse;
+	width:100%;
+	border-top:solid 1px #c9c9c9;
+	border-bottom:solid 1px #c9c9c9;
+}
+#LblockSearch table th {
+	color:#7f7f7f;
+	text-align:center;
+	white-space:nowrap;
+	font-weight:bold;
+	padding:5px 25px;
+	background-color:#f7f7f7;
+	border-bottom:solid 1px #c9c9c9;
+}
+#LblockSearch table td {
+	padding:0px 10px 0px 5px;
+	border-bottom:solid 1px #c9c9c9;
+}
+#LblockSearch input.Limage {
+	position:absolute;
+	right:0px;
+	bottom:0px;
+}
+
+/* Block : button
+---------------------------------------------------------*/
+#LblockButton {
+	position:relative;
+	background:url(../images/button_bg.gif) repeat-x left top;
+	padding-top:10px;
+	text-align:right;
+}
+* html #LblockButton {
+	height:1%;
+}
+#LblockButton span.Lleft {
+	position:absolute;
+	left:0;
+}
+#LblockButton a.Lbtn {
+	margin-right:8px;
+}
+a.Lbtn,
+a.Lbtn * {
+	height:22px;
+	line-height:23px;
+	position:relative;
+	margin:0;
+	padding:0;
+	display:inline-block;
+	text-decoration:none !important;
+	border:0;
+	font-family:Gulim;
+	font-size:12px;
+	font-weight:bold;
+	white-space:nowrap;
+	background:url(../images/btn_bg1.gif) no-repeat;
+	vertical-align:top;
+	overflow:visible;
+	color:#7F7F7F;
+}
+a.Lbtn * {
+	padding:0 14px 0 11px;
+	background-position:right top;
+	left:4px;
+	cursor:pointer;
+}
+
+/* Block : pageHeader
+---------------------------------------------------------*/
+
+/* Block : tabArea
+---------------------------------------------------------*/
+
+/* Block : subbutton
+---------------------------------------------------------*/
+.LblockSubbutton {
+	text-align:right;
+}
+.LblockSubbutton a.Lbtn2 {
+	margin-right:8px;
+}
+a.Lbtn2,
+a.Lbtn2 * {
+	height:22px;
+	line-height:23px;
+	position:relative;
+	margin:0;
+	padding:0;
+	display:inline-block;
+	text-decoration:none !important;
+	border:0;
+	font-family:Gulim;
+	font-size:12px;
+	font-weight:bold;
+	white-space:nowrap;
+	background:url(../images/btn_bg2.gif) no-repeat;
+	vertical-align:top;
+	overflow:visible;
+	color:#7F7F7F;
+}
+a.Lbtn2 * {
+	padding:0 14px 0 11px;
+	background-position:right top;
+	left:4px;
+	cursor:pointer;
+}
+
+/* Block : listTable
+---------------------------------------------------------*/
+.LblockListTable .Lwrapper {
+	position:relative;
+	width:100%;
+}
+.LblockListTable .LblockListInfo {
+	position:relative;
+	height:26px;
+	border-top:solid 1px #c9c9c9;
+}
+.LblockListTable .LblockListInfo span.Ltotal {
+	position:absolute;
+	left:2px;
+	bottom:2px;
+}
+.LblockListTable .LblockListInfo span.Lsearch {
+	position:absolute;
+	right:2px;
+	bottom:2px;
+}
+.LblockListTable table {
+	border-collapse:collapse;
+	border-top:solid 2px #E1528D;
+	border-bottom:solid 1px #c9c9c9;
+	width:100%;
+}
+.LblockListTable table caption {
+	display:none;
+}
+.LblockListTable table th,
+.LblockListTable table td {
+	height:28px;
+	padding:0px 5px;
+	white-space:nowrap;
+	border:1px solid #e8e8e8;
+	text-align:center;
+}
+.LblockListTable table th {
+	background-color:#f6f6f6;
+	font-weight:bold;
+}
+.LblockListTable table tbody tr.Lhover {
+	background:#eed;
+}
+.LblockListTable ul {
+	text-align:center;
+	font-family:Tahoma;
+	font-size:0.9em;
+	margin:7px 0px 15px;
+	padding-bottom:7px;
+	border-bottom:solid 1px #c9c9c9;
+}
+.LblockListTable li {
+	display:inline;
+	margin-left:5px;
+}
+.LblockListTable li span {
+	font-weight:bold;
+	color:#f1aa00;
+}
+.LblockListTable li a {
+	font-weight:normal;
+	color:#666;
+}
+.LblockListTable li a:hover,
+.LblockListTable li a:active {
+	color:#E17A0D;
+}
+.LblockListTable li.Lbegin a,
+.LblockListTable li.Lend a {
+	font-weight:bold;
+}
+.LblockListTable a.Lbtn3 {
+	margin-right:2px;
+}
+a.Lbtn3,
+a.Lbtn3 * {
+	height:17px;
+	line-height:18px;
+	position:relative;
+	margin:0;
+	padding:0;
+	display:inline-block;
+	text-decoration:none !important;
+	border:0;
+	font-family:Gulim;
+	font-size:12px;
+	white-space:nowrap;
+	background:url(../images/btn_bg3.gif) no-repeat;
+	vertical-align:top;
+	overflow:visible;
+	color:#fff;
+}
+a.Lbtn3 * {
+	padding:0 5px 0 1px;
+	background-position:right top;
+	left:4px;
+	cursor:pointer;
+}
+
+/* Block : blank
+---------------------------------------------------------*/
+
+/* Block : error
+---------------------------------------------------------*/
+
+
+
+</style>
+</head>
+<body>
+		<div id="LblockBody" style="color : black; font-size : 10px;">	
+			<div id="LblockBodyMain">
+				<div id="LblockContent01" class="LblockContent">
+					FileDownLoad는 FileUpload를 통하여 저장한 파일의 목록을 보여준다.
+					<br>
+					<br>
+					단건 다운로드시 해당 파일명으로 다운로드 되며, 다건 다운로드시 "FileDownloadArray.zip" 으로 다운로드 된다.
+					삭제시 데이터베이스에서 해당 목록을 삭제하며 저장한 파일도 함께 삭제한다.
+					<br>
+					<br>
+					<ul>
+						<li>Wiki : <a href="http://www.dev-on.com/devonframe/wiki/doku.php?id=devonframe:component:online:filedownload" target="_blank">filedownload</a></li>
+						<br>
+						<li>설정</li> - Mybatis Mapper 파일 : /resources/sql/hsql/sql-fileInfo.xml
+					</ul>
+					<br>
+				</div>
+		<form method="post" action="/common/user/updateUser.do" name="searchForm">
+				<%-- <form name="searchForm" id="searchForm" method="post" onsubmit="fnRetrieve();return false;"> --%>
+					<div id="LblockSearch" style="color : black; font-size : 10px;">
+						<div>
+							<div>
+								<div>
+									<table summary="파일 검색조건">
+										<caption>파일 검색조건</caption>
+										<colgroup>
+											<col style="width: 20%;" />
+											<col style="width: 30%;" />
+											<col style="width: 20%;" />
+											<col style="width: 30%;" />
+										</colgroup>
+										<tbody>
+											<tr>
+												<th>파일명</th>
+												<td><input type="text" path="fileName" id="fileName" cssClass="Ltext" style="color : black; font-size : 10px;"/></td>
+												<th>업로드일자</th>
+												<td>
+													<input type="text" path="uploadDate" id="uploadDate" cssClass="Ltext" size="10" maxlength="8" readonly="readonly"/>
+													<a href="#"	onclick="dui.Calendar.open('uploadDate', 'YYYYMMDD'); return false;">	<img class="Lbtn" src="<c:url value="/resource/images/btn_icon_calendar.gif"/>"	alt="날짜" /></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<a class="Lbtn" href="#"><span onclick="fnRetrieve();return false;">검색</span></a>
+									<input type="submit" value="저장"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				
+				<form:form commandName="resultList" name="listForm" id="listForm" method="post">
+					<input type="hidden" name="searchFileName" value="${input.fileName}" />
+					<input type="hidden" name="searchUploadDate" value="${input.uploadDate}" />
+					<div id="LblockListTable01" class="LblockListTable" style="color : black; font-size : 10px;">
+						<div class="Lwrapper">
+							<table summary="파일 리스트" style="color : black; font-size : 10px;">
+								<caption>파일 리스트</caption>
+								<thead>
+									<tr>
+										<th width="25"><input type="checkbox" class="Lcheckbox"	onclick="fnSelectAll(this)" /></th>
+										<th>파일명</th>
+										<th>업로드파일경로</th>
+										<th>업로드파일명</th>
+										<th>파일크기</th>
+										<th>업로드일자</th>
+									</tr>
+								</thead>
+								<tbody id="fileInfoArea">
+									<c:forEach items="${resultList}" var="result" varStatus="i">
+										<c:set var="index" value="${i.index}" />
+										<tr class="Lfirst">
+											<td class="Lfirst">
+												<input type="checkbox" class="Lcheckbox" name="checkIndex" value="${i.index}" />
+												<input type="hidden" name="fileName" value="${result.fileName}" />
+											</td>
+											<td>${result.fileName}</td>
+											<td>
+												<input type="text" name="uploadFilePath" size="45" class="Ltext"
+												value="<c:out value="${result.uploadFilePath}"/>" readonly="readonly" />
+											</td>
+											<td>${result.uploadFileName}</td>
+											<td>${result.fileSize}</td>
+											<td>${result.uploadDate}</td>
+										</tr>
+									</c:forEach>
+									<c:if test="${empty resultList && !empty input}">
+										<tr id="empty" style="background-color: #FFFFFF">
+											<td height="25" colspan="7"><spring:message	code="dev.inf.com.nodata" /></td>
+										</tr>
+									</c:if>
+								</tbody>
+							</table>
+						</div>
+					</div>
+		
+				</form:form>
+			</div>
+		
+			<div id="LblockButton">
+				<a class="Lbtn" href="#">
+					<span onclick="fnDelete();"><spring:message	code="common.label.delete" /></span>
+				</a>
+				<a class="Lbtn" href="#"><span onclick="fnDownload();">다운로드</span></a>
+			</div>
+		
+			</div>
+	</body>
+</html>	

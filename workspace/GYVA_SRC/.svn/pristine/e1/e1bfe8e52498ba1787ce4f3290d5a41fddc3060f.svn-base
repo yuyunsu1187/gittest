@@ -1,0 +1,31 @@
+<%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" isErrorPage="true"	session="false" %>
+
+
+<%---------------------------------------------------------
+    파일명 : error.jsp
+    프로젝트명 : 이브아르 아카데미 프로젝트
+
+    Copyright(c) 2012 LG CNS,  All rights reserved.
+
+    설 명 : 본 화면은 일반적인 request 요청에 대한 에러메시지를 출력하는 화면입니다.
+    작성자 : XXX팀 OOO
+-------------------------------------------------------------%>
+
+			
+<section id="FR130101-15" class="error-section">
+	<h1 class="error-tit">Not Found</h1>
+	<span class="img-area"><img src="/resource/images/common/icon/icon-error.png" /></span>
+	<p class="error-txt">The wrong approach.<br />The page you’re looking for can’t be found.</p>
+	
+	<div class="btn-area">
+		<a href="<c:url value='/main.do' />" class="sub-btn">GO HOME</a>
+		<a href="javascript:history.back();" class="main-btn">GO BACK</a>
+	</div>
+</section>
+<!-- [E] wrap -->
+
+<!-- [S : 20200924] 로딩이미지 -->
+<div class="loading-area" data-pop-action="active">
+	<span class="img-area"><img src="/resource/images/common/contents/pc_Loading_200923.gif" alt="" /></span>
+</div>
+<!-- [E : 20200924] 로딩이미지 -->

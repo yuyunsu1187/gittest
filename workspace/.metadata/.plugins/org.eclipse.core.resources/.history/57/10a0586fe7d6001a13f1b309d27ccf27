@@ -1,0 +1,285 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<html>
+<head>
+<title>회원정보 수정 화면</title>
+
+
+<script type="text/javascript">
+
+	function fnRetrieve() {
+		var num = document.detailForm.email;
+		if (!document.detailForm.email.value) {
+			alert("<spring:message code="dev.err.com.noSearchNum"/>");
+			return false;
+		}
+		/* if (!fnValidateRequired(num, "<spring:message code="dev.err.com.noSearchNum"/>"))
+			return false; */
+		document.detailForm.action = "<c:url value='/common/user/retrieveUser.do'/>";
+		document.detailForm.submit();
+	}
+
+	function fnUpdateForm() {
+		document.detailForm.action = "<c:url value='/pattern/mp11/retrieveEmployeeForm.do'/>";
+		document.detailForm.mode.value = "update";
+		document.detailForm.submit();
+	}
+	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+	function checkValue() {
+
+		if (!document.userInfo.password.value) {
+			alert("비밀번호를 입력하세요.");
+			return false;
+		}
+
+		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+		if (document.userInfo.password.value != document.userInfo.passwordCheck.value) {
+			alert("비밀번호를 동일하게 입력하세요.");
+			return false;
+		}
+
+	}
+
+    // 취소 버튼 클릭시 로그인 화면으로 이동
+    function goLoginForm() {
+        location.href="joinForm.do";
+    }
+    
+</script>
+
+</head>
+<body>
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="wrap">
+		<br>
+		<br> <b><font size="6" color="gray">회원정보 수정</font></b> <br>
+		<br>
+		<br>
+		<div id="LblockBodyMain">
+			<div id="LblockSearch">
+				<div>
+					<div>
+						<div>
+							<form commandName="result" name="detailForm" method="post" onsubmit="fnRetrieve();return false;">
+<%-- 								<input type="hidden" name="mode" value="${param.mode}" /> 
+								<input type="hidden" name="num" value="${result.num}" /> --%>
+								<table summary="회원 번호">
+									<caption></caption>
+									<colgroup>
+										<col style="width: 20%;" />
+										<col style="width: 70%;" />
+										<col style="width: 10%;" />
+									</colgroup>
+									<tbody>
+										<tr>
+											<th>ID 검색</th>
+											<td>
+												<input type="text" class="Ltext" id="email" name="email" value="" />
+												<input type="button" value="검색" onclick="fnRetrieve();return false;" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+			<form method="post" action="/common/user/updateUser.do" name="userInfo" onsubmit="return checkValue()">
+			<table>
+			<input type="hidden" name="stateCode" id="stateCode" value="01" placeholder="요청 상태 코드 : 01"/>
+			<input type="hidden" name="updateId" id="updateId" value="${result.seq}"/>
+			<input type="hidden" name="seq" id="seq" value="${result.seq}"/>
+			<tr>
+			<td id="title">email</td>
+			<td>
+			<input type="text" name="email" id="email" maxlength="50" value="${result.email}" readonly></td>
+			</tr>
+			<tr>
+			<td id="title">password</td>
+			<td>
+				<input type="password" name="password" id="password" maxlength="50" placeholder="Enter Password">
+					<input type="password" name="passwordCheck" id="passwordCheck" maxlength="50" placeholder="Confirm Password"></td>
+				</tr>
+				<tr>
+					<td id="title">Name</td>
+					<td>
+						<input type="text" name="nameLast" id="nameLast" maxlength="50" value="${result.nameLast}" readonly>
+							<input type="text" name="nameFirst" id="nameFirst" maxlength="50" value="${result.nameFirst}" readonly></td>
+						</tr>
+						<tr>
+							<td id="title">Country</td>
+							<td>
+								<input type="text" name="countryCode" id="countryCode" value="${result.countryCode}" readonly />
+							</td>
+						</tr>
+						<tr>
+							<td id="title">City</td>
+							<td>
+								<input type="text" name="divisionCode" id="divisionCode" value="${result.divisionCode}" readonly />
+							</td>
+						</tr>
+						<tr>
+							<td id="title">Partner name</td>
+							<td>
+								<input type="text" name="partnerName" id="partnerName" value="${result.hpName}" readonly />
+							</td>
+						</tr>
+						<tr>
+							<td id="title">Hospital Name</td>
+							<td>
+								<input type="text" name="hospitalName" id="hospitalName" value="${result.hpName}" readonly />
+							</td>
+						</tr>
+						<tr>
+							<td id="title">Hospital Address</td>
+							<td>
+								<input type="text" name="hospitalAddress" id="hospitalAddress" value="${result.hpAdd}" readonly />
+							</td>
+						</tr>
+						<tr>
+							<td id="title">Hospital Zip</td>
+							<td>
+								<input type="text" name="hospitalZip" id="hospitalZip" value="${result.hpZipcode}" readonly />
+							</td>
+						</tr>
+					</table>
+					<br>
+						<input type="submit" value="저장"/>
+						<input type="button" value="취소" onclick="goLoginForm()">
+						</form>
+					</div>
+					
+					
+					
+					<!-- 여기부터 download로직 -->
+					<div id="LblockBody">
+						<div id="LblockPageHeader">
+							<div id="LblockPageTitle">
+								<h1>File Download</h1>
+							</div>
+					
+							<div id="LblockPageLocation">
+								<ul>
+									<li class="Lfirst"><span><a href="#">HOME</a></span></li>
+									<li><span><a href="#">Function</a></span></li>
+									<li><span><a href="#">Presentation</a></span></li>
+									<li class="Llast"><span>File Download</span></li>
+								</ul>
+							</div>
+					
+						</div>
+					
+						<div id="LblockBodyMain">
+					
+							<div id="LblockContent01" class="LblockContent">
+								FileDownLoad는 FileUpload를 통하여 저장한 파일의 목록을 보여준다.
+								<br>
+								<br>
+								단건 다운로드시 해당 파일명으로 다운로드 되며, 다건 다운로드시 "FileDownloadArray.zip" 으로 다운로드 된다.
+								삭제시 데이터베이스에서 해당 목록을 삭제하며 저장한 파일도 함께 삭제한다.
+								<br>
+								<br>
+								<ul>
+									<li>Wiki : <a href="http://www.dev-on.com/devonframe/wiki/doku.php?id=devonframe:component:online:filedownload" target="_blank">filedownload</a></li>
+									<br>
+									<li>설정</li> - Mybatis Mapper 파일 : /resources/sql/hsql/sql-fileInfo.xml
+								</ul>
+								<br>
+							</div>
+					
+							<form:form commandName="input" name="searchForm" id="searchForm" method="post" onsubmit="fnRetrieve();return false;">
+								<div id="LblockSearch">
+									<div>
+										<div>
+											<div>
+												<table summary="파일 검색조건">
+													<caption>파일 검색조건</caption>
+													<colgroup>
+														<col style="width: 20%;" />
+														<col style="width: 30%;" />
+														<col style="width: 20%;" />
+														<col style="width: 30%;" />
+													</colgroup>
+													<tbody>
+														<tr>
+															<th>파일명</th>
+															<td><form:input path="fileName" id="fileName" cssClass="Ltext" /></td>
+															<th>업로드일자</th>
+															<td>
+																<form:input path="uploadDate" id="uploadDate" cssClass="Ltext" size="10" maxlength="8" readonly="readonly"/>
+																<a href="#"	onclick="dui.Calendar.open('uploadDate', 'YYYYMMDD'); return false;">	<img class="Lbtn" src="<c:url value="/resource/images/btn_icon_calendar.gif"/>"	alt="날짜" /></a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<input type="image" class="Limage"	onclick="fnRetrieve();return false;"
+													src="<c:url value="/resource/images/btn_search.gif"/>"	alt="search button" border="0" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</form:form>
+							<form:form commandName="resultList" name="listForm" id="listForm" method="post">
+								<input type="hidden" name="searchFileName" value="${input.fileName}" />
+								<input type="hidden" name="searchUploadDate" value="${input.uploadDate}" />
+								<div id="LblockListTable01" class="LblockListTable">
+									<div class="Lwrapper">
+										<table summary="파일 리스트">
+											<caption>파일 리스트</caption>
+											<thead>
+												<tr>
+													<th width="25"><input type="checkbox" class="Lcheckbox"	onclick="fnSelectAll(this)" /></th>
+													<th>파일명</th>
+													<th>업로드파일경로</th>
+													<th>업로드파일명</th>
+													<th>파일크기</th>
+													<th>업로드일자</th>
+												</tr>
+											</thead>
+											<tbody id="fileInfoArea">
+												<c:forEach items="${resultList}" var="result" varStatus="i">
+													<c:set var="index" value="${i.index}" />
+													<tr class="Lfirst">
+														<td class="Lfirst">
+															<input type="checkbox" class="Lcheckbox" name="checkIndex" value="${i.index}" />
+															<input type="hidden" name="fileName" value="${result.fileName}" />
+														</td>
+														<td>${result.fileName}</td>
+														<td>
+															<input type="text" name="uploadFilePath" size="45" class="Ltext"
+															value="<c:out value="${result.uploadFilePath}"/>" readonly="readonly" />
+														</td>
+														<td>${result.uploadFileName}</td>
+														<td>${result.fileSize}</td>
+														<td>${result.uploadDate}</td>
+													</tr>
+												</c:forEach>
+												<c:if test="${empty resultList && !empty input}">
+													<tr id="empty" style="background-color: #FFFFFF">
+														<td height="25" colspan="7"><spring:message	code="dev.inf.com.nodata" /></td>
+													</tr>
+												</c:if>
+											</tbody>
+										</table>
+									</div>
+								</div>
+					
+							</form:form>
+						</div>
+					
+						<div id="LblockButton">
+							<a class="Lbtn" href="#">
+								<span onclick="fnDelete();"><spring:message	code="common.label.delete" /></span>
+							</a>
+							<a class="Lbtn" href="#"><span onclick="fnDownload();">다운로드</span></a>
+						</div>
+					
+						</div>
+				</body>
+</html>																				

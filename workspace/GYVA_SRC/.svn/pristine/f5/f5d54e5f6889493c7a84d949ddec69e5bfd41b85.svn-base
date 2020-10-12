@@ -1,0 +1,2630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>이브아르 글로벌 아카데미 사이트 구축</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/libs/fontawesome_all.min.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/project-guide/project.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+<!--[if gt IE 9]>
+	<link href="/resource/css/ie/main.css" rel="stylesheet" type="text/css" />
+	<link href="/resource/css/ie/contents.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if !IE]><!-->
+	
+<!--<![endif]-->
+</head>
+<body>
+	<section id="projects" class="project-wrap" data-type="progress">
+		<header class="project-header" data-moving-type="sectionFix">
+			<div class="container">
+				<h1 class="section-tit">Project Directory</h1>
+				
+				<nav class="guide-menu">
+					<h2 class="menu-tit">이브아르 글로벌 아카데미 사이트 구축</h2>
+					<ul>
+						<li class="active"><a href="/html/project-guide/directory.html">Project Directory</a></li>
+						<li><a href="/html/project-guide/project-role/info.html">Project Role Guide</a></li>
+						<li><a href="/html/project-guide/elements/layout.html">Component Guide</a></li>
+					</ul>
+				</nav>
+			
+				<div class="progress-area">
+					<strong class="area-tit">TOTAL PROGRESS</strong>
+					<div class="progress-bar">
+						<span class="bar"></span>
+					</div>
+					<div class="progress-txt">
+						<em class="percent"><strong class="tit">완료률</strong><span class="num"></span></em>
+						<em class="page"><span class="num"></span><span class="total"></span></em>
+					</div>
+				</div>
+			</div>
+		</header>
+		
+		<main class="project-content" data-moving-type="target" data-moving-style="padding-top" data-moving-space="10" data-offset-type="destination">
+			<section class="howto-section" data-type="toggle" data-toggle-offset="left" data-toggle-action="animate">
+				<h2 class="section-tit"><button type="button" class="toggle-btn"><i class="fas fa-exclamation-circle"></i>How to</button></h2>
+					
+				<article class="howto-content" data-toggle-type="contents"></article>
+			</section>
+
+			<section class="page-section" data-type="toggle" data-toggle-offset="left" data-toggle-action="animate" data-moving-type="target" data-moving-action="scrollMove" data-moving-space="10" data-moving-style="top">
+				<h2 class="section-tit"><button type="button" class="toggle-btn"><i class="fas fa-align-left"></i>menu list</button></h2>
+				
+				<nav class="page-menu" data-toggle-type="contents">
+					<button type="button" class="menu-btn" data-click-action="all">모두 보기</button>
+					<ul>
+					</ul>
+				</nav>
+			</section>
+
+			<div class="guide-wrap">
+				<div class="container">
+					<section id="admin" class="guide-section" data-type="progress" data-section-type="directory">
+						<header class="guide-header">
+							<h2 class="section-tit">Admin Directory</h2>
+							<div class="progress-area">
+								<strong class="area-tit">Admin PROGRESS</strong>
+								<div class="progress-bar">
+									<span class="bar"></span>
+								</div>
+								<div class="progress-txt">
+									<em class="percent"><strong class="tit">진행률</strong><span class="num"></span></em>
+									<em class="page"><span class="num"></span><span class="total"></span></em>
+								</div>
+							</div>
+						</header>
+					
+						<!-- [S] 관리자 -->
+						<article class="guide-content">
+							<table class="table-article" data-table-type="directory">
+								<caption>Admin Directory 구조</caption>
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:12%" />
+									<col style="width:14%" />
+									<col style="width:10%" />
+									<col style="width:auto" />
+									<col style="width:auto" />
+								</colgroup>
+								
+								<thead>
+									<tr>
+										<th scope="col" data-path-type="head">1depth</th>
+										<th scope="col" data-path-type="head">2depth</th>
+										<th scope="col" data-path-type="head">3depth</th>
+										<th scope="col" data-path-type="head">4depth</th>
+										<th scope="col">작업일자</th>
+										<th scope="col">URL</th>
+										<th scope="col">작업내용</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr>
+										<td data-type="path">main</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-25</span>
+										</td>
+										<td data-type="url">AD010101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="10" data-type="path" data-path-name="user">사용자관리</td>
+										<td rowspan="3" data-type="path" data-path-name="manager">관리자 관리</td>
+										<td data-type="path" data-path-name="">관리자목록</td>
+										<td data-type="path"></td>
+										<td data-type="date"><span>2020-08-21</span></td>
+										<td data-type="url">AD030101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">관리자등록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-08-21</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD030103-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] .article-tit 위치 변경 <br /> 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">관리자수정/삭제</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-08-21</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD030105-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] .article-tit 위치 변경<br />라디오 첫번째 : checked 속성 추가<br /> 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="manager">패스워드 확인</td>
+										<td data-type="path" data-path-name="">패스워드입력</td>
+										<td data-type="path"></td>
+										<td data-type="date"><span>2020-08-24</span></td>
+										<td data-type="url">AD030107-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">패스워드변경</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-08-24</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD030107-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] .article-tit 위치 변경</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="4" data-type="path" data-path-name="user">사용자관리</td>
+										<td data-type="path" data-path-name="">사용자목록</td>
+										<td data-type="path"></td>
+										<td data-type="date"><span>2020-08-24</span></td>
+										<td data-type="url">AD030301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">사용자정보수정</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-08-24</span>
+											<span>2020-09-03</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD030303-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] .article-tit 위치 변경<br /> 폼요소 수정 : name 영역 내 value 값 추가<br />공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-23] 라디오 data-radio-key에 따른 영역 data-position-key값 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">사용자정보조회/승인</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-03</span>
+											<span>2020-09-24</span>
+										</td>
+										<td data-type="url">AD030305-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : AD030305-10] 의사면허증확인 레이어 POPUP (V0.8 : GYVA_AND-02_관리자 화면설계서)</li>
+												<li>[2020-09-03] 버튼 css명 및 마크업 수정</li>
+												<li>[2020-09-24] 프로필 기본 이미지 수정</li>
+											</ul>
+										</td>
+									</tr>
+								
+									<tr class="del">
+										<td data-type="path" data-path-name="">사용자권한설정</td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">AD030307-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>페이지 확인안됨 (V0.8 : GYVA_AND-02_관리자 화면설계서)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="inquiry">1:1문의</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+										</td>
+										<td data-type="url">AD030501-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : AD030503-05] 1:1문의상세/답변 포함 (V0.8 : GYVA_AND-02_관리자 화면설계서)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="55" data-type="path" data-path-name="contents">컨텐츠관리</td>
+										<td rowspan="7" data-type="path" data-path-name="branding">Branding Material</td>
+										<td rowspan="5" data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="path" data-path-name="">[탭] 로고</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-16</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : AD050101-10] 컨텐츠 상세 레이어 POPUP (V0.8 : GYVA_AND-02_관리자 화면설계서)</li>
+												<li>[2020-09-16] 상세 레이어 팝업 내 수정, 삭제 버튼 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] 제품이미지</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-16</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050103-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-16] 상세 레이어 팝업 내 수정, 삭제 버튼 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] 광고이미지</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-16</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050105-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-16] 상세 레이어 팝업 내 수정, 삭제 버튼 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] 영상</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-16</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050107-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-16] 상세 레이어 팝업 내 수정, 삭제 버튼 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] SNS 활용 컨텐츠</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-16</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050109-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-16] 상세 레이어 팝업 내 수정, 삭제 버튼 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+											</ul>
+										</td>
+									</tr>
+
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+										</td>
+										<td data-type="url">AD050101-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-27</span>
+										</td>
+										<td data-type="url">AD050101-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-27] 첨부파일 ID값 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="14" data-type="path" data-path-name="library">Library</td>
+										<td rowspan="4" data-type="path" data-path-name="journal">Journal</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-23] 링크영역 삭제<br />default-img 적용, 이미지 사이즈 (340*438) 파일명 (defaultimg_340x438.png</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 상세</td>
+										<td data-type="date"><span>2020-09-03</span></td>
+										<td data-type="url">AD050301-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>PDF 문서 보기 : embed 사용, 속성값 (#toolbar=0&pagemode=bookmarks&view=FitH)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-27</span>
+										</td>
+										<td data-type="url">AD050301-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-23] 라디오 data-radio-key에 따른 영역 data-position-key값 추가</li>
+												<li>[2020-09-27] 첨부파일 ID값 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-27</span>
+										</td>
+										<td data-type="url">AD050301-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[20200923] 라디오 data-radio-key에 따른 영역 data-position-key값 추가</li>
+												<li>[2020-09-27] 첨부파일 ID값 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="4" data-type="path" data-path-name="scientific">Scientific Data</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050303-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_340x190.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 상세</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050303-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-23] 이전 다음 버튼 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050303-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[20200923] 라디오 data-radio-key에 따른 영역 data-position-key값 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050303-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[20200923] 라디오 data-radio-key에 따른 영역 data-position-key값 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="3" data-type="path" data-path-name="clinic">Clinic Material</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-16</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050305-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : AD050305-10] 컨텐츠 상세 레이어 POPUP (V0.8 : GYVA_AND-02_관리자 화면설계서)</li>
+												<li>[2020-09-16] 상세 레이어 팝업 내 수정, 삭제 버튼 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-22</span>
+											<span>2020-09-28</span>
+										</td>
+										<td data-type="url">AD050305-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-27] 첨부파일 ID값 수정</li>
+											</ul>
+										</td>
+									</tr>
+
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-22</span>
+											<span>2020-09-28</span>
+										</td>
+										<td data-type="url">AD050305-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-27] 첨부파일 ID값 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="3" data-type="path" data-path-name="distributor">Distributor</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-16</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050307-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : AD050307-10] 컨텐츠 상세 레이어 POPUP (V0.8 : GYVA_AND-02_관리자 화면설계서)</li>
+												<li>[2020-09-16] 상세 레이어 팝업 내 수정, 삭제 버튼 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-22</span>
+										</td>
+										<td data-type="url">AD050307-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-22</span>
+										</td>
+										<td data-type="url">AD050307-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="21" data-type="path" data-path-name="academy">Academy</td>
+										<td rowspan="4" data-type="path" data-path-name="anatomy">Anatomy</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050501-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[탭 ID : AD050501-05/ AD050503-05 / AD050505-05] Upper Face 목록, Mid Face 목록, Low Face 목록 한페이지 구현</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_340x190.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 상세</td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+										</td>
+										<td data-type="url">AD050501-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+										</td>
+										<td data-type="url">AD050501-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-08-26] 카테고리 선택 타입은 라디오 선택 타입으로 변경</li>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+										</td>
+										<td data-type="url">AD050501-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-08-26] 카테고리 선택 타입은 라디오 선택 타입으로 변경</li>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="4" data-type="path" data-path-name="injection">YVOIRE Injection</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050503-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[탭 ID : AD050503-05 / AD050503-15 / AD050503-25 / AD050503-35] Upper Face 목록, Mid Face 목록, Low Face 목록, YVOIRE Exclusive 한페이지 구현</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_340x190.png)</li>
+											</ul>
+										</td>
+									</tr>
+
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 상세</td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+										</td>
+										<td data-type="url">AD050503-06.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+										</td>
+										<td data-type="url">AD050503-07.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-08-26] 카테고리 선택 타입은 라디오 선택 타입으로 변경</li>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+										</td>
+										<td data-type="url">AD050503-08.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-08-26] 카테고리 선택 타입은 라디오 선택 타입으로 변경</li>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="4" data-type="path" data-path-name="replay">Webinar replay</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050505-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_390x220.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 상세</td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+										</td>
+										<td data-type="url">AD050505-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-28</span>
+										</td>
+										<td data-type="url">AD050505-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-23] 당일 선택 시 시간입력 폼 추가</li>
+												<li>[2020-09-28] 이미지 사이즈 문구 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-28</span>
+										</td>
+										<td data-type="url">AD050505-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-23] 당일 선택 시 시간입력 폼 추가</li>
+												<li>[2020-09-28] 이미지 사이즈 문구 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="aesthetic">Aesthetic School</td>
+										<td data-type="path"></td>
+										<td data-type="date"><span>2020-08-25</span></td>
+										<td data-type="url">AD050507-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>해당 페이지는 외부링크로 연결 (IA : IA_20200818_v1.1.xlsx)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td rowspan="4" data-type="path" data-path-name="module">Module</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date"></td>
+										<td data-type="url">AD050509-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2차 작업예정] 메뉴구조도에서 삭제 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td data-type="path" data-path-name="">컨텐츠 상세</td>
+										<td data-type="date"></td>
+										<td data-type="url">AD050509-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date"></td>
+										<td data-type="url">AD050509-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date"></td>
+										<td data-type="url">AD050509-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="4" data-type="path" data-path-name="exercise">YVOIRE Exercise</td>
+										<td data-type="path" data-path-name="">컨텐츠 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050511-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_390x220.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 상세</td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+										</td>
+										<td data-type="url">AD050511-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 등록</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-22</span>
+											<span>2020-09-28</span>
+										</td>
+										<td data-type="url">AD050511-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-28] 이미지 사이즈 문구 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">컨텐츠 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-25</span>
+											<span>2020-09-22</span>
+											<span>2020-09-28</span>
+										</td>
+										<td data-type="url">AD050511-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-28] 이미지 사이즈 문구 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="8" data-type="path" data-path-name="news">News&Event</td>
+										<td rowspan="4" data-type="path" data-path-name="notice">Notice</td>
+										<td data-type="path" data-path-name="">Notice 목록</td>
+										<td data-type="date"><span>2020-08-26</span></td>
+										<td data-type="url">AD050701-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">Notice 상세</td>
+										<td data-type="date"><span>2020-08-26</span></td>
+										<td data-type="url">AD050701-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">Notice 등록</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD050701-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>주석내용 : [2020-09-03] data-board-header="basic" data- 속성값 추가 <br /> 공통 작업 .text-area 영역 추가 <br />공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">Notice 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD050701-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="4" data-type="path" data-path-name="webinar">EVENT</td>
+										<td data-type="path" data-path-name="">EVENT 목록</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-16</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050703-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[AD050703-10] 상세 레이어팝업 작업완료</li>
+												<li>[2020-09-16] 상세 레이어 팝업 내 수정, 삭제 버튼 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td data-type="path" data-path-name="">EVENT 상세</td>
+										<td data-type="date"></td>
+										<td data-type="url">AD050703-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">EVENT 등록</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050703-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-23] 당일 선택 시 시간입력 폼 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">EVENT 수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-16</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">AD050703-20.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-16] 수정 페이지 내 하단 삭제 버튼 추가</li>
+												<li>[2020-09-22] 이미지 사이즈 문구 추가</li>
+												<li>[2020-09-23] 당일 선택 시 시간입력 폼 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="5" data-type="path" data-path-name="survey">설문관리</td>
+										<td rowspan="3" data-type="path" data-path-name="question">설문관리</td>
+										<td data-type="path" data-path-name="">설문목록</td>
+										<td data-type="date"><span>2020-08-26</span></td>
+										<td data-type="url">AD050901-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">설문등록</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD050901-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">설문상세/수정</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD050901-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="result">설문결과</td>
+										<td data-type="path" data-path-name="">설문목록</td>
+										<td data-type="date"><span>2020-08-26</span></td>
+										<td data-type="url">AD050903-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">설문상세목록</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD050903-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : AD050903-15] 설문 ExcelDownload 기능버튼 (V0.8 : GYVA_AND-02_관리자 화면설계서)</li>
+												<li>[2020-09-03] data-board-header="download" data- 속성값 추가 <br /> [2020-09-03] 더보기 버튼 수정</li>
+											</ul>
+										</td>
+									</tr>
+
+									<tr>
+										<td rowspan="7" data-type="path" data-path-name="system">시스템관리</td>
+										<td rowspan="6" data-type="path" data-path-name="code">코드관리</td>
+										<td rowspan="3" data-type="path" data-path-name="group">그룹코드관리</td>
+										<td data-type="path" data-path-name="">그룹코드목록</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD070101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 더보기 버튼 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">그룹코드등록</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD070101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">그룹코드수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD070101-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="3" data-type="path" data-path-name="detail">상세코드관리</td>
+										<td data-type="path" data-path-name="">상세코드목록</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD070301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 더보기 버튼 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">상세코드등록</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD070301-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">상세코드수정/삭제</td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD070301-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 공통 : 라디오 버튼 수정 (.fa-dot-circle 삭제)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="log">사용자 로그분석</td>
+										<td data-type="path" data-path-name="">사용자 로그분석</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-08-26</span>
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">AD030309-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 더보기 버튼 수정</li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</article>
+					</section>
+					<!-- [E] 관리자 -->
+					
+					<!-- [S] 프론트 : PC 웹 -->
+					<section id="front" class="guide-section" data-type="progress" data-section-type="directory">
+						<header class="guide-header">
+							<h2 class="section-tit">Front PC Web Directory</h2>
+							<div class="progress-area">
+								<strong class="area-tit">Front PROGRESS</strong>
+								<div class="progress-bar">
+									<span class="bar"></span>
+								</div>
+								<div class="progress-txt">
+									<em class="percent"><strong class="tit">진행률</strong><span class="num"></span></em>
+									<em class="page"><span class="num"></span><span class="total"></span></em>
+								</div>
+							</div>
+						</header>
+					
+						<article class="guide-content">
+							<table class="table-article" data-table-type="directory">
+								<caption>Front PC Web Directory 구조</caption>
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:12%" />
+									<col style="width:14%" />
+									<col style="width:10%" />
+									<col style="width:auto" />
+									<col style="width:auto" />
+								</colgroup>
+								
+								<thead>
+									<tr>
+										<th scope="col" data-path-type="head">1depth</th>
+										<th scope="col" data-path-type="head">2depth</th>
+										<th scope="col" data-path-type="head">3depth</th>
+										<th scope="col" data-path-type="head">4depth</th>
+										<th scope="col">작업일자</th>
+										<th scope="col">URL</th>
+										<th scope="col">작업내용</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr>
+										<td data-type="path" data-path-name="common">[개발] main</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-11</span>
+											<span>2020-09-15</span>
+											<span>2020-09-25</span>
+										</td>
+										<td data-type="url">FR000000-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-07] 최종 PSD 전달 받음<br />[공통] footer영역, 디자인 수정사항 반영 : 인스타 그램 버튼 삭제<br />[공통] header영역, 디자인 수정사항 반영 : 인스타 그램 링크버튼 추가</li>
+												<li>[2020-09-11] footer 내 선택박스 스타일 재 작업 필요, 디자인 가이드 대기 중</li>
+												<li>[2020-09-15] 변경된 UI 반영완료, footer 내 notice 링크를 새창열림으로 수정</li>
+												<li>[2020-09-25] 타이틀명 변경</li>
+												<li>* 프론트 PC, 모바일 두개의 페이지로 진행</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="11" data-type="path" data-path-name="common">Head</td>
+										<td data-type="path" data-path-name="login">[개발] LOG IN</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">FR010101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>* 프론트 PC, 모바일 두개의 페이지로 진행</li>
+											</ul>
+										</td>
+									</tr>
+
+									<tr>
+										<td rowspan="4" data-type="path" data-path-name="info">New Account</td>
+										<td rowspan="2" data-type="path" data-path-name="">New Account</td>
+										<td data-type="path" data-path-name="">[개발] 회원가입</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-11</span>
+											<span>2020-09-15</span>
+										</td>
+										<td data-type="url">FR010301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>첨부파일은 재 확인 필요</li>
+												<li>[2020-09-11] .form 요소 invalid, validate 체크<br />Position 항목의 라디오 선택에 따른 영역 노출</li>
+												<li>[2020-09-15] 벨리데이션 작업완료</li>
+												<li>* 프론트 PC, 모바일 두개의 페이지로 진행</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[HTML] 회원가입 완료</td>
+										<td data-type="date"></td>
+										<td data-type="url">FR010301-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-07] 화면설계서, 디자인 PSD 수급 대기<br />09월 18일 이후 html 페이지 작업 예정</li>
+												<li>[2020-09-09] 컨텐트가 빈 페이지 생성</li>
+												<li>가이드 페이지 작업 : [S : 20200923] no contents 영역 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="">Reset Password</td>
+										<td data-type="path" data-path-name="">[개발] Reset Password</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">FR010303-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>* 프론트 PC, 모바일 두개의 페이지로 진행</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[HTML] 전달 완료</td>
+										<td data-type="date"></td>
+										<td data-type="url">FR010303-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-08-18] 알럿창으로 완료 메세지 전달 (v1.3 : GYVA_AND-02_PC웹 사용자 화면설계서)</li>
+												<li>추후 이메일로 전달해야 되는 경우를 위해 화면 ID값 생성</li>
+												<li>[2020-09-07] 화면설계서, 디자인 PSD 수급 대기<br />09월 18일 이후 html 페이지 작업 예정</li>
+												<li>[2020-09-09] 컨텐트가 빈 페이지 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="5" data-type="path" data-path-name="mypage">My Page</td>
+										<td data-type="path" data-path-name="">[탭, 개발] Recently viewed</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-09</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010501-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-07] 최종 PSD 전달 받음</li>
+												<li>[2020-09-07] 탭 명칭 변경 (My Activity -> Recently viewed)</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="">[탭] Profile</td>
+										<td data-type="path" data-path-name="">[개발] 비밀번호 확인</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010503-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 및 컨텐츠 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 비밀번호 변경</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010503-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 및 컨텐츠 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Helpdesk</td>
+										<td data-type="path" data-path-name="">[개발] 1:1 문의 목록</td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+											<span>2020-09-16</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010505-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : FR010505-10] 1:1문의상세/답변 포함 (v1.3 : GYVA_AND-02_PC웹 사용자 화면설계서)</li>
+												<li>[2020-09-16] 문의답변 레이어 팝업 추가</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Bookmark</td>
+										<td data-type="path" data-path-name="">[개발] 북마크 목록</td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010507-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] Search Results</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-09</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010901-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-07] 최종 PSD 전달 받음</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="5" data-type="path" data-path-name="branding">Branding Material</td>
+										<td rowspan="5" data-type="path" data-path-name="">Branding Material</td>
+										<td rowspan="5" data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path" data-path-name="">[탭] Logo</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-09</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-24</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : FR030101-10] 컨텐츠 상세 레이어 POPUP</li>
+												<li>[2020-09-08] 공통 수정내용 현행화 작업</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+												<li>[2020-09-24] 태그위치 수정</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Product Image</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-09</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-24</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030103-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-08] 공통 수정내용 현행화 작업</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+												<li>[2020-09-24] 태그위치 수정</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Imagery</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-09</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-24</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030105-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-08] 공통 수정내용 현행화 작업</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+												<li>[2020-09-24] 태그위치 수정</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Video</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-09</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-24</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030107-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-08] 공통 수정내용 현행화 작업</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+												<li>[2020-09-24] 태그위치 수정</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Social Media</td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-09</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-24</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030109-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-08] 공통 수정내용 현행화 작업</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+												<li>[2020-09-24] 태그위치 수정</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="6" data-type="path" data-path-name="library">Library</td>
+										<td rowspan="2" data-type="path" data-path-name="journal">Journal</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">FR050101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] 링크영역 삭제<br />default-img 적용, 이미지 사이즈 (340*438) 파일명 (defaultimg_340x438.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url">FR050101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>PDF 문서 보기 : embed 사용, 속성값 (#toolbar=0&pagemode=bookmarks&view=FitH)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="scientific">Scientific Data</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">FR050103-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_340x190.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR050103-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 모바일의 버튼영역 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="clinic">Clinic Material</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-24</span>
+										</td>
+										<td data-type="url">FR050105-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : FR050105-10] 컨텐츠 상세 레이어 POPUP</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+												<li>[2020-09-24] 태그위치 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="distributor">For Parner</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-24</span>
+										</td>
+										<td data-type="url">FR050107-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[ID : FR050107-10] 컨텐츠 상세 레이어 POPUP</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+												<li>[2020-09-24] 태그위치 수정</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="11" data-type="path" data-path-name="academy">Academy</td>
+										<td rowspan="2" data-type="path" data-path-name="anatomy">Anatomy</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR070101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[탭 ID : FR070101-05 / FR070103-05 / FR070105-05] Upper Face 목록, Mid Face 목록, Low Face 목록 한페이지 구현</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_340x190.png)</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+											<span>2020-09-09</span>
+											<span>2020-09-11</span>
+										</td>
+										<td data-type="url">FR070101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[FR070101-15] 설문조사 레이어팝업</li>
+												<li>[2020-09-09] 설문조사 레이어팝업 작업</li>
+												<li>[2020-09-10] 수정된 설문조사 레이어팝업 반영<br /> 댓글작성 레어이팝업 추가(FR070101-20)</li>
+												<li>[2020-09-11] 좋아요 토글 기능 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="injection">YVOIRE Injection</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR070301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[탭 ID : FR070301-05 / FR070303-05 / FR070305-05 / FR070307-05] Upper Face 목록, Mid Face 목록, Low Face 목록, YVOIRE Exclusive 목록 한페이지 구현</li>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_340x190.png)</li>
+												<li>[2020-09-26] 프론트 모바일의 탭리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+											<span>2020-09-09</span>
+											<span>2020-09-11</span>
+										</td>
+										<td data-type="url">FR070301-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[FR070301-15] 설문조사 레이어 팝업</li>
+												<li>[2020-09-09] 설문조사 레이어 팝업 작업 (FR070301-15)</li>
+												<li>[2020-09-10] 수정된 설문조사 레이어팝업 반영<br /> 댓글작성 레어이팝업 추가(FR070301-20)</li>
+												<li>[2020-09-11] 좋아요 토글 기능 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="replay">Webinar replay</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">FR070501-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_390x220.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+											<span>2020-09-09</span>
+											<span>2020-09-11</span>
+										</td>
+										<td data-type="url">FR070501-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[FR070501-15] 설문조사 레이어 팝업</li>
+												<li>[2020-09-09] 설문조사 레이어 팝업 작업 (FR070501-15)</li>
+												<li>[2020-09-10] 수정된 설문조사 레이어팝업 반영<br /> 댓글작성 레어이팝업 추가(FR070501-20)</li>
+												<li>[2020-09-11] 좋아요 토글 기능 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="external-link">
+										<td data-type="path">Aesthetic School</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+										</td>
+										<td data-type="url"></td>
+										<td data-type="memo">
+											<ul>
+												<li>[FR070701-05] 외부링크 설정, 페이지 작업 X</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td rowspan="2" data-type="path" data-path-name="">Module</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR070901-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR070901-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="exercise">YVOIRE Exercise</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-22</span>
+											<span>2020-09-23</span>
+										</td>
+										<td data-type="url">FR071101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-22] more 버튼 : data-btn-style="more" 값 추가</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (340*190) 파일명 (defaultimg_390x220.png)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-08</span>
+											<span>2020-09-09</span>
+											<span>2020-09-11</span>
+										</td>
+										<td data-type="url">FR071101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-09] 설문조사 레이어 팝업 작업 (FR071101-15)</li>
+												<li>[2020-09-10] 수정된 설문조사 레이어팝업 반영<br /> 댓글작성 레어이팝업 추가(FR071101-20)</li>
+												<li>[2020-09-11] 좋아요 토글 기능 추가</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td rowspan="2" data-type="path" data-path-name="news">Notice</td>
+										<td data-type="path" data-path-name="notice">[개발] 목록</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR090101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 페이지 작업 완료</li>
+												<li>[2020-09-08] Notice 페이지는 외부링크로 변경,<br />공통 : footer 영역에 외부링크 메뉴 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr class="del">
+										<td data-type="path" data-path-name="">[개발] 상세</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR090101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-03] 페이지 작업 완료</li>
+												<li>[2020-09-08] Notice 페이지는 외부링크로 변경,<br />공통 : footer 영역에 외부링크 메뉴 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="news">Registration</td>
+										<td data-type="path" data-path-name="webinar">[개발] 목록 + 상세</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-03</span>
+											<span>2020-09-15</span>
+											<span>2020-09-23</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR090301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-08] Notice 메뉴 삭제로 event 메뉴는 명칭 변경 후 1depth로 이동</li>
+												<li>[2020-09-15] 레이어팝업 상세 내 타이틀 명 수정</li>
+												<li>[2020-09-23] default-img 적용, 이미지 사이즈 (378*260) 파일명 (defaultimg_378x260.png)</li>
+												<li>[2020-09-26] 프론트 모바일 스와이프 영역의 기능 div 적용</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="about">About Us</td>
+										<td data-type="path" data-path-name="">[HTML] Introduce</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR110101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-07] 화면설계서, 디자인 PSD 수급 대기<br />09월 18일 이후 html 페이지 작업 예정</li>
+												<li>[2020-09-09] 컨텐트가 빈 페이지 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] Contact</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-09</span>
+										</td>
+										<td data-type="url">FR110101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="common">FOOTER</td>
+										<td data-type="path" data-path-name="">[HTML] Privacy Policy</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR130101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>약관 내용 수급 일정 : 10월 초</li>
+												<li>[2020-09-07] 화면설계서, 디자인 PSD 수급 대기<br />09월 18일 이후 html 페이지 작업 예정</li>
+												<li>[2020-09-09] 컨텐트가 빈 페이지 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[HTML] Terms And Conditions</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR130101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>약관 내용 수급 일정 : 10월 초</li>
+												<li>[2020-09-07] 화면설계서, 디자인 PSD 수급 대기<br />09월 18일 이후 html 페이지 작업 예정</li>
+												<li>[2020-09-09] 컨텐트가 빈 페이지 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="common">에러 페이지</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-24</span>
+										</td>
+										<td data-type="url">FR130101-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-09] 컨텐트가 빈 페이지 생성</li>
+												<li>[2020-09-23] 디자인 파일 전달 받음</li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</article>
+					</section>
+					<!-- [E] 프론트 : PC 웹 -->
+
+					<!-- [S] 프론트 : 모바일 웹 -->
+					<section id="mobile" class="guide-section" data-type="progress" data-section-type="directory">
+						<header class="guide-header">
+							<h2 class="section-tit">Mobile Web Directory</h2>
+							<div class="progress-area">
+								<strong class="area-tit">Mobile PROGRESS</strong>
+								<div class="progress-bar">
+									<span class="bar"></span>
+								</div>
+								<div class="progress-txt">
+									<em class="percent"><strong class="tit">진행률</strong><span class="num"></span></em>
+									<em class="page"><span class="num"></span><span class="total"></span></em>
+								</div>
+							</div>
+						</header>
+					
+						<article class="guide-content">
+							<table class="table-article" data-table-type="directory">
+								<caption>Mobile Directory 구조</caption>
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:12%" />
+									<col style="width:14%" />
+									<col style="width:10%" />
+									<col style="width:auto" />
+									<col style="width:auto" />
+								</colgroup>
+								
+								<thead>
+									<tr>
+										<th scope="col" data-path-type="head">1depth</th>
+										<th scope="col" data-path-type="head">2depth</th>
+										<th scope="col" data-path-type="head">3depth</th>
+										<th scope="col" data-path-type="head">4depth</th>
+										<th scope="col">작업일자</th>
+										<th scope="col">URL</th>
+										<th scope="col">작업내용</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr>
+										<td data-type="path" data-path-name="common">main</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-20</span>
+											<span>2020-09-25</span>
+										</td>
+										<td data-type="url">FR000000-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-25] 전달받은 디자인 반영완료</li>
+												<li>* 페이지 노출방법 : 로그인 후</li>
+												<li>* 프론트 PC, 모바일 두개의 페이지로 진행</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="9" data-type="path" data-path-name="common">Head</td>
+										<td data-type="path" data-path-name="login">[개발] SIGN IN</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-20</span>
+										</td>
+										<td data-type="url">FR010101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>* 페이지 노출방법 : 모바일 사이트 접속 시</li>
+												<li>* 프론트 PC, 모바일 두개의 페이지로 진행</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="login">[개발] 회원가입</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-21</span>
+										</td>
+										<td data-type="url">FR010301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>* 페이지 노출방법 : 로그인 초기화면 하단 링크<br />[레이어 풀 팝업] 회원약관보기 2개(하단 약관 내용과 동일)</li>
+												<li>* 프론트 PC, 모바일 두개의 페이지로 진행</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="login">[개발] Reset Password</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-20</span>
+										</td>
+										<td data-type="url">FR010303-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>* 프론트 PC, 모바일 두개의 페이지로 진행</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="5" data-type="path" data-path-name="mypage">My Page</td>
+										<td data-type="path" data-path-name="">[탭, 개발] Recently viewed</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010501-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>* 페이지 노출방법 : 로그인 상태에서 메뉴펼침 후 이름 & 아이디 선택</li>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="">[탭] Profile</td>
+										<td data-type="path" data-path-name="">[개발] 비밀번호 확인</td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010503-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 비밀번호 변경</td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010503-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Helpdesk</td>
+										<td data-type="path" data-path-name="">[개발] 1:1 문의 목록</td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010505-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Bookmark</td>
+										<td data-type="path" data-path-name="">[개발] 북마크 목록</td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010507-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[개발] Search Results</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR010901-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC의 탭리스트 및 컨텐츠 리스트 마크업 적용</li>
+											</ul>
+										</td>
+									</tr>
+									<tr class="single">
+										<td rowspan="5" data-type="path" data-path-name="branding">Branding Material</td>
+										<td rowspan="5" data-type="path" data-path-name="">Branding Material</td>
+										<td rowspan="5" data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path" data-path-name="">[탭] Logo</td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Product Image</td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030103-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Imagery</td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030105-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Video</td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030107-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[탭] Social Media</td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR030109-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="5" data-type="path" data-path-name="library">Library</td>
+										<td data-type="path" data-path-name="journal">journal</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR050101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="scientific">Scientific Data</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR050103-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR050103-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="clinic">Clinic Material</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR050105-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="distributor">For Parner</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR050107-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="11" data-type="path" data-path-name="academy">Academy</td>
+										<td rowspan="2" data-type="path" data-path-name="anatomy">Anatomy</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR070101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-20</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR070101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="injection">YVOIRE Injection</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR070301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-20</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR070301-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="replay">Webinar replay</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR070501-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-20</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR070501-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">Aesthetic School</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-09</span>
+										</td>
+										<td data-type="url"></td>
+										<td data-type="memo">
+											<ul>
+												<li>[FR070701-05] 외부링크 설정, 페이지 작업 X</li>
+											</ul>
+										</td>
+									</tr>
+									<tr class="del">
+										<td rowspan="2" data-type="path" data-path-name="module">Module</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR070901-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									<tr class="del">
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date"></td>
+										<td data-type="url">FR070901-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li></li>
+											</ul>
+										</td>
+									</tr>
+									<tr class="last">
+										<td rowspan="2" data-type="path" data-path-name="exercise">YVOIRE Exercise</td>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 목록</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-18</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR071101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="">[개발] 컨텐츠 상세</td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-20</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR071101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td data-type="path" data-path-name="registration">Registration</td>
+										<td data-type="path" data-path-name="">[개발] 목록 + 상세	</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR090301-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-18] 해당페이지 디자인 현행화 필요</li>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="about">About Us</td>
+										<td data-type="path" data-path-name="">[HTML] Introduce</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											
+										</td>
+										<td data-type="url">FR110101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-24] 컨텐트가 빈 페이지 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[개발] Contact</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-19</span>
+											<span>2020-09-26</span>
+										</td>
+										<td data-type="url">FR110101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-26] 프론트 PC 마크업 현행화</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2" data-type="path" data-path-name="common">FOOTER</td>
+										<td data-type="path" data-path-name="">[HTML] Privacy Policy</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											
+										</td>
+										<td data-type="url">FR130101-05.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-24] 컨텐트가 빈 페이지 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="">[HTML] Terms And Conditions</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											
+										</td>
+										<td data-type="url">FR130101-10.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-24] 컨텐트가 빈 페이지 생성</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td data-type="path" data-path-name="common">에러 페이지</td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="path"></td>
+										<td data-type="date">
+											<span>2020-09-24</span>
+										</td>
+										<td data-type="url">FR130101-15.html</td>
+										<td data-type="memo">
+											<ul>
+												<li>[2020-09-23] 디자인 파일 전달 받음</li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</article>
+					</section>
+					<!-- [E] 프론트 : 모바일 웹 -->
+				</div>
+			</div>
+		</main>
+		
+		<footer class="project-footer">
+			<div class="container">
+				<span class="the-51-logo-img"><img src="/resource/images/project-guide/the-51-logo-img.png" alt="" /></span>
+				<button type="button" class="gotop-btn" data-moving-type="target" data-moving-action="topMove"><i class="fas fa-arrow-up"></i></button>
+			</div>
+		</footer>
+	</section>
+	
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript" src="/resource/js/codemirror/lib/codemirror.js"></script>
+	<script type="text/javascript" src="/resource/js/codemirror/mode/javascript/javascript.js"></script>
+	<script type="text/javascript" src="/resource/js/syntaxhighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/resource/js/syntaxhighlighter/scripts/shAutoloader.js"></script>
+	<script type="text/javascript" src="/resource/js/project-guide/project.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

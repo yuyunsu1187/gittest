@@ -1,0 +1,6 @@
+@charset "utf-8";
+
+/*************************************************************************************************
+	ie 전용 css
+*************************************************************************************************/
+html{scrollbar-3dLight-Color: #FFB85A;scrollbar-arrow-color: black;scrollbar-Face-Color: #FF5E00;scrollbar-Track-Color: #efefef;scrollbar-DarkShadow-Color: #000000;scrollbar-Highlight-Color: #FF8224;scrollbar-Shadow-Color: #ED4C00;}

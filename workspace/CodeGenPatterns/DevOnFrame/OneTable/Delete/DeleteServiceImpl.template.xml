@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/Delete/ServiceImplTemplate" format="1.0" title="ServiceImpl Template for DELETE">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+#set($voClassPath="${voPackage}.${voClassName}")
+#set($voInstanceName="${table.camelCased}VO")
+##
+#set($servicePackage="${codePackage.packageName}.service")
+#set($serviceClassName="${table.capitalized}Service")
+#set($serviceClassPath="${servicePackage}.${serviceClassName}")
+#set($serviceInstanceName="${table.camelCased}Service")
+##
+#set($serviceImplPackage="${codePackage.packageName}.impl")
+#set($serviceImplClassName="${table.capitalized}ServiceImpl")
+##
+#set($deleteMethodName="delete${table.capitalized}")
+##
+#set($deleteQueryId="${queryNamespace}.delete${table.capitalized}")
+]]></prefix>
+
+
+
+	<ifNewFile><![CDATA[
+package ${serviceImplPackage};
+
+]]></ifNewFile>
+
+
+
+	<ifNotFoundEachLine location="afterImport"><![CDATA[
+import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
+import devonframe.dataaccess.CommonDao;
+import ${serviceClassPath};
+import ${voClassPath};
+]]></ifNotFoundEachLine>
+
+
+
+	<ifNewFile><![CDATA[
+
+
+
+/**
+ * @Class Name : ${serviceImplClassName}.java
+ * @Description : ${table.capitalized} Service Implement class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C) LG CNS All rights reserved.
+ */
+
+@Service("${serviceInstanceName}")
+public class ${serviceImplClassName} implements ${serviceClassName} {
+]]></ifNewFile>
+
+
+
+	<ifNotFound>
+		<findMemberVariable name="commonDao"/>
+		<insert location="afterLastMemberVariable"><![CDATA[
+
+	@Resource(name = "commonDao")
+	private CommonDao commonDao;
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNotFound>
+		<findMethod name="${deleteMethodName}">
+			<parameterClass><![CDATA[${voClassPath}]]></parameterClass>
+		</findMethod>
+		<insert location="afterLastMethod"><![CDATA[
+	
+	/**
+	 * ${table.tableName}을 삭제한다.
+	 * @param vo - 삭제할 정보가 담긴 $voClassName
+	 */
+	public void ${deleteMethodName}(${voClassName} ${voInstanceName}) {
+		commonDao.delete("${deleteQueryId}", ${voInstanceName});
+	}
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNewFile><![CDATA[
+}
+]]></ifNewFile>
+
+</CodeGenTemplate>

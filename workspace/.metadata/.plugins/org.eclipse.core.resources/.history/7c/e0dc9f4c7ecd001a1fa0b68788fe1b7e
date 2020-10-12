@@ -1,0 +1,49 @@
+package com.gyva.web;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.gyva.web.common.user.dao.UserDAO;
+import com.gyva.web.common.user.model.User;
+
+@Controller
+public class TestDAO {
+
+	//@Resource(name = "userDao")
+	@Inject
+	private UserDAO userDao;
+
+	@RequestMapping(value = "/testDAO", method = RequestMethod.GET)
+	public void testDAO() {
+		System.out.println("######################### testDAO start");
+		User vo = new User();
+		vo.setEmail("yuyunsu@gmail.com");
+		vo.setPassword("1234");
+		vo.setName_first("yunsu");
+		vo.setName_last("yu");
+
+		vo.setUser_type("A001");
+		vo.setDivision_code("B001");
+		vo.setCountry_code("C001");
+		vo.setFile_id("file_01");
+
+		vo.setConfirm_id("1");
+		vo.setState_code("D001");
+		vo.setConsent_yn("N");
+		vo.setCreate_id("10");
+		vo.setUpdate_id("11");
+		System.out.println("######################### testDAO end");
+		// userDao.insertUser(vo);
+	}
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public void indexTest() {
+		System.out.println("######################### testDAO start");
+		
+		System.out.println("######################### testDAO end");
+		return "redirect:index_check"
+		// userDao.insertUser(vo);
+	}
+}

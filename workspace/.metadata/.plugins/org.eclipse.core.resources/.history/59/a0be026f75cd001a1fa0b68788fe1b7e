@@ -1,0 +1,14 @@
+package com.gyva.web.common.user.dao;
+
+import javax.annotation.Resource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.gyva.web.common.user.model.User;
+
+@Repository //DAO라고 명시(DAO를 스프링에서 인식시켜줌)
+public class UserDAOImp implements UserDAO {
+
+
+}

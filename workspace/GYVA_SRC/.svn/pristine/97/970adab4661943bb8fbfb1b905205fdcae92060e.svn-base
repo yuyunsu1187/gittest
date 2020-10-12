@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="devonframe.gyva.common.user.model.User" %>
+
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+function fnAlert() {
+	alert("준비 중 입니다.");
+}
+function fnLogout() {
+	location.href="/common/login/logout.do";
+}
+function fnTopSearch() {
+	if(document.topSearchForm.keyWord.value == "") {
+		alert("검색어를 입력하세요.");
+		return false;
+	} else {
+		document.topSearchForm.action = "<c:url value='/contents/searchList.do'/>";
+		document.topSearchForm.submit();
+	}
+}
+//]]>
+</script>
+<!-- [S] header -->
+<header class="default-header">
+	<h1 class="logo-tit"><a href="/" class="link-btn"><img src="/resource/images/common/layout/logo-tit.png" alt="LG chem : LG aesthetics" /></a></h1>
+	
+	<button type="button" class="history-btn"></button>
+	<div class="form-area" data-type="toggle" data-toggle-action="curtain">
+		<button type="button" class="search-btn"><i class="fab fa-sistrix"></i></button>
+		<div class="form" data-mult-form="search">
+			<form name="topSearchForm" id="topSearchForm" method="post">
+				<input type="text" class="input-form" name="keyWord" id="keyWord" placeholder="Please enter a search word.">
+				<button type="button" class="form-btn" onclick="fnTopSearch();return false;">search</button>
+			</form>
+		</div>
+	</div>			
+	<!-- 활성화 : data-pop-action="active", 비활성화 : data-pop-action="disabled" -->
+	<section class="sitemap-wrap" data-pop-action="disabled">
+		<h2 class="sitemap-tit"><button type="button" class="sitemap-btn" data-btn-style="modal" data-btn-key="sitemap"></button></h2>
+		<div class="sitemap-area" data-type="toggle" data-toggle-action="menu" data-pop-key="sitemap">
+			<button type="button" class="layerPop-close-btn" data-pop-btn="close"><span class="icon-close"></span></button>
+			<div class="member-info-area">
+				<i class="member-profile"><img src="/resource/images/temp/@img-tem-profile.png" alt="" /></i>
+				<strong class="member-name">Dr. Kam Lally</strong>
+				<p class="member-email">Kally_loveIU@naver.com</p>
+				<button type="button" class="logout-sub-btn" oncliclk="fnLogout();">Logout</button>
+			</div>
+			
+			<ul class="menu-list" data-menu-depth="1">
+				<li><a href="<c:url value='/contents/logoList.do?menuId=FR050100'/>" class="menu-btn">Branding Platform</a></li>
+				<!-- 하위 메뉴가 있을 때 button 태그적용 -->
+				<li>
+					<button type="button" class="menu-btn">Medical Platform</button>
+					<ul data-menu-depth="2">
+						<li><a href="<c:url value='/contents/journalList.do?menuId=FR070100'/>" class="menu-btn">Journal</a></li>
+						<li><a href="<c:url value='/contents/scientificList.do?menuId=FR070300'/>" class="menu-btn">Scientific Data</a></li>
+						<li><a href="<c:url value='/contents/clinicList.do?menuId=FR070500'/>" class="menu-btn">Clinic Material</a></li>
+						<c:if test="${userType !='DR02'}">
+							<li><a href="<c:url value='/contents/partnerList.do?menuId=FR070700'/>" class="menu-btn">For Parner</a></li>
+						</c:if>
+					</ul>
+				</li>
+				<li>
+					<button type="button" class="menu-btn">Academy Platform</button>
+					<ul data-menu-depth="2">
+						<li><a href="<c:url value='/contents/anatomyList.do?menuId=FR090100'/>" class="menu-btn">Anatomy</a></li>
+						<li><a href="<c:url value='/contents/injectionList.do?menuId=FR090300'/>" class="menu-btn">YVOIRE Injection</a></li>
+						<li><a href="<c:url value='/contents/webinarList.do?menuId=FR090500'/>" class="menu-btn">Webinar replay</a></li>
+						<li><a href="#none" class="menu-btn" onclick="fnAlert();">Aesthetic School</a></li>
+						<li><a href="#none" class="menu-btn" onclick="fnAlert();">Module</a></li>
+						<li><a href="<c:url value='/contents/exerciseList.do?menuId=FR091100'/>" class="menu-btn">YVOIRE Exercise</a></li>
+					</ul>
+				</li>
+				<li><a href="<c:url value='/contents/registrationList.do?menuId=FR110000'/>" class="menu-btn">Registration</a></li>
+				<li>
+					<button type="button" class="menu-btn">About Us</button>
+					<ul data-menu-depth="2">
+						<li><a href="<c:url value='/contents/introduce.do?menuId=FR130100'/>" class="menu-btn">Introduce</a></li>
+						<li><a href="<c:url value='/contents/contact.do?menuId=FR130300'/>" class="menu-btn">Contact</a></li>
+					</ul>
+				</li>
+			</ul>
+			<a href="https://www.instagram.com/yvoire.official/" class="instagram-link-btn" target="_blank"></a>
+		</div>
+	</section>
+</header>
+<!-- [E] header -->

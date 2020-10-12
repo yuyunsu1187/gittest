@@ -1,0 +1,21 @@
+package com.gyva.web.common.fileupload.service;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.gyva.web.common.fileupload.model.FileInfo;
+
+import devonframe.dataaccess.CommonDao;
+
+@Service("fileUploadServiceUtil")
+public class FileUploadServiceUtilImpl implements FileUploadServiceUtil{
+	
+	@Resource(name="commonDao")
+	private CommonDao commonDao;
+
+	public void insertFileInfo(FileInfo fileInfo){
+		
+		commonDao.insert("FileInfo.insertFileInfo", fileInfo);
+	}
+}

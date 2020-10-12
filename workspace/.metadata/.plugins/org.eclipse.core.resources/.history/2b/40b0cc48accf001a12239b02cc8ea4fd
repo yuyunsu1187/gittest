@@ -1,0 +1,31 @@
+package com.gyva.web;
+
+import org.junit.Test;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
+public class PatterTest {
+
+    @Test
+    public void 특수문자_공백_포함_정규식_테스트() {
+    	String str = "특정 문자열 |may| 사이의 |찾기| 문자열 추출하기";
+
+    			Pattern pattern = Pattern.compile("[|](.*?)[|]");
+
+    			Matcher matcher = pattern.matcher(str);
+    					
+    			while (matcher.find()) {
+    			    System.out.println(matcher.group(1));
+    					    		    
+    			    if(matcher.group(1) ==  null)
+    			    	break;
+    			}
+    					
+    }
+
+    
+}

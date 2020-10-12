@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>기본정책 : 규칙 가이드</title>
+<link rel="stylesheet" type="text/css" href="/resource/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/libs/fontawesome_all.min.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/project-guide/project.css" />
+<script type="text/javascript" src="/resource/js/jquery/jquery-1.12.4.min.js"></script>
+<!--[if gt IE 9]>
+	<link href="/resource/css/ie/main.css" rel="stylesheet" type="text/css" />
+	<link href="/resource/css/ie/contents.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if !IE]><!-->
+	
+<!--<![endif]-->
+</head>
+<body>
+	<section id="projects" class="project-wrap">
+		<header class="project-header" data-moving-type="sectionFix">
+			<div class="container">
+				<h1 class="section-tit">Project Role Guide</h1>
+				
+				<nav class="guide-menu">
+					<h2 class="menu-tit">Publishing Guide Page</h2>
+					<ul>
+						<li><a href="/html/project-guide/directory.html">Project Directory</a></li>
+						<li class="active"><a href="/html/project-guide/project-role/info.html">Project Role Guide</a></li>
+						<li><a href="/html/project-guide/elements/layout.html">Component Guide</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		
+		<main class="project-content" data-moving-type="target" data-moving-style="padding-top" data-moving-space="10" data-offset-type="destination">
+			<section class="page-section" data-type="toggle" data-toggle-offset="left" data-toggle-action="animate" data-moving-type="target" data-moving-action="scrollMove" data-moving-space="10" data-moving-style="top">
+				<h2 class="section-tit"><button type="button" class="toggle-btn"><i class="fas fa-align-left"></i>Sub Page</button></h2>
+				
+				<nav class="page-menu" data-toggle-type="contents">
+					<ul>
+						<li data-action="active"><a href="/html/project-guide/project-role/info.html" class="menu-btn">기본정책</a></li>
+						<li><a href="/html/project-guide/project-role/standard.html" class="menu-btn">퍼블리싱 규칙</a></li>
+						<li><a href="/html/project-guide/project-role/code.html" class="menu-btn">코드규칙</a></li>
+						<li><a href="/html/project-guide/project-role/name.html" class="menu-btn">네임규칙</a></li>
+						<li><a href="/html/project-guide/project-role/codeset.html" class="menu-btn">설계패턴</a></li>
+					</ul>
+				</nav>
+			</section>
+			
+			<div class="guide-wrap">
+				<div class="container">
+					<h2 class="content-tit">기본정책</h2>
+					<section class="guide-section" data-type="toggle" data-toggle-action="slide">
+						<header class="guide-header">
+							<h2 class="section-tit">프로젝트 환경</h2>
+							<button type="button" class="toggle-btn"><i class="fas fa-angle-up"></i></button>
+						</header>
+						
+						<article class="guide-content" data-toggle-type="contents">
+							<table class="table-article" data-table-type="view">
+								<caption>프로젝트 환경 안내 표</caption>
+								<colgroup>
+									<col style="width:20%" />
+									<col style="width:auto" />
+								</colgroup>
+								
+								<tbody>
+									<tr>
+										<th scope="row">문서 및 버전</th>
+										<td>HTML5, CSS3</td>
+									</tr>
+									<tr>
+										<th scope="row">인코딩</th>
+										<td>UTF-8</td>
+									</tr>
+									<tr>
+										<th scope="row">웹 유형</th>
+										<td>PC, <del>tablet, Mobile, Responcive</del></td>
+									</tr>
+									<tr>
+										<th scope="row">PC 웹 호환성</th>
+										<td>chrome (<i class="fab fa-chrome"></i> v84.0.4), <del>ie (<i class="fab fa-internet-explorer"></i> 10 이상), firefox (<i class="fab fa-firefox"></i> v78.0.2), safari (<i class="fab fa-safari"></i> macOS 13.1)</del></td>
+									</tr>
+									<tr>
+										<th scope="row">Mobile 웹 호환성</th>
+										<td>
+											<dl class="definition-list">
+												<dt><i class="fab fa-android"></i> 안드로이드</dt>
+												<dd class="del">5.1.1 (2014) : 롤리팝 (Lollipop)</dd>
+												<dd>6.0.1 (2015) : 마시멜로 (Marshmallow)</dd>
+												<dd>7.1 (2016) : 누가 (Nougat)</dd>
+												<dd>8.1 (2017) : 오레오 (Oreo)</dd>
+												<dd>9.1 (2018) : 파이 (Pie)</dd>
+												<dd>10 (2019) : Android 10 (Queen Cake)</dd>
+												<dd class="del">11 (2020.10 예정) : Android 11 (R)</dd>
+											</dl>
+											
+											<dl class="definition-list">
+												<dt><i class="fab fa-apple"></i> IOS</dt> 
+												<dd class="del">7.1.2 : 아이폰 4</dd>
+												<dd>9.3.6 : 아이폰 4s, 아이패드 (2세대, 3세대), 아이패드 미니 (1세대), 아이팟 터치 (5세대)</dd>
+												<dd>10.3.3 : 아이폰 5, 아이폰 5c, 아이패드 (4세대, 5세대, 6세대), 아이패드 미니 (2세대, 3세대, 4세대)</dd>
+												<dd>13.3 : 아이폰 5s, 아이폰 6, 아이폰 6 플러스, 아이폰 6s, 아이폰 6s 플러스, 아이폰 7, 아이폰 7 플러스, 아이폰 SE, 아이폰 8, 아이폰 8 플러스, 아이폰 X, 아이패드 (5세대, 6세대), 아이패드 미니 (2세대, 3세대, 4세대), 아이패드 프로 9.7", 아이패드 프로 12.9" 1세대, 아이패드 프로 10.5", 아이패드 프로 12.9" 2세대, 아이팟 터치 (6세대), 아이패드 (2017년형 제품)</dd>
+											</dl>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">User 디스플레이 / 브라우져</th>
+										<td>
+											<span data-size="screen"></span> / <span data-size="browser"></span>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">해상도 범위</th>
+										<td>
+											<ul class="unordered-list">
+												<li>Mobile : 360 ~ 812</li>
+												<li>Tablet : 768 ~ 1366</li>
+												<li>Desctop : 1280 ~ 1924 이상</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">최적화 기준</th>
+										<td>
+											<ul class="unordered-list">
+												<li>Mobile : 375 (아이폰 X)</li>
+												<li>Tablet : 768 (아이패드)</li>
+												<li>Desctop : 1280</li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</article>
+					</section>
+					
+					<section class="guide-section" data-type="toggle" data-toggle-action="slide">
+						<header class="guide-header">
+							<h2 class="section-tit">파일/폴더 구조</h2>
+							<button type="button" class="toggle-btn"><i class="fas fa-angle-up"></i></button>
+						</header>
+						
+						<article class="guide-content" data-toggle-type="contents">
+							<table class="table-article" data-table-type="list">
+								<caption>파일/폴더 구조 안내 표</caption>
+								<colgroup>
+									<col style="width:18%" />
+									<col style="width:18%" />
+									<col style="width:18%" />
+									<col style="width:auto" />
+								</colgroup>
+								
+								<thead>
+									<tr>
+										<th scope="col">분류 폴더</th>
+										<th scope="col">서브 폴더</th>
+										<th scope="col">파일 이름</th>
+										<th scope="col">파일 설명</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr>
+										<td>fonts</td>
+										<td></td>
+										<td>
+											<ul class="unordered-list">
+												<li>fa-brands-400</li>
+												<li>fa-regular-400</li>
+												<li>fa-solid-900</li>
+												<li>NanumBarunGothicBoldSubset</li>
+												<li>NanumBarunGothicSubset</li>
+												<li>NanumBarunGothicLightSubset</li>
+												<li>NanumBarunGothicUltraLightSubset</li>
+											</ul>
+										</td>
+										<td>
+											<ul class="unordered-list">
+												<li>폰트 - 폰트 아이콘 (.eot .svg .ttf woff .woff2)</li>
+												<li>폰트 - 폰트 아이콘 (.eot .svg .ttf woff .woff2)</li>
+												<li>폰트 - 폰트 아이콘 (.eot .svg .ttf woff .woff2)</li>
+												<li>폰트 - 나눔바른고딕 볼드, 700 (.eot .ttf woff .woff2)</li>
+												<li>폰트 - 나눔바른고딕 노멀, 400 (.eot .ttf woff .woff2)</li>
+												<li>폰트 - 나눔바른고딕 라이트, 300 (.eot .ttf woff .woff2)</li>
+												<li>폰트 - 나눔바른고딕 울트라 라이트, 200 (.eot .ttf woff .woff2)</li>
+											</ul>
+										</td>
+									</tr>
+								
+									<tr>
+										<td rowspan="4">css</td>
+										<td></td>
+										<td>
+											<ul class="unordered-list">
+												<li>import.css</li>
+												<li>fonts.css
+													<ol class="ordered-list">
+														<li data-name="ChakraPetch">1. Chakra Petch<br /><br /></li>
+														<li data-name="NanumBarunGothic">2. 나눔 바른 고딕</li>
+													</ol>
+												</li>
+												<li>base.css</li>
+												<li>component.css</li>
+												<li>common.css</li>
+												<li>layout.css</li>
+												<li>main-mobile.css</li>
+												<li>contents-mobile.css</li>
+												<li>main-tablet.css</li>
+												<li>contents-tablet.css</li>
+												<li>main-desctop.css</li>
+												<li>contents-desctop.css</li>
+											</ul>
+										</td>
+										<td>
+											<ul class="unordered-list">
+												<li>스타일 - css 가져오기</li>
+												<li>스타일 - 설정 폰트 
+													<ol class="ordered-list">
+														<li data-name="ChakraPetch" class="ellipsisRow"><a href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" target="_blank" class="link-btn">https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap</a></li>
+														<li data-name="NanumBarunGothic"></li>
+													</ol>
+												</li>
+												<li>스타일 - 초기화</li>
+												<li>스타일 - 컴포넌트 (요소)</li>
+												<li>스타일 - 공통형태</li>
+												<li>스타일 - 레이아웃</li>
+												<li>스타일 - (mobile) 메인 컨텐츠</li>
+												<li>스타일 - (mobile) 서브 컨텐츠</li>
+												<li>스타일 - (tablet) 메인 컨텐츠</li>
+												<li>스타일 - (tablet) 서브 컨텐츠</li>
+												<li>스타일 - (desctop) 메인 컨텐츠</li>
+												<li>스타일 - (desctop) 서브 컨텐츠</li>
+											</ul>
+										</td>
+									</tr>
+								
+									<tr>
+										<td>libs</td>
+										<td>
+											<ul class="unordered-list">
+												<li>animate.min.css</li>
+												<li>aos.min.css</li>
+												<li>fontawesome_all.min.css</li>
+												<li>selectordie.css</li>
+												<li>selectordie_theme_02.css</li>
+												<li>swiper_4.4.2.min.css</li>
+											</ul>
+										</td>
+										<td>
+											<ul class="unordered-list">
+												<li>스타일 - 에니메이트</li>
+												<li>스타일 - 플러그인</li>
+												<li>스타일 - 폰트 아이콘 (<a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank" class="link-btn">https://fontawesome.com/icons?d=gallery&m=free</a>)</li>
+												<li>스타일 - 선택박스 플러그인</li>
+												<li>스타일 - 선택박스 테마 플러그인</li>
+												<li>스타일 - 스와이퍼 플러그인</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td>ie</td>
+										<td>
+											<ul class="unordered-list">
+												<li>main.css</li>
+												<li>contents.css</li>
+											</ul>
+										</td>
+										<td>
+											<ul class="unordered-list">
+												<li>스타일 - (IE 전용) 메인 컨텐츠</li>
+												<li>스타일 - (IE 전용) 서브 컨텐츠</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td>project-guide</td>
+										<td>project.css</td>
+										<td>스타일 - 퍼블리싱 가이드</td>
+									</tr>
+
+									<tr>
+										<td rowspan="6">js</td>
+										<td></td>
+										<td>ui.js</td>
+										<td>스크립트 - 퍼블리셔 작업</td>
+									</tr>
+									
+									<tr>
+										<td>jquery</td>
+										<td>jquery-1.12.4.min.js</td>
+										<td>스크립트 - Jquery</td>
+									</tr>
+
+									<tr>
+										<td>libs</td>
+										<td>
+											<ul class="unordered-list">
+												<li>aos.min.js</li>
+												<li>aos-next.min.js</li>
+												<li>selectordie.min.js</li>
+												<li>swiper_4.4.2.min.js</li>
+											</ul>
+										</td>
+										<td>
+											<ul class="unordered-list">
+												<li>스크립트 - 라이브러리 Animate On Scroll (<a href="https://michalsnik.github.io/aos/" target="_blank" class="link-btn">https://michalsnik.github.io/aos/</a>)</li>
+												<li>스크립트 - 라이브러리 Animate On Scroll + animate.min.css (<a href="https://github.com/michalsnik/aos" target="_blank" class="link-btn">https://github.com/michalsnik/aos</a>)</li>
+												<li>스크립트 - 라이브러리 Select-or-Die (<a href="https://github.com/vestman/Select-or-Die" target="_blank" class="link-btn">https://github.com/vestman/Select-or-Die</a>)</li>
+												<li>스크립트 - 라이브러리 swiper (<a href="https://swiperjs.com/demos/" target="_blank" class="link-btn">https://swiperjs.com/demos/</a>)</li>
+											</ul>
+										</td>
+									</tr>
+									
+									<tr>
+										<td>codemirror</td>
+										<td>
+											<ul class="unordered-list">
+												<li>lib/codemirror.js</li>
+												<li>lib/codemirror.css</li>
+												<li>theme/mdn-like.css</li>
+											</ul>
+										</td>
+										<td>스크립트 - 플러그인 code 삽입 (<a href="https://codemirror.net/index.html" target="_blank" class="link-btn">https://codemirror.net/index.html</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>syntaxhighlighter</td>
+										<td>
+											<ul class="unordered-list">
+												<li>scripts/shCore.js</li>
+												<li>styles/shCoreEclipse.css</li>
+											</ul>
+										</td>
+										<td>스크립트 - 플러그인 code 삽입 (<a href="https://github.com/syntaxhighlighter" target="_blank" class="link-btn">https://github.com/syntaxhighlighter</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>project-guide</td>
+										<td>project.js</td>
+										<td>스크립트 - 퍼블리싱 가이드용</td>
+									</tr>
+									
+									<tr>
+										<td>images</td>
+										<td>
+											<ul class="unordered-list">
+												<li>icon</li>
+												<li>icon/btn</li>
+												<li>icon/bul</li>
+												<li>common</li>
+												<li>layout</li>
+												<li>contents/memu</li>
+												<li>project-guide</li>
+												<li>temp</li>
+											</ul>
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
+									
+									<tr>
+										<td rowspan="2">html</td>
+										<td>menu</td>
+										<td></td>
+										<td>HTML - page</td>
+									</tr>
+									
+									<tr>
+										<td>project-guide</td>
+										<td>
+											<ul class="unordered-list">
+												<li>directory.html</li>
+												<li>project-role/info.html</li>
+												<li>project-role/standard.html</li>
+												<li>project-role/code.html</li>
+												<li>project-role/name.html</li>
+												<li>project-role/codeset.html</li>
+												<li>elements/title.html</li>
+												<li>elements/text.html</li>
+												<li>elements/button.html</li>
+												<li>elements/icon.html</li>
+												<li>elements/form.html</li>
+												<li>elements/list.html</li>
+												<li>elements/table.html</li>
+												<li>elements/board.html</li>
+												<li>elements/section.html</li>
+												<li>elements/layout.html</li>
+												<li>elements/popup.html</li>
+											</ul>
+										</td>
+										<td>
+											<ul class="unordered-list">
+												<li>HTML - 작업경로 리스트</li>
+												<li>HTML - 규칙 가이드 : 기본정책</li>
+												<li>HTML - 규칙 가이드 : 퍼블리싱 규칙</li>
+												<li>HTML - 규칙 가이드 : 코드규칙</li>
+												<li>HTML - 규칙 가이드 : 네임규칙</li>
+												<li>HTML - 규칙 가이드 : 설계패턴</li>
+												<li>HTML - 컴포넌트 가이드 : 타이틀</li>
+												<li>HTML - 컴포넌트 가이드 : 텍스트</li>
+												<li>HTML - 컴포넌트 가이드 : 버튼</li>
+												<li>HTML - 컴포넌트 가이드 : 아이콘</li>
+												<li>HTML - 컴포넌트 가이드 : 폼 요소</li>
+												<li>HTML - 공통 가이드 : 리스트</li>
+												<li>HTML - 공통 가이드 : 테이블</li>
+												<li>HTML - 공통 가이드 : 게시판</li>
+												<li>HTML - 공통 가이드 : 영역, 단락</li>
+												<li>HTML - 레이아웃 가이드 : 컨텐츠</li>
+												<li>HTML - 레이아웃 가이드 : 팝업</li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</article>
+					</section>
+				</div>
+			</div>
+		</main>
+		
+		<footer class="project-footer">
+			<div class="container">
+				<span class="the-51-logo-img"><img src="/resource/images/project-guide/the-51-logo-img.png" alt="" /></span>
+				<button type="button" class="gotop-btn" data-moving-type="target" data-moving-action="topMove"><i class="fas fa-arrow-up"></i></button>
+			</div>
+		</footer>
+	</section>
+	
+	<!-- [S] 플러그인 및 퍼블리셔 모듈 js -->
+	<script type="text/javascript" src="/resource/js/codemirror/lib/codemirror.js"></script>
+	<script type="text/javascript" src="/resource/js/codemirror/mode/javascript/javascript.js"></script>
+	<script type="text/javascript" src="/resource/js/syntaxhighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/resource/js/syntaxhighlighter/scripts/shAutoloader.js"></script>
+	<script type="text/javascript" src="/resource/js/project-guide/project.js"></script>
+	<!-- [E] 플러그인 및 퍼블리셔 모듈 js -->
+</body>
+</html>

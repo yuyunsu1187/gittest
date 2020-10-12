@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Contents">
+
+    <select id="retrieveContents" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq as seq
+		     , ci.contents_id
+		     , ci.menu_id 
+		     , ci.category_code
+		     , fnc_codeName(#{menuId}, ci.category_code, 'A') AS category_name
+             , ci.title
+             , ci.contents
+             , ci.contents_url
+             , ci.keyword_1
+             , ci.keyword_2
+             , ci.start_date
+             , ci.end_date
+             , ci.reader_user_id
+             , ci.file_id
+             , ci.state_code
+             , DATE_FORMAT(ci.create_date, '%Y-%m-%d') as create_date
+             , ci.survey_id
+             , ci.lecturer
+             , ci.place
+             , ci.date
+             , REPLACE(fi_thum.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') as thum_file_path
+             , fi_thum.file_name as thum_file_name
+             , REPLACE(sld_fi.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') as sld_file_path
+             , sld_fi.file_name as sld_file_name
+             , fi.file_name
+             , fi.file_path
+             , fi.file_size
+             , fi.file_extension
+             , CONCAT(ui.name_first, ' ', ui.name_last) AS lecturer_name
+             , li.career_1
+             , li.career_2
+             , li.career_3
+             , lec_fi.file_name AS lecturer_img
+             , REPLACE(lec_fi.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') AS lecturer_img_path              
+             , bi.bookmark_yn 
+             , IFNULL(cl.views, 0) AS views
+             , ci.remark
+             , IF(IFNULL(ci.survey_id, '') = '', 'Y', IF(sr.user_id = #{userId}, 'Y', 'N')) AS survey_result
+             , fnc_contentsId(ci.menu_id, ci.contents_id, 'P') AS Previous_contents_id
+             , fnc_contentsId(ci.menu_id, ci.contents_id, 'N') AS Next_contents_id
+             
+		  FROM contents_info ci
+		       LEFT OUTER JOIN file_info fi_thum
+            ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+           AND fi_thum.delete_yn = 'N'
+		  	   LEFT OUTER JOIN file_info fi
+            ON ci.file_id = fi.file_id
+           AND fi.file_number = '2'
+           AND fi.delete_yn = 'N'
+           	   LEFT OUTER JOIN file_info sld_fi
+            ON ci.file_id = sld_fi.file_id
+           AND sld_fi.file_number = '3'
+           AND sld_fi.delete_yn = 'N'
+               LEFT OUTER JOIN (SELECT COUNT(seq) AS views
+		                             , menu_id
+				                     , contents_id
+								  FROM connect_log 
+							     GROUP BY menu_id
+								        , contents_id) cl
+            ON ci.menu_id = cl.menu_id
+           AND ci.contents_id = cl.contents_id
+               LEFT JOIN user_info ui
+		    ON ci.reader_user_id = ui.user_id
+		       LEFT JOIN lecturer_info li
+			ON ci.reader_user_id = li.user_id
+			   LEFT JOIN file_info lec_fi
+			ON li.file_id = lec_fi.file_id
+		   AND lec_fi.file_number = '3'
+           AND lec_fi.delete_yn = 'N'
+               LEFT OUTER JOIN survey_result sr
+            ON ci.menu_id = sr.menu_id
+           AND ci.contents_id = sr.contents_id
+           AND ci.survey_id = sr.survey_id
+           AND sr.user_id = #{userId}
+			   LEFT JOIN bookmark_info bi
+			ON ci.menu_id = bi.menu_id
+		   AND ci.contents_id = bi.contents_id
+		   AND bi.user_id = #{userId}
+		]]>
+		   
+		<choose>
+		   <when test="seq != null and seq != ''">
+           <![CDATA[ 
+             WHERE ci.seq = #{seq}
+           ]]>
+           </when> 
+		   
+		   <otherwise>
+           <![CDATA[ 
+             WHERE ci.menu_id = #{menuId}
+               AND ci.contents_id = #{contentsId}
+           ]]>
+           </otherwise>
+		</choose>
+		
+    </select>
+
+    <insert id="insertContents">
+        <![CDATA[
+        INSERT INTO contents_info(
+               contents_id
+             , menu_id
+             , category_code
+             , title
+             , contents
+             , contents_url
+             , keyword_1
+             , keyword_2
+             , start_date
+        ]]>
+        <if test="endDate != null and endDate != ''">
+		     <![CDATA[ , end_date  ]]>
+        </if>
+        <![CDATA[
+             , file_id
+             , state_code
+             , reader_user_id
+             , lecturer
+             , place
+             , date
+             , survey_id
+             , remark
+             , create_id
+             , create_date
+             , update_id
+             , update_date
+        ) VALUES (
+               #{contentsId}
+             , #{menuId}
+             , #{categoryCode}
+             , #{title}
+             , #{contents}
+             , #{contentsUrl}
+             , #{keyword1}
+             , #{keyword2}
+             , #{startDate}
+        ]]>
+        <if test="endDate != null and endDate != ''">
+		     <![CDATA[ , #{endDate}  ]]>
+        </if>
+        <![CDATA[
+             , #{fileId}
+             , #{stateCode}  
+             , #{readerUserId}
+             , #{lecturer}
+             , #{place}
+             , #{date}
+             , #{surveyId}
+             , #{remark}
+             , #{userId}
+             , NOW()
+             , #{userId}
+             , NOW()
+        )
+        ]]>
+    </insert>
+
+    <update id="updateContents">
+        <![CDATA[
+        UPDATE contents_info
+           SET category_code = #{categoryCode}
+             , title = #{title}
+             , contents = #{contents}
+             , start_date = #{startDate}
+        ]]>
+        <choose>
+		   <when test="date != null and date != ''">
+		    <![CDATA[ , end_date = null , date = #{date}  ]]>
+           </when> 
+		   
+		   <otherwise>
+		    <![CDATA[ , end_date = #{endDate}, date = null  ]]>
+           </otherwise>
+		</choose>
+        <![CDATA[
+             , reader_user_id = #{readerUserId}
+             , lecturer = #{lecturer}
+             , place = #{place}
+             , survey_id = #{surveyId}
+             , update_id = #{userId}
+             , update_date = NOW()
+             , remark = #{remark}
+		     , state_code = #{stateCode}  
+		]]>
+        <if test="fileId != null and fileId != ''">
+		     <![CDATA[ , file_id = #{fileId}  ]]>
+        </if>
+        <![CDATA[
+        WHERE  
+        ]]>
+        <choose>
+			<when test="seq != null and seq != ''">
+		     <![CDATA[ seq = #{seq} ]]>
+			</when>
+			<otherwise>
+		     <![CDATA[ menu_id = #{menuId}
+		     AND contents_id = #{contentsId}  ]]>
+			</otherwise>
+		</choose>
+    </update>
+    
+    <update id="updateDeleteYnContents">
+        <![CDATA[
+        UPDATE contents_info
+           SET delete_yn = 'Y'
+             , update_id = #{userId}
+             , update_date = NOW()
+         WHERE menu_id = #{menuId}
+           AND contents_id = #{contentsId}
+        ]]>
+    </update>
+
+    <select id="retrieveFrontMenuId" resultType="contents">
+        <![CDATA[
+        SELECT front_id AS menu_id
+		  FROM menu_map
+		 WHERE admin_id = #{menuId}
+        ]]>
+    </select>
+    
+    <select id="retrieveAdminMenuId" resultType="contents">
+        <![CDATA[
+        SELECT admin_id AS menu_id
+		  FROM menu_map
+		 WHERE front_id = #{menuId}
+        ]]>
+    </select>
+
+    <select id="retrieveContentsList" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq
+		     , ci.contents_id
+		     , ci.menu_id
+		     , ci.category_code
+		     , fnc_codeName(#{menuId}, ci.category_code, 'A') AS category_name
+             , ci.title
+             , ci.contents
+             , ci.contents_url as contentsUrl
+             , ci.keyword_1
+             , ci.keyword_2
+             , substring(ci.start_date,0,10) as start_date
+             , substring(ifnull(ci.end_date, ci.start_date),0,10) as end_date
+             , ci.place
+             , ci.date
+             , ci.lecturer
+             , ci.reader_user_id
+             , DATE_FORMAT(ci.create_date, '%Y-%m-%d') AS create_date
+             , fi_thum.file_id
+             , REPLACE(fi_thum.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') as thum_file_path
+             , fi_thum.file_name as thum_file_name
+             , fi.file_name
+             , fi.file_path
+             , fi.file_size
+             , fi.file_extension
+             , CONCAT(ui.name_first, ' ', ui.name_last) AS lecturer_name
+             , li.career_1
+             , li.career_2
+             , li.career_3
+             , lec_fi.file_name AS lecturer_img
+             , REPLACE(lec_fi.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') AS lecturer_img_path                
+             , IFNULL(bi.bookmark_yn, 'N') AS bookmark_yn 
+             , IFNULL(cl.views, 0) AS views    
+		  FROM contents_info ci
+		       LEFT OUTER JOIN file_info fi_thum
+            ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+           AND fi_thum.delete_yn = 'N'
+		       LEFT OUTER JOIN file_info fi
+            ON ci.file_id = fi.file_id
+           AND fi.file_number = '2'
+           AND fi.delete_yn = 'N'
+               LEFT OUTER JOIN (SELECT COUNT(seq) AS views
+		                             , menu_id
+				                     , contents_id
+								  FROM connect_log 
+							     GROUP BY menu_id
+								        , contents_id) cl
+            ON ci.menu_id = cl.menu_id
+           AND ci.contents_id = cl.contents_id
+               LEFT JOIN user_info ui
+		    ON ci.reader_user_id = ui.seq
+		       LEFT JOIN lecturer_info li
+			ON ci.reader_user_id = li.user_id
+			   LEFT JOIN file_info lec_fi
+			ON li.file_id = lec_fi.file_id
+		   AND lec_fi.file_number = '3'
+           AND lec_fi.delete_yn = 'N'
+			   LEFT JOIN bookmark_info bi
+			ON ci.menu_id = bi.menu_id
+		   AND ci.contents_id = bi.contents_id
+		   AND bi.user_id = #{userId}
+		 WHERE ci.state_code = '02'
+		   AND ci.menu_id = #{menuId}
+		   AND ci.delete_yn = 'N'
+        ]]>
+        
+        <if test="categoryCode != null and categoryCode != ''">
+        	<![CDATA[ AND ci.category_code = #{categoryCode}  ]]>
+        </if>
+        <if test="title != null and title != ''">
+        	<![CDATA[ AND UPPER(ci.title) LIKE CONCAT('%', UPPER(#{title}), '%')  ]]>
+        </if>
+        <choose>
+			<when test="recent != null and recent != ''">
+				<![CDATA[ ORDER BY CAST(ci.contents_id AS INT) DESC ]]>
+			</when>
+			<when test="popular != null and popular != ''">
+				<![CDATA[ ORDER BY IFNULL(cl.views, 0) DESC  ]]>
+			</when>
+			<otherwise>
+				<![CDATA[ ORDER BY ci.seq DESC  ]]>
+			</otherwise>
+		</choose>
+    </select>    
+
+    <select id="retrieveBookmarkContentsList" resultType="contents">
+        <![CDATA[
+        SELECT M.*
+          FROM (
+				SELECT (@ROWNUM := @ROWNUM + 1) AS seq 
+				     , ci.contents_id
+				     , ci.menu_id
+				     , ci.title
+				     , pmi.menu_name AS parent_menu_name
+				     , mi.menu_name
+				     , fi_thum.file_path AS thum_file_path
+				     , DATE_FORMAT(ci.create_date, '%Y-%m-%d') AS create_date
+				  FROM contents_info ci
+				       LEFT OUTER JOIN file_info fi_thum
+				    ON ci.file_id = fi_thum.file_id 
+				   AND fi_thum.file_number = '1'
+				   AND fi_thum.delete_yn = 'N'
+				       INNER JOIN menu_info mi
+				    ON ci.menu_id = mi.menu_id
+				       INNER JOIN menu_info pmi
+				    ON mi.parent_menu_id = pmi.menu_id
+				       INNER JOIN bookmark_info bi
+				    ON ci.menu_id = bi.menu_id
+				   AND ci.contents_id = bi.contents_id
+				   AND bi.bookmark_yn ='Y'
+				     , (SELECT @ROWNUM := 0) AS rn
+				 WHERE ci.state_code = '02'
+				   AND bi.user_id = #{userId}
+		       ) m
+		 ORDER BY m.seq DESC
+        ]]>
+    </select>
+    
+    <insert id="updateBookmark">
+        <![CDATA[
+		INSERT INTO bookmark_info VALUE (
+		       #{menuId}
+		     , #{contentsId}
+		     , #{userId}
+		     , 'Y'
+		     , #{userId}
+		     , NOW()
+		     , #{userId}
+		     , NOW())
+		    ON DUPLICATE KEY UPDATE 
+		       bookmark_yn = IF(#{bookmarkYn}='Y', 'N', 'Y')
+		     , update_id = #{userId}
+		     , update_date = NOW()
+        ]]>
+    </insert>
+    
+    <select id="retrieveFunNextContentsId" resultType="String">
+       <![CDATA[
+       SELECT fnc_nextval(#{contentsName}) AS contents_id;
+       ]]>
+    </select>  
+
+    <select id="retrieveActivityContentsList" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq
+		     , ci.menu_id
+		     , ci.contents_id
+             , ci.title
+             , ci.contents
+             , ci.contents_url
+             , ci.keyword_1
+             , ci.keyword_2
+             , ci.start_date
+             , ci.end_date
+             , ci.reader_user_id
+             , DATE_FORMAT(ci.create_date, '%Y-%m-%d') AS create_date
+             , fi_thum.file_id
+             , REPLACE(fi_thum.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') AS thum_file_path
+             , fi_thum.file_name AS thum_file_name
+             , fi.file_name
+             , fi.file_path
+             , fi.file_size
+             , fi.file_extension
+             , CONCAT(ui.name_first, ' ', ui.name_last) AS lecturer_name
+             , li.career_1
+             , li.career_2
+             , li.career_3
+             , lec_fi.file_name AS lecturer_img
+             , REPLACE(lec_fi.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') AS lecturer_imgPath             
+             , IFNULL(bi.bookmark_yn, 'N') AS bookmark_yn   
+		  FROM contents_info ci
+		       LEFT OUTER JOIN file_info fi_thum
+            ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+           AND fi_thum.delete_yn = 'N'
+		       LEFT OUTER JOIN file_info fi
+            ON ci.file_id = fi.file_id
+           AND fi.file_number = '2'
+           AND fi.delete_yn = 'N'
+               LEFT JOIN user_info ui
+		    ON ci.reader_user_id = ui.seq
+		       LEFT JOIN lecturer_info li
+			ON ci.reader_user_id = li.user_id
+			   LEFT JOIN file_info lec_fi
+			ON li.file_id = lec_fi.file_id
+		   AND lec_fi.file_number = '3'
+           AND lec_fi.delete_yn = 'N'
+			   LEFT JOIN bookmark_info bi
+			ON ci.menu_id = bi.menu_id
+		   AND ci.contents_id = bi.contents_id
+		   AND bi.user_id = #{userId}
+               INNER JOIN (
+                           SELECT cl.user_id
+                                , cl.menu_id
+                                , cl.contents_id
+                             FROM connect_log cl
+                            WHERE cl.menu_id = #{menuId}
+                              AND cl.contents_id IS NOT NULL
+                              AND cl.user_id = #{userId}
+                            GROUP BY cl.user_id
+                                   , cl.menu_id
+                                   , cl.contents_id
+                            ORDER BY cl.seq DESC 
+                            LIMIT 4) cl
+            ON ci.menu_id = cl.menu_id
+           AND ci.contents_id = cl.contents_id
+		 WHERE ci.state_code = '02'
+		   AND ci.menu_id = #{menuId}
+		   AND ci.delete_yn = 'N'
+        ]]>
+    </select>
+
+    <select id="retrieveSearchResultCnt" resultType="String">
+        <![CDATA[
+		SELECT COUNT(ci.seq) AS result_cnt
+		  FROM contents_info ci
+               INNER JOIN menu_info mi
+            ON ci.menu_id = mi.menu_id
+		 WHERE ci.state_code = '02'
+		   AND ci.delete_yn = 'N'
+           AND (UPPER(ci.title) LIKE CONCAT('%', UPPER(#{keyWord}), '%') 
+                OR UPPER(ci.contents) LIKE CONCAT('%', UPPER(#{keyWord}), '%'))
+        ]]>
+    </select>
+
+    <select id="retrieveSearchResultList" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq
+		     , ci.menu_id
+		     , ci.contents_id
+             , ci.title
+             , mi.menu_name
+             , mi.detail_url  
+             , fi_thum.file_id
+             , REPLACE(fi_thum.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') AS thum_file_path
+             , fi_thum.file_name AS thum_file_name
+             , fi.file_name
+             , fi.file_path
+             , fi.file_size
+             , fi.file_extension
+		  FROM contents_info ci
+               INNER JOIN menu_info mi
+            ON ci.menu_id = mi.menu_id
+		       LEFT OUTER JOIN file_info fi_thum
+            ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+           AND fi_thum.delete_yn = 'N'
+		       LEFT OUTER JOIN file_info fi
+            ON ci.file_id = fi.file_id
+           AND fi.file_number = '2'
+           AND fi.delete_yn = 'N'
+		 WHERE ci.state_code = '02'
+		   AND ci.delete_yn = 'N'
+		   AND mi.parent_menu_id = #{menuId}
+           AND (UPPER(ci.title) LIKE CONCAT('%', UPPER(#{keyWord}), '%') 
+                OR UPPER(ci.contents) LIKE CONCAT('%', UPPER(#{keyWord}), '%'))
+        ]]>
+    </select>
+
+    <select id="resultMainRegistrtionList" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq
+		     , ci.menu_id
+             , ci.contents
+             , ci.contents_url as contentsUrl
+             , ci.keyword_1
+             , ci.keyword_2
+             , substring(ci.start_date,0,10) as start_date
+             , substring(ci.end_date,0,10) as end_date
+             , ci.place
+             , ci.date
+             , ci.title
+             , mi.menu_name
+             , mi.detail_url  
+             , fi_thum.file_id
+             , REPLACE(fi_thum.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') AS thum_file_path
+             , fi_thum.file_name AS thum_file_name
+             , fi.file_name
+             , fi.file_path
+             , fi.file_size
+             , fi.file_extension
+		  FROM contents_info ci
+               INNER JOIN menu_info mi
+            ON ci.menu_id = mi.menu_id
+		       LEFT OUTER JOIN file_info fi_thum
+            ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+           AND fi_thum.delete_yn = 'N'
+		       LEFT OUTER JOIN file_info fi
+            ON ci.file_id = fi.file_id
+           AND fi.file_number = '2'
+           AND fi.delete_yn = 'N'
+		 WHERE ci.state_code = '02'
+		   AND ci.delete_yn = 'N'
+		   AND mi.menu_id = #{menuId}
+         ORDER BY ci.contents_id DESC 
+         LIMIT 5
+        ]]>
+    </select>
+
+    <select id="retrieveMainAcademyList" resultType="contents">
+        <![CDATA[
+		SELECT ci.seq
+		     , ci.menu_id
+		     , ci.contents_id
+             , ci.title
+             , mi.menu_name
+             , mi.detail_url  
+             , fi_thum.file_id
+             , REPLACE(fi_thum.file_path, '/usr/local/lena/servers/appServer/webapps/ROOT', '') AS thum_file_path
+             , fi_thum.file_name AS thum_file_name
+             , fi.file_name
+             , fi.file_path
+             , fi.file_size
+             , fi.file_extension
+		  FROM contents_info ci
+               INNER JOIN menu_info mi
+            ON ci.menu_id = mi.menu_id
+		       LEFT OUTER JOIN file_info fi_thum
+            ON ci.file_id = fi_thum.file_id 
+		   AND fi_thum.file_number = '1'
+           AND fi_thum.delete_yn = 'N'
+		       LEFT OUTER JOIN file_info fi
+            ON ci.file_id = fi.file_id
+           AND fi.file_number = '2'
+           AND fi.delete_yn = 'N'
+		 WHERE ci.state_code = '02'
+		   AND ci.delete_yn = 'N'
+		   AND mi.parent_menu_id = #{menuId}
+         ORDER BY ci.contents_id DESC 
+         LIMIT 5
+        ]]>
+    </select>
+
+</mapper>

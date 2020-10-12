@@ -1,0 +1,3 @@
+#Fri Feb 03 15:08:11 KST 2012
+runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="Apache Tomcat v7.0" location\="__DEVON_STUDIO_HOME__/bin/apache-tomcat-7.0.52" name\="Apache Tomcat v7.0" runtime-type-id\="org.eclipse.jst.server.tomcat.runtime.70" timestamp\="0"/>\r\n</runtimes>\r\n
+eclipse.preferences.version=1

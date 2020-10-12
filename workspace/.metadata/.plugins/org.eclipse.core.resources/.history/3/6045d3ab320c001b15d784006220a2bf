@@ -1,0 +1,255 @@
+<%@ page language ="java"  pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%--
+/**
+ *******************************************************************************
+ * LG Chem YVOIRE Academy JSP
+ * NAME : contentsList.jsp
+ * DESC : 컨텐츠 페이지 목록조회
+ * VER  : v1.0
+ * Copyright 2020 LG CNS All rights reserved
+ *******************************************************************************
+ */
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="Tag" uri="http://www.dev-on.com/Tag"%>
+
+<script type="text/javascript" language="javascript">
+	//<![CDATA[
+	// 파일 다운로드
+	function fnDownloadDetail(index) {
+		
+		$("input:checkbox[name=checkIndex]").prop("checked", false);	
+		$("input:checkbox[id=checkIndex_"+index+"]").prop("checked", true);	
+		
+		document.detailForm.action = "<c:url value='/function/filedownload/downloadFileList.do'/>";
+		document.detailForm.submit();
+	}
+
+	// 해당 파일 다운로드
+	function fnDownload(index, contentsId) {
+		var app = document.getElementById("append");
+		app.innerHTML = "<input type=hidden class=Lcheckbox name=checkIndex id=checkIndex value="+ index +">";
+
+		document.listForm.downloadId.value = contentsId;
+		document.listForm.action = "<c:url value='/function/filedownload/downloadFileList.do'/>";
+		document.listForm.submit();
+	}
+
+	//글 수정 화면으로 이동
+	function goUpdateContents() {
+		document.detailForm.action = "<c:url value='/contents/imageryEdit.do'/>";
+		document.detailForm.submit();
+	}
+	
+	// 글 작성 화면으로 이동
+	function goContentsWrite() {
+		document.listForm.action = "<c:url value='/contents/imageryWrite.do'/>";
+		document.listForm.submit();
+	}
+	
+	//글 삭제
+	function fnDeleteContents() {
+		var delConfirm = confirm('정말로 삭제 하시겠습니까?');
+		if (delConfirm) {
+			document.detailForm.action = "<c:url value='/contents/imageryDelete.do'/>";
+			document.detailForm.submit();
+		}
+	}
+	
+	function fnOrderList(value) {
+		
+		if('newest' === value){
+			document.listForm.newest.value = value;
+			document.listForm.popularity.value = null;
+		} 
+		if('popularity' === value){
+			document.listForm.newest.value = null;
+			document.listForm.popularity.value = value;
+		} 
+		document.listForm.ordertype.value = value;
+		document.listForm.action = "<c:url value='/contents.do'/>";
+		document.listForm.submit();
+	}
+	//]]>
+</script>
+			
+<section id="FR030105-05" class="content-section">
+	<header class="content-header">
+		<h2 class="content-tit">Branding Platform</h2>
+	</header>
+	
+	<c:if test="${menuType=='FR'}">
+		<div class="breadcrumb">
+			<span class="home">home</span><span class="depth">Branding Platform</span><span class="page">Imagery</span>
+		</div>
+	</c:if>
+	
+	<!-- [S] tab wrap -->
+	<div class="tab-wrap" data-type="tab" data-tab-division="link">
+	
+		<c:if test="${menuType=='AD'}">
+			<ul class="tab-list" data-combine-tab="column-5-tab">
+				<li data-tab-type="list" <c:if test="${menuId =='AD030101'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('AD030101', 'list');">Logo</a></li>
+				<li data-tab-type="list" <c:if test="${menuId =='AD030103'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('AD030103', 'list');">Product Image</a></li>
+				<li data-tab-type="list" <c:if test="${menuId =='AD030105'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('AD030105', 'list');">Imagery</a></li>
+				<li data-tab-type="list" <c:if test="${menuId =='AD030107'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('AD030107', 'list');">Video</a></li>
+				<li data-tab-type="list" <c:if test="${menuId =='AD030109'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('AD030109', 'list');">Social Media</a></li>
+			</ul>
+		</c:if>
+		<c:if test="${menuType=='FR'}">	
+			<ul class="tab-list" data-combine-tab="column-5-tab">
+				<li data-tab-type="list" <c:if test="${mainMenuId =='FR0501'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('FR050100', 'list');">Logo</a></li>
+				<li data-tab-type="list" <c:if test="${mainMenuId =='FR0503'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('FR050300', 'list');">Product Image</a></li>
+				<li data-tab-type="list" <c:if test="${mainMenuId =='FR0505'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('FR050500', 'list');">Imagery</a></li>
+				<li data-tab-type="list" <c:if test="${mainMenuId =='FR0507'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('FR050700', 'list');">Video</a></li>
+				<li data-tab-type="list" <c:if test="${mainMenuId =='FR0509'}">data-tab-action="active"</c:if>><a href="#" class="list-btn" onclick="fnMenu('FR050900', 'list');">Social Media</a></li>
+			</ul>	
+		</c:if>
+		<!-- [S] 프론트 모바일 탭 리스트 영역 -->
+		<div class="form" data-mult-form="select-list" data-tab-area="tab-list">
+			<button type="button" class="select-btn">Imagery${resultList }<i class="fas fa-angle-down"></i></button>
+			<ul class="option-list">
+				<li data-tab-type="list"><a href="#" class="list-btn" onclick="fnMenu('FR050100', 'list');">Logo</a></li>
+				<li data-tab-type="list"><a href="#" class="list-btn" onclick="fnMenu('FR050300', 'list');">Product Image</a></li>
+				<li data-tab-type="list"><a href="#" class="list-btn" onclick="fnMenu('FR050500', 'list');">Imagery</a></li>
+				<li data-tab-type="list"><a href="#" class="list-btn" onclick="fnMenu('FR050700', 'list');">Video</a></li>
+				<li data-tab-type="list"><a href="#" class="list-btn" onclick="fnMenu('FR050900', 'list');">Social Media</a></li>
+			</ul>${menuId}${resultList }
+		</div>
+		<!-- [E] 프론트 모바일 탭 리스트 영역 -->	
+		<c:if test="${not empty resultList}">
+		<!-- [S] 썸네일 list -->
+		<article class="list-wrap" data-list-type="thumbnail" data-combine-list="column-2-list">	
+			<form:form commandName="resultList" name="listForm" id="listForm" method="post" >
+				<input type="hidden" name="seq" id="seq" value="" />
+				<input type="hidden" name="userId" id="userId" value="<c:out value='${userId}'/>" />
+				<input type="hidden" name="menuId" id="menuId" value="<c:out value='${menuId}'/>" />
+				<input type="hidden" name="recent" id="recent" value="<c:out value='${param.recent}'/>" />
+				<input type="hidden" name="popular" id="popular" value="<c:out value='${param.popular}'/>" />
+				<input type="hidden" name="ordertype" id="ordertype" value="<c:out value='${param.ordertype}'/>" />
+				<input type="hidden" name="menuType" id="menuType" value="<c:out value='${menuType}'/>" />		
+				<input type="hidden" name="downloadId" id="downloadId" value="" />		
+				<div id="append"></div>
+				<header class="list-header">
+					<h3 class="article-tit">Imagery</h3>
+					<p class="article-txt">Here you will find images related with LG aesthetics products</p>
+					<ul class="sort-list">
+						<li <c:if test="${param.ordertype=='recent' or empty param.ordertype}">class="active"</c:if>><button type="button" class="sort-btn" onclick="fnOrderList('recent')">Recent</button></li>
+						<li <c:if test="${param.ordertype=='popular'}">class="active"</c:if>><button type="button" class="sort-btn" onclick="fnOrderList('popular')">Popular</button></li>
+					</ul>
+				</header>
+							
+				<ul class="thumbnail-list" data-list-style="clfix">
+					<c:forEach var="result" items="${resultList}" varStatus="status">
+					<c:set var="index" value="${status.index}" />
+					<li>
+						<input type="hidden" name="seq" id="seq" value="<c:out value='${result.seq }'/>" />
+						<input type="hidden" name="contentsId" id="contentsId" value="<c:out value='${result.contentsId }'/>" />
+						<input type="hidden" name="remark" id="remark" value="<c:out value='${result.remark }'/>" />
+						<input type="hidden" name="fileName" value="<c:out value='${result.fileName}'/>" />
+						<input type="hidden" name="uploadFilePath" value="<c:out value='${result.filePath}'/>" />
+						
+						<div class="img-area">
+							<button type="button" class="link-btn" data-btn-style="modal" data-btn-key="detail">
+							<img src="<c:url value='${result.thumFilePath}'/>" onerror="this.src='/resource/images/common/contents/defaultimg_378x260.png';" alt="" /></button>
+							<div class="caption">
+								<button type="button" class="link-btn" data-btn-style="modal" data-btn-key="detail">
+									<strong class="tit" data-text-style="ellipsisRow"><c:out value='${result.title}'/></strong>
+									<span class="txt" data-text-style="ellipsisRow"><c:out value='${result.contents}'/></span>
+								</button>
+								<div class="data">
+									<span class="date"><c:out value='${result.createDate.substring(0,10)}'/></span>
+									<span class="volume"><fmt:formatNumber value="${result.fileSize/1000000}" pattern="#####.##" />MB</span>
+									<em class="category-txt"><c:out value='${result.fileExtension}'/></em>
+	
+									<a href="#" class="download-main-btn" onclick="fnDownload(<c:out value='${index}'/>);">DOWNLOAD<i class="fas fa-arrow-down"></i></a>
+								</div>
+							</div>
+						</div>
+					</li>
+					</c:forEach>
+				</ul>
+				
+				<div class="button-area">
+					<button type="button" class="more-sub-btn" data-btn-style="more">See more<i class="fas fa-plus"></i></button>
+				</div>
+							
+				<c:if test="${menuType=='AD'}">
+					<div class="submit-area">
+						<button type="button" class="main-btn" onclick="goContentsWrite()">등록</button>
+					</div>
+				</c:if>
+			</form:form>
+		</article>
+		<!-- [E] 썸네일 list -->
+		</c:if>
+	</div>
+	<!-- [E] tab wrap -->
+	<c:if test="${empty resultList}">
+		<!-- [S : 20200923] no contents 영역 추가  -->
+		<div class="noContents-area">No contents</div>
+		<!-- [E : 20200923] no contents 영역 추가  -->
+	</c:if>
+</section>
+
+	
+<form:form commandName="result" name="detailForm" id="detailForm" method="post">
+<input type="hidden" name="seq" id="seq" value="" />
+<input type="hidden" name="menuId" id="menuId" value="<c:out value='${menuId}'/>" />
+<input type="hidden" name="contentsId" id="contentsId" value="" />
+<input type="hidden" name="fileName" id="fileName" value="" />
+<input type="hidden" name="uploadFilePath" id="uploadFilePath" value="" />
+<div width=0 height=0 style="visibility: hidden">
+	<input type="checkbox" class="Lcheckbox" name="checkIndex" id="checkIndex_0" value="0" />
+</div>
+<!-- [S] 레이어 팝업 : 상세보기 -->
+<div class="layerPop-wrap" id="AD050701-10" data-pop-action="disabled">
+	<article class="layerPop-area" data-pop-key="detail" data-pop-type="view">
+		<header class="layerPop-header">
+			<h3 class="layerPop-tit"></h3>
+			<p class="layerPop-txt"></p>
+			<button type="button" class="layerPop-close-btn" data-pop-btn="close">close<span class="icon-close"></span></button>
+		</header>
+		<article class="layerPop-contents">
+			<span class="img-area"><img src="/resource/images/temp/@img-temp-detail.png" alt="" /></span>
+			<ul class="list" data-list-type="content-detail">
+				<li data-list-key="fileName">
+					<strong class="tit">Name</strong>
+					<span class="txt"></span>
+				</li>
+				<li data-list-key="fileExtension">
+					<strong class="tit">Extender</strong>
+					<span class="txt"></span>
+				</li>
+				<li data-list-key="date">
+					<strong class="tit">Date</strong>
+					<span class="txt"></span>
+				</li>
+				<li data-list-key="fileSize">
+					<strong class="tit">Size</strong>
+					<span class="txt"></span>
+				</li>
+				<li data-list-key="etc">
+					<strong class="tit">Etc.</strong>
+					<span class="txt"></span>
+				</li>
+			</ul>
+		</article>
+		<footer class="layerPop-footer">
+			<a href="#" class="layerPop-download-btn" onclick="fnDownloadDetail(0);">DOWNLOAD <i class="fas fa-arrow-down"></i></a>
+			
+			<c:if test="${menuType=='AD'}">
+				<div class="submit-area">
+					<button type="submit" class="sub-btn" onclick="fnDeleteContents();">삭제</button>
+					<button type="submit" class="main-btn" onclick="goUpdateContents();">수정</button>
+				</div>
+			</c:if>
+		</footer>
+	</article>
+</div>
+<!-- [E] 레이어 팝업 -->
+</form:form>

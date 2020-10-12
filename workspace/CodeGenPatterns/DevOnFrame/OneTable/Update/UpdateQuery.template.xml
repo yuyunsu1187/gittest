@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/Update/QueryTemplate" format="1.0" title="Query Template for UPDATE">
+
+	<prefix><![CDATA[
+#set($updateQueryId="update${table.capitalized}")
+]]></prefix>
+
+
+	<ifNewFile><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${queryNamespace}">
+]]></ifNewFile>
+
+
+	<ifNotFound>
+		<findXMLElement path="/mapper/update[@id='${updateQueryId}']"/>
+		<insert location="xmlChild" parent="/mapper"><![CDATA[
+<update id="${updateQueryId}">{CodeGen:StartOfCDATA}
+    UPDATE   ${table.tableName}
+#foreach (${row} in ${table.columns})
+#if (${velocityCount} == 1)
+    SET      ${row.name} = #{${row.camelCased}, jdbcType=${row.typeName}}
+#else
+           , ${row.name} = #{${row.camelCased}, jdbcType=${row.typeName}}
+#end
+#end
+    WHERE    -- Update Condition
+{CodeGen:EndOfCDATA}</update>
+]]></insert>
+	</ifNotFound>
+
+
+
+	<ifNewFile><![CDATA[
+</mapper>
+]]></ifNewFile>
+
+
+
+</CodeGenTemplate>

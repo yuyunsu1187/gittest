@@ -1,0 +1,1 @@
+﻿<h1>"PreparedStatement" and "ResultSet" methods should be called with valid indices (S2695)</h1>PreparedStatement 의 parameter는 0이 아니라 1부터 시작한다. 그러므로 1보다 작은 값을 가지고 PreparedStatement 에서 set 메소드를 쓰면 bug 가 된다. 마찬가지로 resultSet 도 0이 아닌 1부터 시작한다.

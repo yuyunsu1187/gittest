@@ -1,0 +1,9 @@
+﻿<h1>Silly equality checks should not be made (S2159)</h1>서로 다른 타입을 비교하는 것은 언제나 false 이므로 이런 비교와 관련 코드는 모두 삭제하는 것이 좋다.
+아래와 같은 비교는 지양한다. 
+comparing an object with null
+comparing an object with an unrelated primitive (E.G. a string with an int)
+comparing unrelated classes
+comparing an unrelated final class and interface
+comparing an array to a non-array
+comparing two arrays
+특히 array 는 Object.equals() 를 오버라이드 하지 않기 때문에 이는 array 의 address 를 비교하는 것이다. 즉, array 에서는 array1.equals(array2) 이 array1==array2 과 동일한 뜻이 된다. 만약 address 비교를 하고 싶은 개발자라면 == 연산자를 사용하고, 내용을 비교하려면 Arrays.equals(array1, array2) 을 사용한다.

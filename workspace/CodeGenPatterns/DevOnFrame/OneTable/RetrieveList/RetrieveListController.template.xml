@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeGenTemplate id="DevOnFrame/OneTable/RetrieveList/ControllerTemplate" format="1.0" title="Controller Template for RETRIEVE LIST">
+
+	<prefix><![CDATA[
+#set($voPackage="${codePackage.packageName}.vo")
+#set($voClassName="${table.capitalized}VO")
+#set($voClassPath="${voPackage}.${voClassName}")
+#set($voInstanceName="${table.camelCased}VO")
+##
+#set($servicePackage="${codePackage.packageName}.service")
+#set($serviceClassName="${table.capitalized}Service")
+#set($serviceClassPath="${servicePackage}.${serviceClassName}")
+#set($serviceInstanceName="${table.camelCased}Service")
+##
+#set($controllerPackage="${codePackage.packageName}.controller")
+#set($controllerClassName="${table.capitalized}Controller")
+##
+#set($listInstanceName="${table.camelCased}List")
+#set($selectListMethodName="retrieve${table.capitalized}List")
+##
+#set($listPath="/${table.camelCased}/retrieve${table.capitalized}List.do")
+#set($selectPath="/${table.camelCased}/retrieve${table.capitalized}.do")
+##
+#set($listView="/${table.camelCased}/retrieve${table.capitalized}List")
+]]></prefix>
+
+
+
+	<ifNewFile><![CDATA[
+package ${controllerPackage};
+
+]]></ifNewFile>
+
+
+
+	<ifNotFoundEachLine location="afterImport"><![CDATA[
+import java.util.List;
+import javax.annotation.Resource;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import ${voClassPath};
+import ${serviceClassPath};
+]]></ifNotFoundEachLine>
+
+
+
+	<ifNewFile><![CDATA[
+
+
+
+/**
+ * @Class Name: ${controllerClassName}.java
+ * @Description: ${table.capitalized} Controller class
+ * @Modification Information
+ *
+ * @author ${author}
+ * @since ${createDate}
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C) LG CNS All right reserved.
+ */
+ 
+@Controller
+public class ${controllerClassName} {
+]]></ifNewFile>
+
+
+
+	<ifNotFound>
+		<findMemberVariable name="${serviceInstanceName}"/>
+		<insert location="afterLastMemberVariable"><![CDATA[
+
+	@Resource(name = "${serviceInstanceName}")
+	private ${serviceClassName} ${serviceInstanceName};
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNotFound>
+		<findMethod name="${selectListMethodName}">
+			<parameterClass><![CDATA[${voClassPath}]]></parameterClass>
+			<parameterClass><![CDATA[org.springframework.ui.ModelMap]]></parameterClass>
+		</findMethod>
+		<insert location="afterLastMethod"><![CDATA[
+	
+	/**
+	 * ${table.tableName} 목록을 조회한다.
+	 * @param input - 조회할 정보가 담긴 ${voClassName}
+	 * @return "${listView}"
+	 */
+	@RequestMapping(value = "${listPath}")
+	public String ${selectListMethodName}(${voClassName} input, ModelMap model) {
+		List<${voClassName}> ${listInstanceName} = ${serviceInstanceName}.${selectListMethodName}(input);
+		model.addAttribute("${listInstanceName}", ${listInstanceName});
+		return "${listView}";
+	}
+]]></insert>
+	</ifNotFound>
+	
+	
+	
+	<ifNewFile><![CDATA[
+}
+]]></ifNewFile>
+
+</CodeGenTemplate>

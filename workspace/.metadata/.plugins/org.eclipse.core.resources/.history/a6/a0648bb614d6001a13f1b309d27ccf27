@@ -1,0 +1,199 @@
+package com.gyva.web.common.user.controller;
+
+import java.util.Random;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.gyva.web.common.fileupload.model.FileInfo;
+import com.gyva.web.common.fileupload.service.FileUploadService;
+import com.gyva.web.common.user.model.User;
+import com.gyva.web.common.user.service.UserService;
+
+import devonframe.fileupload.FileUpload;
+import devonframe.fileupload.model.UploadFileInfo;
+import devonframe.message.saymessage.SayMessage;
+import devonframe.util.DateUtil;
+
+
+/**
+ * <pre>
+ * 본 클래스는 사용자 정보에 대한 CRUD를 담당하는 Controller 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class UserController {
+
+	@Resource(name = "userService")
+	private UserService userService;
+	
+	@Resource(name = "fileUpload")
+	private FileUpload fileUpload;
+	
+	@Resource(name = "fileUploadService")
+	private FileUploadService fileUploadService;
+	
+	// 회원 정보 조회
+	@RequestMapping(value="/common/user/retrieveUser.do")
+	public String retrieveUser(User input, ModelMap model){
+		System.out.println("\t\t\t ################################# retrieveUser start");
+		User user = null;
+
+		user = userService.retrieveUser(input);
+		System.out.println("user tostring:::["+user.toString()+"]");
+		if (user == null) {
+			SayMessage.setMessageCode("dev.inf.com.nodata");
+		}
+		model.addAttribute("result", user);
+
+		System.out.println("\t\t\t ################################# retrieveUser e n d");
+		return "common/login/myPageForm";
+	}
+	
+	// 아이디 중복체크
+	@ResponseBody
+	@RequestMapping(value = "/common/user/idChk.do")
+	public int idChk(User input, ModelMap model) {
+		System.out.println("\t\t\t ################################# idChk ");
+		int result = userService.idChk(input);
+		System.out.println("result::::::"+result);
+		return result;
+	}
+	
+
+	// 회원 정보 수정
+	@RequestMapping(value = "/common/user/updateUser.do")
+	public String updateUser(User input, ModelMap model) {
+		System.out.println("\t\t\t ################################# updateUser ");
+		userService.updateUser(input);
+		return "redirect:/main.do?msg=success";
+	}
+
+	// 회원 정보 삭제
+	@RequestMapping(value="/common/user/deleteUser.do")
+	public String deleteUser(User input, ModelMap model){
+		System.out.println("[============================deleteUser]");
+		userService.deleteUser(input);
+		return "redirect:/common/login/joinForm.do?msg=success";
+	}
+	
+	
+	// 파일 업로드
+	/*@RequestMapping(value = "/common/user/insertUser.do")
+	public String insertUser(User input, ModelMap model, MultipartFile uploadFile) {
+		System.out.println("\t\t\t ################################# insertUser ");
+		// ID 중복 체크
+		int result = userService.idChk(input);
+		//yys test용 제거 
+		result = 0;
+		
+			if(result == 1){
+				System.out.println("중복 있음");
+				return "/common/login/joinForm";
+			} else {
+				System.out.println("중복 없음");
+												
+				// file_info 테이블에 저장
+				System.out.println("\t\t\t#########uploadFile.getOriginalFilename()["+uploadFile.getOriginalFilename()+"]");
+				
+				FileInfo fileInfo = new FileInfo();
+		        UploadFileInfo uploadFileInfo = fileUpload.upload(uploadFile);
+
+		        fileInfo.setFileId(getRandomString(5)+"_"+input.getNameFirst());
+		        fileInfo.setFileNumber(0);
+		        fileInfo.setFileName(uploadFileInfo.getClientFileName());
+		        fileInfo.setUploadFilePath(uploadFileInfo.getServerPath());
+		        fileInfo.setUploadFileName(uploadFileInfo.getServerFileName());
+		        fileInfo.setFileSize(uploadFileInfo.getSize());
+		        fileInfo.setFileExtension(uploadFileInfo.getServerFileName().substring(uploadFileInfo.getServerFileName().lastIndexOf(".")+1));
+		        fileInfo.setUploadDate(DateUtil.getDate("yyyyMMdd"));
+		        
+		        fileUploadService.insertFileInfo(fileInfo);
+		        System.out.println("uploadFielInfo::"+fileInfo.toString());
+		        SayMessage.setMessage("성공적으로 저장하였습니다.");
+		        
+		        model.addAttribute("fileInfo", fileInfo);
+		        System.out.println("\t\t\t ################################# insertFileInfo e n d");
+
+		        input.setFileId(fileInfo.getFileId());
+				// user_info 테이블에 저장
+					userService.insertUser(input);
+			}
+		
+		return "redirect:/main.do?msg=success";
+	}*/
+	
+	// 회원 저장
+	@RequestMapping(value = "/common/user/insertUser.do")
+	public String insertUser(User input, ModelMap model, MultipartHttpServletRequest mpRequest) {
+		System.out.println("\t\t\t ################################# insertUser ");
+		// ID 중복 체크
+		int result = userService.idChk(input);
+		
+		//yys test용 제거 
+		result = 0;
+		
+		if(result == 1){
+			System.out.println("중복 있음");
+			return "/common/login/joinForm";
+		} else {
+			System.out.println("중복 없음");
+											
+			/*// file_info 테이블에 저장
+			System.out.println("\t\t\t#########uploadFile.getOriginalFilename()["+uploadFile.getOriginalFilename()+"]");
+			
+			FileInfo fileInfo = new FileInfo();
+	        UploadFileInfo uploadFileInfo = fileUpload.upload(uploadFile);
+
+	        fileInfo.setFileId(getRandomString(5)+"_"+input.getNameFirst());
+	        fileInfo.setFileNumber(0);
+	        fileInfo.setFileName(uploadFileInfo.getClientFileName());
+	        fileInfo.setUploadFilePath(uploadFileInfo.getServerPath());
+	        fileInfo.setUploadFileName(uploadFileInfo.getServerFileName());
+	        fileInfo.setFileSize(uploadFileInfo.getSize());
+	        fileInfo.setFileExtension(uploadFileInfo.getServerFileName().substring(uploadFileInfo.getServerFileName().lastIndexOf(".")+1));
+	        fileInfo.setUploadDate(DateUtil.getDate("yyyyMMdd"));
+	        
+	        fileUploadService.insertFileInfo(fileInfo);
+	        System.out.println("uploadFielInfo::"+fileInfo.toString());
+	        SayMessage.setMessage("성공적으로 저장하였습니다.");
+	        
+	        model.addAttribute("fileInfo", fileInfo);
+	        System.out.println("\t\t\t ################################# insertFileInfo e n d");
+
+	        input.setFileId(fileInfo.getFileId());*/
+			// user_info 테이블에 저장
+			userService.insertUser(input, mpRequest);
+		}
+		
+		return "redirect:/main.do?msg=success";
+	}
+
+	/**
+	 * 랜덤한 문자열을 원하는 길이만큼 반환합니다.
+	 *
+	 * @param length 문자열 길이
+	 * @return 랜덤문자열
+	 */
+	private static String getRandomString(int length)
+	{
+	  StringBuffer buffer = new StringBuffer();
+	  Random random = new Random();
+	 
+	  String chars[] ="a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(",");
+	 
+	  for (int i=0 ; i<length ; i++)
+	  {
+	    buffer.append(chars[random.nextInt(chars.length)]);
+	  }
+	  return buffer.toString();
+	}
+}

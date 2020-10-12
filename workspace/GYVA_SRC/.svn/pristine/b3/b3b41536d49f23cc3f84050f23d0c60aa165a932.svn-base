@@ -1,0 +1,60 @@
+package devonframe.gyva.mypage.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import devonframe.gyva.contents.model.Contents;
+import devonframe.gyva.contents.service.ContentsService;
+
+@Controller
+public class ActivityController {
+
+    @Resource(name = "contentsService")
+    private ContentsService contentsService;
+    
+    @RequestMapping(value="mypage/activityList.do")
+    public String retrieveContentsList(Contents input, ModelMap model, HttpSession session){
+	
+    	String loginChk = (String) session.getAttribute("userId");
+		String deviceType =(String) session.getAttribute("deviceType");
+		String retrunUrl = "mypage/activity/contentsList";
+    	
+    	if (loginChk != null) {
+
+			input.setUserId((String) session.getAttribute("userId"));
+			input.setMenuId("FR070300");
+	    	List<Contents> resultScientificList = contentsService.retrieveActivityContentsList(input);
+			input.setMenuId("FR090100");    	
+	    	List<Contents> resultAnatomyList = contentsService.retrieveActivityContentsList(input);
+			input.setMenuId("FR090300");
+	    	List<Contents> resultInjectionList = contentsService.retrieveActivityContentsList(input);
+			input.setMenuId("FR091100");
+	    	List<Contents> resultExerciseList = contentsService.retrieveActivityContentsList(input);
+	        model.addAttribute("resultScientificList", resultScientificList);
+	        model.addAttribute("resultAnatomyList", resultAnatomyList);
+	        model.addAttribute("resultInjectionList", resultInjectionList);
+	        model.addAttribute("resultExerciseList", resultExerciseList);
+			
+			if (deviceType != null && deviceType.equals("mobile")) {
+				
+				retrunUrl = deviceType + "/" + retrunUrl;
+				
+			}
+	        
+	        return retrunUrl;
+		
+    	} else {    		
+		
+    		return "redirect:/common/error/lostSession.do";  
+			
+    	} 	
+		
+    }
+    
+}

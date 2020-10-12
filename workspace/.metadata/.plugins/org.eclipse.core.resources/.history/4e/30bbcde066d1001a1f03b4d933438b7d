@@ -1,0 +1,96 @@
+package com.gyva.web.common.user.controller;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gyva.web.common.user.model.User;
+import com.gyva.web.common.user.service.UserService;
+
+import devonframe.message.saymessage.SayMessage;
+
+
+/**
+ * <pre>
+ * 본 클래스는 사용자 정보에 대한 CRUD를 담당하는 Controller 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class UserController {
+
+	@Resource(name = "userService")
+	private UserService userService;
+
+	@RequestMapping(value="/common/user/retrieveUser.do")
+//	public String retrieveUser(User input, ModelMap model){
+	public String retrieveUser(String seq, ModelMap model){
+		System.out.println("\t\t\t ################################# retrieveUser start");
+		User input = new User();
+
+		input.setSeq(seq);
+
+		User user = userService.retrieveUser(input);
+
+		if (user == null) {
+			SayMessage.setMessageCode("dev.inf.com.nodata");
+		}
+		model.addAttribute("result", user);
+
+		System.out.println("\t\t\t ################################# retrieveUser e n d");
+		return "common/login/myPageForm";
+	}
+	/*@RequestMapping(value="/pattern/p11/retrieveUser.do")
+    public String retrieveUser(String searchNum, ModelMap model){
+
+    	if (searchNum!=null) {
+            User input = new User();
+            input.setSeq(searchNum);
+
+            User user = userService.retrieveUser(input);
+			if (user == null) {
+            	SayMessage.setMessageCode("dev.inf.com.nodata");
+            }
+            model.addAttribute("result", user);
+    	}
+
+        return "pattern/p11/employeeDetail";
+    }*/
+
+	// 회원 id 중복 체크
+	@RequestMapping(value = "/duplicateCheckId")
+	public int duplicateCheckId(User vo) {
+		int result = userService.duplicateCheckId(vo);
+		return result;
+	}
+	
+	
+	// 회원 가입
+	@RequestMapping(value = "/common/user/insertUser.do")
+	public String insertUser(User input, ModelMap model) {
+		System.out.println("\t\t\t ################################# insertUser ");
+		userService.insertUser(input);
+		return "redirect:/main.do?msg=success";
+	}
+
+	// 회원 정보 수정
+	@RequestMapping(value = "/common/user/updateUser.do")
+	public String updateUser(User input, ModelMap model) {
+		System.out.println("\t\t\t ################################# updateUser ");
+		userService.updateUser(input);
+		return "redirect:/main.do?msg=success";
+	}
+
+		// 회원 정보 삭제
+	@RequestMapping(value="/common/user/deleteUser.do")
+	public String deleteUser(User input, ModelMap model){
+		System.out.println("[============================deleteUser]");
+		userService.deleteUser(input);
+		return "redirect:/common/login/joinForm.do?msg=success";
+	}
+
+}

@@ -1,0 +1,5 @@
+package devonframe.sample.office.common.login.controller;
+
+public class LoginController {
+
+}

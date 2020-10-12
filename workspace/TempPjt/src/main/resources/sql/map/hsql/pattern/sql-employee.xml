@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Employee">
+
+    <select id="retrieveEmployee" resultType="hashmap">
+        <![CDATA[
+        SELECT A.NUM AS "num"
+             , B.NAME AS "joblevelCodeName"
+             , A.JOBLEVEL_CODE AS "joblevelCode"
+             , A.NAME AS "name"
+             , C.NAME AS "departmentCodeName"
+             , A.DIVISION_CODE AS "divisionCode"
+             , A.DEPARTMENT_CODE AS "departmentCode"   
+             , A.BIRTHDATE AS "birthdate"
+             , A.SEX AS "sex"
+             , A.SSN AS "ssn"
+             , A.TELEPHONE AS "telephone"
+             , A.POSTAL AS "postal"
+             , D.NAME AS "skillCodeName"
+             , A.SKILL_CODE AS "skillCode"
+             , A.ADDRESS AS "address"
+          FROM SAM_EMPLOYEE A
+               LEFT OUTER JOIN SAM_JOBLEVEL B
+            ON A.JOBLEVEL_CODE = B.CODE
+               LEFT OUTER JOIN SAM_DEPARTMENT C
+            ON (A.DIVISION_CODE || A.DEPARTMENT_CODE) = (C.DIV_CODE || C.CODE)
+               LEFT OUTER JOIN SAM_SKILL D
+            ON A.SKILL_CODE = D.CODE
+               LEFT OUTER JOIN SAM_DIVISION E
+            ON E.CODE = C.CODE
+         WHERE A.NUM = #{num}
+        ]]>
+    </select>
+
+    <insert id="insertEmployee">
+        <![CDATA[
+        INSERT INTO SAM_EMPLOYEE(
+               NUM
+             , NAME
+             , JOBLEVEL_CODE
+             , DIVISION_CODE
+             , DEPARTMENT_CODE
+             , BIRTHDATE
+             , SEX
+             , SSN
+             , TELEPHONE
+             , POSTAL
+             , SKILL_CODE
+             , ADDRESS
+        ) VALUES (
+             #{num}
+           , #{name}
+           , #{joblevelCode}
+           , #{divisionCode}
+           , #{departmentCode}
+           , #{birthdate}
+           , #{sex}
+           , #{ssn}
+           , #{telephone}
+           , #{postal}
+           , #{skillCode}
+           , #{address}
+        )
+        ]]>
+    </insert>
+
+    <update id="updateEmployee">
+        <![CDATA[
+        UPDATE SAM_EMPLOYEE
+           SET NUM = NUM
+             , NAME = #{name}
+             , JOBLEVEL_CODE = #{joblevelCode}
+             , DIVISION_CODE = #{divisionCode}
+             , DEPARTMENT_CODE = #{departmentCode}
+             , BIRTHDATE = #{birthdate}
+             , SEX = #{sex}
+             , SSN = #{ssn}
+             , TELEPHONE = #{telephone}
+             , POSTAL = #{postal}
+             , SKILL_CODE = #{skillCode}
+             , ADDRESS = #{address}
+         WHERE NUM = #{num}
+        ]]>
+    </update>
+    
+    <update id="updateEmployeeForP2">
+        <![CDATA[
+        UPDATE SAM_EMPLOYEE
+           SET NAME = #{name}
+             , JOBLEVEL_CODE = #{joblevelCode}
+             , SKILL_CODE = #{skillCode}
+             , TELEPHONE = #{telephone}
+             , BIRTHDATE = #{birthdate}
+         WHERE NUM = #{num}
+        ]]>
+    </update>    
+
+
+    <delete id="deleteEmployee">
+        <![CDATA[
+        DELETE
+          FROM SAM_EMPLOYEE
+         WHERE NUM = #{num}
+        ]]>
+    </delete>
+
+
+    <select id="retrieveEmployeeList" resultType="hashmap">
+        <![CDATA[
+        SELECT A.NUM AS "num"
+             , A.NAME AS "name"
+             , A.JOBLEVEL_CODE AS "joblevelCode"
+             , A.DIVISION_CODE AS "divisionCode"
+             , A.DEPARTMENT_CODE AS "departmentCode"
+             , A.SKILL_CODE AS "skillCode"
+             , A.TELEPHONE AS "telephone"
+             , A.BIRTHDATE AS "birthdate"
+             , B.NAME AS "joblevelCodeName"
+             , C.NAME AS "departmentCodeName"
+             , D.NAME AS "skillCodeName"
+          FROM SAM_EMPLOYEE A
+               LEFT OUTER JOIN SAM_JOBLEVEL B
+            ON A.JOBLEVEL_CODE = B.CODE
+               LEFT OUTER JOIN SAM_DEPARTMENT C
+            ON (A.DIVISION_CODE || A.DEPARTMENT_CODE) = (C.DIV_CODE || C.CODE)
+               LEFT OUTER JOIN SAM_SKILL D
+            ON A.SKILL_CODE = D.CODE
+         WHERE 1=1
+        ]]>
+        <if test="skillCode != null and skillCode != ''">
+        <![CDATA[ AND A.SKILL_CODE = #{skillCode} ]]>
+        </if>
+        <if test="joblevelCode != null and joblevelCode != ''">
+        <![CDATA[ AND A.JOBLEVEL_CODE = #{joblevelCode}  ]]>
+        </if>
+         ORDER BY A.NUM
+    </select>
+
+</mapper>

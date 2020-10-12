@@ -1,0 +1,173 @@
+@charset "utf-8";
+/* id="FR000000-05" :main */
+#FR000000-05 .default-header {background-color:transparent;}
+#FR000000-05 .default-contents {background-color:transparent;padding-bottom:76px;}
+#FR000000-05 .visual-wrap {margin-left:-40px;}
+/* id="FR010101-05" : login */
+#FR010101-05 {background-color:#ece8ef;padding:180px 0 27px;/* background:#efe8ee url("/resource/images/front/contents/bg-section-form.png") no-repeat top center; */}
+#FR010101-05 .content-tit {color:#000000;text-align:center;}
+#FR010101-05 .form-tit {color:#6b6b6b;}
+#FR010101-05 .form {vertical-align:middle;}
+#FR010101-05 .link-btn {color:#a50034;font-size:14px;height:auto;line-height:1;padding:0 0;}
+#FR010101-05 .link-btn + .link-btn {margin-left:8px;}
+#FR010101-05 .link-btn:after {background-color:#a50034;content:"";display:block;height:1px;margin-top:2px;}
+#FR010101-05 .link-btn i {font-size:10px;margin-left:10px;}
+#FR010101-05 .submit-area + .form {text-align:right;}
+#FR010101-05 .submit-area + .form,
+#FR010101-05 [data-combine-form="column-2-form"]  {border-top:1px solid #dbdcdf;margin-top:28px;padding-top:24px;}
+#FR010101-05 [data-combine-form="column-2-form"] [data-form="checkbox"] {width:198px;}
+#FR010101-05 [data-combine-form="column-2-form"] [data-mult-form="btn"] {width:auto;}
+#FR010101-05 [data-combine-form="login-form"] {border-left:none;border:none;margin-top:41px;}
+#FR010101-05 .content-section {background:#ffffff url("/resource/images/front/contents/bg-header-FR010303.png") no-repeat left top;box-shadow:0 0 20px rgba(222, 222, 222, 0.75);width:912px;height:500px;padding-left:400px;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
+#FR010101-05 .form-wrap {padding:78px 40px;}
+#FR010101-05 .submit-area {margin-top:37px;}
+#FR010101-05 .submit-area [class*="btn"] {width:100%;}
+/* id="FR010301-05" : 회원가입 */
+#FR010301-05 {background-color:#ece8ef;padding:180px 0 27px; /* background:#efe8ee url("/resource/images/front/contents/bg-section-form.png") no-repeat top center; */}
+#FR010301-05 .content-tit {text-align:center;}
+/* #FR010301-05 .content-tit:before {background:url("/resource/images/front/contents/log-content-tit.png") no-repeat center center;content:"";display:block;width:82px;height:24px;margin:0 auto 16px;} */
+#FR010301-05 .article-tit {margin-left:10px;margin-bottom:9px;}
+#FR010301-05 .article-tit:before {display:none;}
+#FR010301-05 .article-txt {margin-left:10px;margin-bottom:26px;}
+#FR010301-05 .link-btn {color:#ffffff;position:absolute;left:40px;bottom:34px;}
+#FR010301-05 .link-btn:after {background-color:#ffffff;content:"";display:block;height:1px;margin-top:2px;}
+#FR010301-05 .link-btn i {font-size:10px;margin-right:10px;}
+#FR010301-05 [data-board-type="form-write"] {padding:60px 40px;}
+#FR010301-05 .content-section {background-color:#ffffff;box-shadow:0 0 20px rgba(222, 222, 222, 0.75);width:912px;margin:0 auto;}
+#FR010301-05 .content-header {background-image:none;background-color:#494444;height:195px;margin:0 0;position:relative;}
+#FR010301-05 .board-area,
+#FR010301-05 .terms-section {border-top:1px solid #dbdcdf;}
+#FR010301-05 .submit-area {text-align:center;}
+/* id="FR010303-05" : Reset Password */
+#FR010303-05 {background:#efe8ee url("/resource/images/front/contents/bg-section-form.png") no-repeat top center;padding:180px 0 27px;}
+#FR010303-05 .content-tit {color:#000000;margin-bottom:16px;text-align:center;}
+#FR010303-05 .content-txt {text-align:center;}
+#FR010303-05 .form-tit {color:#6b6b6b;}
+#FR010303-05 .form {vertical-align:middle;}
+#FR010303-05 [data-combine-form="login-form"] {border-left:none;border-right:none;padding:24px 0;margin-top:36px;}
+#FR010303-05 .content-section {background:#ffffff url("/resource/images/front/contents/bg-header-FR010303.png") no-repeat left top;width:912px;height:500px;padding-left:400px;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
+#FR010303-05 .form-wrap {padding:78px 40px;}
+#FR010303-05 .submit-area [class*="btn"] {width:calc(50% - 5.5px);}
+/* id="FR010501-05" : Recently viewed */
+#FR010501-05 .list-wrap .board-list {display:none;}
+#FR010501-05 .list-wrap:nth-of-type(1) .caption {height:150px;}
+/* #FR010501-05 .list-wrap:nth-of-type(2) .img-area {height:406px;} */
+/* #FR010501-05 .list-wrap:nth-of-type(3) .img-area {height:406px;} */
+#FR010501-05 .list-wrap + .list-wrap {border-top:1px solid #e4e6e9;padding-top:50px;}
+/* id="FR010503-05" : Check Profile */
+#FR010503-05 .submit-area {text-align:center;}
+#FR010503-05 .form-wrap {display:none;}
+#FR010503-10 .form-wrap {display:none;}
+/* id="FR010505-05" : Helpdesk */
+#FR010505-05 .tab-wrap [data-useragent="M"] {display:none;}
+#FR010505-05 [data-comment-type="certified-instructor"] .list-sub-btn {margin:0 33px}
+/* id="FR010507-05" : Bookmark */
+#FR010507-05 .tab-wrap [data-useragent="M"] {display:none;}
+#FR010507-05 [data-board-type="form-list"] td {font-size:14px;padding:12px 40px;}
+#FR010507-05 [data-board-type="form-list"] .img {padding-left:0;padding-right:0;}
+#FR010507-05 [data-board-type="form-list"] .link-btn {display:block;padding:0 0;}
+#FR010507-05 [data-board-type="form-list"] .link-btn .link-tit {font-size:18px;font-weight:600;}
+#FR010507-05 [data-board-type="form-list"] .link-btn .link-txt {display:block;margin-top:5px;}
+#FR010507-05 [data-board-type="form-list"] .board-sub-btn {height:50px;line-height:50px;width:100%;}
+#FR010507-05 [data-board-type="form-list"] .default-table {border-top:1px solid #dbdcdf;}
+/* id="FR010901-05" : Search Results */
+#FR010901-05 .content-tit {color:#000000;font-size:40px;font-weight:400;margin:50px 0;text-align:center;}
+#FR010901-05 .content-tit * {vertical-align:middle;}
+#FR010901-05 .content-tit .search {border-bottom:1px solid #a50034;color:#a50034;padding-bottom:5px;vertical-align:baseline;}
+#FR010901-05 .content-tit .search:before,
+#FR010901-05 .content-tit .search:after {content:'"';}
+#FR010901-05 .content-tit .search-value {font-weight:600;margin:0 10px;}
+#FR010901-05 .article-tit:before {display:none;}
+#FR010901-05 * + .article-tit,
+#FR010901-05 .button-area {margin-top:40px;}
+#FR010901-05 .board-area {margin-top:20px;border-top:1px solid #000000;border-bottom:1px solid #000000;}
+#FR010901-05 .board-area td {font-size:18px;padding: 12px 40px;text-align:left;}
+#FR010901-05 .board-area a {color:#6b6b6b;}
+#FR010901-05 [data-type="category"] {color:#a50034;}
+#FR010901-05 [data-type="category"]:before {content:"[";margin-right:3px;}
+#FR010901-05 [data-type="category"]:after {content:"]";margin-left:3px;}
+#FR010901-05 .list-wrap[data-useragent="M"] {display:none;}
+/* id="FR030101-05" : Branding Material > Logo */
+#FR030101-05 .list-wrap .caption .link-btn {padding-right:40px;}
+/* id="FR030103-05" : Branding Material > Product Image */
+#FR030103-05 .list-wrap .caption .link-btn {padding-right:40px;}
+/* id="FR030105-05" : Branding Material > Imagery */
+#FR030105-05 .list-wrap .caption .link-btn {padding-right:40px;}
+/* id="FR030107-05" : Branding Material > Video */
+#FR030107-05 .list-wrap .caption .link-btn {padding-right:40px;}
+/* id="FR030109-05" : Branding Material > Social Media */
+#FR030109-05 .list-wrap .caption .link-btn {padding-right:40px;}
+/* id="FR030105-05" : Scientific Data > 리스트 */
+#FR050103-05 .list-wrap .caption {height:150px;}
+/* id="FR050103-10" : Scientific Data 상세 */
+#FR050103-10 .submit-area .sub-btn {background-color:transparent;border:1px solid #a50034;color:#a50034;min-width:160px;}
+/* id="FR050107-05" : For Parner > 리스트 */
+#FR050107-05 .list-wrap .caption .link-btn {padding-right:40px;}
+/* id="FR070101-10" : Anatomy 상세 */
+#FR070101-10 .submit-area .sub-btn {background-color:transparent;border:1px solid #a50034;color:#a50034;min-width:160px;}
+/* id="FR070301-10" : YVOIRE Injection 상세 */
+#FR070301-10 .submit-area .sub-btn {background-color:transparent;border:1px solid #a50034;color:#a50034;min-width:160px;}
+/* id="FR070301-10" : Webinar replay 상세 */
+#FR070501-10 .submit-area .sub-btn {background-color:transparent;border:1px solid #a50034;color:#a50034;min-width:160px;}
+/* id="FR071101-10" : YVOIRE Exercise 상세 */
+#FR071101-10 .submit-area .sub-btn {background-color:transparent;border:1px solid #a50034;color:#a50034;min-width:160px;}
+/* id="FR090101-10" : Notice 상세 */
+#FR090101-10 .submit-area .sub-btn {background-color:transparent;border:1px solid #a50034;color:#a50034;min-width:160px;}
+/* id="FR090301-05" : registration */
+#FR090301-05 .swiper-pagination {display:none;}
+#FR090301-05 .swiper-button-next {display:none;}
+#FR090301-05 .swiper-button-prev {display:none;}
+#FR090301-05 .autoplay-btn {display:none;}
+/* id="FR110101-10" : Contact */
+#FR110101-10 {}
+#FR110101-10 .input-form {background-color:#fcfcfd;border-radius:10px;border:none;}
+#FR110101-10 textarea.input-form {height:210px;}
+#FR110101-10 .form-tit {display:block;margin-bottom:12px;}
+#FR110101-10 .form-wrap {background-color:#ffffff;padding:40px 40px;}
+#FR110101-10 .form-area .form-tit + .form {width:100%;magin-top:15px;}
+#FR110101-10 .form-area > li + li {padding-top:28px;}
+#FR110101-10 .submit-area [class*="btn"] {width:100%;}
+.contact-wrap {overflow:hidden;}
+.contact-area .tit {color:#a50034;font-size:24px;font-weight:600;line-height:26px;}
+.contact-area .txt {color:#000000;font-size:18px;line-height:26px;margin-top:22px;}
+.contact-area .email-btn {color:#000000;font-size:24px;font-weight:600;margin:65px 0;padding:0 0;width:100%;text-align:left;}
+.contact-area .email-btn:before {background:url("/resource/images/front/icon/icon-email-btn.png") no-repeat center center;background-size:cover;content:"";display:inline-block;height:70px;margin-right:24px;width:70px;vertical-align:inherit;}
+.contact-area .email-btn span {display:inline-block;vertical-align:middle;}
+.contact-area .email-btn em {display:block;color:#6b6b6b;font-size:16px;margin-bottom:6px;}
+.contact-wrap [data-offset="left"] {width:35.32%;}
+.contact-wrap [data-offset="right"] {width:62.5%;}
+
+/***************************************************************************
+	[PC 중간 사이즈 분기]
+	- 1280 x 1024
+	- 1600 x 900
+***************************************************************************/
+@media screen and (min-width: 1280px) and (max-width: 1919px) {
+/* id="FR010505-05" : Helpdesk */
+#FR010505-05 [data-comment-type="certified-instructor"] .list-sub-btn {margin-right:0;}
+/* id="FR010507-05" : Bookmark */
+#FR010507-05 [data-board-type="form-list"] col:nth-child(1) {width:10% !important;}
+#FR010507-05 [data-board-type="form-list"] col:nth-child(2) {width:20% !important;}
+#FR010507-05 [data-board-type="form-list"] col:nth-child(3) {width:auto !important;}
+#FR010507-05 [data-board-type="form-list"] col:nth-child(4) {width:15% !important;}
+#FR010507-05 [data-board-type="form-list"] col:nth-child(5) {width:15% !important;}
+#FR010507-05 [data-board-type="form-list"] td {padding:12px 12px;}
+/* id="FR010901-05" : Search Results */
+#FR010901-05 .board-area td {padding:12px 12px;}
+/* id="FR030101-05" : Branding Material > Logo */
+#FR030101-05 .list-wrap .caption .link-btn {padding:0;}
+/* id="FR030103-05" : Branding Material > Product Image */
+#FR030103-05 .list-wrap .caption .link-btn {padding:0;}
+/* id="FR030105-05" : Branding Material > Imagery */
+#FR030105-05 .list-wrap .caption .link-btn {padding:0;}
+/* id="FR030107-05" : Branding Material > Video */
+#FR030107-05 .list-wrap .caption .link-btn {padding:0;}
+/* id="FR030109-05" : Branding Material > Social Media */
+#FR030109-05 .list-wrap .caption .link-btn {padding:0;}
+/* id="FR030105-05" : Scientific Data > 리스트 */
+#FR030105-05 .list-wrap .caption .link-btn {padding:0;}
+/* id="FR050107-05" : For Parner > 리스트 */
+#FR030105-05 .list-wrap .caption .link-btn {padding:0;}
+}
+
+

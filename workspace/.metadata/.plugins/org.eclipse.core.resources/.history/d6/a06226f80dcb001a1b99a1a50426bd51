@@ -1,0 +1,56 @@
+package com.java.gyva.common.user.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.java.gyva.common.user.controller.model.User;
+import com.java.gyva.common.user.controller.service.UserService;
+
+/**
+ * <pre>
+ * 본 클래스는 사용자 정보에 대한 CRUD를 담당하는 Controller 클래스입니다.
+ * </pre>
+ *
+ * @author XXX팀 OOO
+ */
+
+@Controller
+public class UserController {
+
+	@Resource(name = "userService")
+	private UserService userService;
+
+	
+	@RequestMapping(value="/common/user/searchUserList.do")
+	public String retrieveUserList(User input, ModelMap model){
+		List<User> resultList = userService.retrieveUserList(input);
+		model.addAttribute("input", input);
+		model.addAttribute("resultList", resultList);
+		return "common/user/userList";
+	}
+
+	
+	@RequestMapping(value="/common/user/insertUser.do")
+	public String insertUser(User input, ModelMap model){
+		userService.insertUser(input);
+		return "redirect:/common/user/retrieveUserList.do?msg=success";
+	}
+
+	@RequestMapping(value="/common/user/updateUser.do")
+	public String updateUser(User input, ModelMap model){
+		userService.updateUser(input);
+		return "redirect:/common/user/retrieveUserList.do?msg=success";
+	}
+
+	@RequestMapping(value="/common/user/deleteUser.do")
+	public String deleteUser(User input, ModelMap model){
+		userService.deleteUser(input);
+		return "redirect:/common/user/retrieveUserList.do?msg=success";
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.java.gyva.common.login.controller;
+
+public class TestController {
+
+}
